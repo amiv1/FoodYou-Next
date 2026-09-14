@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Food You</string>
+    <string name="app_name" translatable="false">Food You Next</string>
 
     <string name="en_dash" translatable="false">–</string>
     <string name="em_dash" translatable="false">—</string>
