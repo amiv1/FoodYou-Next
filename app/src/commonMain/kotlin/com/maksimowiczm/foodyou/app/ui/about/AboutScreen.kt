@@ -24,7 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.Lightbulb
-import androidx.compose.material.icons.outlined.Mail
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -118,7 +117,6 @@ fun AboutScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
                 onSourceCode = { uriHandler.openUri(appConfig.sourceCodeUri) },
                 onChangelog = { showChangelog = true },
                 onIdea = { uriHandler.openUri(appConfig.issueTrackerUri) },
-                onEmail = { uriHandler.openUri(appConfig.contactEmailUri) },
             )
             Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.systemBars))
         }
@@ -135,7 +133,6 @@ private fun AboutButtons(
     onSourceCode: () -> Unit,
     onChangelog: () -> Unit,
     onIdea: () -> Unit,
-    onEmail: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val buttonHeight = 56.dp
@@ -177,18 +174,6 @@ private fun AboutButtons(
             Icon(
                 imageVector = Icons.Outlined.Lightbulb,
                 contentDescription = stringResource(Res.string.action_feature_request_on_github),
-                modifier = Modifier.size(ButtonDefaults.iconSizeFor(buttonHeight)),
-            )
-        }
-        OutlinedButton(
-            onClick = onEmail,
-            shapes = ButtonDefaults.shapesFor(buttonHeight),
-            modifier = Modifier.height(buttonHeight),
-            contentPadding = ButtonDefaults.contentPaddingFor(buttonHeight),
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Mail,
-                contentDescription = stringResource(Res.string.action_write_an_email),
                 modifier = Modifier.size(ButtonDefaults.iconSizeFor(buttonHeight)),
             )
         }

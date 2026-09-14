@@ -38,7 +38,6 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.ContentCopy
-import androidx.compose.material.icons.outlined.Hail
 import androidx.compose.material.icons.outlined.Link
 import androidx.compose.material.icons.outlined.MoneyOff
 import androidx.compose.material.icons.outlined.PrivacyTip
@@ -84,7 +83,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.app.ui.common.component.ArrowBackIconButton
-import com.maksimowiczm.foodyou.app.ui.common.utility.LocalAppConfig
 import com.maksimowiczm.foodyou.common.compose.component.StatusBarProtection
 import com.maksimowiczm.foodyou.common.compose.component.StatusBarProtectionDefaults
 import com.maksimowiczm.foodyou.common.compose.extension.add
@@ -188,8 +186,6 @@ private fun SponsorPrivacyScreen(
             }
 
             item { Methods() }
-
-            item { ContactCard() }
         }
     }
 }
@@ -272,8 +268,6 @@ private fun SponsorScreen(
             )
 
             item { Spacer(Modifier.height(24.dp)) }
-
-            item { ContactCard(modifier = Modifier.padding(horizontal = 16.dp)) }
         }
     }
 
@@ -510,42 +504,6 @@ private fun SponsorCard(
     }
 }
 
-@Composable
-private fun ContactCard(modifier: Modifier = Modifier) {
-    val appConfig = LocalAppConfig.current
-    val uriHandler = LocalUriHandler.current
-
-    Card(
-        onClick = { uriHandler.openUri(appConfig.contactEmailUri) },
-        modifier = modifier,
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                contentColor = MaterialTheme.colorScheme.onSurface,
-            ),
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Icon(imageVector = Icons.Outlined.Hail, contentDescription = null)
-                Text(
-                    text = stringResource(Res.string.headline_contact),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-            }
-
-            Text(
-                text = stringResource(Res.string.description_sponsor_contact),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
-    }
-}
 
 @Composable
 private fun ThisMonth(

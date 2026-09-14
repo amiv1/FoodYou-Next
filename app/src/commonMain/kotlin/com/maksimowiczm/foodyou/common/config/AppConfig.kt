@@ -5,9 +5,6 @@ interface AppConfig {
     /** Current version name of the application (e.g. "1.0.0"). */
     val versionName: String
 
-    /** Mailto URI for contacting the developer (including subject and body). */
-    val contactEmailUri: String
-
     /** URL to the translation platform where users can contribute translations. */
     val translationUri: String
 
