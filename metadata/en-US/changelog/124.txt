@@ -1,0 +1,3 @@
+Changes
+- Forked as Food You Next, maintained independently of the upstream project.
+- Added a scrubber to pick meal weight.
