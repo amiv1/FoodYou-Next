@@ -87,3 +87,4 @@ jobs:
           name: ${{ github.ref_name }}
           files: food-you-next-${{ steps.app_version.outputs.version }}.apk
           generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
