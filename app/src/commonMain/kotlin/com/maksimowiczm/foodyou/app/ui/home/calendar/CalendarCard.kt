@@ -1,29 +1,22 @@
 package com.maksimowiczm.foodyou.app.ui.home.calendar
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -31,15 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
 import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
@@ -48,14 +33,8 @@ import com.maksimowiczm.foodyou.common.domain.date.DateProvider
 import com.maksimowiczm.foodyou.common.extension.now
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filter
-import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.isoDayNumber
-import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
@@ -65,14 +44,8 @@ internal fun CalendarCard(homeState: HomeState, modifier: Modifier = Modifier) {
     val dateProvider = koinInject<DateProvider>()
     val today = dateProvider.observeDate().collectAsStateWithLifecycle(LocalDate.now()).value
 
-    val dateFormatter = LocalDateFormatter.current
-
     val calendarState =
-        rememberCalendarState(
-            namesOfDayOfWeek = remember(dateFormatter) { dateFormatter.weekDayNamesShort },
-            referenceDate = today,
-            selectedDate = homeState.selectedDate,
-        )
+        rememberCalendarState(referenceDate = today, selectedDate = homeState.selectedDate)
 
     LaunchedEffect(calendarState.selectedDate) {
         val date = calendarState.selectedDate
@@ -86,11 +59,7 @@ internal fun CalendarCard(homeState: HomeState, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun CalendarCard(
-    calendarState: CalendarState,
-    modifier: Modifier = Modifier,
-    colors: CalendarCardColors = CalendarCardDefaults.colors(),
-) {
+private fun CalendarCard(calendarState: CalendarState, modifier: Modifier = Modifier) {
     val dateFormatter = LocalDateFormatter.current
     var showDatePicker by rememberSaveable { mutableStateOf(false) }
 
@@ -101,28 +70,46 @@ private fun CalendarCard(
         )
     }
 
-    FoodYouHomeCard(onClick = { showDatePicker = true }, modifier = modifier) {
-        Column(modifier = Modifier.fillMaxWidth().padding(top = 16.dp, bottom = 8.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(
-                    text =
-                        dateFormatter.formatMonthYear(
-                            calendarState.firstVisibleDate ?: calendarState.selectedDate
-                        )
-                )
+    val label =
+        if (calendarState.selectedDate == calendarState.referenceDate) {
+            stringResource(Res.string.action_today)
+        } else {
+            dateFormatter.formatMonthDayWeek(calendarState.selectedDate)
+        }
 
+    FoodYouHomeCard(modifier = modifier) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            IconButton(onClick = { calendarState.selectPreviousDay() }) {
                 Icon(
-                    imageVector = Icons.Default.CalendarMonth,
-                    contentDescription = stringResource(Res.string.action_show_calendar),
+                    imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowLeft,
+                    contentDescription = stringResource(Res.string.action_previous_day),
                 )
             }
-            Spacer(Modifier.height(8.dp))
-            Box(modifier = Modifier.fillMaxWidth()) {
-                CalendarCardDatePicker(calendarState = calendarState, colors = colors)
+
+            FilledTonalButton(
+                onClick = { showDatePicker = true },
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+                contentPadding = ButtonDefaults.TextButtonContentPadding,
+            ) {
+                Text(
+                    text = label,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                )
+            }
+
+            IconButton(
+                onClick = { calendarState.selectNextDay() },
+                enabled = calendarState.canSelectNextDay,
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+                    contentDescription = stringResource(Res.string.action_next_day),
+                )
             }
         }
     }
@@ -145,8 +132,7 @@ private fun CalendarCardDatePickerDialog(
                             date =
                                 Instant.fromEpochMilliseconds(it)
                                     .toLocalDateTime(TimeZone.UTC)
-                                    .date,
-                            scroll = true,
+                                    .date
                         )
                     }
                     onDismissRequest()
@@ -174,10 +160,7 @@ private fun CalendarCardDatePickerDialog(
 
                     TextButton(
                         onClick = {
-                            calendarState.onDateSelect(
-                                date = calendarState.referenceDate,
-                                scroll = true,
-                            )
+                            calendarState.onDateSelect(date = calendarState.referenceDate)
                             onDismissRequest()
                         }
                     ) {
@@ -189,145 +172,4 @@ private fun CalendarCardDatePickerDialog(
             modifier = Modifier.verticalScroll(rememberScrollState()),
         )
     }
-}
-
-@Composable
-private fun CalendarCardDatePicker(
-    calendarState: CalendarState,
-    colors: CalendarCardColors,
-    modifier: Modifier = Modifier,
-) {
-    val hapticFeedback = LocalHapticFeedback.current
-
-    // Tick when user scrolls
-    LaunchedEffect(calendarState) {
-        combine(
-                snapshotFlow { calendarState.lazyListState.isScrollInProgress },
-                snapshotFlow { calendarState.lazyListState.firstVisibleItemIndex },
-            ) { isScrollInProgress, _ ->
-                isScrollInProgress
-            }
-            .filter { it }
-            .collectLatest {
-                hapticFeedback.performHapticFeedback(HapticFeedbackType.SegmentFrequentTick)
-            }
-    }
-
-    LazyRow(modifier = modifier, state = calendarState.lazyListState) {
-        items(calendarState.lazyListCount) {
-            val date = calendarState.zeroDate.plus(it.toLong(), DateTimeUnit.DAY)
-            DatePickerRowItem(
-                calendarState = calendarState,
-                date = date,
-                colors = colors,
-                onClick = {
-                    calendarState.onDateSelect(date = date, scroll = false)
-                    hapticFeedback.performHapticFeedback(HapticFeedbackType.Confirm)
-                },
-            )
-        }
-    }
-}
-
-@Composable
-private fun DatePickerRowItem(
-    calendarState: CalendarState,
-    date: LocalDate,
-    colors: CalendarCardColors,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val namesOfDayOfWeek = calendarState.namesOfDayOfWeek
-    val referenceDate = calendarState.referenceDate
-    val selectedDate = calendarState.selectedDate
-    val dayOfWeek = (date.dayOfWeek.isoDayNumber - 1) % 7
-
-    val backgroundColor by
-        animateColorAsState(
-            targetValue =
-                when (date) {
-                    selectedDate -> colors.selectedDateContainerColor
-                    referenceDate -> colors.referenceDateContainerColor
-                    else -> colors.containerColor
-                },
-            animationSpec = tween(500),
-            label = "Date background color",
-        )
-    val color by
-        animateColorAsState(
-            targetValue =
-                when (date) {
-                    selectedDate -> colors.selectedDateContentColor
-                    referenceDate -> colors.referenceDateContentColor
-                    else -> colors.contentColor
-                },
-            animationSpec = tween(500),
-            label = "Date text color",
-        )
-
-    Box(
-        modifier =
-            modifier
-                .height(IntrinsicSize.Min)
-                .padding(4.dp)
-                .clip(MaterialTheme.shapes.medium)
-                .clickable { onClick() }
-                .drawBehind { drawRect(backgroundColor) }
-                .padding(4.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(
-            modifier = Modifier.aspectRatio(1f),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = namesOfDayOfWeek[dayOfWeek],
-                color = color,
-                textAlign = TextAlign.Center,
-                autoSize =
-                    TextAutoSize.StepBased(
-                        minFontSize = 8.sp,
-                        maxFontSize = MaterialTheme.typography.bodyMedium.fontSize,
-                    ),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                text = date.day.toString(),
-                style = MaterialTheme.typography.bodyMedium,
-                color = color,
-                textAlign = TextAlign.Center,
-            )
-        }
-    }
-}
-
-@Immutable
-private data class CalendarCardColors(
-    val containerColor: Color,
-    val contentColor: Color,
-    val selectedDateContainerColor: Color,
-    val selectedDateContentColor: Color,
-    val referenceDateContainerColor: Color,
-    val referenceDateContentColor: Color,
-)
-
-private object CalendarCardDefaults {
-    @Composable
-    fun colors(
-        containerColor: Color = CardDefaults.elevatedCardColors().containerColor,
-        contentColor: Color = CardDefaults.elevatedCardColors().contentColor,
-        selectedDateContainerColor: Color = MaterialTheme.colorScheme.primary,
-        selectedDateContentColor: Color = MaterialTheme.colorScheme.onPrimary,
-        referenceDateContainerColor: Color = MaterialTheme.colorScheme.secondary,
-        referenceDateContentColor: Color = MaterialTheme.colorScheme.onSecondary,
-    ) =
-        CalendarCardColors(
-            containerColor = containerColor,
-            contentColor = contentColor,
-            selectedDateContainerColor = selectedDateContainerColor,
-            selectedDateContentColor = selectedDateContentColor,
-            referenceDateContainerColor = referenceDateContainerColor,
-            referenceDateContentColor = referenceDateContentColor,
-        )
 }

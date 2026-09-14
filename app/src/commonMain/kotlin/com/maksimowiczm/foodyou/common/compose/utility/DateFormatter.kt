@@ -50,6 +50,14 @@ interface DateFormatter {
     fun formatDateSuperShort(date: LocalDate): String
 
     /**
+     * Formats the specified [date] as a string in the "EEE, MMM d" format (short weekday name,
+     * abbreviated month, day).
+     *
+     * For example, in English (US), this could return "Mon, Apr 1".
+     */
+    fun formatMonthDayWeek(date: LocalDate): String
+
+    /**
      * Formats the specified [time] as a string in the "hh:mm" format.
      *
      * The formatting respects the system's locale.
@@ -79,6 +87,8 @@ private val defaultDateFormatter: DateFormatter =
         override fun formatDateShort(date: LocalDate): String = date.toString()
 
         override fun formatDateSuperShort(date: LocalDate): String = date.toString()
+
+        override fun formatMonthDayWeek(date: LocalDate): String = date.toString()
 
         override fun formatTime(time: LocalTime): String = time.toString()
 

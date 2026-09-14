@@ -152,6 +152,8 @@
     <string name="action_disable_camera_flash">Disable camera flash</string>
     <string name="action_prevent_screen_capture">Prevent screen capture</string>
     <string name="action_go_to_today">Go to today</string>
+    <string name="action_previous_day">Previous day</string>
+    <string name="action_next_day">Next day</string>
     <string name="action_feature_request_on_github">Feature request on GitHub</string>
     <string name="action_show_calendar">Show calendar</string>
     <string name="action_reorder">Reorder</string>

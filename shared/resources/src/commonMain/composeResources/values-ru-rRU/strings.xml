@@ -140,6 +140,8 @@
     <string name="action_disable_camera_flash">Выключить вспышку</string>
     <string name="action_prevent_screen_capture">Запретить захват экрана</string>
     <string name="action_go_to_today">Перейти к сегодняшнему дню</string>
+    <string name="action_previous_day">Предыдущий день</string>
+    <string name="action_next_day">Следующий день</string>
     <string name="action_feature_request_on_github">Предложить идею на GitHub</string>
     <string name="action_show_calendar">Показать календарь</string>
     <string name="action_reorder">Изменить порядок</string>

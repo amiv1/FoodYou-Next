@@ -45,6 +45,11 @@ class AndroidDateFormatter(private val context: Context, private val localProvid
         return date.toJavaLocalDate().format(formatter)
     }
 
+    override fun formatMonthDayWeek(date: LocalDate): String {
+        val formatter = DateTimeFormatter.ofPattern("EEE, MMM d", defaultLocale)
+        return date.toJavaLocalDate().format(formatter)
+    }
+
     override fun formatTime(time: LocalTime): String =
         if (DateFormat.is24HourFormat(context)) {
             DateTimeFormatter.ofPattern("HH:mm", defaultLocale).format(time.toJavaLocalTime())
