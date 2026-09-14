@@ -2,6 +2,12 @@ name: Release APK
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   release-apk:
@@ -32,11 +38,18 @@ jobs:
       - name: Build APK
         run: ./gradlew --no-daemon assembleRelease
 
+      - name: Read app version
+        id: app_version
+        run: |
+          VERSION=$(grep '^version-name' gradle/libs.versions.toml | sed -E 's/version-name = "(.*)"/\1/')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
       - name: Align and sign APK
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          APK_NAME: food-you-next-${{ steps.app_version.outputs.version }}.apk
         run: |
           echo ${KEYSTORE_BASE64} | base64 -d > keystore
 
@@ -53,7 +66,7 @@ jobs:
             --ks keystore \
             --ks-key-alias ${KEY_ALIAS} \
             --ks-pass "pass:${KEYSTORE_PASSWORD}" \
-            --out signed.apk \
+            --out "${APK_NAME}" \
             aligned.apk
           
           echo "APK signed successfully."
@@ -62,6 +75,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: signed-apk
-          path: signed.apk
+          path: food-you-next-${{ steps.app_version.outputs.version }}.apk
           if-no-files-found: error
           retention-days: 7
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          files: food-you-next-${{ steps.app_version.outputs.version }}.apk
+          generate_release_notes: true
