@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
+import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.valentinilk.shimmer.Shimmer
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -26,6 +27,7 @@ internal fun HorizontalMealsCards(
     onQuickAdd: (mealId: Long) -> Unit,
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
+    onUpdateMeasurement: (mealId: Long, FoodMealEntryModel, Measurement) -> Unit,
     onLongClick: (mealId: Long) -> Unit,
     shimmer: Shimmer,
     contentPadding: PaddingValues,
@@ -67,6 +69,9 @@ internal fun HorizontalMealsCards(
                     onQuickAdd = { onQuickAdd(meal.id) },
                     onEditEntry = onEditEntry,
                     onDeleteEntry = onDeleteEntry,
+                    onUpdateMeasurement = { entry, measurement ->
+                        onUpdateMeasurement(meal.id, entry, measurement)
+                    },
                     onLongClick = { onLongClick(meal.id) },
                 )
             } else {

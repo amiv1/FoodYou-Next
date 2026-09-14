@@ -30,6 +30,7 @@ internal fun MealFoodListItem(
     contentColor: Color,
     shape: Shape,
     modifier: Modifier = Modifier,
+    showMeasurement: Boolean = true,
 ) {
     when (entry) {
         is FoodMealEntryModel ->
@@ -39,6 +40,7 @@ internal fun MealFoodListItem(
                 contentColor = contentColor,
                 shape = shape,
                 modifier = modifier,
+                showMeasurement = showMeasurement,
             )
 
         is ManualMealEntryModel ->
@@ -59,6 +61,7 @@ internal fun MealFoodListItem(
     contentColor: Color,
     shape: Shape,
     modifier: Modifier = Modifier,
+    showMeasurement: Boolean = true,
 ) {
     val g = stringResource(Res.string.unit_gram_short)
 
@@ -104,7 +107,9 @@ internal fun MealFoodListItem(
             fats = { Text(text = fatsString, style = MaterialTheme.typography.bodySmall) },
             calories = { Text(text = caloriesString, style = MaterialTheme.typography.bodySmall) },
             measurement = {
-                Text(text = measurementString, style = MaterialTheme.typography.bodySmall)
+                if (showMeasurement) {
+                    Text(text = measurementString, style = MaterialTheme.typography.bodySmall)
+                }
             },
             isRecipe = entry.isRecipe,
             modifier = modifier,

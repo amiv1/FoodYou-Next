@@ -48,9 +48,12 @@ import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
+import com.maksimowiczm.foodyou.app.ui.common.utility.weightCaption
+import com.maksimowiczm.foodyou.app.ui.food.component.MeasurementScrubber
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
+import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import foodyou.app.generated.resources.*
 import kotlinx.coroutines.launch
@@ -63,6 +66,7 @@ internal fun MealCard(
     onQuickAdd: () -> Unit,
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
+    onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -105,6 +109,7 @@ internal fun MealCard(
                 foods = meal.foods,
                 onEditEntry = onEditEntry,
                 onDeleteEntry = onDeleteEntry,
+                onUpdateMeasurement = onUpdateMeasurement,
                 modifier =
                     Modifier.fillMaxWidth()
                         .clip(MaterialTheme.shapes.medium)
@@ -208,6 +213,7 @@ private fun FoodContainer(
     foods: List<MealEntryModel>,
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
+    onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -231,6 +237,7 @@ private fun FoodContainer(
                     entry = entry,
                     onEditEntry = onEditEntry,
                     onDeleteEntry = onDeleteEntry,
+                    onUpdateMeasurement = onUpdateMeasurement,
                     shape = shape,
                 )
             }
@@ -269,6 +276,7 @@ private fun FoodContainerItem(
     entry: MealEntryModel,
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
+    onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
     shape: Shape,
     modifier: Modifier = Modifier,
 ) {
@@ -293,6 +301,11 @@ private fun FoodContainerItem(
                         sheetState.hide()
                         onDeleteEntry(entry)
                         showBottomSheet = false
+                    }
+                },
+                onUpdateMeasurement = { measurement ->
+                    if (entry is FoodMealEntryModel) {
+                        onUpdateMeasurement(entry, measurement)
                     }
                 },
             )
@@ -344,6 +357,7 @@ private fun BottomSheetContent(
     entry: MealEntryModel,
     onEdit: () -> Unit,
     onDelete: () -> Unit,
+    onUpdateMeasurement: (Measurement) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
@@ -364,7 +378,24 @@ private fun BottomSheetContent(
             color = Color.Transparent,
             contentColor = MaterialTheme.colorScheme.onSurface,
             shape = RectangleShape,
+            showMeasurement = entry !is FoodMealEntryModel,
         )
+
+        if (entry is FoodMealEntryModel) {
+            val caption =
+                entry.measurement.weightCaption(
+                    totalWeight = entry.totalWeight,
+                    servingWeight = entry.servingWeight,
+                    isLiquid = entry.isLiquid,
+                )
+
+            MeasurementScrubber(
+                measurement = entry.measurement,
+                onMeasurementChange = onUpdateMeasurement,
+                caption = caption,
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            )
+        }
         HorizontalDivider(Modifier.padding(horizontal = 16.dp))
         ListItem(
             headlineContent = { Text(stringResource(Res.string.action_edit_entry)) },

@@ -2,6 +2,7 @@ package com.maksimowiczm.foodyou.app.ui.home.meals.card
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.entity.DiaryEntry
 import com.maksimowiczm.foodyou.fooddiary.domain.entity.DiaryFoodRecipe
@@ -12,6 +13,7 @@ import com.maksimowiczm.foodyou.fooddiary.domain.entity.MealsPreferences
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.FoodDiaryEntryRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.ManualDiaryEntryRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
+import com.maksimowiczm.foodyou.fooddiary.domain.usecase.UpdateFoodDiaryEntryUseCase
 import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -29,6 +31,7 @@ internal class MealsCardsViewModel(
     private val observeDiaryMealsUseCase: ObserveDiaryMealsUseCase,
     private val foodEntryRepository: FoodDiaryEntryRepository,
     private val manualEntryRepository: ManualDiaryEntryRepository,
+    private val updateFoodDiaryEntryUseCase: UpdateFoodDiaryEntryUseCase,
     mealsPreferencesRepository: UserPreferencesRepository<MealsPreferences>,
 ) : ViewModel() {
     private val dateState = MutableStateFlow<LocalDate?>(null)
@@ -62,6 +65,19 @@ internal class MealsCardsViewModel(
                 is FoodMealEntryModel -> foodEntryRepository.delete(model.id)
                 is ManualMealEntryModel -> manualEntryRepository.delete(model.id)
             }
+        }
+    }
+
+    fun onUpdateMeasurement(mealId: Long, model: FoodMealEntryModel, measurement: Measurement) {
+        val date = dateState.value ?: return
+
+        viewModelScope.launch {
+            updateFoodDiaryEntryUseCase.update(
+                id = model.id,
+                measurement = measurement,
+                mealId = mealId,
+                date = date,
+            )
         }
     }
 }

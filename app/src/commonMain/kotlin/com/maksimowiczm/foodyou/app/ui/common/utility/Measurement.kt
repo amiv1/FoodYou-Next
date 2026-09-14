@@ -52,6 +52,33 @@ fun Measurement.stringResourceWithWeight(
     }
 }
 
+/**
+ * A short caption describing the metric weight represented by this
+ * [Measurement], e.g. `"150 g"`, useful as a secondary line next to a
+ * quantity-based measurement (serving/package) whose raw value alone
+ * doesn't convey the weight. Returns `null` for measurements that are
+ * already expressed in a metric/imperial weight unit, or when the weight
+ * can't be derived (e.g. missing serving/package weight).
+ */
+@Composable
+fun Measurement.weightCaption(totalWeight: Double?, servingWeight: Double?, isLiquid: Boolean): String? {
+    val weight =
+        when (this) {
+            is Measurement.ImmutableMeasurement -> return null
+            is Measurement.Package -> totalWeight?.let { it * this.quantity } ?: return null
+            is Measurement.Serving -> servingWeight?.let { it * this.quantity } ?: return null
+        }
+
+    val suffix =
+        if (isLiquid) {
+            stringResource(Res.string.unit_milliliter_short)
+        } else {
+            stringResource(Res.string.unit_gram_short)
+        }
+
+    return "${weight.formatClipZeros()} $suffix"
+}
+
 @Composable
 fun Measurement.stringResource() =
     when (this) {
