@@ -1,8 +1,6 @@
 package com.maksimowiczm.foodyou.app.ui.settings
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -57,14 +55,6 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
             contentPadding = paddingValues.add(vertical = 8.dp),
         ) {
-
-            item {
-                AnimatedWavyLine(
-                    color = MaterialTheme.colorScheme.primary,
-                    strokeWidth = 4.dp,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp).height(16.dp),
-                )
-            }
 
             item {
                 PersonalizationSettingsListItem(
