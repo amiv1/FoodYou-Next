@@ -10,7 +10,6 @@ import com.maksimowiczm.foodyou.importexport.importExportModule
 import com.maksimowiczm.foodyou.importexport.swissfoodcompositiondatabase.importExportSwissFoodCompositionDatabaseModule
 import com.maksimowiczm.foodyou.poll.pollModule
 import com.maksimowiczm.foodyou.settings.settingsModule
-import com.maksimowiczm.foodyou.sponsorship.sponsorshipModule
 import com.maksimowiczm.foodyou.theme.themeModule
 import kotlinx.coroutines.CoroutineScope
 import org.koin.core.context.startKoin
@@ -32,7 +31,6 @@ fun initKoin(applicationCoroutineScope: CoroutineScope, config: KoinAppDeclarati
             importExportSwissFoodCompositionDatabaseModule,
             pollModule,
             settingsModule,
-            sponsorshipModule,
             themeModule,
         )
     }

@@ -69,13 +69,8 @@ Want to help make Food You Next even better? Here are some great ways to contrib
 ## ❤️ Sponsor
 
 Food You Next itself doesn't collect donations. This fork builds on the work of the original
-author, Mateusz Maksimowicz — if you'd like to support the original project:
-
-- [Support on Ko-fi](https://ko-fi.com/maksimowiczm)
-- **BTC**: `bc1qml4g4jwt6mqq2tsk9u7udhwysmjfknx68taln2`
-- **ETH**: `0x7C794aF78235504014cC5c987161b80a803ee514`
-- **Monero**:
-  `41eXqs6zg8PFQ8Fec3iyYcVA3rFHc7wgj9hLRuiVh2FtbE2q2TGoCbhSmVX5R76SmYPpSM2VR7qmD4SQ4YMZCEFK6DGGWfB`
+author, Mateusz Maksimowicz — if you'd like to support the original project, see
+[their sponsor page](https://github.com/maksimowiczm/FoodYou#%EF%B8%8F-sponsor).
 
 ## ✉️ Contact
 

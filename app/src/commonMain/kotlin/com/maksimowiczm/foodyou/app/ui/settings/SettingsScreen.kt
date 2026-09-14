@@ -29,7 +29,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SettingsScreen(
     onBack: () -> Unit,
-    onSponsor: () -> Unit,
     onAbout: () -> Unit,
     onMeals: () -> Unit,
     onLanguage: () -> Unit,
@@ -58,12 +57,6 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
             contentPadding = paddingValues.add(vertical = 8.dp),
         ) {
-            item {
-                SponsorSettingsListItem(
-                    onClick = onSponsor,
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                )
-            }
 
             item {
                 AnimatedWavyLine(

@@ -12,6 +12,7 @@ import com.maksimowiczm.foodyou.app.infrastructure.room.migration.FoodSearchFtsM
 import com.maksimowiczm.foodyou.app.infrastructure.room.migration.LegacyMigrations
 import com.maksimowiczm.foodyou.app.infrastructure.room.migration.deleteUsedFoodEvent
 import com.maksimowiczm.foodyou.app.infrastructure.room.migration.fixMeasurementSuggestions
+import com.maksimowiczm.foodyou.app.infrastructure.room.migration.dropSponsorshipMigration
 import com.maksimowiczm.foodyou.app.infrastructure.room.migration.foodYou3Migration
 import com.maksimowiczm.foodyou.app.infrastructure.room.migration.unlinkDiaryMigration
 import com.maksimowiczm.foodyou.common.domain.database.TransactionProvider
@@ -42,8 +43,6 @@ import com.maksimowiczm.foodyou.fooddiary.infrastructure.room.InitializeMealsCal
 import com.maksimowiczm.foodyou.fooddiary.infrastructure.room.ManualDiaryEntryEntity
 import com.maksimowiczm.foodyou.fooddiary.infrastructure.room.MealEntity
 import com.maksimowiczm.foodyou.fooddiary.infrastructure.room.MeasurementEntity
-import com.maksimowiczm.foodyou.sponsorship.infrastructure.room.SponsorshipDatabase
-import com.maksimowiczm.foodyou.sponsorship.infrastructure.room.SponsorshipEntity
 
 @Database(
     entities =
@@ -60,7 +59,6 @@ import com.maksimowiczm.foodyou.sponsorship.infrastructure.room.SponsorshipEntit
             DiaryProductEntity::class,
             DiaryRecipeEntity::class,
             DiaryRecipeIngredientEntity::class,
-            SponsorshipEntity::class,
             MeasurementSuggestionEntity::class,
             ManualDiaryEntryEntity::class,
             ProductFts::class,
@@ -127,8 +125,7 @@ abstract class FoodYouDatabase :
     TransactionProvider,
     FoodDatabase,
     FoodSearchDatabase,
-    FoodDiaryDatabase,
-    SponsorshipDatabase {
+    FoodDiaryDatabase {
 
     override suspend fun <T> withTransaction(block: suspend DomainTransactionScope<T>.() -> T): T =
         useWriterConnection {
@@ -139,7 +136,7 @@ abstract class FoodYouDatabase :
         }
 
     companion object {
-        const val VERSION = 32
+        const val VERSION = 33
 
         private val migrations: List<Migration> =
             listOf(
@@ -155,6 +152,7 @@ abstract class FoodYouDatabase :
                 unlinkDiaryMigration,
                 deleteUsedFoodEvent,
                 fixMeasurementSuggestions,
+                dropSponsorshipMigration,
                 FoodSearchFtsMigration,
                 FoodSearchFtsCyrillicMigration,
             )
