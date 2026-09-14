@@ -1,27 +1,31 @@
-[![F-Droid](https://img.shields.io/f-droid/v/com.maksimowiczm.foodyou?color=b4eb12&label=F-Droid&logo=fdroid&logoColor=1f78d2)](https://f-droid.org/en/packages/com.maksimowiczm.foodyou)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/maksimowiczm/FoodYou?color=black&label=Stable&logo=github)](https://github.com/maksimowiczm/FoodYou/releases/latest/)
-[![GitHub all releases](https://img.shields.io/github/downloads/maksimowiczm/FoodYou/total?label=Downloads&logo=github)](https://github.com/maksimowiczm/FoodYou/releases/)
-[![GitHub Repo stars](https://img.shields.io/github/stars/maksimowiczm/FoodYou?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIC05NjAgOTYwIDk2MCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Im0zNTQtMjQ3IDEyNi03NiAxMjYgNzctMzMtMTQ0IDExMS05Ni0xNDYtMTMtNTgtMTM2LTU4IDEzNS0xNDYgMTMgMTExIDk3LTMzIDE0M1pNMjMzLTgwbDY1LTI4MUw4MC01NTBsMjg4LTI1IDExMi0yNjUgMTEyIDI2NSAyODggMjUtMjE4IDE4OSA2NSAyODEtMjQ3LTE0OUwyMzMtODBabTI0Ny0zNTBaIiBzdHlsZT0iZmlsbDogcmdiKDI0NSwgMjI3LCA2Nik7Ii8%2BCjwvc3ZnPg%3D%3D&color=%23f8e444)](https://github.com/maksimowiczm/FoodYou/stargazers)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/amiv1/FoodYou?color=black&label=Stable&logo=github)](https://github.com/amiv1/FoodYou/releases/latest/)
+[![GitHub all releases](https://img.shields.io/github/downloads/amiv1/FoodYou/total?label=Downloads&logo=github)](https://github.com/amiv1/FoodYou/releases/)
+[![GitHub Repo stars](https://img.shields.io/github/stars/amiv1/FoodYou?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIC05NjAgOTYwIDk2MCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Im0zNTQtMjQ3IDEyNi03NiAxMjYgNzctMzMtMTQ0IDExMS05Ni0xNDYtMTMtNTgtMTM2LTU4IDEzNS0xNDYgMTMgMTExIDk3LTMzIDE0M1pNMjMzLTgwbDY1LTI4MUw4MC01NTBsMjg4LTI1IDExMi0yNjUgMTEyIDI2NSAyODggMjUtMjE4IDE4OSA2NSAyODEtMjQ3LTE0OUwyMzMtODBabTI0Ny0zNTBaIiBzdHlsZT0iZmlsbDogcmdiKDI0NSwgMjI3LCA2Nik7Ii8%2BCjwvc3ZnPg%3D%3D&color=%23f8e444)](https://github.com/amiv1/FoodYou/stargazers)
 
 <div align="center">
     <img src="./metadata/en-US/images/featureGraphic.png" alt="Feature Graphic" />
 </div>
 
-**Food You** is a free, open-source, and privacy-focused food diary and nutrition tracker built
-using [Material Design](https://m3.material.io/) principles.
+**Food You Next** is a community-maintained fork
+of [Food You](https://github.com/maksimowiczm/FoodYou) — a free, open-source, and
+privacy-focused food diary and nutrition tracker built using [Material Design](https://m3.material.io/)
+principles.
+
+> **Why a fork?** The upstream project's author has stated they are not accepting code
+> contributions. Food You is licensed under the GNU GPLv3, which explicitly grants everyone the
+> right to fork, modify, and redistribute the software — this fork exists to keep the project
+> actively maintained and open to community contributions. It is not affiliated with, and is not
+> endorsed by, the original author.
 
 ## Installation
 
 <div align="center">
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="75">](https://f-droid.org/packages/com.maksimowiczm.foodyou)
-[<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Download from GitHub" height="75">](https://github.com/maksimowiczm/FoodYou/releases)
+[<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Download from GitHub" height="75">](https://github.com/amiv1/FoodYou/releases)
 
 </div>
 
-SHA-256 hash of signing certificate: `cd74b0aedd8ead8184063a65909d639a8c885cf6465829690a9be83a8904bdea`
-
-The above signature is also valid for the F-Droid, thanks to [reproducible builds](https://f-droid.org/docs/Reproducible_Builds/)
+This fork is currently distributed via GitHub Releases only.
 
 
 ## ✨ Features
@@ -49,24 +53,23 @@ The above signature is also valid for the F-Droid, thanks to [reproducible build
 
 ## 🤝 Contributing
 
-Want to help make Food You even better? Here are some great ways to contribute:
+Want to help make Food You Next even better? Here are some great ways to contribute:
 
+- 🧑‍💻 **Submit Code** – Unlike upstream, this fork welcomes pull requests. Open one
+  against [amiv1/FoodYou](https://github.com/amiv1/FoodYou)
 - 🌍 **Translate the App** – Help improve international accessibility
-  via [Crowdin](https://crowdin.com/project/food-you). Let me know if you'd like to credited
+  via [Crowdin](https://crowdin.com/project/food-you). Let us know if you'd like to be credited
 - 💡 **Request a Feature** – Got an idea? Open
-  a [GitHub issue](https://github.com/maksimowiczm/FoodYou/issues) to suggest a new feature or
+  a [GitHub issue](https://github.com/amiv1/FoodYou/issues) to suggest a new feature or
   improvement
 - 🐞 **Report Bugs** – Found a bug? Submit it
-  via [GitHub issue](https://github.com/maksimowiczm/FoodYou/issues) so it can be fixed
+  via [GitHub issue](https://github.com/amiv1/FoodYou/issues) so it can be fixed
 - ⭐ **Star the Repository** – If you like the project, give it a star
-
-**Important Note:** I am currently not accepting any code contributions due to licensing and the
-fact that this app generates some income.
 
 ## ❤️ Sponsor
 
-This app is free, open-source, and ad-free. You directly support full-time development of the
-project.
+Food You Next itself doesn't collect donations. This fork builds on the work of the original
+author, Mateusz Maksimowicz — if you'd like to support the original project:
 
 - [Support on Ko-fi](https://ko-fi.com/maksimowiczm)
 - **BTC**: `bc1qml4g4jwt6mqq2tsk9u7udhwysmjfknx68taln2`
@@ -76,10 +79,9 @@ project.
 
 ## ✉️ Contact
 
-Have questions, feedback, or want to collaborate? Reach out!
+Have questions, feedback, or want to collaborate on this fork? Reach out!
 
-- **Email**: [maksimowicz.dev@gmail.com](mailto:maksimowicz.dev@gmail.com?subject=Food%20You)
-- **Discord**: https://discord.gg/MuF6VZjufn
+- **Issues / Discussions**: https://github.com/amiv1/FoodYou/issues
 
 ## 🔄 Similar Open-Source Apps
 
@@ -92,14 +94,20 @@ Looking for alternatives or similar tools?
 
 ## 💡 Credits
 
-- [ReadYou](https://github.com/Ashinch/ReadYou) — I shamelessly borrowed inspiration from this
-  project 🙃
+- [Food You](https://github.com/maksimowiczm/FoodYou) by Mateusz Maksimowicz — the upstream
+  project this fork is based on
+- [ReadYou](https://github.com/Ashinch/ReadYou) — inspiration borrowed by the original project 🙃
 - [Icons8](https://icons8.com) — sushi icon 🍣
 
 ## 📜 License
 
+This project is licensed under the GNU General Public License v3.0 (or later), the same license
+as the upstream project. See the [LICENSE](./LICENSE) file for the full text.
+
 ```
+Food You Next
 Copyright (C) 2024-2026 Mateusz Maksimowicz
+Copyright (C) 2026 Andrejs Mivreniks (fork maintainer)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
