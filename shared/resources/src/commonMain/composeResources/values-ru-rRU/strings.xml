@@ -7,6 +7,7 @@
     <string name="headline_general">Общее</string>
     <string name="headline_macronutrients">Макронутриенты</string>
     <string name="headline_meals">Приемы пищи</string>
+    <string name="headline_copy_meal">Копировать прием пищи</string>
     <string name="headline_delete_food">Удалить продукт питания</string>
     <string name="headline_edit_product">Изменить продукт</string>
     <string name="headline_permission_required">Требуется разрешение</string>

@@ -11,6 +11,7 @@
     <string name="headline_general">General</string>
     <string name="headline_macronutrients">Macronutrients</string>
     <string name="headline_meals">Meals</string>
+    <string name="headline_copy_meal">Copy meal</string>
     <string name="headline_delete_food">Delete food</string>
     <string name="headline_edit_product">Edit product</string>
     <string name="headline_permission_required">Permission required</string>

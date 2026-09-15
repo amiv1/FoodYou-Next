@@ -20,6 +20,7 @@ internal fun MealsCards(
 ) {
     val viewModel: MealsCardsViewModel = koinViewModel()
     val diaryMeals = viewModel.diaryMeals.collectAsStateWithLifecycle().value
+    val allMeals by viewModel.allMeals.collectAsStateWithLifecycle()
     val layout by viewModel.layout.collectAsStateWithLifecycle()
 
     LaunchedEffect(homeState.selectedDate, viewModel) { viewModel.setDate(homeState.selectedDate) }
@@ -28,6 +29,8 @@ internal fun MealsCards(
         MealsCardsLayout.Horizontal ->
             HorizontalMealsCards(
                 meals = diaryMeals,
+                allMeals = allMeals,
+                date = homeState.selectedDate,
                 onAdd = { mealId -> onAdd(homeState.selectedDate.toEpochDays(), mealId) },
                 onQuickAdd = { mealId -> onQuickAdd(homeState.selectedDate.toEpochDays(), mealId) },
                 onEditEntry = { model ->
@@ -37,6 +40,7 @@ internal fun MealsCards(
                 },
                 onDeleteEntry = viewModel::onDeleteEntry,
                 onUpdateMeasurement = viewModel::onUpdateMeasurement,
+                onCopyMeal = viewModel::copyMeal,
                 onLongClick = onLongClick,
                 shimmer = homeState.shimmer,
                 contentPadding = contentPadding,
@@ -46,6 +50,8 @@ internal fun MealsCards(
         MealsCardsLayout.Vertical ->
             VerticalMealsCards(
                 meals = diaryMeals,
+                allMeals = allMeals,
+                date = homeState.selectedDate,
                 onAdd = { mealId -> onAdd(homeState.selectedDate.toEpochDays(), mealId) },
                 onQuickAdd = { mealId -> onQuickAdd(homeState.selectedDate.toEpochDays(), mealId) },
                 onEditEntry = { model ->
@@ -55,6 +61,7 @@ internal fun MealsCards(
                 },
                 onDeleteEntry = viewModel::onDeleteEntry,
                 onUpdateMeasurement = viewModel::onUpdateMeasurement,
+                onCopyMeal = viewModel::copyMeal,
                 onLongClick = onLongClick,
                 shimmer = homeState.shimmer,
                 contentPadding = contentPadding,

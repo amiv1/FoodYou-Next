@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.Bolt
@@ -25,6 +26,7 @@ import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -57,16 +59,20 @@ import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import foodyou.app.generated.resources.*
 import kotlinx.coroutines.launch
+import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun MealCard(
     meal: MealModel,
+    allMeals: List<MealOption>,
+    date: LocalDate,
     onAddFood: () -> Unit,
     onQuickAdd: () -> Unit,
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
     onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
+    onCopyMeal: (targetMealId: Long, targetDate: LocalDate) -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -76,6 +82,17 @@ internal fun MealCard(
     val energyFormatter = LocalEnergyFormatter.current
     val enDash = stringResource(Res.string.en_dash)
     val allDayString = stringResource(Res.string.headline_all_day)
+    var showCopyDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showCopyDialog) {
+        CopyMealDialog(
+            sourceMealName = meal.name,
+            sourceDate = date,
+            meals = allMeals,
+            onDismissRequest = { showCopyDialog = false },
+            onConfirm = onCopyMeal,
+        )
+    }
 
     val timeString =
         remember(dateFormatter, meal, enDash, allDayString) {
@@ -92,16 +109,33 @@ internal fun MealCard(
 
     FoodYouHomeCard(modifier = modifier, onClick = onAddFood, onLongClick = onLongClick) {
         Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
-            Text(
-                text = meal.name,
-                style = MaterialTheme.typography.headlineMediumEmphasized,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                text = timeString,
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top,
+            ) {
+                Column {
+                    Text(
+                        text = meal.name,
+                        style = MaterialTheme.typography.headlineMediumEmphasized,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Text(
+                        text = timeString,
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+
+                if (meal.foods.isNotEmpty()) {
+                    IconButton(onClick = { showCopyDialog = true }) {
+                        Icon(
+                            imageVector = Icons.Default.ContentCopy,
+                            contentDescription = stringResource(Res.string.headline_copy_meal),
+                        )
+                    }
+                }
+            }
 
             Spacer(Modifier.height(16.dp))
 

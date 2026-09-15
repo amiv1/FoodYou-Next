@@ -1,6 +1,7 @@
 package com.maksimowiczm.foodyou.fooddiary.domain
 
 import com.maksimowiczm.foodyou.common.infrastructure.koin.userPreferencesRepository
+import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyMealUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CreateFoodDiaryEntryUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.UnpackFoodDiaryEntryUseCase
@@ -12,6 +13,7 @@ internal fun Module.foodDiaryDomainModule() {
     factoryOf(::CreateFoodDiaryEntryUseCase)
     factoryOf(::UnpackFoodDiaryEntryUseCase)
     factoryOf(::UpdateFoodDiaryEntryUseCase)
+    factoryOf(::CopyMealUseCase)
 
     factory {
         ObserveDiaryMealsUseCase(

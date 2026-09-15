@@ -12,6 +12,8 @@ import com.maksimowiczm.foodyou.fooddiary.domain.entity.ManualDiaryEntry
 import com.maksimowiczm.foodyou.fooddiary.domain.entity.MealsPreferences
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.FoodDiaryEntryRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.ManualDiaryEntryRepository
+import com.maksimowiczm.foodyou.fooddiary.domain.repository.MealRepository
+import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyMealUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.UpdateFoodDiaryEntryUseCase
 import kotlin.math.roundToInt
@@ -32,6 +34,8 @@ internal class MealsCardsViewModel(
     private val foodEntryRepository: FoodDiaryEntryRepository,
     private val manualEntryRepository: ManualDiaryEntryRepository,
     private val updateFoodDiaryEntryUseCase: UpdateFoodDiaryEntryUseCase,
+    private val copyMealUseCase: CopyMealUseCase,
+    private val mealRepository: MealRepository,
     mealsPreferencesRepository: UserPreferencesRepository<MealsPreferences>,
 ) : ViewModel() {
     private val dateState = MutableStateFlow<LocalDate?>(null)
@@ -45,6 +49,16 @@ internal class MealsCardsViewModel(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(60_000),
                 initialValue = null,
+            )
+
+    val allMeals: StateFlow<List<MealOption>> =
+        mealRepository
+            .observeMeals()
+            .map { meals -> meals.map { MealOption(id = it.id, name = it.name) } }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(60_000),
+                initialValue = emptyList(),
             )
 
     private val _layout = mealsPreferencesRepository.observe().map { it.layout }
@@ -77,6 +91,19 @@ internal class MealsCardsViewModel(
                 measurement = measurement,
                 mealId = mealId,
                 date = date,
+            )
+        }
+    }
+
+    fun copyMeal(sourceMealId: Long, targetMealId: Long, targetDate: LocalDate) {
+        val sourceDate = dateState.value ?: return
+
+        viewModelScope.launch {
+            copyMealUseCase.copy(
+                sourceMealId = sourceMealId,
+                sourceDate = sourceDate,
+                targetMealId = targetMealId,
+                targetDate = targetDate,
             )
         }
     }
