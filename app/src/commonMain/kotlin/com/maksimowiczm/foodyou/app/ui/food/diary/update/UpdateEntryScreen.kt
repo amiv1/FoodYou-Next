@@ -9,16 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.CallSplit
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
@@ -180,7 +177,7 @@ private fun UpdateEntryScreen(
                         contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
                 }
-                LargeExtendedFloatingActionButton(
+                ExtendedFloatingActionButton(
                     onClick = {
                         if (state.isValid) {
                             onSave()
@@ -188,9 +185,8 @@ private fun UpdateEntryScreen(
                     },
                     icon = {
                         Icon(
-                            imageVector = Icons.Filled.Edit,
+                            imageVector = Icons.Filled.Save,
                             contentDescription = stringResource(Res.string.action_save),
-                            modifier = Modifier.size(FloatingActionButtonDefaults.LargeIconSize),
                         )
                     },
                     text = { Text(stringResource(Res.string.action_save)) },
