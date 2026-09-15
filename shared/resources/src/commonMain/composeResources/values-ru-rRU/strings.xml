@@ -16,6 +16,10 @@
     <string name="headline_system_language_settings">Системные настройки языка</string>
     <string name="headline_secure_screen">Защита экрана</string>
     <string name="headline_allow_future_dates">Разрешить даты в будущем</string>
+    <string name="headline_calorie_target">Цель</string>
+    <string name="headline_calories_consumed">Потреблено</string>
+    <string name="headline_calories_remaining">Осталось</string>
+    <string name="headline_calories_excess">Превышение</string>
     <string name="headline_about">О приложении</string>
     <string name="headline_version">Версия</string>
     <string name="headline_all_day" description="All-day (meal)">Весь день</string>
@@ -175,6 +179,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Вы должны разрешить доступ для сканирования штрихкодов</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Для сканирования штрихкодов требуется доступ к камере. Пожалуйста, разрешите его в настройках приложения.</string>
     <string name="neutral_no_food_found">Продукты не найдены</string>
+    <string name="neutral_of_target">из %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">Осталась %1$d калория</item>
         <item quantity="few">Осталось %1$d калории</item>

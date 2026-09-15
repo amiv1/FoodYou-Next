@@ -17,6 +17,10 @@
     <string name="headline_system_language_settings">Systémová nastavení jazyka</string>
     <string name="headline_secure_screen">Bezpečná obrazovka</string>
     <string name="headline_allow_future_dates">Povolit budoucí data</string>
+    <string name="headline_calorie_target">Cíl</string>
+    <string name="headline_calories_consumed">Zkonzumováno</string>
+    <string name="headline_calories_remaining">Zbývá</string>
+    <string name="headline_calories_excess">Přebytek</string>
     <string name="headline_about">O aplikaci</string>
     <string name="headline_version">Verze</string>
     <string name="headline_all_day" description="All-day (meal)">Celý den</string>
@@ -176,6 +180,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Pro skenování čárových kódů musíte povolit přístup.</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Oprávnění kamery je vyžadováno pro skenování čárových kódů. Povolte jej prosím v nastavení aplikace.</string>
     <string name="neutral_no_food_found">Jízlo nenalezeno</string>
+    <string name="neutral_of_target">z %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">Zbyvá %1$d kalorie</item>
         <item quantity="few">Zbývá  %1$d kalorií</item>

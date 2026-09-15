@@ -19,6 +19,10 @@
     <string name="headline_system_language_settings">Systemsprogindstillinger</string>
     <string name="headline_secure_screen">Sikker skærm</string>
     <string name="headline_allow_future_dates">Tillad fremtidige datoer</string>
+    <string name="headline_calorie_target">Mål</string>
+    <string name="headline_calories_consumed">Indtaget</string>
+    <string name="headline_calories_remaining">Resterende</string>
+    <string name="headline_calories_excess">Overskud</string>
     <string name="headline_about">Om</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dagen</string>
@@ -208,6 +212,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Adgang skal tildeles for at kunne skanne stregkoder</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Kameratilladelse kræves til stregkodeskanning. Tillad i app-indstillingerne.</string>
     <string name="neutral_no_food_found">Ingen fødevare fundet</string>
+    <string name="neutral_of_target">af %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">%1$d kalorie tilbage</item>
         <item quantity="other">%1$d kalorier tilbage</item>

@@ -26,7 +26,6 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
             nutrientsOrder = this.getNutrientsOrder(SettingsPreferencesKeys.nutrientsOrder),
             secureScreen = this[SettingsPreferencesKeys.secureScreen] ?: false,
             homeCardOrder = this.getHomeCardOrder(SettingsPreferencesKeys.homeCardOrder),
-            expandGoalCard = this[SettingsPreferencesKeys.expandGoalCard] ?: true,
             onboardingFinished = this[SettingsPreferencesKeys.onboardingFinished] ?: false,
             energyFormat = this.getEnergyFormat(SettingsPreferencesKeys.energyFormat),
             appLaunchInfo = this.getAppLaunchInfo(),
@@ -40,7 +39,6 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
         setNutrientsOrder(SettingsPreferencesKeys.nutrientsOrder, updated.nutrientsOrder)
         this[SettingsPreferencesKeys.secureScreen] = updated.secureScreen
         setHomeCardOrder(SettingsPreferencesKeys.homeCardOrder, updated.homeCardOrder)
-        this[SettingsPreferencesKeys.expandGoalCard] = updated.expandGoalCard
         this[SettingsPreferencesKeys.onboardingFinished] = updated.onboardingFinished
         setEnergyFormat(SettingsPreferencesKeys.energyFormat, updated.energyFormat)
         setAppLaunchInfo(updated.appLaunchInfo)
@@ -132,7 +130,6 @@ private object SettingsPreferencesKeys {
     val nutrientsOrder = stringPreferencesKey("settings:nutrientsOrder")
     val secureScreen = booleanPreferencesKey("settings:secureScreen")
     val homeCardOrder = stringPreferencesKey("settings:homeCardOrder")
-    val expandGoalCard = booleanPreferencesKey("settings:expandGoalCard")
     val onboardingFinished = booleanPreferencesKey("settings:onboardingFinished")
     val energyFormat = intPreferencesKey("settings:energyFormat")
     val firstLaunchEpoch = longPreferencesKey("first_launch_epoch")

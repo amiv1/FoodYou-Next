@@ -27,11 +27,7 @@ fun Module.home() {
         MealsCardsSettingsViewModel(mealsPreferencesRepository = userPreferencesRepository())
     }
     viewModel {
-        GoalsViewModel(
-            settingsRepository = userPreferencesRepository(),
-            observeDiaryMealsUseCase = get(),
-            goalsRepository = get(),
-        )
+        GoalsViewModel(observeDiaryMealsUseCase = get(), goalsRepository = get())
     }
     viewModel { HomePersonalizationViewModel(settingsRepository = userPreferencesRepository()) }
 

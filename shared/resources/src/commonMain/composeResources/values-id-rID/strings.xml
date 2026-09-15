@@ -18,6 +18,10 @@
     <string name="headline_system_language_settings">Pengaturan bahasa sistem</string>
     <string name="headline_secure_screen">Amankan layar</string>
     <string name="headline_allow_future_dates">Izinkan tanggal mendatang</string>
+    <string name="headline_calorie_target">Target</string>
+    <string name="headline_calories_consumed">Dikonsumsi</string>
+    <string name="headline_calories_remaining">Tersisa</string>
+    <string name="headline_calories_excess">Kelebihan</string>
     <string name="headline_about">Tentang</string>
     <string name="headline_version">Versi</string>
     <string name="headline_all_day" description="All-day (meal)">Seharian</string>
@@ -178,6 +182,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Anda harus mengizinkan akses untuk memindai barkode</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Izin kamera diperlukan untuk memindai barkode. Izinkan izin tersebut di pengaturan aplikasi.</string>
     <string name="neutral_no_food_found">Tidak ditemukan makanan</string>
+    <string name="neutral_of_target">dari %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="other">%1$d kalori tersisa</item>
     </plurals>

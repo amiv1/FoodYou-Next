@@ -18,6 +18,10 @@
     <string name="headline_system_language_settings">Systeemtaal instellingen</string>
     <string name="headline_secure_screen">Scherm beveiligen</string>
     <string name="headline_allow_future_dates">Toekomstige datums toestaan</string>
+    <string name="headline_calorie_target">Doel</string>
+    <string name="headline_calories_consumed">Geconsumeerd</string>
+    <string name="headline_calories_remaining">Resterend</string>
+    <string name="headline_calories_excess">Teveel</string>
     <string name="headline_about">Over</string>
     <string name="headline_version">Versie</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dag</string>
@@ -179,6 +183,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Je moet toestemming verlenen om barcodes te scannen</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Camera toegang is nodig om barcodes te scannen. Sta dit toe bij systeeminstellingen.</string>
     <string name="neutral_no_food_found">Geen voedsel gevonden</string>
+    <string name="neutral_of_target">van %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">%1$d calorie over</item>
         <item quantity="other">%1$d calorieën over</item>

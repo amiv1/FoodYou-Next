@@ -16,6 +16,10 @@
     <string name="headline_system_language_settings">Ustawienia języka systemowego</string>
     <string name="headline_secure_screen">Zabezpieczony ekran</string>
     <string name="headline_allow_future_dates">Zezwalaj na przyszłe daty</string>
+    <string name="headline_calorie_target">Cel</string>
+    <string name="headline_calories_consumed">Spożyte</string>
+    <string name="headline_calories_remaining">Pozostało</string>
+    <string name="headline_calories_excess">Nadwyżka</string>
     <string name="headline_about">O aplikacji</string>
     <string name="headline_version">Wersja</string>
     <string name="headline_all_day" description="All-day (meal)">Cały dzień</string>
@@ -175,6 +179,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Aby skanować kody kreskowe, musisz zezwolić na dostęp do aparatu.</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Aby skanować kody kreskowe, zezwól na dostęp do aparatu w ustawieniach aplikacji.</string>
     <string name="neutral_no_food_found">Nie znaleziono jedzenia</string>
+    <string name="neutral_of_target">z %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">Pozostała %1$d kaloria</item>
         <item quantity="few">Pozostały %1$d kalorie</item>

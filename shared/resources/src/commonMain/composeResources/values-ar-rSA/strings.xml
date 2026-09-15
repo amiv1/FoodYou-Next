@@ -18,6 +18,10 @@
     <string name="headline_system_language_settings">إعدادات لغة النظام</string>
     <string name="headline_secure_screen">الشاشة الآمنة</string>
     <string name="headline_allow_future_dates">السماح بالتواريخ المستقبلية</string>
+    <string name="headline_calorie_target">الهدف</string>
+    <string name="headline_calories_consumed">المستهلك</string>
+    <string name="headline_calories_remaining">المتبقي</string>
+    <string name="headline_calories_excess">الزائد</string>
     <string name="headline_about">حول</string>
     <string name="headline_version">الإصدار</string>
     <string name="headline_all_day" description="All-day (meal)">طوال اليوم</string>
@@ -210,6 +214,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">يجب عليك السماح بالوصول حتى تتمكن من مسح الباركود</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">يتطلب مسح الباركودات الحصول على إذن الكاميرا. يُرجى السماح بذلك في إعدادات التطبيق.</string>
         <string name="neutral_no_food_found">لم يتم العثور على طعام</string>
+    <string name="neutral_of_target">من %1$s</string>
 
 <plurals name="neutral_remaining_calories">
         <item quantity="zero">%1$d calories left</item>

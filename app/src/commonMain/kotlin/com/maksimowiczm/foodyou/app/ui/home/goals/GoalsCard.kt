@@ -1,12 +1,9 @@
 package com.maksimowiczm.foodyou.app.ui.home.goals
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,26 +12,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
-import com.maksimowiczm.foodyou.common.compose.extension.toDp
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.shimmer
@@ -55,19 +47,16 @@ internal fun GoalsCard(
     LaunchedEffect(date) { viewModel.setDate(date) }
 
     val model = viewModel.model.collectAsStateWithLifecycle().value
-    val expand by viewModel.expandGoalsCard.collectAsStateWithLifecycle()
 
     if (model == null) {
         GoalsCardSkeleton(
             shimmer = shimmer,
-            expand = expand,
             onClick = { onClick(date.toEpochDays()) },
             onLongClick = onLongClick,
             modifier = modifier,
         )
     } else {
         GoalsCard(
-            expand = expand,
             energy = model.energy,
             energyGoal = model.energyGoal,
             proteins = model.proteins,
@@ -85,7 +74,6 @@ internal fun GoalsCard(
 
 @Composable
 internal fun GoalsCard(
-    expand: Boolean,
     energy: Int,
     energyGoal: Int,
     proteins: Int,
@@ -98,499 +86,321 @@ internal fun GoalsCard(
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val proteinsPercentage =
+    val calorieSummary = remember(energy, energyGoal) { calorieSummaryOf(energyGoal, energy) }
+
+    val calorieProgress =
         animateFloatAsState(
-                targetValue = proteins.toFloat() / proteinsGoal,
+                targetValue = calorieSummary.progress,
                 animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
             )
             .value
 
-    val carbsPercentage =
-        animateFloatAsState(
-                targetValue = carbohydrates.toFloat() / carbohydratesGoal,
-                animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
-            )
-            .value
-
-    val fatsPercentage =
-        animateFloatAsState(
-                targetValue = fats.toFloat() / fatsGoal,
-                animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
-            )
-            .value
-
-    FoodYouHomeCard(modifier = modifier, onClick = onClick, onLongClick = onLongClick) {
+    FoodYouHomeCard(
+        modifier = modifier,
+        onClick = onClick,
+        onLongClick = onLongClick,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        shape = MaterialTheme.shapes.extraLarge,
+    ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            GoalsCardContent(
-                energy = energy,
-                energyGoal = energyGoal,
-                proteinsPercentage = proteinsPercentage,
-                carbsPercentage = carbsPercentage,
-                fatsPercentage = fatsPercentage,
+            CalorieSummaryRow(calorieSummary = calorieSummary, modifier = Modifier.fillMaxWidth())
+
+            Spacer(Modifier.height(8.dp))
+
+            ProgressBar(
+                progress = calorieProgress,
+                color =
+                    when (calorieSummary.state) {
+                        CalorieState.NORMAL -> MaterialTheme.colorScheme.primary
+                        CalorieState.OVER_LIMIT -> MaterialTheme.colorScheme.error
+                    },
+                modifier = Modifier.fillMaxWidth().height(10.dp),
+            )
+
+            Spacer(Modifier.height(16.dp))
+
+            NutrientRow(
+                proteins = proteins,
+                proteinsGoal = proteinsGoal,
+                carbohydrates = carbohydrates,
+                carbohydratesGoal = carbohydratesGoal,
+                fats = fats,
+                fatsGoal = fatsGoal,
                 modifier = Modifier.fillMaxWidth(),
             )
-
-            AnimatedVisibility(
-                visible = expand,
-                enter = expandVertically(),
-                exit = shrinkVertically(),
-            ) {
-                Column {
-                    Spacer(Modifier.height(16.dp))
-
-                    ExpandedCardContent(
-                        proteinsGrams = proteins,
-                        proteinsGoalGrams = proteinsGoal,
-                        carbohydratesGrams = carbohydrates,
-                        carbohydratesGoalGrams = carbohydratesGoal,
-                        fatsGrams = fats,
-                        fatsGoalGrams = fatsGoal,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            }
         }
     }
 }
 
 @Composable
-private fun GoalsCardContent(
-    energy: Int,
-    energyGoal: Int,
-    proteinsPercentage: Float,
-    carbsPercentage: Float,
-    fatsPercentage: Float,
-    modifier: Modifier = Modifier,
-) {
-    val nutrientsPalette = LocalNutrientsPalette.current
-    val nutrientsOrder = LocalNutrientsOrder.current
+private fun CalorieSummaryRow(calorieSummary: CalorieSummary, modifier: Modifier = Modifier) {
     val energyFormatter = LocalEnergyFormatter.current
 
-    val typography = MaterialTheme.typography
-    val colorScheme = MaterialTheme.colorScheme
-    val outlineColor = MaterialTheme.colorScheme.outline
-
-    val caloriesString = buildAnnotatedString {
-        withStyle(
-            typography.headlineLargeEmphasized
-                .merge(
-                    color =
-                        when {
-                            energy < energyGoal -> colorScheme.onSurface
-                            energy == energyGoal -> colorScheme.onSurface
-                            else -> colorScheme.error
-                        }
-                )
-                .toSpanStyle()
-        ) {
-            append(energyFormatter.formatEnergy(energy, withSuffix = false))
-            append(" ")
-        }
-        withStyle(typography.bodyMedium.merge(outlineColor).toSpanStyle()) {
-            val energyGoal = energyFormatter.formatEnergy(energyGoal)
-            append("/ $energyGoal")
-        }
-    }
-
-    val left = remember(energy, energyGoal) { energyGoal - energy }
-
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(text = caloriesString, style = typography.headlineLargeEmphasized)
-
-            when {
-                left > 0 ->
-                    Text(
-                        text = energyFormatter.energyLeft(left),
-                        color = MaterialTheme.colorScheme.outline,
-                        style = MaterialTheme.typography.bodyMediumEmphasized,
-                    )
-
-                left == 0 ->
-                    Text(
-                        text = stringResource(Res.string.positive_goal_reached),
-                        color = MaterialTheme.colorScheme.outline,
-                        style = MaterialTheme.typography.bodyMediumEmphasized,
-                    )
-
-                else ->
-                    Text(
-                        text = energyFormatter.energyExceeded(-left),
-                        color = MaterialTheme.colorScheme.error,
-                        style = MaterialTheme.typography.bodyMediumEmphasized,
-                    )
-            }
+    val remainingOrExcessLabel =
+        when (calorieSummary.state) {
+            CalorieState.NORMAL -> stringResource(Res.string.headline_calories_remaining)
+            CalorieState.OVER_LIMIT -> stringResource(Res.string.headline_calories_excess)
         }
 
-        Row(modifier = Modifier.height(64.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            nutrientsOrder.forEach { field ->
-                when (field) {
-                    NutrientsOrder.Proteins ->
-                        MacroBar(
-                            progress = proteinsPercentage,
-                            containerColor =
-                                nutrientsPalette.proteinsOnSurfaceContainer.copy(alpha = .25f),
-                            barColor = nutrientsPalette.proteinsOnSurfaceContainer,
-                        )
-
-                    NutrientsOrder.Fats ->
-                        MacroBar(
-                            progress = fatsPercentage,
-                            containerColor =
-                                nutrientsPalette.fatsOnSurfaceContainer.copy(alpha = .25f),
-                            barColor = nutrientsPalette.fatsOnSurfaceContainer,
-                        )
-
-                    NutrientsOrder.Carbohydrates ->
-                        MacroBar(
-                            progress = carbsPercentage,
-                            containerColor =
-                                nutrientsPalette.carbohydratesOnSurfaceContainer.copy(alpha = .25f),
-                            barColor = nutrientsPalette.carbohydratesOnSurfaceContainer,
-                        )
-
-                    NutrientsOrder.Other,
-                    NutrientsOrder.Vitamins,
-                    NutrientsOrder.Minerals -> Unit
-                }
-            }
+    val remainingOrExcessColor =
+        when (calorieSummary.state) {
+            CalorieState.NORMAL -> MaterialTheme.colorScheme.primary
+            CalorieState.OVER_LIMIT -> MaterialTheme.colorScheme.error
         }
+
+    Row(modifier = modifier) {
+        CalorieSummaryColumn(
+            label = stringResource(Res.string.headline_calorie_target),
+            value = energyFormatter.formatEnergy(calorieSummary.target, withSuffix = false),
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.weight(1f),
+        )
+
+        CalorieSummaryColumn(
+            label = stringResource(Res.string.headline_calories_consumed),
+            value = energyFormatter.formatEnergy(calorieSummary.consumed, withSuffix = false),
+            color = MaterialTheme.colorScheme.tertiary,
+            modifier = Modifier.weight(1f),
+        )
+
+        CalorieSummaryColumn(
+            label = remainingOrExcessLabel,
+            value =
+                energyFormatter.formatEnergy(calorieSummary.remainingOrExcess, withSuffix = false),
+            color = remainingOrExcessColor,
+            modifier = Modifier.weight(1f),
+        )
     }
 }
 
 @Composable
-private fun MacroBar(
-    progress: Float,
-    containerColor: Color,
-    barColor: Color,
+private fun CalorieSummaryColumn(
+    label: String,
+    value: String,
+    color: Color,
     modifier: Modifier = Modifier,
-    overflowColor: Color = MaterialTheme.colorScheme.error,
 ) {
-    val containerFraction = (1 - progress).coerceIn(0f, 1f)
-    val overflowFraction = (progress - 1).coerceIn(0f, 1f)
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
 
-    Canvas(
+        Spacer(Modifier.height(4.dp))
+
+        Text(
+            text = value,
+            style = MaterialTheme.typography.headlineSmallEmphasized,
+            color = color,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
+
+@Composable
+private fun ProgressBar(progress: Float, color: Color, modifier: Modifier = Modifier) {
+    Box(
         modifier =
-            modifier
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 8.dp,
-                        topEnd = 8.dp,
-                        bottomStart = 4.dp,
-                        bottomEnd = 4.dp,
-                    )
-                )
-                .fillMaxHeight()
-                .width(24.dp)
+            modifier.clip(CircleShape).background(MaterialTheme.colorScheme.surfaceContainerHighest)
     ) {
-        if (overflowFraction > 0f) {
-            val barHeight = 1 - overflowFraction
-
-            drawRect(
-                color = barColor,
-                size = Size(width = size.width, height = size.height * barHeight - 1.dp.toPx()),
-            )
-            drawRect(
-                color = overflowColor,
-                topLeft = Offset(x = 0f, y = size.height * barHeight + 1.dp.toPx()),
-                size =
-                    Size(width = size.width, height = size.height * overflowFraction - 1.dp.toPx()),
-            )
-        } else {
-            drawRect(
-                color = containerColor,
-                size =
-                    Size(width = size.width, height = size.height * containerFraction - 1.dp.toPx()),
-            )
-            drawRect(
-                color = barColor,
-                topLeft = Offset(x = 0f, y = size.height * containerFraction + 1.dp.toPx()),
-                size = Size(width = size.width, height = size.height * progress - 1.dp.toPx()),
-            )
-        }
+        Box(
+            modifier =
+                Modifier.fillMaxWidth(progress.coerceIn(0f, 1f))
+                    .fillMaxHeight()
+                    .clip(CircleShape)
+                    .background(color)
+        )
     }
 }
 
 @Composable
-private fun ExpandedCardContent(
-    proteinsGrams: Int,
-    proteinsGoalGrams: Int,
-    carbohydratesGrams: Int,
-    carbohydratesGoalGrams: Int,
-    fatsGrams: Int,
-    fatsGoalGrams: Int,
+private fun NutrientRow(
+    proteins: Int,
+    proteinsGoal: Int,
+    carbohydrates: Int,
+    carbohydratesGoal: Int,
+    fats: Int,
+    fatsGoal: Int,
     modifier: Modifier = Modifier,
 ) {
-    val typography = MaterialTheme.typography
-    val colorScheme = MaterialTheme.colorScheme
     val nutrientsPalette = LocalNutrientsPalette.current
     val nutrientsOrder = LocalNutrientsOrder.current
     val gramShort = stringResource(Res.string.unit_gram_short)
 
-    val proteinsString = buildAnnotatedString {
-        val color =
-            if (proteinsGrams > proteinsGoalGrams) {
-                colorScheme.error
-            } else {
-                nutrientsPalette.proteinsOnSurfaceContainer
-            }
+    Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        nutrientsOrder.forEach { field ->
+            when (field) {
+                NutrientsOrder.Proteins ->
+                    NutrientColumn(
+                        label = stringResource(Res.string.nutriment_proteins),
+                        current = proteins,
+                        target = proteinsGoal,
+                        unit = gramShort,
+                        color = nutrientsPalette.proteinsOnSurfaceContainer,
+                        modifier = Modifier.weight(1f),
+                    )
 
-        withStyle(typography.headlineSmall.merge(color).toSpanStyle()) {
-            append(" $proteinsGrams ")
-        }
-        withStyle(typography.bodyMedium.merge(colorScheme.outline).toSpanStyle()) {
-            append("/ $proteinsGoalGrams $gramShort")
-        }
-    }
+                NutrientsOrder.Fats ->
+                    NutrientColumn(
+                        label = stringResource(Res.string.nutriment_fats),
+                        current = fats,
+                        target = fatsGoal,
+                        unit = gramShort,
+                        color = nutrientsPalette.fatsOnSurfaceContainer,
+                        modifier = Modifier.weight(1f),
+                    )
 
-    val carbohydratesString = buildAnnotatedString {
-        val color =
-            if (carbohydratesGrams > carbohydratesGoalGrams) {
-                colorScheme.error
-            } else {
-                nutrientsPalette.carbohydratesOnSurfaceContainer
-            }
+                NutrientsOrder.Carbohydrates ->
+                    NutrientColumn(
+                        label = stringResource(Res.string.nutriment_carbohydrates),
+                        current = carbohydrates,
+                        target = carbohydratesGoal,
+                        unit = gramShort,
+                        color = nutrientsPalette.carbohydratesOnSurfaceContainer,
+                        modifier = Modifier.weight(1f),
+                    )
 
-        withStyle(typography.headlineSmall.merge(color).toSpanStyle()) {
-            append(" $carbohydratesGrams ")
-        }
-        withStyle(typography.bodyMedium.merge(colorScheme.outline).toSpanStyle()) {
-            append("/ $carbohydratesGoalGrams $gramShort")
-        }
-    }
-
-    val fatsString = buildAnnotatedString {
-        val color =
-            if (fatsGrams > fatsGoalGrams) {
-                colorScheme.error
-            } else {
-                nutrientsPalette.fatsOnSurfaceContainer
-            }
-
-        withStyle(typography.headlineSmall.merge(color).toSpanStyle()) { append(" $fatsGrams ") }
-        withStyle(typography.bodyMedium.merge(colorScheme.outline).toSpanStyle()) {
-            append("/ $fatsGoalGrams $gramShort")
-        }
-    }
-
-    Column(modifier = modifier) {
-        nutrientsOrder.forEach {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                when (it) {
-                    NutrientsOrder.Proteins -> {
-                        RoundedSquare(LocalNutrientsPalette.current.proteinsOnSurfaceContainer)
-
-                        Text(
-                            text = stringResource(Res.string.nutriment_proteins),
-                            modifier = Modifier.weight(1f),
-                            style = MaterialTheme.typography.labelLarge,
-                        )
-
-                        Text(text = proteinsString, style = MaterialTheme.typography.headlineSmall)
-                    }
-
-                    NutrientsOrder.Carbohydrates -> {
-                        RoundedSquare(LocalNutrientsPalette.current.carbohydratesOnSurfaceContainer)
-
-                        Text(
-                            text = stringResource(Res.string.nutriment_carbohydrates),
-                            modifier = Modifier.weight(1f),
-                            style = MaterialTheme.typography.labelLarge,
-                        )
-
-                        Text(
-                            text = carbohydratesString,
-                            style = MaterialTheme.typography.headlineSmall,
-                        )
-                    }
-
-                    NutrientsOrder.Fats -> {
-                        RoundedSquare(LocalNutrientsPalette.current.fatsOnSurfaceContainer)
-
-                        Text(
-                            text = stringResource(Res.string.nutriment_fats),
-                            modifier = Modifier.weight(1f),
-                            style = MaterialTheme.typography.labelLarge,
-                        )
-
-                        Text(text = fatsString, style = MaterialTheme.typography.headlineSmall)
-                    }
-
-                    NutrientsOrder.Other,
-                    NutrientsOrder.Vitamins,
-                    NutrientsOrder.Minerals -> Unit
-                }
+                NutrientsOrder.Other,
+                NutrientsOrder.Vitamins,
+                NutrientsOrder.Minerals -> Unit
             }
         }
     }
 }
 
 @Composable
-private fun RoundedSquare(color: Color, modifier: Modifier = Modifier) {
-    Canvas(modifier = modifier.size(16.dp).clip(MaterialTheme.shapes.extraSmall)) {
-        drawRect(color = color, size = size)
+private fun NutrientColumn(
+    label: String,
+    current: Int,
+    target: Int,
+    unit: String,
+    color: Color,
+    modifier: Modifier = Modifier,
+) {
+    val exceeded = isNutrientExceeded(current, target)
+    val progress =
+        animateFloatAsState(
+                targetValue = nutrientProgress(current, target),
+                animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
+            )
+            .value
+
+    Column(modifier = modifier) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+
+        Spacer(Modifier.height(4.dp))
+
+        Text(
+            text = "$current",
+            style = MaterialTheme.typography.titleMediumEmphasized,
+            color = MaterialTheme.colorScheme.onSurface,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+
+        Text(
+            text = stringResource(Res.string.neutral_of_target, "$target $unit"),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+
+        Spacer(Modifier.height(6.dp))
+
+        ProgressBar(
+            progress = progress,
+            color = if (exceeded) MaterialTheme.colorScheme.error else color,
+            modifier = Modifier.fillMaxWidth().height(6.dp),
+        )
     }
 }
 
 @Composable
 private fun GoalsCardSkeleton(
     shimmer: Shimmer,
-    expand: Boolean,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    FoodYouHomeCard(modifier = modifier, onClick = onClick, onLongClick = onLongClick) {
-        Column(Modifier.padding(16.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Spacer(
-                        Modifier.shimmer(shimmer)
-                            .width(60.dp)
-                            .height(MaterialTheme.typography.headlineLargeEmphasized.toDp())
-                            .clip(MaterialTheme.shapes.medium)
-                            .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-                    )
+    val blockColor = MaterialTheme.colorScheme.surfaceContainerHighest
 
-                    Spacer(
-                        Modifier.shimmer(shimmer)
-                            .size(120.dp, MaterialTheme.typography.bodyMediumEmphasized.toDp())
-                            .clip(MaterialTheme.shapes.medium)
-                            .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-                    )
-                }
-
-                Row(
-                    modifier = Modifier.height(64.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    MacroBar(
-                        progress = 1f,
-                        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        barColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        modifier = Modifier.shimmer(shimmer),
-                    )
-
-                    MacroBar(
-                        progress = 1f,
-                        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        barColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        modifier = Modifier.shimmer(shimmer),
-                    )
-
-                    MacroBar(
-                        progress = 1f,
-                        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        barColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                        modifier = Modifier.shimmer(shimmer),
-                    )
+    FoodYouHomeCard(
+        modifier = modifier,
+        onClick = onClick,
+        onLongClick = onLongClick,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        shape = MaterialTheme.shapes.extraLarge,
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                repeat(3) {
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Spacer(
+                            Modifier.shimmer(shimmer)
+                                .size(40.dp, 14.dp)
+                                .clip(MaterialTheme.shapes.small)
+                                .background(blockColor)
+                        )
+                        Spacer(Modifier.height(6.dp))
+                        Spacer(
+                            Modifier.shimmer(shimmer)
+                                .size(56.dp, 28.dp)
+                                .clip(MaterialTheme.shapes.small)
+                                .background(blockColor)
+                        )
+                    }
                 }
             }
 
-            AnimatedVisibility(
-                visible = expand,
-                enter = expandVertically(),
-                exit = shrinkVertically(),
-            ) {
-                Column {
-                    Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(8.dp))
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        RoundedSquare(
-                            color = MaterialTheme.colorScheme.surfaceContainerHighest,
-                            modifier = Modifier.shimmer(shimmer),
-                        )
+            Spacer(
+                Modifier.shimmer(shimmer)
+                    .fillMaxWidth()
+                    .height(10.dp)
+                    .clip(CircleShape)
+                    .background(blockColor)
+            )
 
+            Spacer(Modifier.height(16.dp))
+
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                repeat(3) {
+                    Column(modifier = Modifier.weight(1f)) {
                         Spacer(
                             Modifier.shimmer(shimmer)
-                                .width(100.dp)
-                                .height(MaterialTheme.typography.labelLarge.toDp())
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                .size(48.dp, 14.dp)
+                                .clip(MaterialTheme.shapes.small)
+                                .background(blockColor)
                         )
-
-                        Spacer(Modifier.weight(1f))
-
+                        Spacer(Modifier.height(6.dp))
                         Spacer(
                             Modifier.shimmer(shimmer)
-                                .size(80.dp, MaterialTheme.typography.headlineSmall.toDp() - 4.dp)
-                                .padding(vertical = 2.dp)
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                .size(32.dp, 22.dp)
+                                .clip(MaterialTheme.shapes.small)
+                                .background(blockColor)
                         )
-                    }
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        RoundedSquare(
-                            color = MaterialTheme.colorScheme.surfaceContainerHighest,
-                            modifier = Modifier.shimmer(shimmer),
-                        )
-
+                        Spacer(Modifier.height(4.dp))
                         Spacer(
                             Modifier.shimmer(shimmer)
-                                .width(100.dp)
-                                .height(MaterialTheme.typography.labelLarge.toDp())
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-                        )
-
-                        Spacer(Modifier.weight(1f))
-
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(80.dp, MaterialTheme.typography.headlineSmall.toDp() - 4.dp)
-                                .padding(vertical = 2.dp)
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-                        )
-                    }
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        RoundedSquare(
-                            color = MaterialTheme.colorScheme.surfaceContainerHighest,
-                            modifier = Modifier.shimmer(shimmer),
-                        )
-
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .width(100.dp)
-                                .height(MaterialTheme.typography.labelLarge.toDp())
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
-                        )
-
-                        Spacer(Modifier.weight(1f))
-
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(80.dp, MaterialTheme.typography.headlineSmall.toDp() - 4.dp)
-                                .padding(vertical = 2.dp)
-                                .clip(MaterialTheme.shapes.medium)
-                                .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                .fillMaxWidth()
+                                .height(6.dp)
+                                .clip(CircleShape)
+                                .background(blockColor)
                         )
                     }
                 }

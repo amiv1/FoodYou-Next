@@ -16,6 +16,10 @@
     <string name="headline_system_language_settings">Impostazioni lingua di sistema</string>
     <string name="headline_secure_screen">Protezione schermo</string>
     <string name="headline_allow_future_dates">Consenti date future</string>
+    <string name="headline_calorie_target">Obiettivo</string>
+    <string name="headline_calories_consumed">Consumate</string>
+    <string name="headline_calories_remaining">Rimanenti</string>
+    <string name="headline_calories_excess">Eccesso</string>
     <string name="headline_about">Informazioni</string>
     <string name="headline_version">Versione</string>
     <string name="headline_all_day" description="All-day (meal)">Tutto il giorno</string>
@@ -171,6 +175,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Devi permettere l'accesso per scansionare i codici a barre</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">L'autorizzazione alla fotocamera è necessaria per scansionare i codici a barre. Per favore, concedila nelle impostazioni dell'app.</string>
     <string name="neutral_no_food_found">Nessun alimento trovato</string>
+    <string name="neutral_of_target">di %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">%1$d caloria rimasta</item>
         <item quantity="other">%1$d calorie rimaste</item>

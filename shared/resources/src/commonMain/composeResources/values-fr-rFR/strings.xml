@@ -16,6 +16,10 @@
     <string name="headline_system_language_settings">Paramètres de la langue du système</string>
     <string name="headline_secure_screen">Écran sécurisé</string>
     <string name="headline_allow_future_dates">Autoriser les dates futures</string>
+    <string name="headline_calorie_target">Objectif</string>
+    <string name="headline_calories_consumed">Consommé</string>
+    <string name="headline_calories_remaining">Restant</string>
+    <string name="headline_calories_excess">Excès</string>
     <string name="headline_about">À propos</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Toute la journée</string>
@@ -171,6 +175,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Vous devez autoriser l'accès pour pouvoir scanner les codes-barres</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">L'accès à la caméra est nécessaire pour scanner les codes-barres. Autorisez-le dans les paramètres.</string>
     <string name="neutral_no_food_found">Aucun aliment trouvé</string>
+    <string name="neutral_of_target">sur %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">%1$d calorie restante</item>
         <item quantity="other">%1$d calories restantes</item>

@@ -17,6 +17,10 @@
     <string name="headline_system_language_settings">Nastavitve sistemskega jezika</string>
     <string name="headline_secure_screen">Zaščita zaslona</string>
     <string name="headline_allow_future_dates">Dovoli prihodnje datume</string>
+    <string name="headline_calorie_target">Cilj</string>
+    <string name="headline_calories_consumed">Zaužito</string>
+    <string name="headline_calories_remaining">Preostalo</string>
+    <string name="headline_calories_excess">Presežek</string>
     <string name="headline_about">O aplikaciji Food You</string>
     <string name="headline_version">Različica</string>
     <string name="headline_all_day" description="All-day (meal)">Celodnevno</string>
@@ -176,6 +180,7 @@
     <string name="neutral_barcode_scanner_camera_request_rationale">Za optično branje črtnih kod morate dovoliti dostop.</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Za skeniranje črtnih kod je potrebno dovoljenje uporabe fotoaparata. Dovolite ga v nastavitvah aplikacije.</string>
     <string name="neutral_no_food_found">Ni bilo najdene hrane</string>
+    <string name="neutral_of_target">od %1$s</string>
     <plurals name="neutral_remaining_calories">
         <item quantity="one">%1$d preostala kalorija</item>
         <item quantity="two">%1$d preostali kaloriji</item>
