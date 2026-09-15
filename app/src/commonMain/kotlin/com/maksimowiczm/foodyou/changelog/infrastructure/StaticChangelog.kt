@@ -12,6 +12,7 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
     override val versions: List<Version>
         get() =
             listOf(
+                v_4_1_0,
                 v_4_0_0,
                 v_3_4_9,
                 v_3_4_8,
@@ -54,6 +55,29 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
                 v2_1_0,
                 v2_0_0,
             )
+
+    val v_4_1_0 =
+        Version(
+            version = "4.1.0",
+            date = LocalDate(2026, 9, 15),
+            changes =
+                listOf(
+                    "Redesigned the home screen calendar into a compact date switcher with " +
+                        "previous/next day arrows.",
+                    "The home screen now automatically switches to the new day at midnight.",
+                    "Simplified the add/edit food entry forms by hiding the date and meal " +
+                        "pickers.",
+                    "Redesigned the macronutrient breakdown into its own card with a color " +
+                        "legend and per-macro percentages.",
+                    "Removed the sponsorship feature.",
+                ),
+            bugFixes =
+                listOf(
+                    "Fixed the save button on the add/edit food entry forms being oversized " +
+                        "and using the wrong icon."
+                ),
+            translations = emptyList(),
+        )
 
     val v_4_0_0 =
         Version(

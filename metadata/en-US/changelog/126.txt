@@ -1,0 +1,9 @@
+Changes
+- Redesigned the home screen calendar into a compact date switcher with previous/next day arrows.
+- The home screen now automatically switches to the new day at midnight.
+- Simplified the add/edit food entry forms by hiding the date and meal pickers.
+- Redesigned the macronutrient breakdown into its own card with a color legend and per-macro percentages.
+- Removed the sponsorship feature.
+
+Bug Fixes
+- Fixed the save button on the add/edit food entry forms being oversized and using the wrong icon.
