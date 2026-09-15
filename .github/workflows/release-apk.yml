@@ -24,15 +24,10 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          accept-android-sdk-licenses: true
-          log-accepted-android-sdk-licenses: false
-
       - name: Setup Android SDK build tools
         run: |
-          $ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager "build-tools;36.0.0"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;36.0.0"
           echo "$ANDROID_HOME/build-tools/36.0.0" >> "$GITHUB_PATH"
 
       - name: Build APK
