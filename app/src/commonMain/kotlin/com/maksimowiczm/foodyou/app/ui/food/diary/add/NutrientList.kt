@@ -1,17 +1,12 @@
 package com.maksimowiczm.foodyou.app.ui.food.diary.add
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ViewList
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -20,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.component.IncompleteFoodsList
 import com.maksimowiczm.foodyou.app.ui.common.utility.stringResourceWithWeight
-import com.maksimowiczm.foodyou.app.ui.food.component.EnergyProgressIndicator
+import com.maksimowiczm.foodyou.app.ui.food.component.MacroDistributionIndicator
 import com.maksimowiczm.foodyou.app.ui.food.shared.component.NutrientList
 import com.maksimowiczm.foodyou.common.domain.food.isComplete
 import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
@@ -51,16 +46,12 @@ internal fun NutrientList(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Box(modifier = Modifier.size(48.dp), contentAlignment = Alignment.Center) {
-                Icon(imageVector = Icons.AutoMirrored.Outlined.ViewList, contentDescription = null)
-            }
-
             val proteins = facts.proteins.value
             val carbohydrates = facts.carbohydrates.value
             val fats = facts.fats.value
 
             if (proteins != null && carbohydrates != null && fats != null) {
-                EnergyProgressIndicator(
+                MacroDistributionIndicator(
                     proteins = proteins.toFloat(),
                     carbohydrates = carbohydrates.toFloat(),
                     fats = fats.toFloat(),
