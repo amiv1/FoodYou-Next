@@ -9,7 +9,10 @@ import com.maksimowiczm.foodyou.common.extension.now
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
+import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.minus
+import kotlinx.datetime.plus
 import org.koin.compose.koinInject
 
 @Composable
@@ -61,6 +64,8 @@ internal fun rememberHomeState(initialSelectedDate: LocalDate = LocalDate.now())
 
 @Stable
 internal class HomeState(initialSelectedDate: LocalDate, initialToday: LocalDate, val shimmer: Shimmer) {
+    private val zeroDate = LocalDate.fromEpochDays(0)
+
     var selectedDate by mutableStateOf(initialSelectedDate)
         private set
 
@@ -68,8 +73,28 @@ internal class HomeState(initialSelectedDate: LocalDate, initialToday: LocalDate
     var lastKnownToday by mutableStateOf(initialToday)
         private set
 
+    /** Whether [selectedDate] can move forward, i.e. it hasn't already reached [lastKnownToday]. */
+    val canSelectNextDay: Boolean
+        get() = selectedDate < lastKnownToday
+
+    /** Whether [selectedDate] can move backward, i.e. it hasn't already reached [zeroDate]. */
+    val canSelectPreviousDay: Boolean
+        get() = selectedDate > zeroDate
+
     fun selectDate(date: LocalDate) {
         selectedDate = date
+    }
+
+    fun selectPreviousDay() {
+        if (canSelectPreviousDay) {
+            selectDate(selectedDate.minus(1, DateTimeUnit.DAY))
+        }
+    }
+
+    fun selectNextDay() {
+        if (canSelectNextDay) {
+            selectDate(selectedDate.plus(1, DateTimeUnit.DAY))
+        }
     }
 
     /**

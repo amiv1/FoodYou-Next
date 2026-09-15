@@ -25,33 +25,29 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
-import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
-import com.maksimowiczm.foodyou.common.domain.date.DateProvider
-import com.maksimowiczm.foodyou.common.extension.now
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
 
 @Composable
-internal fun CalendarCard(homeState: HomeState, modifier: Modifier = Modifier) {
-    val dateProvider = koinInject<DateProvider>()
-    val today = dateProvider.observeDate().collectAsStateWithLifecycle(LocalDate.now()).value
-
-    val calendarState =
-        rememberCalendarState(referenceDate = today, selectedDate = homeState.selectedDate)
+internal fun CalendarCard(
+    date: LocalDate,
+    referenceDate: LocalDate,
+    onDateSelect: (LocalDate) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val calendarState = rememberCalendarState(referenceDate = referenceDate, selectedDate = date)
 
     LaunchedEffect(calendarState.selectedDate) {
-        val date = calendarState.selectedDate
+        val selected = calendarState.selectedDate
 
-        if (date != homeState.selectedDate) {
-            homeState.selectDate(date)
+        if (selected != date) {
+            onDateSelect(selected)
         }
     }
 

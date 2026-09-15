@@ -4,35 +4,37 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
 import com.maksimowiczm.foodyou.fooddiary.domain.entity.MealsCardsLayout
+import com.valentinilk.shimmer.Shimmer
+import kotlinx.datetime.LocalDate
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun MealsCards(
-    homeState: HomeState,
+    date: LocalDate,
+    shimmer: Shimmer,
     onAdd: (epochDay: Long, mealId: Long) -> Unit,
     onQuickAdd: (epochDay: Long, mealId: Long) -> Unit,
     onEditEntry: (foodEntryId: Long?, manualEntryId: Long?) -> Unit,
     onLongClick: (mealId: Long) -> Unit,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
+    viewModel: MealsCardsViewModel = koinViewModel(key = "meals-${date.toEpochDays()}"),
 ) {
-    val viewModel: MealsCardsViewModel = koinViewModel()
     val diaryMeals = viewModel.diaryMeals.collectAsStateWithLifecycle().value
     val allMeals by viewModel.allMeals.collectAsStateWithLifecycle()
     val layout by viewModel.layout.collectAsStateWithLifecycle()
 
-    LaunchedEffect(homeState.selectedDate, viewModel) { viewModel.setDate(homeState.selectedDate) }
+    LaunchedEffect(date, viewModel) { viewModel.setDate(date) }
 
     when (layout) {
         MealsCardsLayout.Horizontal ->
             HorizontalMealsCards(
                 meals = diaryMeals,
                 allMeals = allMeals,
-                date = homeState.selectedDate,
-                onAdd = { mealId -> onAdd(homeState.selectedDate.toEpochDays(), mealId) },
-                onQuickAdd = { mealId -> onQuickAdd(homeState.selectedDate.toEpochDays(), mealId) },
+                date = date,
+                onAdd = { mealId -> onAdd(date.toEpochDays(), mealId) },
+                onQuickAdd = { mealId -> onQuickAdd(date.toEpochDays(), mealId) },
                 onEditEntry = { model ->
                     val foodEntry = model as? FoodMealEntryModel
                     val manualEntry = model as? ManualMealEntryModel
@@ -42,7 +44,7 @@ internal fun MealsCards(
                 onUpdateMeasurement = viewModel::onUpdateMeasurement,
                 onCopyMeal = viewModel::copyMeal,
                 onLongClick = onLongClick,
-                shimmer = homeState.shimmer,
+                shimmer = shimmer,
                 contentPadding = contentPadding,
                 modifier = modifier,
             )
@@ -51,9 +53,9 @@ internal fun MealsCards(
             VerticalMealsCards(
                 meals = diaryMeals,
                 allMeals = allMeals,
-                date = homeState.selectedDate,
-                onAdd = { mealId -> onAdd(homeState.selectedDate.toEpochDays(), mealId) },
-                onQuickAdd = { mealId -> onQuickAdd(homeState.selectedDate.toEpochDays(), mealId) },
+                date = date,
+                onAdd = { mealId -> onAdd(date.toEpochDays(), mealId) },
+                onQuickAdd = { mealId -> onQuickAdd(date.toEpochDays(), mealId) },
                 onEditEntry = { model ->
                     val foodEntry = model as? FoodMealEntryModel
                     val manualEntry = model as? ManualMealEntryModel
@@ -63,7 +65,7 @@ internal fun MealsCards(
                 onUpdateMeasurement = viewModel::onUpdateMeasurement,
                 onCopyMeal = viewModel::copyMeal,
                 onLongClick = onLongClick,
-                shimmer = homeState.shimmer,
+                shimmer = shimmer,
                 contentPadding = contentPadding,
                 modifier = modifier,
             )

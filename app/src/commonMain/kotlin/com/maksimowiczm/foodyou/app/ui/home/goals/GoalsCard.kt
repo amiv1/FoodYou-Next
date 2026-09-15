@@ -34,33 +34,34 @@ import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
-import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
 import com.maksimowiczm.foodyou.common.compose.extension.toDp
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.shimmer
 import foodyou.app.generated.resources.*
+import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 internal fun GoalsCard(
-    homeState: HomeState,
+    date: LocalDate,
+    shimmer: Shimmer,
     onClick: (epochDay: Long) -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: GoalsViewModel = koinViewModel(),
+    viewModel: GoalsViewModel = koinViewModel(key = "goals-${date.toEpochDays()}"),
 ) {
-    LaunchedEffect(homeState.selectedDate) { viewModel.setDate(homeState.selectedDate) }
+    LaunchedEffect(date) { viewModel.setDate(date) }
 
     val model = viewModel.model.collectAsStateWithLifecycle().value
     val expand by viewModel.expandGoalsCard.collectAsStateWithLifecycle()
 
     if (model == null) {
         GoalsCardSkeleton(
-            shimmer = homeState.shimmer,
+            shimmer = shimmer,
             expand = expand,
-            onClick = { onClick(homeState.selectedDate.toEpochDays()) },
+            onClick = { onClick(date.toEpochDays()) },
             onLongClick = onLongClick,
             modifier = modifier,
         )
@@ -75,7 +76,7 @@ internal fun GoalsCard(
             carbohydratesGoal = model.carbohydratesGoal,
             fats = model.fats,
             fatsGoal = model.fatsGoal,
-            onClick = { onClick(homeState.selectedDate.toEpochDays()) },
+            onClick = { onClick(date.toEpochDays()) },
             onLongClick = onLongClick,
             modifier = modifier,
         )
