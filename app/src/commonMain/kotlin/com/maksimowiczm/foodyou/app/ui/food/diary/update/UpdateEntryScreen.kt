@@ -33,8 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.app.ui.common.component.ArrowBackIconButton
 import com.maksimowiczm.foodyou.app.ui.food.component.MeasurementPicker
-import com.maksimowiczm.foodyou.app.ui.food.diary.component.ChipsDatePicker
-import com.maksimowiczm.foodyou.app.ui.food.diary.component.ChipsMealPicker
 import com.maksimowiczm.foodyou.app.ui.food.diary.component.FoodMeasurementFormState
 import com.maksimowiczm.foodyou.app.ui.food.diary.component.Source
 import com.maksimowiczm.foodyou.app.ui.food.diary.component.rememberFoodMeasurementFormState
@@ -215,13 +213,8 @@ private fun UpdateEntryScreen(
                     }
                 },
         ) {
-            item { HorizontalDivider(Modifier.padding(horizontal = 8.dp)) }
 
             item {
-                ChipsDatePicker(state = state.dateState, modifier = Modifier.padding(8.dp))
-                HorizontalDivider(Modifier.padding(horizontal = 8.dp))
-                ChipsMealPicker(state = state.mealsState, modifier = Modifier.padding(8.dp))
-                HorizontalDivider(Modifier.padding(horizontal = 8.dp))
                 MeasurementPicker(state = state.measurementState, modifier = Modifier.padding(8.dp))
             }
 
