@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">N/A</string>
     <string name="headline_create_product">Vytvořit produkt</string>
     <string name="headline_settings">Nastavení</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Obecné</string>
     <string name="headline_macronutrients">Makroživiny</string>
     <string name="headline_meals">Jídla</string>
+    <string name="headline_copy_meal">Kopírovat jídlo</string>
     <string name="headline_delete_food">Odstranit jídlo</string>
     <string name="headline_edit_product">Upravit produkt</string>
     <string name="headline_permission_required">Vyžadováno oprávnění</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Energie</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gram</item>
         <item quantity="few">gramy</item>
@@ -140,6 +145,8 @@
     <string name="action_disable_camera_flash">Vypnout blesk</string>
     <string name="action_prevent_screen_capture">Bránit vytvoření snímku obrazovky</string>
     <string name="action_go_to_today">Přejít na dnešek</string>
+    <string name="action_previous_day">Předchozí den</string>
+    <string name="action_next_day">Další den</string>
     <string name="action_feature_request_on_github">Žádost o funkci na GitHub</string>
     <string name="action_show_calendar">Zobrazit kalendář</string>
     <string name="action_reorder">Změnit pořadí</string>
@@ -233,11 +240,25 @@
     <string name="description_open_food_facts">Kolaborativní, svobodná a otevřená databáze potravit z celého světa</string>
     <string name="error_open_food_facts_rate_limit">Byl překročen API limit pro Open Food Facts</string>
     <!-- Don't translate changelog strings -->
+    <string name="error_open_food_facts_service_unavailable">Služba Open Food Facts je dočasně nedostupná. Registrovaní uživatelé nepodléhají limitům požadavků a během špičky mají přednostní přístup.</string>
+    <string name="action_register">Registrovat se</string>
+    <string name="description_open_food_facts_credentials_message">Přihlašovací údaje jsou zašifrované a uložené pouze ve vašem zařízení. Citlivá data nejsou přístupná nikomu dalšímu.</string>
+    <string name="error_open_food_facts_failed_to_authenticate">Nepodařilo se ověřit u Open Food Facts</string>
+    <string name="headline_username">Uživatelské jméno</string>
+    <string name="headline_password">Heslo</string>
+    <string name="action_show_password">Zobrazit heslo</string>
+    <string name="action_hide_password">Skrýt heslo</string>
+    <string name="changelog_new_features">Nové funkce</string>
+    <string name="changelog_changes">Změny</string>
+    <string name="changelog_bug_fixes">Opravy chyb</string>
+    <string name="changelog_translations">Překlady</string>
+    <string name="changelog_notes">Poznámky</string>
     <string name="notification_exporting_products">Exportuji produkty</string>
     <string name="notification_importing_products">Importuji produkty</string>
     <string name="notification_importing_products_success">Produkty byly importovány</string>
     <string name="description_food_data_central_usda">FoodData Central je komplexní zdroj údajů od USDA, obsahující mnoho typů údajů</string>
     <string name="error_usda_rate_limit">Byl překročen API limit FoodData Central (USDA)</string>
+    <string name="error_usda_not_verified">Zadaný API klíč ještě nebyl ověřen. Zkontrolujte svůj e-mail a ověřte API klíč.</string>
     <string name="description_swiss_food_composition_database_short">Švýcarská databáze o složení potravin zahrnuje informace o výživě pro více než 1,100 obecných potravinářských výrobků</string>
     <string name="description2_swiss_food_composition_database">Švýcarská databáze o složení potravin zahrnuje informace o výživě pro více než 1,100 běžných potravinářských výrobků. Je k dispozici ve čtyřech jazycích. Chcete-li tyto produkty importovat do seznamu potravin, vyberte prosím preferované jazyky.</string>
     <string name="headline_external_databases">Externí databáze</string>
@@ -259,6 +280,7 @@
     <string name="description_add_note">Nepovinné poznámky (např. přísady, stav vegan, alergeny, přísady) nebo jakékoli jiné údaje bez živin</string>
     <string name="action_try_again">Zkusit znovu</string>
     <string name="description_calories_are_calculated">Energie je automaticky počítána z makroživin. Tuto funkci můžete vypnout a zadat hodnotu ručně, pokud je to potřeba. Alcohol do výpočtu zahrnut není.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
     <string name="neutral_an_error_occurred">Došlo k chybě</string>
     <string name="action_retry">Zkusit znovu</string>
     <string name="action_import">Importovat</string>
@@ -350,6 +372,7 @@
     <string name="action_replace">Nahradit</string>
     <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">Vaše databáze bude NAHRAZENA, a všechna existující data budou ZTRACENA. Aplikace se po nahrazení databáze restartuje. Možná ji budete muset otevřít znovu sami.</string>
     <string name="action_sign_in">Přihlásit se</string>
+    <string name="action_sign_out">Odhlásit se</string>
     <string name="headline_terms_of_service">Podmínky použití</string>
     <string name="headline_privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="error_there_was_an_error_while_signing_in">Při přihlášení došlo k chybě</string>
@@ -388,4 +411,5 @@
     <string name="description_replacing_database">Nahrazuji databázi, čekejte prosím...</string>
     <string name="headline_experimental">Experimentální</string>
     <string name="description_privacy_policy">Podívejte se, jak jsou vaše údaje zpracovávány</string>
+    <string name="error_open_food_facts_timeout">Open Food Facts odpovídá příliš dlouho. Služba může být dočasně pomalá nebo nedostupná. Zkuste místo toho naskenovat čárový kód produktu.</string>
 </resources>

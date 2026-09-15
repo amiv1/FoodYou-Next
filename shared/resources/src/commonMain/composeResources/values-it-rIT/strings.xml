@@ -7,6 +7,7 @@
     <string name="headline_general">Generale</string>
     <string name="headline_macronutrients">Macronutrienti</string>
     <string name="headline_meals">Pasti</string>
+    <string name="headline_copy_meal">Copia pasto</string>
     <string name="headline_delete_food">Elimina cibo</string>
     <string name="headline_edit_product">Modifica prodotto</string>
     <string name="headline_permission_required">Autorizzazione richiesta</string>
@@ -47,6 +48,9 @@
     <string name="unit_energy" description="Energy as calories">Energia</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">grammo</item>
         <item quantity="other">grammi</item>
@@ -136,6 +140,8 @@
     <string name="action_disable_camera_flash">Disattiva il flash della fotocamera</string>
     <string name="action_prevent_screen_capture">Impedisci l'acquisizione dello schermo</string>
     <string name="action_go_to_today">Vai a oggi</string>
+    <string name="action_previous_day">Giorno precedente</string>
+    <string name="action_next_day">Giorno successivo</string>
     <string name="action_feature_request_on_github">Richiedi funzionalità su GitHub</string>
     <string name="action_show_calendar">Mostra calendario</string>
     <string name="action_reorder">Riordina</string>
@@ -228,7 +234,11 @@
     <string name="headline_password">Password</string>
     <string name="action_show_password">Mostra password</string>
     <string name="action_hide_password">Nascondi password</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Nuove funzionalità</string>
+    <string name="changelog_changes">Modifiche</string>
+    <string name="changelog_bug_fixes">Correzioni di bug</string>
+    <string name="changelog_translations">Traduzioni</string>
+    <string name="changelog_notes">Note</string>
     <string name="notification_exporting_products">Esportazione prodotti</string>
     <string name="notification_importing_products">Importazione prodotti</string>
     <string name="notification_importing_products_success">Importazione prodotti completata</string>

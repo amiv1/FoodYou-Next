@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">N/A</string>
     <string name="headline_create_product">Produkt erstellen</string>
     <string name="headline_settings">Einstellungen</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Allgemein</string>
     <string name="headline_macronutrients">Makronährstoffe</string>
     <string name="headline_meals">Mahlzeiten</string>
+    <string name="headline_copy_meal">Mahlzeit kopieren</string>
     <string name="headline_delete_food">Entferne Essen</string>
     <string name="headline_edit_product">Produkt bearbeiten</string>
     <string name="headline_permission_required">Berechtigung erforderlich</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Brennwert in Kalorien</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">Gramm</item>
         <item quantity="other">Gramm</item>
@@ -136,6 +141,8 @@
     <string name="action_disable_camera_flash">Kamerablitz deaktivieren</string>
     <string name="action_prevent_screen_capture">Bildschirmaufnahme verhindern</string>
     <string name="action_go_to_today">Gehe zu heute</string>
+    <string name="action_previous_day">Vorheriger Tag</string>
+    <string name="action_next_day">Nächster Tag</string>
     <string name="action_feature_request_on_github">Feature-Anfrage auf GitHub</string>
     <string name="action_show_calendar">Kalender anzeigen</string>
     <string name="action_reorder">Neu sortieren</string>
@@ -228,12 +235,17 @@
     <string name="headline_password">Passwort</string>
     <string name="action_show_password">Passwort anzeigen</string>
     <string name="action_hide_password">Passwort ausblenden</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Neue Funktionen</string>
+    <string name="changelog_changes">Änderungen</string>
+    <string name="changelog_bug_fixes">Fehlerbehebungen</string>
+    <string name="changelog_translations">Übersetzungen</string>
+    <string name="changelog_notes">Hinweise</string>
     <string name="notification_exporting_products">Produkte werden exportiert</string>
     <string name="notification_importing_products">Produkte werden importiert</string>
     <string name="notification_importing_products_success">Import der Produkte abgeschlossen</string>
     <string name="description_food_data_central_usda">FoodData Central ist USDA's umfassende Quelle von Daten zur Lebensmittelzusammensetzung mit mehreren unterschiedlichen Datentypen</string>
     <string name="error_usda_rate_limit">FoodData Central (USDA) API-Rate-Limit überschritten</string>
+    <string name="error_usda_not_verified">Der angegebene API-Schlüssel wurde noch nicht verifiziert. Bitte prüfe deine E-Mails, um den API-Schlüssel zu verifizieren.</string>
     <string name="description_swiss_food_composition_database_short">Die Schweizer Lebensmittelzusammensetzungsdatenbank enthält Nährwertangaben zu über 1.100 allgemeinen Lebensmitteln</string>
     <string name="description2_swiss_food_composition_database">Die Schweizer Lebensmittelzusammensetzungsdatenbank enthält Nährwertinformationen zu über 1.100 allgemeinen Lebensmitteln. Sie ist in vier Sprachen verfügbar. Um diese Produkte in dein Lebensmitteltagebuch zu importieren, wähle bitte deine bevorzugten Sprachen aus.</string>
     <string name="headline_external_databases">Externe Datenbanken</string>
@@ -255,6 +267,7 @@
     <string name="description_add_note">Optionale Notiz (z.B. Zutaten, \"Vegan\"-Status, Allergene, Zusätze) oder sonstige Details</string>
     <string name="action_try_again">Erneut versuchen</string>
     <string name="description_calories_are_calculated">Die Energie wird automatisch aus Makronährstoffen berechnet. Du kannst diese Funktion bei Bedarf ausschalten und den Energiewert manuell eingeben. Alkohol wird in die Berechnung nicht einbezogen.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
     <string name="neutral_an_error_occurred">Ein Fehler ist aufgetreten</string>
     <string name="action_retry">Erneut versuchen</string>
     <string name="action_import">Importieren</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">N/A</string>
     <string name="headline_create_product">Criar produto</string>
     <string name="headline_settings">Configurações</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Geral</string>
     <string name="headline_macronutrients">Macronutrientes</string>
     <string name="headline_meals">Refeições</string>
+    <string name="headline_copy_meal">Copiar refeição</string>
     <string name="headline_delete_food">Remover comida</string>
     <string name="headline_edit_product">Editar produto</string>
     <string name="headline_permission_required">Autorização necessária</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Energia</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short" translatable="false">g</string>
+    <string name="unit_milliliter_short" translatable="false">ml</string>
+    <string name="unit_milligram_short" translatable="false">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">grama</item>
         <item quantity="other">gramas</item>
@@ -136,6 +141,8 @@
     <string name="action_disable_camera_flash">Desativar o flash da câmara</string>
     <string name="action_prevent_screen_capture">Impedir captura de ecrã</string>
     <string name="action_go_to_today">Ir para hoje</string>
+    <string name="action_previous_day">Dia anterior</string>
+    <string name="action_next_day">Dia seguinte</string>
     <string name="action_feature_request_on_github">Pedido de funcionalidade no GitHub</string>
     <string name="action_show_calendar">Mostrar calendário</string>
     <string name="action_reorder">Reordenar</string>
@@ -228,12 +235,17 @@
     <string name="headline_password">Palavra-passe</string>
     <string name="action_show_password">Mostrar palavra-passe</string>
     <string name="action_hide_password">Ocultar palavra-passe</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Novas funcionalidades</string>
+    <string name="changelog_changes">Alterações</string>
+    <string name="changelog_bug_fixes">Correções de erros</string>
+    <string name="changelog_translations">Traduções</string>
+    <string name="changelog_notes">Notas</string>
     <string name="notification_exporting_products">Exportar produtos</string>
     <string name="notification_importing_products">Importar produtos</string>
     <string name="notification_importing_products_success">Importação de produtos concluída</string>
     <string name="description_food_data_central_usda">A FoodData Central, da USDA, contém informação abrangente de dados de composição alimentar, com diversos tipos distintos de dados</string>
     <string name="error_usda_rate_limit">Taxa de utilização da API da FoodData Central (USDA) excedida</string>
+    <string name="error_usda_not_verified">A chave da API fornecida ainda não foi verificada. Verifique o seu e-mail para confirmar a chave da API.</string>
     <string name="description_swiss_food_composition_database_short">A base de dados Swiss Food Composition Database inclui informação nutricional de mais de 1100 produtos alimentares genéricos</string>
     <string name="description2_swiss_food_composition_database">A base de dados Swiss Food Composition Database inclui informação nutricional de mais de 1100 produtos alimentares genéricos. Está disponível em quatro idiomas. Para importar estes produtos para o seu diário alimentar, por favor, selecione o seu idioma preferido.</string>
     <string name="headline_external_databases">Bases de dados externas</string>

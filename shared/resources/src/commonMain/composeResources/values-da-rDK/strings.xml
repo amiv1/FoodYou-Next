@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="not_available_short">Ikke relevant</string>
+
+<string name="not_available_short">Ikke relevant</string>
     <string name="headline_create_product">Opret produkt</string>
     <string name="headline_settings">Indstillinger</string>
     <string name="headline_daily_goals">Daglige mål</string>
     <string name="headline_general">Generelt</string>
     <string name="headline_macronutrients">Makronæringsstoffer</string>
     <string name="headline_meals">Måltider</string>
-    <string name="headline_edit_product">Redigér produkt</string>
+        <string name="headline_copy_meal">Kopiér måltid</string>
+
+    <string name="headline_delete_food">Slet fødevare</string>
+
+<string name="headline_edit_product">Redigér produkt</string>
     <string name="headline_permission_required">Tilladelse kræves</string>
     <string name="headline_language">Sprog</string>
     <string name="headline_system">System</string>
@@ -39,10 +44,24 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Understøttede URL'er</string>
     <string name="headline_something_went_wrong">Up! Noget gik galt</string>
     <string name="headline_daily_goals_settings">Daglige mål-indstillinger</string>
-    <string name="weight">Vægt</string>
+        <string name="headline_api_key">API-nøgle</string>
+
+    <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Kilde</string>
+
+    <string name="headline_features">Funktioner</string>
+
+<string name="weight">Vægt</string>
     <string name="unit_energy" description="Energy as calories">Energi</string>
     <string name="unit_kcal">kcal</string>
-    <plurals name="unit_gram">
+        <string name="unit_kilojoules">kJ</string>
+
+    <string name="unit_gram_short">g</string>
+
+    <string name="unit_milliliter_short">ml</string>
+
+    <string name="unit_milligram_short">mg</string>
+
+<plurals name="unit_gram">
         <item quantity="one">gram</item>
         <item quantity="other">gram</item>
     </plurals>
@@ -50,7 +69,11 @@
         <item quantity="one">milliliter</item>
         <item quantity="other">milliliter</item>
     </plurals>
-    <string name="product_package_weight">Emballagevægt</string>
+        <string name="unit_ounce_short">oz</string>
+
+    <string name="unit_fluid_ounce_short">fl oz</string>
+
+<string name="product_package_weight">Emballagevægt</string>
     <string name="product_package">Emballage</string>
     <string name="product_serving_weight">Portionsvægt</string>
     <string name="product_serving">Portion</string>
@@ -73,9 +96,41 @@
     <string name="nutriment_omega_3">Omega-3 fedtsyrer</string>
     <string name="nutriment_omega_6">Omega-6 fedtsyrer</string>
     <string name="nutriment_salt">Salt</string>
-    <string name="nutriment_cholesterol">Kolesterol</string>
+        <string name="nutriment_fiber">Kostfibre</string>
+
+<string name="nutriment_cholesterol">Kolesterol</string>
     <string name="nutriment_caffeine">Kaffein</string>
-    <string name="vitamin_e">Vitamin E</string>
+        <string name="nutriment_trans_fats">Transfedt</string>
+
+    <string name="nutriment_added_sugars">Tilsat sukker</string>
+
+    <string name="nutriment_soluble_fiber">Opløselige fibre</string>
+
+    <string name="nutriment_insoluble_fiber">Uopløselige fibre</string>
+
+    <string name="vitamin_a">Vitamin A (Retinol)</string>
+
+    <string name="vitamin_b1">Vitamin B1 (Thiamin)</string>
+
+    <string name="vitamin_b2">Vitamin B2 (Riboflavin)</string>
+
+    <string name="vitamin_b3">Vitamin B3 (Niacin)</string>
+
+    <string name="vitamin_b5">Vitamin B5 (Pantotensyre)</string>
+
+    <string name="vitamin_b6">Vitamin B6 (Pyridoxin)</string>
+
+    <string name="vitamin_b7">Vitamin B7 (Biotin)</string>
+
+    <string name="vitamin_b9">Vitamin B9 (Folat)</string>
+
+    <string name="vitamin_b12">Vitamin B12 (Kobalaminer)</string>
+
+    <string name="vitamin_c">Vitamin C (Askorbinsyre)</string>
+
+    <string name="vitamin_d">Vitamin D (Calciferoler)</string>
+
+<string name="vitamin_e">Vitamin E</string>
     <string name="vitamin_k">Vitamin K</string>
     <string name="mineral_manganese">Mangan</string>
     <string name="mineral_magnesium">Magnesium</string>
@@ -88,7 +143,9 @@
     <string name="mineral_phosphorus">Fosfor</string>
     <string name="mineral_selenium">Selenium</string>
     <string name="mineral_iodine">Jod</string>
-    <string name="action_search">Søg</string>
+        <string name="mineral_chromium">Krom</string>
+
+<string name="action_search">Søg</string>
     <string name="action_scan_barcode">Skan stregkode</string>
     <string name="action_add">Tilføj</string>
     <string name="action_go_back">Gå tilbage</string>
@@ -112,7 +169,13 @@
     <string name="action_disable_camera_flash">Slå kamerabiltz fra</string>
     <string name="action_prevent_screen_capture">Forhindr skærmoptagelse</string>
     <string name="action_go_to_today">Gå til i dag</string>
-    <string name="action_show_calendar">Vis kalender</string>
+        <string name="action_previous_day">Forrige dag</string>
+
+    <string name="action_next_day">Næste dag</string>
+
+    <string name="action_feature_request_on_github">Foreslå en funktion på GitHub</string>
+
+<string name="action_show_calendar">Vis kalender</string>
     <string name="action_reorder">Gensortér</string>
     <string name="action_move_up" description="reorder list item up">Flyt op</string>
     <string name="action_move_down" description="reorder list item down">Flyt ned</string>
@@ -128,8 +191,18 @@
     <string name="action_show_more" description="Show more settings/options/advanced settings">Vis mere</string>
     <string name="action_download_product">Download produkt</string>
     <string name="action_copy_and_open_bug_report">Kopiér og åbn fejlanmeldelse</string>
-    <string name="action_show_details">Vis detaljer</string>
-    <string name="neutral_barcode_scanner_camera_request">Tillad kameraadgang for at skanne stregkoder</string>
+        <string name="action_copy_and_report" description="Copy bug report and report a bug">Kopiér og rapportér</string>
+
+<string name="action_show_details">Vis detaljer</string>
+        <string name="action_browse_usda">Gennemse FoodData Central (USDA)</string>
+
+    <string name="action_set_key">Angiv nøgle</string>
+
+    <string name="action_obtain_key">Få nøgle</string>
+
+    <string name="action_dont_show_again">Vis ikke igen</string>
+
+<string name="neutral_barcode_scanner_camera_request">Tillad kameraadgang for at skanne stregkoder</string>
     <string name="neutral_barcode_scanner_camera_request_rationale">Adgang skal tildeles for at kunne skanne stregkoder</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">Kameratilladelse kræves til stregkodeskanning. Tillad i app-indstillingerne.</string>
     <string name="neutral_no_food_found">Ingen fødevare fundet</string>
@@ -137,7 +210,14 @@
         <item quantity="one">%1$d kalorie tilbage</item>
         <item quantity="other">%1$d kalorier tilbage</item>
     </plurals>
-    <string name="neutral_set_your_meal_schedule">Sæt madplan</string>
+        <plurals name="neutral_remaining_kilojoules">
+        <item quantity="one">%1$d kilojoule tilbage</item>
+        <item quantity="other">%1$d kilojoule tilbage</item>
+    </plurals>
+
+    <string name="neutral_set_your_daily_goals">Sæt dine daglige ernæringsmål</string>
+
+<string name="neutral_set_your_meal_schedule">Sæt madplan</string>
     <string name="neutral_permanently_delete_meal">Slet måltid permanent?</string>
     <string name="neutral_meal_will_be_deleted_permanently" description="Warning message when deleting a meal. User must know that this action is irreversible and will delete all data related to the meal.">Måltid slettes permanent, og alle data relateret hertil går tabt.</string>
     <string name="neutral_required">Obligatorisk</string>
@@ -157,13 +237,24 @@
     <string name="error_product_not_found">Produkt ikke fundet</string>
     <string name="error_unknown_error">Ukendt fejl</string>
     <string name="error_measurement_error">Udmålingsfejl. Tjek portions- og pakkevægt</string>
-    <string name="positive_goal_reached">Mål opnået</string>
+        <string name="error_api_key_is_invalid">API-nøglen er ugyldig</string>
+
+    <string name="error_not_a_barcode">Ikke en stregkode</string>
+
+<string name="positive_goal_reached">Mål opnået</string>
     <string name="positive_ok">OK</string>
     <plurals name="negative_exceeded_by_calories">
         <item quantity="one">Overskredet med %1$d kalorie</item>
         <item quantity="other">Overskredet med %1$d kalorier</item>
     </plurals>
-    <string name="description_delete_product_entry" description="Tell user that this entry will be deleted only from diary and won't affect the product itself. Product won't be deleted from the database.">Denne optegnelse slettes fra madjournalen. Den kan når som helst tilføjes igen.</string>
+        <plurals name="negative_exceeded_by_kilojoules">
+        <item quantity="one">Overskredet med %1$d kilojoule</item>
+        <item quantity="other">Overskredet med %1$d kilojoule</item>
+    </plurals>
+
+    <string name="description_delete_food">Fødevare slettes permanent</string>
+
+<string name="description_delete_product_entry" description="Tell user that this entry will be deleted only from diary and won't affect the product itself. Product won't be deleted from the database.">Denne optegnelse slettes fra madjournalen. Den kan når som helst tilføjes igen.</string>
     <string name="description_about_setting">Læs mere om appen</string>
     <string name="description_time_based_meals_sorting">Når aktiveret, vises måltider, som p.t. finder sted, først</string>
     <string name="description_action_ignore_all_day_meals">Heldagsmåltider vise til slut på listen</string>
@@ -173,8 +264,342 @@
     <string name="description_download_product">Indsæt link til et fødevareprodukt og hent automatisk ernæringsfakta samt produktdetaljer.</string>
     <string name="description_download_product_hint">Enhver tekst kan indsættes. Første URL anvendes.</string>
     <string name="description_show_macronutrients_goals">Vis makroernæringsmål</string>
-    <string name="headline_launcher_icon_by_icons8">Launcher-ikon fra Icons8</string>
+        <string name="description_please_wait_while_importing_products">Vent venligst, mens produkter importeres</string>
+
+    <string name="description_please_wait_while_exporting_products">Vent venligst, mens produkter eksporteres</string>
+
+<string name="headline_launcher_icon_by_icons8">Launcher-ikon fra Icons8</string>
     <!-- Don't translate changelog strings -->
-    <string name="notification_exporting_products">Eksporterer produkter</string>
-    <string name="notification_importing_products">Importerer produkter</string>
+
+    <string name="description_open_food_facts">En fællesskabsdrevet, gratis og åben database over fødevareprodukter fra hele verden</string>
+
+    <string name="error_open_food_facts_rate_limit">Grænsen for API-anmodninger til Open Food Facts er overskredet</string>
+
+    <string name="error_open_food_facts_service_unavailable">Open Food Facts-tjenesten er midlertidigt utilgængelig. Registrerede brugere er ikke underlagt anmodningsgrænser og får prioriteret adgang i spidsbelastninger.</string>
+
+    <string name="action_register">Registrer</string>
+
+    <string name="description_open_food_facts_credentials_message">Loginoplysninger krypteres og gemmes kun på din enhed. Følsomme data er ikke tilgængelige for andre.</string>
+
+    <string name="error_open_food_facts_failed_to_authenticate">Kunne ikke godkende hos Open Food Facts</string>
+
+    <string name="headline_username">Brugernavn</string>
+
+    <string name="headline_password">Adgangskode</string>
+
+    <string name="action_show_password">Vis adgangskode</string>
+
+    <string name="action_hide_password">Skjul adgangskode</string>
+
+    <string name="changelog_new_features">Nye funktioner</string>
+
+    <string name="changelog_changes">Ændringer</string>
+
+    <string name="changelog_bug_fixes">Fejlrettelser</string>
+
+    <string name="changelog_translations">Oversættelser</string>
+
+    <string name="changelog_notes">Noter</string>
+
+<string name="notification_exporting_products">Eksporterer produkter</string>
+    <string name="notification_importing_products">Importerer produkter</string>    <string name="notification_importing_products_success">Færdig med at importere produkter</string>
+
+    <string name="description_food_data_central_usda">FoodData Central er USDA's omfattende kilde til fødevaresammensætningsdata med flere forskellige datatyper</string>
+
+    <string name="error_usda_rate_limit">Grænsen for API-anmodninger til FoodData Central (USDA) er overskredet</string>
+
+    <string name="error_usda_not_verified">Den angivne API-nøgle er endnu ikke verificeret. Tjek din e-mail for at verificere API-nøglen.</string>
+
+    <string name="description_swiss_food_composition_database_short">Swiss Food Composition Database indeholder ernæringsoplysninger for over 1.100 generelle fødevareprodukter</string>
+
+    <string name="description2_swiss_food_composition_database">Swiss Food Composition Database indeholder ernæringsoplysninger for over 1.100 generelle fødevareprodukter. Den er tilgængelig på fire sprog. For at importere disse produkter til din madjournal skal du vælge dine foretrukne sprog.</string>
+
+    <string name="headline_external_databases">Eksterne databaser</string>
+
+    <string name="description_external_databases">Se understøttede databaser</string>
+
+    <string name="feature_manual_database_import">Manuel databaseimport</string>
+
+    <string name="action_unpack" description="Unpack the recipe ingredients">Udpak</string>
+
+    <string name="headline_source_code">Kildekode</string>
+
+    <string name="action_treat_as_liquid">Behandl som væske</string>
+
+    <string name="description_treat_as_liquid">Foretræk milliliter ved måling</string>
+
+    <string name="headline_personalization">Personalisering</string>
+
+    <string name="description_personalization">Tilpas din oplevelse</string>
+
+    <string name="headline_nutrition_facts">Næringsindhold</string>
+
+    <string name="description_personalize_nutrition_facts_short">Omarrangér næringsoplysningerne</string>
+
+    <string name="action_reset_ordering">Nulstil rækkefølge</string>
+
+    <string name="headline_reset_to_default">Nulstil til standard</string>
+
+    <string name="action_reset" description="Confirm resetting">Nulstil</string>
+
+    <string name="description_reset_nutrition_facts">Nulstil personalisering af næringsindhold til standard</string>
+
+    <string name="headline_note">Note</string>
+
+    <string name="description_add_note">Valgfrie noter (f.eks. ingredienser, vegansk status, allergener, tilsætningsstoffer) eller andre ikke-ernæringsmæssige detaljer</string>
+
+    <string name="action_try_again">Prøv igen</string>
+
+    <string name="description_calories_are_calculated">Energi beregnes automatisk ud fra makronæringsstoffer. Du kan deaktivere denne funktion og indtaste værdien manuelt, hvis det er nødvendigt. Alkohol er ikke inkluderet i beregningen.</string>
+
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
+
+    <string name="neutral_an_error_occurred">Der opstod en fejl</string>
+
+    <string name="action_retry">Prøv igen</string>
+
+    <string name="action_import">Importér</string>
+
+    <string name="headline_today" description="Today, date">I dag, %1$s</string>
+
+    <string name="headline_yesterday" description="Yesterday, date">I går, %1$s</string>
+
+    <string name="headline_tomorrow" description="Tomorrow, date">I morgen, %1$s</string>
+
+    <string name="headline_user" description="User, person who uses the app">Bruger</string>
+
+    <string name="description_food_source">Angiv, hvor fødevaredataene kommer fra</string>
+
+    <string name="error_food_is_missing_required_fields">Fødevare mangler obligatoriske felter</string>
+
+    <string name="headline_preview_release">Forhåndsudgivelse</string>
+
+    <string name="description_preview_release">Du bruger i øjeblikket en forhåndsversion. Den kan være ufuldstændig, ustabil eller blive ændret.</string>
+
+    <string name="headline_your_food">Din mad</string>
+
+    <string name="headline_filters">Filtre</string>
+
+    <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Vælg ingrediens</string>
+
+    <string name="headline_edit_recipe">Redigér opskrift</string>
+
+    <string name="description_delete_ingredient">Ingrediens fjernes fra opskriften</string>
+
+    <string name="neutral_remote_database_error">Kunne ikke downloade produkt fra ekstern database. Du kan stadig se dine tidligere downloadede produkter.</string>
+
+    <string name="headline_before_you_start">Før du begynder</string>
+
+    <string name="action_agree_and_continue">Acceptér og fortsæt</string>
+
+    <string name="headline_food_database">Fødevaredatabase</string>
+
+    <string name="description_food_database">Du kan vælge, om du vil bruge disse valgfrie eksterne tjenester, som kan have deres egne vilkår og privatlivspolitikker</string>
+
+    <string name="action_skip">Spring over</string>
+
+    <string name="headline_almost_done">Næsten færdig</string>
+
+    <string name="headline_preparing_your_food_diary">Forbereder din madjournal</string>
+
+    <string name="headline_please_wait">Vent venligst</string>
+
+    <string name="headline_created">Oprettet</string>
+
+    <string name="headline_imported">Importeret</string>
+
+    <string name="headline_downloaded">Downloadet</string>
+
+    <string name="headline_edited">Redigeret</string>
+
+    <string name="headline_history">Historik</string>
+
+    <string name="headline_recent">Seneste</string>
+
+    <string name="headline_database">Database</string>
+
+    <string name="description_manage_database">Administrer din database</string>
+
+    <string name="action_done">Færdig</string>
+
+    <string name="neutral_measurement_added">Forstået! Vi har tilføjet din måling</string>
+
+    <string name="headline_imported_from_food_you_2">Importeret fra Food You 2</string>
+
+    <string name="action_set_goals">Sæt mål</string>
+
+    <string name="headline_pick_the_days">Vælg dagene</string>
+
+    <string name="action_set_separate_goals">Sæt separate mål for hver dag</string>
+
+    <string name="headline_percentages">Procenter</string>
+
+    <string name="action_import_csv_food_products">Importér CSV-fødevarer</string>
+
+    <string name="description_import_csv_food_products">Importér fødevareprodukter fra CSV-fil</string>
+
+    <string name="description_import_csv_food_products_hint">Vi skal bare vide, hvad der er hvad. Fortæl os, hvilken kolonne i din fil der er produktnavn, mærke osv.</string>
+
+    <string name="description_import_csv_food_products_hint_2">Alle næringsværdier skal angives i gram eller kcal pr. 100 g</string>
+
+    <string name="action_export_csv_food_products">Eksportér CSV-fødevarer</string>
+
+    <string name="description_export_csv_food_products">Eksportér fødevareprodukter til CSV-fil</string>
+
+    <string name="neutral_no_column">Ingen kolonne</string>
+
+    <plurals name="neutral_imported_x_food_products">
+        <item quantity="one">Importerede %1$d fødevareprodukt</item>
+        <item quantity="other">Importerede %1$d fødevareprodukter</item>
+    </plurals>
+
+    <string name="headline_energy_unit">Energienhed</string>
+
+    <string name="description_energy_unit">Vælg foretrukken energienhed</string>
+
+    <plurals name="neutral_exported_x_food_products">
+        <item quantity="one">Eksporterede %1$d fødevareprodukt</item>
+        <item quantity="other">Eksporterede %1$d fødevareprodukter</item>
+    </plurals>
+
+    <string name="headline_auto_calculate_energy">Beregn energi automatisk</string>
+
+    <string name="headline_manual_energy_input">Manuel energiindtastning</string>
+
+    <string name="headline_quick_add">Hurtig tilføjelse</string>
+
+    <string name="description_quick_add">Hurtig tilføjelse lader dig registrere uden at søge efter bestemte fødevarer. Det er en hurtig måde at registrere måltider på, når du allerede kender kalorieindholdet eller vil lave et simpelt estimat.</string>
+
+    <string name="action_open_poll">Åbn afstemning</string>
+
+    <string name="headline_colors">Farver</string>
+
+    <string name="description_colors">Tilpas appens farver</string>
+
+    <string name="headline_custom_palette">Brugerdefineret palet</string>
+
+    <string name="description_custom_palette">Opsæt din egen palet</string>
+
+    <string name="headline_dynamic_colors">Dynamiske farver</string>
+
+    <string name="description_dynamic_colors">Anvend farver fra systemet</string>
+
+    <string name="headline_palette_style">Paletstil</string>
+
+    <string name="headline_contrast">Kontrast</string>
+
+    <string name="headline_amoled">AMOLED</string>
+
+    <string name="headline_light">Lys</string>
+
+    <string name="headline_dark">Mørk</string>
+
+    <string name="headline_appearance">Udseende</string>
+
+    <string name="headline_theme">Tema</string>
+
+    <string name="headline_pick_a_color">Vælg en farve</string>
+
+    <string name="headline_nutrients_colors">Farver for næringsstoffer</string>
+
+    <string name="description_nutrients_colors_reset">Indstillingerne for næringsstof-farver nulstilles til standardværdier</string>
+
+    <string name="action_next_month">Næste måned</string>
+
+    <string name="action_previous_month">Forrige måned</string>
+
+    <string name="headline_save_database">Gem database</string>
+
+    <string name="description_save_database">Gem en kopi af din database</string>
+
+    <string name="headline_replace_database">Erstat database</string>
+
+    <string name="description_replace_database">Erstat din database med en tidligere gemt kopi</string>
+
+    <string name="action_replace">Erstat</string>
+
+    <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">Din database bliver ERSTATTET, og alle nuværende data går TABT. Appen genstarter, når databasen er erstattet. Du skal muligvis åbne appen igen.</string>
+
+    <string name="action_sign_in">Log ind</string>
+
+    <string name="action_sign_out">Log ud</string>
+
+    <string name="headline_terms_of_service">Servicevilkår</string>
+
+    <string name="headline_privacy_policy">Privatlivspolitik</string>
+
+    <string name="error_there_was_an_error_while_signing_in">Der opstod en fejl under login</string>
+
+    <string name="headline_random_theme">Tilfældigt tema</string>
+
+    <string name="description_random_theme">Et tilfældigt tema anvendes, hver gang appen startes</string>
+
+    <string name="headline_terms_of_use">Brugsvilkår</string>
+
+    <string name="onboarding_privacy_tip">Denne app er open source og bygget til dig. Vi respekterer dit privatliv, og dine oplysninger forbliver private.</string>
+
+    <string name="headline_add_profile">Tilføj profil</string>
+
+    <string name="headline_how_do_you_want_to_be_called">Hvad vil du gerne kaldes?</string>
+
+    <string name="headline_profile_name">Profilnavn</string>
+
+    <string name="headline_profile_picture">Profilbillede</string>
+
+    <string name="action_continue">Fortsæt</string>
+
+    <string name="headline_welcome_user_message" description="Must be short welcome message">Hej, %1$s!</string>
+
+    <string name="headline_data_backup_and_export">Datasikkerhedskopi og eksport</string>
+
+    <string name="headline_privacy">Privatliv</string>
+
+    <string name="action_switch_profile">Skift profil</string>
+
+    <string name="action_add_profile">Tilføj profil</string>
+
+    <string name="action_refresh">Opdater</string>
+
+    <string name="description_not_sure_yet">Ikke sikker endnu? Du kan ændre det når som helst</string>
+
+    <string name="question_discard_profile">Kassér profil?</string>
+
+    <string name="headline_edit_profile">Redigér profil</string>
+
+    <string name="action_delete_profile">Slet profil</string>
+
+    <string name="headline_delete_profile">Slet profil</string>
+
+    <string name="description_delete_profile">Denne profil bliver slettet permanent. Alle data knyttet til den går tabt for altid.</string>
+
+    <string name="action_today" description="Set date to today">I dag</string>
+
+    <string name="action_fill_in_details">Udfyld detaljer</string>
+
+    <string name="action_skip_for_now">Spring over for nu</string>
+
+    <string name="headline_add_more_details">Tilføj flere detaljer</string>
+
+    <string name="description_add_more_details_product_form">Udfyldning af proteiner, fedt, kulhydrater og energiværdier hjælper med at give mere præcise ernæringsindsigter</string>
+
+    <string name="headline_favorite">Favorit</string>
+
+    <string name="action_add_a_photo">Tilføj et foto</string>
+
+    <string name="action_remove_a_photo">Fjern et foto</string>
+
+    <string name="description_values_per">Vælg den mængde, som dine næringsværdier er baseret på</string>
+
+    <string name="description_privacy">Styr dine personlige oplysninger</string>
+
+    <string name="headline_database_backup">Databasesikkerhedskopi</string>
+
+    <string name="description_replacing_database">Erstatter database, vent venligst...</string>
+
+    <string name="headline_experimental">Eksperimentel</string>
+
+    <string name="description_privacy_policy">Se, hvordan dine data håndteres</string>
+
+    <string name="error_open_food_facts_timeout">Open Food Facts er for længe om at svare. Tjenesten kan være midlertidigt langsom eller utilgængelig. Prøv at scanne produktets stregkode i stedet.</string>
+
 </resources>

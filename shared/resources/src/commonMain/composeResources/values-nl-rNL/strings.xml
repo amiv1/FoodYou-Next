@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">N/B</string>
     <string name="headline_create_product">Product maken</string>
     <string name="headline_settings">Instellingen</string>
@@ -7,6 +8,8 @@
     <string name="headline_general">Algemeen</string>
     <string name="headline_macronutrients">Macronutriënten</string>
     <string name="headline_meals">Maaltijden</string>
+    <string name="headline_copy_meal">Maaltijd kopiëren</string>
+
     <string name="headline_delete_food">Verwijder voeding</string>
     <string name="headline_edit_product">Product aanpassen</string>
     <string name="headline_permission_required">Toestemming vereist</string>
@@ -43,10 +46,17 @@
     <string name="headline_api_key">API-sleutel</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Bron</string>
     <string name="headline_features">Kenmerken</string>
+
     <string name="weight">Gewicht</string>
     <string name="unit_energy" description="Energy as calories">Energie</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+
+    <string name="unit_milliliter_short">ml</string>
+
+    <string name="unit_milligram_short">mg</string>
+
     <plurals name="unit_gram">
         <item quantity="one">gram</item>
         <item quantity="other">gram</item>
@@ -136,6 +146,10 @@
     <string name="action_disable_camera_flash">Camera flits uitschakelen</string>
     <string name="action_prevent_screen_capture">Schermopname blokkeren</string>
     <string name="action_go_to_today">Ga naar vandaag</string>
+    <string name="action_previous_day">Vorige dag</string>
+
+    <string name="action_next_day">Volgende dag</string>
+
     <string name="action_feature_request_on_github">Verzoek een functie op GitHub</string>
     <string name="action_show_calendar">Open kalender</string>
     <string name="action_reorder">Rangschikken</string>
@@ -217,15 +231,48 @@
     <string name="description_show_macronutrients_goals">Laat doelen van macronutriënten zien</string>
     <string name="description_please_wait_while_importing_products">Even geduld terwijl de producten worden geïmporteerd</string>
     <string name="description_please_wait_while_exporting_products">Eén moment terwijl producten worden geëxporteerd</string>
+
     <string name="headline_launcher_icon_by_icons8">App icoon door Icons8</string>
+
     <string name="description_open_food_facts">Een samenwerkend, gratis en open database van voedselproducten van over de hele wereld</string>
+
     <string name="error_open_food_facts_rate_limit">Open Food Facts API verzoeklimiet overschreden</string>
     <!-- Don't translate changelog strings -->
+    <string name="error_open_food_facts_service_unavailable">De dienst van Open Food Facts is tijdelijk niet beschikbaar. Geregistreerde gebruikers hebben geen verzoeklimieten en krijgen voorrang tijdens piekmomenten.</string>
+
+    <string name="action_register">Registreren</string>
+
+    <string name="description_open_food_facts_credentials_message">Je inloggegevens worden versleuteld en alleen op je apparaat opgeslagen. Gevoelige gegevens zijn voor niemand anders toegankelijk.</string>
+
+    <string name="error_open_food_facts_failed_to_authenticate">Aanmelden bij Open Food Facts is mislukt</string>
+
+    <string name="headline_username">Gebruikersnaam</string>
+
+    <string name="headline_password">Wachtwoord</string>
+
+    <string name="action_show_password">Wachtwoord tonen</string>
+
+    <string name="action_hide_password">Wachtwoord verbergen</string>
+
+    <string name="changelog_new_features">Nieuwe functies</string>
+
+    <string name="changelog_changes">Wijzigingen</string>
+
+    <string name="changelog_bug_fixes">Bugfixes</string>
+
+    <string name="changelog_translations">Vertalingen</string>
+
+    <string name="changelog_notes">Opmerkingen</string>
+
     <string name="notification_exporting_products">Producten aan het exporteren</string>
     <string name="notification_importing_products">Producten aan het importeren</string>
     <string name="notification_importing_products_success">Importeren van producten voltooid</string>
+
     <string name="description_food_data_central_usda">FoodData Central is de uitgebreide bron van USDA voor gegevens over voedselsamenstelling met meerdere afzonderlijke gegevenstypen</string>
+
     <string name="error_usda_rate_limit">API limiet van FoodData Central (USDA) overschreden</string>
+    <string name="error_usda_not_verified">De opgegeven API-sleutel is nog niet geverifieerd. Controleer je e-mail om de API-sleutel te verifiëren.</string>
+
     <string name="description_swiss_food_composition_database_short">De Swiss Food Composition Database bevat voedingsinformatie van meer dan 1100 algemene voedingsproducten</string>
     <string name="description2_swiss_food_composition_database">De Swiss Food Composition Database bevat voedingsinformatie van meer dan 1100 algemene voedingsproducten. De database is beschikbaar in vier talen. Om deze producten in uw voedingsdagboek te importeren, selecteert u uw voorkeurstaal.</string>
     <string name="headline_external_databases">Externe Databases</string>
@@ -247,6 +294,8 @@
     <string name="description_add_note">Optionele notities (Bijv., Ingrediënten, vegan status, allergenen, toevoegingen) of andere niet-voedingsdetails</string>
     <string name="action_try_again">Probeer nog een keer</string>
     <string name="description_calories_are_calculated">Energie wordt automatisch berekend uit macronutriënten. Je kan deze functie uitschakelen en de waarde handmatig invullen als het nodig is. Alcohol wordt niet meegenomen in de berekening.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
+
     <string name="neutral_an_error_occurred">Er is een fout opgetreden</string>
     <string name="action_retry">Opnieuw proberen</string>
     <string name="action_import">Importeren</string>
@@ -334,6 +383,8 @@
     <string name="action_replace">Vervang</string>
     <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">Uw database wordt VERVANGEN en alle huidige gegevens gaan VERLOREN. De app wordt opnieuw opgestart nadat de database is vervangen. Mogelijk moet u de app opnieuw openen.</string>
     <string name="action_sign_in">Inloggen</string>
+    <string name="action_sign_out">Uitloggen</string>
+
     <string name="headline_terms_of_service">Algemene voorwaarden</string>
     <string name="headline_privacy_policy">Privacy beleid</string>
     <string name="error_there_was_an_error_while_signing_in">Er is een fout opgetreden tijdens het inloggen</string>
@@ -372,4 +423,6 @@
     <string name="description_replacing_database">Database vervangen, even geduld...</string>
     <string name="headline_experimental">Experimenteel</string>
     <string name="description_privacy_policy">Zie hoe uw gegevens worden verwerkt</string>
+
+    <string name="error_open_food_facts_timeout">Open Food Facts doet er te lang over om te reageren. De dienst kan tijdelijk traag of niet beschikbaar zijn. Probeer in plaats daarvan de barcode van het product te scannen.</string>
 </resources>

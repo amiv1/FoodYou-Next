@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">nincs</string>
     <string name="headline_create_product">Termék létrehozása</string>
     <string name="headline_settings">Beállítások</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Általános</string>
     <string name="headline_macronutrients">Makrotápanyagok</string>
     <string name="headline_meals">Étkezések</string>
+    <string name="headline_copy_meal">Étkezés másolása</string>
     <string name="headline_delete_food">Étel törlése</string>
     <string name="headline_edit_product">Termék szerkesztése</string>
     <string name="headline_permission_required">Engedély szükséges</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Energia</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gramm</item>
         <item quantity="other">gramm</item>
@@ -136,6 +141,8 @@
     <string name="action_disable_camera_flash">Vaku letiltása</string>
     <string name="action_prevent_screen_capture">Képernyőfelvétel megakadályozása</string>
     <string name="action_go_to_today">Irány a mai nap</string>
+    <string name="action_previous_day">Előző nap</string>
+    <string name="action_next_day">Következő nap</string>
     <string name="action_feature_request_on_github">Funkciókérés GitHub-on</string>
     <string name="action_show_calendar">Naptár megjelenítése</string>
     <string name="action_reorder">Átrendezés</string>
@@ -228,12 +235,17 @@
     <string name="headline_password">Jelszó</string>
     <string name="action_show_password">Jelszó megjelenítése</string>
     <string name="action_hide_password">Jelszó elrejtése</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Új funkciók</string>
+    <string name="changelog_changes">Változások</string>
+    <string name="changelog_bug_fixes">Hibajavítások</string>
+    <string name="changelog_translations">Fordítások</string>
+    <string name="changelog_notes">Megjegyzések</string>
     <string name="notification_exporting_products">Termékek exportálása</string>
     <string name="notification_importing_products">Termékek importálása</string>
     <string name="notification_importing_products_success">Termékek importálása sikeres</string>
     <string name="description_food_data_central_usda">A FoodData Central az USDA átfogó táplálkozás-összetételi adatforrása több különálló adattípussal</string>
     <string name="error_usda_rate_limit">A FoodData Central (USDA) API használati limit túllépve</string>
+    <string name="error_usda_not_verified">A megadott API-kulcs még nincs hitelesítve. Kérjük, ellenőrizze az e-mailjeit az API-kulcs hitelesítéséhez.</string>
     <string name="description_swiss_food_composition_database_short">A Svájci Élelmiszer-összetétel Adatbázis több mint 1100 általános élelmiszer termék tápanyagtartalmát tartalmazza.</string>
     <string name="description2_swiss_food_composition_database">A Svájci Élelmiszer-összetétel Adatbázis több mint 1100 általános élelmiszer termék tápanyagtartalmát tartalmazza. Négy nyelven érhető el. Ha ezeket a termékeket szeretné bevinni az élelmiszernaplójába, kérjük, válassza ki az előnyben részesített nyelveket.</string>
     <string name="headline_external_databases">Külső adatbázisok</string>
@@ -255,6 +267,7 @@
     <string name="description_add_note">Opcionális megjegyzések (pl. összetevők, vegán státusz, allergének, adalékanyagok) vagy bármely egyéb nem tápanyagokkal kapcsolatos részletek</string>
     <string name="action_try_again">Próbálja újra</string>
     <string name="description_calories_are_calculated">Az energia automatikusan kiszámolásra kerül a tápanyagokból. Kikapcsolhatja ezt a funkciót, és beállíthatja kézzel az értéket. Az alkohol nincs figyelembe véve.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
     <string name="neutral_an_error_occurred">Hiba lépett fel</string>
     <string name="action_retry">Újra</string>
     <string name="action_import">Importálás</string>

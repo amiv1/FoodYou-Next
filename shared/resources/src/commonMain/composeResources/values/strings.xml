@@ -54,9 +54,9 @@
     <string name="unit_energy" description="Energy as calories">Energy</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
-    <string name="unit_gram_short" translatable="false">g</string>
-    <string name="unit_milliliter_short" translatable="false">ml</string>
-    <string name="unit_milligram_short" translatable="false">mg</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <string name="unit_microgram_short" translatable="false">µg</string>
     <plurals name="unit_gram">
         <item quantity="one">gram</item>
@@ -262,12 +262,11 @@
     <string name="action_show_password">Show password</string>
     <string name="action_hide_password">Hide password</string>
 
-    <!-- Don't translate changelog strings -->
-    <string name="changelog_new_features" translatable="false">New features</string>
-    <string name="changelog_changes" translatable="false">Changes</string>
-    <string name="changelog_bug_fixes" translatable="false">Bug fixes</string>
-    <string name="changelog_translations" translatable="false">Translations</string>
-    <string name="changelog_notes" translatable="false">Notes</string>
+    <string name="changelog_new_features">New features</string>
+    <string name="changelog_changes">Changes</string>
+    <string name="changelog_bug_fixes">Bug fixes</string>
+    <string name="changelog_translations">Translations</string>
+    <string name="changelog_notes">Notes</string>
 
     <string name="notification_exporting_products">Exporting products</string>
 

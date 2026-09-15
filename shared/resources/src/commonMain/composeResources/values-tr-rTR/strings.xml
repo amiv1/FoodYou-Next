@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">Yok</string>
     <string name="headline_create_product">Ürün oluştur</string>
     <string name="headline_settings">Ayarlar</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Genel</string>
     <string name="headline_macronutrients">Makro besinler</string>
     <string name="headline_meals">Öğünler</string>
+    <string name="headline_copy_meal">Öğünü kopyala</string>
     <string name="headline_delete_food">Besini sil</string>
     <string name="headline_edit_product">Ürünü düzenle</string>
     <string name="headline_permission_required">İzin gerekiyor</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Enerji</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short" translatable="false">g</string>
+    <string name="unit_milliliter_short" translatable="false">ml</string>
+    <string name="unit_milligram_short" translatable="false">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gram</item>
         <item quantity="other">gram</item>
@@ -136,6 +141,8 @@
     <string name="action_disable_camera_flash">Kamera flaşını kapat</string>
     <string name="action_prevent_screen_capture">Ekran görüntüsü almayı engelle</string>
     <string name="action_go_to_today">Bugüne git</string>
+    <string name="action_previous_day">Önceki gün</string>
+    <string name="action_next_day">Sonraki gün</string>
     <string name="action_feature_request_on_github">GitHub'da özellik iste</string>
     <string name="action_show_calendar">Takvimi göster</string>
     <string name="action_reorder">Yeniden sırala</string>
@@ -228,12 +235,17 @@
     <string name="headline_password">Şifre</string>
     <string name="action_show_password">Şifreyi göster</string>
     <string name="action_hide_password">Şifreyi gizle</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Yeni özellikler</string>
+    <string name="changelog_changes">Değişiklikler</string>
+    <string name="changelog_bug_fixes">Hata düzeltmeleri</string>
+    <string name="changelog_translations">Çeviriler</string>
+    <string name="changelog_notes">Notlar</string>
     <string name="notification_exporting_products">Ürünler dışa aktarılıyor</string>
     <string name="notification_importing_products">Ürünler içe aktarılıyor</string>
     <string name="notification_importing_products_success">Ürünleri içe aktarma tamamlandı</string>
     <string name="description_food_data_central_usda">FoodData Central, USDA'nın çeşitli farklı veri türlerini barındıran kapsamlı bir gıda bileşimi veri kaynağıdır</string>
     <string name="error_usda_rate_limit">FoodData Central (USDA) API istek sınırı aşıldı</string>
+    <string name="error_usda_not_verified">Sağlanan API anahtarı henüz doğrulanmadı. API anahtarını doğrulamak için lütfen e-postanızı kontrol edin.</string>
     <string name="description_swiss_food_composition_database_short">İsviçre Gıda Bileşimi Veritabanı, 1.100'den fazla genel gıda ürünü için besin bilgilerini içerir</string>
     <string name="description2_swiss_food_composition_database">İsviçre Gıda Bileşimi Veritabanı, 1.100'den fazla genel gıda ürünü için besin bilgilerini içerir. Dört dilde mevcuttur. Bu ürünleri yemek günlüğünüze aktarmak için lütfen tercih ettiğiniz dilleri seçin.</string>
     <string name="headline_external_databases">Harici veritabanları</string>

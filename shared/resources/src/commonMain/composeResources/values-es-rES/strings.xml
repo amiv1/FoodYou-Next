@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">S/D</string>
     <string name="headline_create_product">Crea un producto</string>
     <string name="headline_settings">Ajustes</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">General</string>
     <string name="headline_macronutrients">Macronutrientes</string>
     <string name="headline_meals">Comidas</string>
+    <string name="headline_copy_meal">Copiar comida</string>
     <string name="headline_delete_food">Eliminar alimento</string>
     <string name="headline_edit_product">Editar producto</string>
     <string name="headline_permission_required">Permiso necesario</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Energía</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gramo</item>
         <item quantity="other">gramos</item>
@@ -136,6 +141,8 @@
     <string name="action_disable_camera_flash">Deshabilita el flash</string>
     <string name="action_prevent_screen_capture">Prevenir capturas de pantalla</string>
     <string name="action_go_to_today">Ir a hoy</string>
+    <string name="action_previous_day">Día anterior</string>
+    <string name="action_next_day">Día siguiente</string>
     <string name="action_feature_request_on_github">Solicitar características en GitHub</string>
     <string name="action_show_calendar">Mostrar calendario</string>
     <string name="action_reorder">Reordenar</string>
@@ -221,11 +228,25 @@
     <string name="description_open_food_facts">Una base de datos colaborativa, gratuita y abierta de productos alimentarios de todo el mundo</string>
     <string name="error_open_food_facts_rate_limit">Se ha superado el límite de la API de Open Food Facts</string>
     <!-- Don't translate changelog strings -->
+    <string name="error_open_food_facts_service_unavailable">El servicio de Open Food Facts no está disponible temporalmente. Los usuarios registrados no están sujetos a límites de solicitudes y obtienen acceso prioritario durante las horas punta.</string>
+    <string name="action_register">Registrarse</string>
+    <string name="description_open_food_facts_credentials_message">Las credenciales de inicio de sesión están cifradas y se almacenan solo en tu dispositivo. Los datos sensibles no son accesibles para nadie más.</string>
+    <string name="error_open_food_facts_failed_to_authenticate">No se pudo autenticar con Open Food Facts</string>
+    <string name="headline_username">Nombre de usuario</string>
+    <string name="headline_password">Contraseña</string>
+    <string name="action_show_password">Mostrar contraseña</string>
+    <string name="action_hide_password">Ocultar contraseña</string>
+    <string name="changelog_new_features">Nuevas funciones</string>
+    <string name="changelog_changes">Cambios</string>
+    <string name="changelog_bug_fixes">Correcciones de errores</string>
+    <string name="changelog_translations">Traducciones</string>
+    <string name="changelog_notes">Notas</string>
     <string name="notification_exporting_products">Exportando productos</string>
     <string name="notification_importing_products">Importando productos</string>
     <string name="notification_importing_products_success">Se han acabado de importar los productos</string>
     <string name="description_food_data_central_usda">FoodData Central es la fuente completa de datos sobre la composición de los alimentos del USDA, con múltiples tipos de datos distintos</string>
     <string name="error_usda_rate_limit">Se ha superado el límite de la API de FoodData Central (USDA)</string>
+    <string name="error_usda_not_verified">La clave API proporcionada aún no ha sido verificada. Revisa tu correo electrónico para verificar la clave API.</string>
     <string name="description_swiss_food_composition_database_short">La base de datos suiza de composición alimentaria incluye información nutricional para más de 1.100 productos alimenticios generales</string>
     <string name="description2_swiss_food_composition_database">La base de datos suiza de composición de alimentos incluye información nutricional de más de 1.100 productos alimenticios generales. Está disponible en cuatro idiomas. Para importar estos productos a su diario de alimentos, seleccione el idioma que prefieras.</string>
     <string name="headline_external_databases">Bases de datos externas</string>
@@ -247,6 +268,7 @@
     <string name="description_add_note">Notas opcionales (p. ej., ingredientes, es vegano, alergenos, aditivos) o cualquier otro detalle no nutritivo</string>
     <string name="action_try_again">Intentar de nuevo</string>
     <string name="description_calories_are_calculated">La energía se calcula automáticamente a partir de macronutrientes. Puede desactivar esta función e introducir el valor manualmente si es necesario. El alcohol no está incluido en este cálculo.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
     <string name="neutral_an_error_occurred">Ha ocurrido un error</string>
     <string name="action_retry">Reintentar</string>
     <string name="action_import">Importar</string>
@@ -334,6 +356,7 @@
     <string name="action_replace">Reemplazar</string>
     <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">La base de datos será REEMPLAZADA, y todos los datos actuales serán perdidos. La aplicación se reiniciará después de que la base de datos sea reemplazada. Puede que necesites reabrir la aplicación.</string>
     <string name="action_sign_in">Registrarse</string>
+    <string name="action_sign_out">Cerrar sesión</string>
     <string name="headline_terms_of_service">Términos de Servicio</string>
     <string name="headline_privacy_policy">Política de Privacidad</string>
     <string name="error_there_was_an_error_while_signing_in">Se ha producido un error al iniciar sesión</string>
@@ -372,4 +395,5 @@
     <string name="description_replacing_database">Reemplazando base de datos, por favor espere...</string>
     <string name="headline_experimental">Experimental</string>
     <string name="description_privacy_policy">Observa cómo se manejan tus datos</string>
+    <string name="error_open_food_facts_timeout">Open Food Facts está tardando demasiado en responder. El servicio puede estar temporalmente lento o no disponible. Prueba a escanear el código de barras del producto en su lugar.</string>
 </resources>

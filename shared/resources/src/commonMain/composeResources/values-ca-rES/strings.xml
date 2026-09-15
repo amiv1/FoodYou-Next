@@ -7,6 +7,8 @@
     <string name="headline_general">General</string>
     <string name="headline_macronutrients">Macronutrients</string>
     <string name="headline_meals">Àpats</string>
+    <string name="headline_copy_meal">Copiar àpat</string>
+    <string name="headline_delete_food">Eliminar aliment</string>
     <string name="headline_edit_product">Editar producte</string>
     <string name="headline_permission_required">Permís necessari</string>
     <string name="headline_language">Idioma</string>
@@ -45,6 +47,10 @@
     <string name="weight">Pes</string>
     <string name="unit_energy" description="Energy as calories">Energia</string>
     <string name="unit_kcal">kcal</string>
+    <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gram</item>
         <item quantity="other">grams</item>
@@ -53,6 +59,8 @@
         <item quantity="one">mil·lilitre</item>
         <item quantity="other">mil·lilitres</item>
     </plurals>
+    <string name="unit_ounce_short">oz</string>
+    <string name="unit_fluid_ounce_short">fl oz</string>
     <string name="product_package_weight">Pes del paquet</string>
     <string name="product_package">Paquet</string>
     <string name="product_serving_weight">Pes per porció</string>
@@ -76,8 +84,24 @@
     <string name="nutriment_omega_3">Àcids grassos Omega-3</string>
     <string name="nutriment_omega_6">Àcids grassos Omega-6</string>
     <string name="nutriment_salt">Sal</string>
+    <string name="nutriment_fiber">Fibra alimentària</string>
     <string name="nutriment_cholesterol">Colesterol</string>
     <string name="nutriment_caffeine">Cafeïna</string>
+    <string name="nutriment_trans_fats">Greixos trans</string>
+    <string name="nutriment_added_sugars">Sucres afegits</string>
+    <string name="nutriment_soluble_fiber">Fibra soluble</string>
+    <string name="nutriment_insoluble_fiber">Fibra insoluble</string>
+    <string name="vitamin_a">Vitamina A (Retinol)</string>
+    <string name="vitamin_b1">Vitamina B1 (Tiamina)</string>
+    <string name="vitamin_b2">Vitamina B2 (Riboflavina)</string>
+    <string name="vitamin_b3">Vitamina B3 (Niacina)</string>
+    <string name="vitamin_b5">Vitamina B5 (Àcid pantotènic)</string>
+    <string name="vitamin_b6">Vitamina B6 (Piridoxina)</string>
+    <string name="vitamin_b7">Vitamina B7 (Biotina)</string>
+    <string name="vitamin_b9">Vitamina B9 (Folat)</string>
+    <string name="vitamin_b12">Vitamina B12 (Cobalamines)</string>
+    <string name="vitamin_c">Vitamina C (Àcid ascòrbic)</string>
+    <string name="vitamin_d">Vitamina D (Calciferols)</string>
     <string name="vitamin_e">Vitamina E</string>
     <string name="vitamin_k">Vitamina K</string>
     <string name="mineral_manganese">Manganès</string>
@@ -116,6 +140,9 @@
     <string name="action_disable_camera_flash">Deshabilita el flash</string>
     <string name="action_prevent_screen_capture">Prevenir captures de pantalla</string>
     <string name="action_go_to_today">Ves a avui</string>
+    <string name="action_previous_day">Dia anterior</string>
+    <string name="action_next_day">Dia següent</string>
+    <string name="action_feature_request_on_github">Sol·licitar una funció a GitHub</string>
     <string name="action_show_calendar">Mostrar calendari</string>
     <string name="action_reorder">Reordenar</string>
     <string name="action_move_up" description="reorder list item up">Moure amunt</string>
@@ -132,7 +159,9 @@
     <string name="action_show_more" description="Show more settings/options/advanced settings">Mostrar més</string>
     <string name="action_download_product">Descarregar producte</string>
     <string name="action_copy_and_open_bug_report">Copiar i obrir un informe d'error</string>
+    <string name="action_copy_and_report" description="Copy bug report and report a bug">Copiar i informar</string>
     <string name="action_show_details">Mostrar detalls</string>
+    <string name="action_browse_usda">Explorar FoodData Central (USDA)</string>
     <string name="action_set_key">Establir clau</string>
     <string name="action_obtain_key">Obtenir clau</string>
     <string name="action_dont_show_again">No mostrar de nou</string>
@@ -144,6 +173,11 @@
         <item quantity="one">%1$d caloria restant</item>
         <item quantity="other">%1$d calories restants</item>
     </plurals>
+    <plurals name="neutral_remaining_kilojoules">
+        <item quantity="one">%1$d quilojoule restant</item>
+        <item quantity="other">%1$d quilojoules restants</item>
+    </plurals>
+    <string name="neutral_set_your_daily_goals">Estableix els teus objectius nutricionals diaris</string>
     <string name="neutral_set_your_meal_schedule">Estableix l'horari dels àpats</string>
     <string name="neutral_permanently_delete_meal">Eliminar àpat permanentment?</string>
     <string name="neutral_meal_will_be_deleted_permanently" description="Warning message when deleting a meal. User must know that this action is irreversible and will delete all data related to the meal.">L'àpat s'eliminarà permanentment. Es perdran totes les dades relacionades amb aquest àpat.</string>
@@ -165,12 +199,18 @@
     <string name="error_unknown_error">Error desconegut</string>
     <string name="error_measurement_error">Error de mesura, comprova el pes de la porció i del paquet</string>
     <string name="error_api_key_is_invalid">Clau API invàlida</string>
+    <string name="error_not_a_barcode">No és un codi de barres</string>
     <string name="positive_goal_reached">Objectiu complert</string>
     <string name="positive_ok">D'acord</string>
     <plurals name="negative_exceeded_by_calories">
         <item quantity="one">Excedit per %1$d caloria</item>
         <item quantity="other">Excedit per %1$d calories</item>
     </plurals>
+    <plurals name="negative_exceeded_by_kilojoules">
+        <item quantity="one">Excedit en %1$d quilojoule</item>
+        <item quantity="other">Excedit en %1$d quilojoules</item>
+    </plurals>
+    <string name="description_delete_food">L'aliment s'eliminarà permanentment</string>
     <string name="description_delete_product_entry" description="Tell user that this entry will be deleted only from diary and won't affect the product itself. Product won't be deleted from the database.">Aquesta entrada s'eliminarà del vostre diari. Pots afegir-lo de nou en qualsevol moment.</string>
     <string name="description_about_setting">Més informació sobre l'aplicació</string>
     <string name="description_time_based_meals_sorting">Quan s'activa, els àpats actuals es mostraran primer</string>
@@ -182,22 +222,176 @@
     <string name="description_download_product_hint">Pots enganxar qualsevol text. S'utilitzarà el primer enllaç.</string>
     <string name="description_show_macronutrients_goals">Mostra els objectius dels macronutrients</string>
     <string name="description_please_wait_while_importing_products">Si us plau, espera mentre s'importen els productes</string>
+    <string name="description_please_wait_while_exporting_products">Si us plau, espera mentre s'exporten els productes</string>
     <string name="headline_launcher_icon_by_icons8">Icona feta amb Icons8</string>
     <string name="description_open_food_facts">Una base de dades col·laborativa, lliure i oberta de productes alimentaris d'arreu del món</string>
-    <!-- Don't translate changelog strings -->
+    <string name="error_open_food_facts_rate_limit">S'ha superat el límit de l'API d'Open Food Facts</string>
+    <string name="error_open_food_facts_service_unavailable">El servei d'Open Food Facts no està disponible temporalment. Els usuaris registrats no estan subjectes a límits de sol·licituds i obtenen accés prioritari durant les hores punta.</string>
+    <string name="action_register">Registrar-se</string>
+    <string name="description_open_food_facts_credentials_message">Les credencials d'inici de sessió estan xifrades i només s'emmagatzemen al teu dispositiu. Les dades sensibles no són accessibles per a ningú més.</string>
+    <string name="error_open_food_facts_failed_to_authenticate">No s'ha pogut autenticar amb Open Food Facts</string>
+    <string name="headline_username">Nom d'usuari</string>
+    <string name="headline_password">Contrasenya</string>
+    <string name="action_show_password">Mostrar contrasenya</string>
+    <string name="action_hide_password">Amagar contrasenya</string>
+    <string name="changelog_new_features">Noves funcions</string>
+    <string name="changelog_changes">Canvis</string>
+    <string name="changelog_bug_fixes">Correccions d'errors</string>
+    <string name="changelog_translations">Traduccions</string>
+    <string name="changelog_notes">Notes</string>
     <string name="notification_exporting_products">Exportant productes</string>
     <string name="notification_importing_products">Important productes</string>
+    <string name="notification_importing_products_success">S'ha completat la importació dels productes</string>
     <string name="description_food_data_central_usda">FoodData Central és la font completa de dades sobre la composició dels aliments del USDA, amb múltiples tipus de dades distintes</string>
+    <string name="error_usda_rate_limit">S'ha superat el límit de l'API de FoodData Central (USDA)</string>
+    <string name="error_usda_not_verified">La clau API proporcionada encara no s'ha verificat. Revisa el teu correu electrònic per verificar-la.</string>
+    <string name="description_swiss_food_composition_database_short">La Swiss Food Composition Database inclou informació nutricional de més de 1.100 productes alimentaris generals</string>
+    <string name="description2_swiss_food_composition_database">La Swiss Food Composition Database inclou informació nutricional de més de 1.100 productes alimentaris generals. Està disponible en quatre idiomes. Per importar aquests productes al teu diari d'aliments, selecciona els idiomes que prefereixis.</string>
     <string name="headline_external_databases">Bases de dades externes</string>
+    <string name="description_external_databases">Consulta les bases de dades compatibles</string>
     <string name="feature_manual_database_import">Importació manual de la base de dades</string>
     <string name="action_unpack" description="Unpack the recipe ingredients">Desempaqueta</string>
+    <string name="headline_source_code">Codi font</string>
     <string name="action_treat_as_liquid">Tractar com un líquid</string>
     <string name="description_treat_as_liquid">Preferir mil·lilitres quan es mesuri</string>
     <string name="headline_personalization">Personalització</string>
     <string name="description_personalization">Personalitza la teva experiència</string>
     <string name="headline_nutrition_facts">Informació nutricional</string>
+    <string name="description_personalize_nutrition_facts_short">Reorganitza la informació nutricional</string>
     <string name="action_reset_ordering">Restableix l'ordre</string>
     <string name="headline_reset_to_default">Restableix als valors predeterminats</string>
     <string name="action_reset" description="Confirm resetting">Reiniciar</string>
     <string name="description_reset_nutrition_facts">Restablir la personalització de la informació nutricional per defecte</string>
+    <string name="headline_note">Nota</string>
+    <string name="description_add_note">Notes opcionals (p. ex., ingredients, estat vegà, al·lèrgens, additius) o qualsevol altre detall no nutricional</string>
+    <string name="action_try_again">Torna-ho a intentar</string>
+    <string name="description_calories_are_calculated">L'energia es calcula automàticament a partir dels macronutrients. Pots desactivar aquesta funció i introduir el valor manualment si cal. L'alcohol no s'inclou en el càlcul.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
+    <string name="neutral_an_error_occurred">S'ha produït un error</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_import">Importar</string>
+    <string name="headline_today" description="Today, date">Avui, %1$s</string>
+    <string name="headline_yesterday" description="Yesterday, date">Ahir, %1$s</string>
+    <string name="headline_tomorrow" description="Tomorrow, date">Demà, %1$s</string>
+    <string name="headline_user" description="User, person who uses the app">Usuari</string>
+    <string name="description_food_source">Especifica d'on provenen les dades dels aliments</string>
+    <string name="error_food_is_missing_required_fields">A l'aliment li falten camps obligatoris</string>
+    <string name="headline_preview_release">Versió prèvia</string>
+    <string name="description_preview_release">Actualment fas servir una versió prèvia. Pot estar incompleta, ser inestable o estar subjecta a canvis.</string>
+    <string name="headline_your_food">Els teus aliments</string>
+    <string name="headline_filters">Filtres</string>
+    <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Escollir ingredient</string>
+    <string name="headline_edit_recipe">Editar recepta</string>
+    <string name="description_delete_ingredient">L'ingredient s'eliminarà de la recepta</string>
+    <string name="neutral_remote_database_error">No s'ha pogut descarregar el producte de la base de dades remota. Encara pots veure els productes que havies descarregat abans.</string>
+    <string name="headline_before_you_start">Abans de començar</string>
+    <string name="action_agree_and_continue">Acceptar i continuar</string>
+    <string name="headline_food_database">Base de dades d'aliments</string>
+    <string name="description_food_database">Pots triar si vols fer servir aquests serveis externs opcionals, que poden tenir els seus propis termes i polítiques de privadesa</string>
+    <string name="action_skip">Ometre</string>
+    <string name="headline_almost_done">Gairebé enllestit</string>
+    <string name="headline_preparing_your_food_diary">S'està preparant el teu diari d'aliments</string>
+    <string name="headline_please_wait">Si us plau, espera</string>
+    <string name="headline_created">Creat</string>
+    <string name="headline_imported">Importat</string>
+    <string name="headline_downloaded">Descarregat</string>
+    <string name="headline_edited">Editat</string>
+    <string name="headline_history">Historial</string>
+    <string name="headline_recent">Recents</string>
+    <string name="headline_database">Base de dades</string>
+    <string name="description_manage_database">Gestiona la teva base de dades</string>
+    <string name="action_done">Fet</string>
+    <string name="neutral_measurement_added">Perfecte! Hem afegit la teva mesura</string>
+    <string name="headline_imported_from_food_you_2">Importat de Food You 2</string>
+    <string name="action_set_goals">Estableix objectius</string>
+    <string name="headline_pick_the_days">Tria els dies</string>
+    <string name="action_set_separate_goals">Estableix objectius separats per a cada dia</string>
+    <string name="headline_percentages">Percentatges</string>
+    <string name="action_import_csv_food_products">Importar productes alimentaris des d'un fitxer CSV</string>
+    <string name="description_import_csv_food_products">Importar productes alimentaris des d'un fitxer CSV</string>
+    <string name="description_import_csv_food_products_hint">Només ens cal saber què és cada cosa. Digues-nos quina columna del fitxer correspon al nom del producte, la marca, etc.</string>
+    <string name="description_import_csv_food_products_hint_2">Tots els valors nutricionals s'han d'indicar en grams o kcal per 100 g</string>
+    <string name="action_export_csv_food_products">Exportar productes alimentaris a un fitxer CSV</string>
+    <string name="description_export_csv_food_products">Exportar productes alimentaris a un fitxer CSV</string>
+    <string name="neutral_no_column">Cap columna</string>
+    <plurals name="neutral_imported_x_food_products">
+        <item quantity="one">S'ha importat %1$d producte alimentari</item>
+        <item quantity="other">S'han importat %1$d productes alimentaris</item>
+    </plurals>
+    <string name="headline_energy_unit">Unitat d'energia</string>
+    <string name="description_energy_unit">Selecciona la teva unitat d'energia preferida</string>
+    <plurals name="neutral_exported_x_food_products">
+        <item quantity="one">S'ha exportat %1$d producte alimentari</item>
+        <item quantity="other">S'han exportat %1$d productes alimentaris</item>
+    </plurals>
+    <string name="headline_auto_calculate_energy">Calcular l'energia automàticament</string>
+    <string name="headline_manual_energy_input">Entrada manual d'energia</string>
+    <string name="headline_quick_add">Afegit ràpid</string>
+    <string name="description_quick_add">L'afegit ràpid et permet registrar sense cercar aliments específics. És una manera ràpida de registrar àpats quan ja coneixes les calories o vols una estimació senzilla.</string>
+    <string name="action_open_poll">Obrir enquesta</string>
+    <string name="headline_colors">Colors</string>
+    <string name="description_colors">Personalitza els colors de l'aplicació</string>
+    <string name="headline_custom_palette">Paleta personalitzada</string>
+    <string name="description_custom_palette">Configura la teva pròpia paleta</string>
+    <string name="headline_dynamic_colors">Colors dinàmics</string>
+    <string name="description_dynamic_colors">Aplicar els colors del sistema</string>
+    <string name="headline_palette_style">Estil de la paleta</string>
+    <string name="headline_contrast">Contrast</string>
+    <string name="headline_amoled">AMOLED</string>
+    <string name="headline_light">Clar</string>
+    <string name="headline_dark">Fosc</string>
+    <string name="headline_appearance">Aparença</string>
+    <string name="headline_theme">Tema</string>
+    <string name="headline_pick_a_color">Tria un color</string>
+    <string name="headline_nutrients_colors">Colors dels nutrients</string>
+    <string name="description_nutrients_colors_reset">La configuració dels colors dels nutrients es restablirà als valors per defecte</string>
+    <string name="action_next_month">Mes següent</string>
+    <string name="action_previous_month">Mes anterior</string>
+    <string name="headline_save_database">Desar la base de dades</string>
+    <string name="description_save_database">Desar una còpia de la teva base de dades</string>
+    <string name="headline_replace_database">Substituir la base de dades</string>
+    <string name="description_replace_database">Substitueix la teva base de dades per una còpia desada anteriorment</string>
+    <string name="action_replace">Substituir</string>
+    <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">La teva base de dades serà SUBSTITUÏDA i es PERDRAN totes les dades actuals. L'aplicació es reiniciarà després que la base de dades se substitueixi. Potser hauràs de tornar a obrir l'aplicació.</string>
+    <string name="action_sign_in">Iniciar sessió</string>
+    <string name="action_sign_out">Tancar sessió</string>
+    <string name="headline_terms_of_service">Termes del servei</string>
+    <string name="headline_privacy_policy">Política de privadesa</string>
+    <string name="error_there_was_an_error_while_signing_in">S'ha produït un error en iniciar sessió</string>
+    <string name="headline_random_theme">Tema aleatori</string>
+    <string name="description_random_theme">S'aplicarà un tema aleatori cada vegada que s'iniciï l'aplicació</string>
+    <string name="headline_terms_of_use">Termes d'ús</string>
+    <string name="onboarding_privacy_tip">Aquesta aplicació és de codi obert i està feta per a tu. Respectem la teva privadesa: la teva informació es manté privada.</string>
+    <string name="headline_add_profile">Afegir perfil</string>
+    <string name="headline_how_do_you_want_to_be_called">Com vols que et diguin?</string>
+    <string name="headline_profile_name">Nom del perfil</string>
+    <string name="headline_profile_picture">Foto del perfil</string>
+    <string name="action_continue">Continuar</string>
+    <string name="headline_welcome_user_message" description="Must be short welcome message">Hola, %1$s!</string>
+    <string name="headline_data_backup_and_export">Còpia de seguretat i exportació de dades</string>
+    <string name="headline_privacy">Privadesa</string>
+    <string name="action_switch_profile">Canviar de perfil</string>
+    <string name="action_add_profile">Afegir perfil</string>
+    <string name="action_refresh">Actualitzar</string>
+    <string name="description_not_sure_yet">Encara no ho tens clar? Ho pots canviar quan vulguis</string>
+    <string name="question_discard_profile">Descartar perfil?</string>
+    <string name="headline_edit_profile">Editar perfil</string>
+    <string name="action_delete_profile">Eliminar perfil</string>
+    <string name="headline_delete_profile">Eliminar perfil</string>
+    <string name="description_delete_profile">Aquest perfil s'eliminarà permanentment. Totes les dades associades es perdran per sempre.</string>
+    <string name="action_today" description="Set date to today">Avui</string>
+    <string name="action_fill_in_details">Omplir els detalls</string>
+    <string name="action_skip_for_now">Ometre per ara</string>
+    <string name="headline_add_more_details">Afegir més detalls</string>
+    <string name="description_add_more_details_product_form">Omplir les proteïnes, els greixos, els carbohidrats i els valors energètics ajuda a oferir una informació nutricional més precisa</string>
+    <string name="headline_favorite">Preferit</string>
+    <string name="action_add_a_photo">Afegir una foto</string>
+    <string name="action_remove_a_photo">Eliminar una foto</string>
+    <string name="description_values_per">Selecciona la quantitat en què es basen els valors nutricionals</string>
+    <string name="description_privacy">Controla la teva informació personal</string>
+    <string name="headline_database_backup">Còpia de seguretat de la base de dades</string>
+    <string name="description_replacing_database">S'està substituint la base de dades, espera...</string>
+    <string name="headline_experimental">Experimental</string>
+    <string name="description_privacy_policy">Consulta com es gestionen les teves dades</string>
+    <string name="error_open_food_facts_timeout">Open Food Facts està trigant massa a respondre. El servei pot estar temporalment lent o no disponible. Prova d'escanejar el codi de barres del producte.</string>
 </resources>

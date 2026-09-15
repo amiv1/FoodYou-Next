@@ -7,6 +7,7 @@
     <string name="headline_general">Général</string>
     <string name="headline_macronutrients">Macronutriments</string>
     <string name="headline_meals">Repas</string>
+    <string name="headline_copy_meal">Copier le repas</string>
     <string name="headline_delete_food">Supprimer aliment</string>
     <string name="headline_edit_product">Modifier le produit</string>
     <string name="headline_permission_required">Autorisation nécessaire</string>
@@ -47,6 +48,9 @@
     <string name="unit_energy" description="Energy as calories">Énergie</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gramme</item>
         <item quantity="other">grammes</item>
@@ -136,6 +140,8 @@
     <string name="action_disable_camera_flash">Désactiver le flash de l'appareil photo</string>
     <string name="action_prevent_screen_capture">Empêcher la capture d'écran</string>
     <string name="action_go_to_today">Aller à aujourd'hui</string>
+    <string name="action_previous_day">Jour précédent</string>
+    <string name="action_next_day">Jour suivant</string>
     <string name="action_feature_request_on_github">Demande de fonctionnalité sur GitHub</string>
     <string name="action_show_calendar">Afficher le calendrier</string>
     <string name="action_reorder">Réorganiser</string>
@@ -228,12 +234,17 @@
     <string name="headline_password">Mot de passe</string>
     <string name="action_show_password">Afficher le mot de passe</string>
     <string name="action_hide_password">Cacher le mot de passe</string>
-    <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Nouvelles fonctionnalités</string>
+    <string name="changelog_changes">Modifications</string>
+    <string name="changelog_bug_fixes">Corrections de bugs</string>
+    <string name="changelog_translations">Traductions</string>
+    <string name="changelog_notes">Notes</string>
     <string name="notification_exporting_products">Exportation des produits</string>
     <string name="notification_importing_products">Importation de produits</string>
     <string name="notification_importing_products_success">Importation des produits terminée</string>
     <string name="description_food_data_central_usda">FoodData Central est une source complète de données sur la composition des aliments de l'USDA, qui regroupe plusieurs types de données distincts</string>
     <string name="error_usda_rate_limit">Limite d'utilisation de l'API FoodData Central (USDA) dépassée</string>
+    <string name="error_usda_not_verified">La clé API fournie n'a pas encore été vérifiée. Veuillez consulter votre e-mail pour vérifier la clé API.</string>
     <string name="description_swiss_food_composition_database_short">La Base de données Suisse des valeurs nutritives contient des informations nutritionnelles sur plus de 1100 produits alimentaires courants</string>
     <string name="description2_swiss_food_composition_database">La Base de données Suisse des valeurs nutritives contient des informations nutritionnelles sur plus de 1100 produits alimentaires courants. Elle est disponible en quatre langues. Pour importer ces produits dans votre journal alimentaire, veuillez sélectionner vos langues préférées.</string>
     <string name="headline_external_databases">Bases de données externes</string>

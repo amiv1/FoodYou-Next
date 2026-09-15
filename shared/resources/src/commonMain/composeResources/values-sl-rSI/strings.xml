@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">N/A</string>
     <string name="headline_create_product">Ustvari izdelek</string>
     <string name="headline_settings">Nastavitve</string>
@@ -7,6 +8,7 @@
     <string name="headline_general">Splošno</string>
     <string name="headline_macronutrients">Makrohranila</string>
     <string name="headline_meals">Obroki</string>
+    <string name="headline_copy_meal">Kopiraj obrok</string>
     <string name="headline_delete_food">Izbriši hrano</string>
     <string name="headline_edit_product">Uredi izdelka</string>
     <string name="headline_permission_required">Potrebno je dovoljenje</string>
@@ -47,6 +49,9 @@
     <string name="unit_energy" description="Energy as calories">Energijska vrednost</string>
     <string name="unit_kcal">kcal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+    <string name="unit_milliliter_short">ml</string>
+    <string name="unit_milligram_short">mg</string>
     <plurals name="unit_gram">
         <item quantity="one">gramov</item>
         <item quantity="two">gramov</item>
@@ -140,6 +145,8 @@
     <string name="action_disable_camera_flash">Onemogočite bliskavico kamere</string>
     <string name="action_prevent_screen_capture">Prepreči zajemanje zaslonske slike</string>
     <string name="action_go_to_today">Pojdi na današnji dan</string>
+    <string name="action_previous_day">Prejšnji dan</string>
+    <string name="action_next_day">Naslednji dan</string>
     <string name="action_feature_request_on_github">Zahtevaj novo funkcionalnost na GitHubu</string>
     <string name="action_show_calendar">Prikaži koledar</string>
     <string name="action_reorder">Ponovno sortiraj</string>
@@ -231,15 +238,27 @@
     <string name="description_please_wait_while_exporting_products">Počakajte dokler poteka izvoz izdelkov</string>
     <string name="headline_launcher_icon_by_icons8">Ikona aplikacije od Icons8</string>
     <string name="description_open_food_facts">Skupna, brezplačna in odprta zbirka podatkov o živilskih izdelkih z vsega sveta</string>
+    <string name="error_open_food_facts_rate_limit">Presežena je omejitev zahtev API-ja Open Food Facts</string>
     <string name="error_open_food_facts_service_unavailable">Storitev Open Food Facts začasno ni na voljo. Za registrirane uporabnike ne veljajo omejitve zahtev in imajo prednostni dostop v času konic.</string>
     <string name="action_register">Registracija</string>
+    <string name="description_open_food_facts_credentials_message">Prijavni podatki so šifrirani in shranjeni samo v vaši napravi. Občutljivi podatki niso dostopni nikomur drugemu.</string>
+    <string name="error_open_food_facts_failed_to_authenticate">Prijava v Open Food Facts ni uspela</string>
+    <string name="headline_username">Uporabniško ime</string>
+    <string name="headline_password">Geslo</string>
+    <string name="action_show_password">Pokaži geslo</string>
     <string name="action_hide_password">Skrij geslo</string>
     <!-- Don't translate changelog strings -->
+    <string name="changelog_new_features">Nove funkcije</string>
+    <string name="changelog_changes">Spremembe</string>
+    <string name="changelog_bug_fixes">Popravki napak</string>
+    <string name="changelog_translations">Prevodi</string>
+    <string name="changelog_notes">Opombe</string>
     <string name="notification_exporting_products">Izvažanje izdelkov</string>
     <string name="notification_importing_products">Uvažanje izdelkov</string>
     <string name="notification_importing_products_success">Uvoz izdelkov končan</string>
     <string name="description_food_data_central_usda">FoodData Central je obsežen vir podatkov USDA o sestavi živil z več različnimi vrstami podatkov</string>
     <string name="error_usda_rate_limit">Omejitev uporabe API za FoodData Central (USDA) je presežena</string>
+    <string name="error_usda_not_verified">Posredovani API-ključ še ni bil preverjen. Preverite svojo e-pošto, da potrdite API-ključ.</string>
     <string name="description_swiss_food_composition_database_short">Swiss Food Composition Database zbirka podatkov o sestavi živil vključuje informacije o hranilni vrednosti več kot 1.100 splošnih živil</string>
     <string name="description2_swiss_food_composition_database">Swiss Food Composition Database zbirka podatkov o sestavi živil vsebuje informacije o hranilni vrednosti več kot 1.100 splošnih živilskih izdelkov. Na voljo je v štirih jezikih. Če želite te izdelke uvoziti v svoj prehranski dnevnik, izberite želene jezike.</string>
     <string name="headline_external_databases">Zunanje podatkovne zbirke</string>
@@ -261,6 +280,7 @@
     <string name="description_add_note">Neobvezne opombe (npr. sestavine, veganski status, alergeni, aditivi) ali druge podrobnosti, ki niso povezane s hranili.</string>
     <string name="action_try_again">Poskusite znova</string>
     <string name="description_calories_are_calculated">Energijska vrednost se samodejno izračuna iz makrohranil. Po potrebi lahko to funkcijo onemogočite in vrednost vnesete ročno. Energijska vrednost alkohola ni vključena v izračun.</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
     <string name="neutral_an_error_occurred">Prišlo je do napake</string>
     <string name="action_retry">Ponovi</string>
     <string name="action_import">Uvozi</string>
@@ -352,6 +372,7 @@
     <string name="action_replace">Zamenjaj</string>
     <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">Podatkovna zbirka bo ZAMENJENA, vsi trenutni podatki pa bodo IZUBLJENI. Aplikacija se bo po zamenjavi podatkovne baze ponovno zagnala. Morda boste morali aplikacijo ponovno odpreti.</string>
     <string name="action_sign_in">Prijavite se</string>
+    <string name="action_sign_out">Odjava</string>
     <string name="headline_terms_of_service">Pogoji uporabe storitev</string>
     <string name="headline_privacy_policy">Politika zasebnosti</string>
     <string name="error_there_was_an_error_while_signing_in">Med prijavo je prišlo do napake</string>

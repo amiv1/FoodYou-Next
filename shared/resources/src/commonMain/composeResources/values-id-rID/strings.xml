@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="not_available_short">T/A</string>
     <string name="headline_create_product">Buat produk</string>
     <string name="headline_settings">Pengaturan</string>
@@ -7,6 +8,8 @@
     <string name="headline_general">Umum</string>
     <string name="headline_macronutrients">Makronutrien</string>
     <string name="headline_meals">Makanan</string>
+    <string name="headline_copy_meal">Salin makanan</string>
+
     <string name="headline_delete_food">Hapus makanan</string>
     <string name="headline_edit_product">Edit produk</string>
     <string name="headline_permission_required">Izin diperlukan</string>
@@ -43,10 +46,17 @@
     <string name="headline_api_key">Kunci API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Sumber</string>
     <string name="headline_features">Fitur-Fitur</string>
+
     <string name="weight">Berat</string>
     <string name="unit_energy" description="Energy as calories">Energi</string>
     <string name="unit_kcal">kkal</string>
     <string name="unit_kilojoules">kJ</string>
+    <string name="unit_gram_short">g</string>
+
+    <string name="unit_milliliter_short">ml</string>
+
+    <string name="unit_milligram_short">mg</string>
+
     <plurals name="unit_gram">
         <item quantity="other">gram</item>
     </plurals>
@@ -134,6 +144,10 @@
     <string name="action_disable_camera_flash">Matikan lampu flash</string>
     <string name="action_prevent_screen_capture">Mencegah tangkapan layar</string>
     <string name="action_go_to_today">Pergi ke hari ini</string>
+    <string name="action_previous_day">Hari sebelumnya</string>
+
+    <string name="action_next_day">Hari berikutnya</string>
+
     <string name="action_feature_request_on_github">Permohonan fitur di GitHub</string>
     <string name="action_show_calendar">Tampilkan kalender</string>
     <string name="action_reorder">Susun ulang</string>
@@ -151,6 +165,8 @@
     <string name="action_show_more" description="Show more settings/options/advanced settings">Tampilkan lebih banyak</string>
     <string name="action_download_product">Unduh produk</string>
     <string name="action_copy_and_open_bug_report">Salin dan buka laporan bug</string>
+    <string name="action_copy_and_report" description="Copy bug report and report a bug">Salin &amp; laporkan</string>
+
     <string name="action_show_details">Tampilkan rincian</string>
     <string name="action_browse_usda">Telusuri FoodData Central (USDA)</string>
     <string name="action_set_key">Atur kunci</string>
@@ -210,14 +226,49 @@
     <string name="description_show_macronutrients_goals">Tampilkan target makronutrien</string>
     <string name="description_please_wait_while_importing_products">Harap tunggu saat produk sedang diimpor</string>
     <string name="description_please_wait_while_exporting_products">Harap tunggu saat produk sedang diekspor</string>
+
     <string name="headline_launcher_icon_by_icons8">Ikon peluncur dibuat oleh Icons8</string>
+
     <string name="description_open_food_facts">Basis data produk makanan dari seluruh dunia yang kolaboratif, gratis, dan terbuka</string>
     <!-- Don't translate changelog strings -->
+
+    <string name="error_open_food_facts_rate_limit">Batas penggunaan API Open Food Facts telah terlampaui</string>
+
+    <string name="error_open_food_facts_service_unavailable">Layanan Open Food Facts sedang tidak tersedia untuk sementara. Pengguna terdaftar tidak dikenai batas permintaan dan mendapatkan akses prioritas saat waktu sibuk.</string>
+
+    <string name="action_register">Daftar</string>
+
+    <string name="description_open_food_facts_credentials_message">Kredensial masuk dienkripsi dan hanya disimpan di perangkat Anda. Data sensitif tidak dapat diakses oleh siapa pun.</string>
+
+    <string name="error_open_food_facts_failed_to_authenticate">Gagal melakukan autentikasi dengan Open Food Facts</string>
+
+    <string name="headline_username">Nama pengguna</string>
+
+    <string name="headline_password">Kata sandi</string>
+
+    <string name="action_show_password">Tampilkan kata sandi</string>
+
+    <string name="action_hide_password">Sembunyikan kata sandi</string>
+
+    <string name="changelog_new_features">Fitur baru</string>
+
+    <string name="changelog_changes">Perubahan</string>
+
+    <string name="changelog_bug_fixes">Perbaikan bug</string>
+
+    <string name="changelog_translations">Terjemahan</string>
+
+    <string name="changelog_notes">Catatan</string>
+
     <string name="notification_exporting_products">Mengekspor produk</string>
     <string name="notification_importing_products">Mengimpor produk</string>
     <string name="notification_importing_products_success">Impor produk selesai</string>
+
     <string name="description_food_data_central_usda">FoodData Central adalah sumber komprehensif USDA untuk data komposisi makanan dengan berbagai jenis data yang berbeda</string>
+
     <string name="error_usda_rate_limit">Batas penggunaan API FoodData Central (USDA) telah terlampaui</string>
+    <string name="error_usda_not_verified">Kunci API yang diberikan belum diverifikasi. Silakan periksa email Anda untuk memverifikasi kunci API.</string>
+
     <string name="description_swiss_food_composition_database_short">Basis Data Komposisi Makanan Swiss mencakup informasi gizi untuk lebih dari 1.100 produk makanan umum</string>
     <string name="description2_swiss_food_composition_database">Basis Data Komposisi Makanan Swiss mencakup informasi gizi untuk lebih dari 1.100 produk makanan umum. Tersedia dalam empat bahasa. Untuk mengimpor produk-produk ini ke buku harian makanan Anda, silakan pilih bahasa yang Anda inginkan.</string>
     <string name="headline_external_databases">Database eksternal</string>
@@ -240,6 +291,8 @@
     <string name="action_try_again">Coba lagi</string>
     <string name="description_calories_are_calculated">Energi secara otomatis dihitung dari makronutrien. Anda dapat menonaktifkan fitur ini dan memasukkan nilai secara manual jika diperlukan. Alkohol tidak termasuk dalam perhitungan.</string>
     <string name="x_kcal_per_g">%1$s %2$d kkal/g</string>
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/g</string>
+
     <string name="neutral_an_error_occurred">Terjadi kesalahan</string>
     <string name="action_retry">Coba lagi</string>
     <string name="action_import">Impor</string>
@@ -325,6 +378,8 @@
     <string name="action_replace">Ganti</string>
     <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">Basis data Anda akan DIGANTI, dan semua data saat ini akan HILANG. Aplikasi akan dimulai ulang setelah basis data diganti. Anda mungkin perlu membuka kembali aplikasi.</string>
     <string name="action_sign_in">Masuk</string>
+    <string name="action_sign_out">Keluar</string>
+
     <string name="headline_terms_of_service">Ketentuan layanan</string>
     <string name="headline_privacy_policy">Kebijakan privasi</string>
     <string name="error_there_was_an_error_while_signing_in">Terjadi kesalahan saat masuk</string>
@@ -362,4 +417,7 @@
     <string name="headline_database_backup">Cadangkan database</string>
     <string name="description_replacing_database">Mengganti database, mohon tunggu...</string>
     <string name="headline_experimental">Eksperimental</string>
+    <string name="description_privacy_policy">Lihat bagaimana data Anda ditangani</string>
+
+    <string name="error_open_food_facts_timeout">Open Food Facts membutuhkan waktu terlalu lama untuk merespons. Layanan mungkin sedang lambat atau tidak tersedia untuk sementara. Coba pindai barkode produk sebagai gantinya.</string>
 </resources>

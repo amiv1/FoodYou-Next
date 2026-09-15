@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="not_available_short">مجهول</string>
+
+<string name="not_available_short">مجهول</string>
     <string name="headline_create_product">إنشاء منتج</string>
     <string name="headline_settings">الإعدادات</string>
     <string name="headline_daily_goals">الأهداف اليومية</string>
     <string name="headline_general">عام</string>
     <string name="headline_macronutrients">المغذيات الكبرى</string>
     <string name="headline_meals">الوجبات</string>
-    <string name="headline_delete_food">حذف الطعام</string>
+        <string name="headline_copy_meal">نسخ الوجبة</string>
+
+<string name="headline_delete_food">حذف الطعام</string>
     <string name="headline_edit_product">تعديل منتج</string>
     <string name="headline_permission_required">الإذن مطلوب</string>
     <string name="headline_language">اللغة</string>
@@ -43,11 +46,18 @@
     <string name="headline_api_key">مفتاح API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">المصدر</string>
     <string name="headline_features">الميّزات</string>
-    <string name="weight">الوزن</string>
+
+<string name="weight">الوزن</string>
     <string name="unit_energy" description="Energy as calories">الطاقة</string>
     <string name="unit_kcal">كيلو سعرة حرارية</string>
     <string name="unit_kilojoules">كيلوجول</string>
-    <plurals name="unit_gram">
+        <string name="unit_gram_short">غ</string>
+
+    <string name="unit_milliliter_short">مل</string>
+
+    <string name="unit_milligram_short">ملغ</string>
+
+<plurals name="unit_gram">
         <item quantity="zero">جرام</item>
         <item quantity="one">جرام</item>
         <item quantity="two">grams</item>
@@ -113,7 +123,21 @@
     <string name="mineral_potassium">البوتاسيوم</string>
     <string name="mineral_calcium">الكالسيوم</string>
     <string name="mineral_copper">النحاس</string>
-    <string name="action_search">بحث</string>
+        <string name="mineral_zinc">الزنك</string>
+
+    <string name="mineral_sodium">الصوديوم</string>
+
+    <string name="mineral_iron">الحديد</string>
+
+    <string name="mineral_phosphorus">الفوسفور</string>
+
+    <string name="mineral_selenium">السيلينيوم</string>
+
+    <string name="mineral_iodine">اليود</string>
+
+    <string name="mineral_chromium">الكروم</string>
+
+<string name="action_search">بحث</string>
     <string name="action_scan_barcode">مسح الباركود</string>
     <string name="action_add">إضافة</string>
     <string name="action_go_back">العودة</string>
@@ -137,17 +161,55 @@
     <string name="action_disable_camera_flash">تعطيل فلاش الكاميرا</string>
     <string name="action_prevent_screen_capture">منع التقاط الشاشة</string>
     <string name="action_go_to_today">اذهب لليوم</string>
-    <string name="action_show_calendar">عرض التقويم</string>
+        <string name="action_previous_day">اليوم السابق</string>
+
+    <string name="action_next_day">اليوم التالي</string>
+
+    <string name="action_feature_request_on_github">طلب ميزة على GitHub</string>
+
+<string name="action_show_calendar">عرض التقويم</string>
     <string name="action_reorder">إعادة ترتيب</string>
     <string name="action_move_up" description="reorder list item up">انقل للأعلى</string>
     <string name="action_move_down" description="reorder list item down">انقل للأسفل</string>
     <string name="action_use_time_based_ordering">استخدم ترتيب حسب الوقت</string>
-    <string name="action_add_ingredient" description="Add ingredient to the recipe">إضافة مكون</string>
+        <string name="action_ignore_all_day_meals">تجاهل وجبات اليوم الكامل</string>
+
+<string name="action_add_ingredient" description="Add ingredient to the recipe">إضافة مكون</string>
     <string name="action_delete_ingredient">حذف مكون</string>
-    <string name="neutral_barcode_scanner_camera_request">السماح بالوصول إلى كاميراتك لمسح الباركودات</string>
+        <string name="action_download">تنزيل</string>
+
+    <string name="action_paste_url">لصق عنوان URL</string>
+
+    <string name="action_browse_open_food_facts">تصفح Open Food Facts</string>
+
+    <string name="action_copy">نسخ</string>
+
+    <string name="action_choose_other_date">اختر تاريخًا آخر</string>
+
+    <string name="action_show_more" description="Show more settings/options/advanced settings">عرض المزيد</string>
+
+    <string name="action_download_product">تنزيل المنتج</string>
+
+    <string name="action_copy_and_open_bug_report">نسخ وفتح بلاغ العطل</string>
+
+    <string name="action_copy_and_report" description="Copy bug report and report a bug">نسخ والإبلاغ</string>
+
+    <string name="action_show_details">عرض التفاصيل</string>
+
+    <string name="action_browse_usda">تصفح FoodData Central (USDA)</string>
+
+    <string name="action_set_key">تعيين المفتاح</string>
+
+    <string name="action_obtain_key">الحصول على المفتاح</string>
+
+    <string name="action_dont_show_again">لا تُظهر هذا مرة أخرى</string>
+
+<string name="neutral_barcode_scanner_camera_request">السماح بالوصول إلى كاميراتك لمسح الباركودات</string>
     <string name="neutral_barcode_scanner_camera_request_rationale">يجب عليك السماح بالوصول حتى تتمكن من مسح الباركود</string>
     <string name="neutral_barcode_scanner_camera_request_redirect_to_settings">يتطلب مسح الباركودات الحصول على إذن الكاميرا. يُرجى السماح بذلك في إعدادات التطبيق.</string>
-    <plurals name="neutral_remaining_calories">
+        <string name="neutral_no_food_found">لم يتم العثور على طعام</string>
+
+<plurals name="neutral_remaining_calories">
         <item quantity="zero">%1$d calories left</item>
         <item quantity="one">%1$d سعرة متبقية</item>
         <item quantity="two">%1$d calories left</item>
@@ -155,18 +217,51 @@
         <item quantity="many">%1$d calories left</item>
         <item quantity="other">%1$d سعرة متبقية</item>
     </plurals>
-    <string name="neutral_set_your_meal_schedule">حدد موعد وجبتك</string>
+        <plurals name="neutral_remaining_kilojoules">
+        <item quantity="zero">لا توجد كيلوجولات متبقية</item>
+        <item quantity="one">كيلوجول واحد متبقٍ</item>
+        <item quantity="two">كيلوجولان متبقيان</item>
+        <item quantity="few">%1$d كيلوجولات متبقية</item>
+        <item quantity="many">%1$d كيلوجولًا متبقيًا</item>
+        <item quantity="other">%1$d كيلوجول متبقٍ</item>
+    </plurals>
+
+    <string name="neutral_set_your_daily_goals">حدّد أهدافك الغذائية اليومية</string>
+
+<string name="neutral_set_your_meal_schedule">حدد موعد وجبتك</string>
     <string name="neutral_permanently_delete_meal">حذف الوجبة نهائيًا؟</string>
     <string name="neutral_meal_will_be_deleted_permanently" description="Warning message when deleting a meal. User must know that this action is irreversible and will delete all data related to the meal.">سُتحذف الوجبة نهائيًا. ستُفقد جميع البيانات المتعلقة بها.</string>
     <string name="neutral_required">مطلوب</string>
     <string name="neutral_help_translating_the_app">المساعدة في ترجمة التطبيق</string>
-    <string name="question_discard_product">تجاهل المنتج؟</string>
+        <string name="neutral_copied">تم نسخ المعلومات إلى الحافظة</string>
+
+    <string name="neutral_product_created">تم إنشاء المنتج</string>
+
+<string name="question_discard_product">تجاهل المنتج؟</string>
     <string name="question_discard_changes">تجاهل التغيرات؟</string>
     <string name="question_discard_recipe">تجاهل الوصفة؟</string>
     <string name="error_invalid_number">رقم غير صحيح</string>
     <string name="error_value_cannot_be_negative">لا يمكن أن تكون القيمة سالبة</string>
     <string name="error_value_must_be_integer">لابد أن تكون القيمة عددًا صحيحًا</string>
-    <string name="positive_goal_reached">حُقق الهدف</string>
+        <string name="error_value_must_be_positive">يجب أن تكون القيمة موجبة</string>
+
+    <string name="error_url_not_found">لم يتم العثور على عنوان URL</string>
+
+    <string name="error_url_is_not_supported">عنوان URL غير مدعوم</string>
+
+    <string name="error_failed_to_download_product">تعذّر تنزيل المنتج</string>
+
+    <string name="error_product_not_found">لم يتم العثور على المنتج</string>
+
+    <string name="error_unknown_error">خطأ غير معروف</string>
+
+    <string name="error_measurement_error">خطأ في القياس، يُرجى التحقق من وزن الحصة والعبوة</string>
+
+    <string name="error_api_key_is_invalid">مفتاح API غير صالح</string>
+
+    <string name="error_not_a_barcode">ليس باركودًا</string>
+
+<string name="positive_goal_reached">حُقق الهدف</string>
     <string name="positive_ok">حسنًا</string>
     <plurals name="negative_exceeded_by_calories">
         <item quantity="zero">Exceeded by %1$d calories</item>
@@ -176,11 +271,379 @@
         <item quantity="many">Exceeded by %1$d calories</item>
         <item quantity="other">تجاوز %1$d سعرة</item>
     </plurals>
-    <string name="description_delete_product_entry" description="Tell user that this entry will be deleted only from diary and won't affect the product itself. Product won't be deleted from the database."> ستُحذف هذه المُدخلة من سجلك اليومي. يُمكنك إضافتها مُجددًا في أي وقت.</string>
+        <plurals name="negative_exceeded_by_kilojoules">
+        <item quantity="zero">لم يتم تجاوز أي كيلوجول</item>
+        <item quantity="one">تم التجاوز بمقدار كيلوجول واحد</item>
+        <item quantity="two">تم التجاوز بمقدار كيلوجولين</item>
+        <item quantity="few">تم التجاوز بمقدار %1$d كيلوجولات</item>
+        <item quantity="many">تم التجاوز بمقدار %1$d كيلوجولًا</item>
+        <item quantity="other">تم التجاوز بمقدار %1$d كيلوجول</item>
+    </plurals>
+
+    <string name="description_delete_food">سيتم حذف الطعام نهائيًا</string>
+
+<string name="description_delete_product_entry" description="Tell user that this entry will be deleted only from diary and won't affect the product itself. Product won't be deleted from the database."> ستُحذف هذه المُدخلة من سجلك اليومي. يُمكنك إضافتها مُجددًا في أي وقت.</string>
     <string name="description_about_setting">اعرف المزيد حول التطبيق</string>
     <string name="description_time_based_meals_sorting">عند تفعيلها، ستُعرض الوجبات التي تتناولها حاليًا أولاً</string>
-    <string name="description_incomplete_nutrition_data">بعض المنتجات المستعملة تنقصها هذه القيمة؛ لذا، قد لا تكون القيمة المعروضة دقيقة</string>
+        <string name="description_action_ignore_all_day_meals">ستظهر وجبات اليوم الكامل في نهاية القائمة</string>
+
+<string name="description_incomplete_nutrition_data">بعض المنتجات المستعملة تنقصها هذه القيمة؛ لذا، قد لا تكون القيمة المعروضة دقيقة</string>
     <string name="description_translation_warning">الترجمات من إنشاء المتطوعين. قد لا تكون مثالية، وقد تكون بعض الترجمات ناقصة. إذا لاحظت أي أخطاء، لا تتردد في المساهمة في تحسينها.</string>
+        <string name="description_home_settings">خصّص صفحتك الرئيسة</string>
+
+    <string name="description_download_product">الصق رابطًا لمنتج غذائي، وسيتم جلب القيم الغذائية وتفاصيل المنتج تلقائيًا.</string>
+
+    <string name="description_download_product_hint">يمكنك لصق أي نص. سيتم استخدام أول عنوان URL.</string>
+
+    <string name="description_show_macronutrients_goals">إظهار أهداف المغذيات الكبرى</string>
+
+    <string name="description_please_wait_while_importing_products">يُرجى الانتظار أثناء استيراد المنتجات</string>
+
+    <string name="description_please_wait_while_exporting_products">يُرجى الانتظار أثناء تصدير المنتجات</string>
+
     <string name="headline_launcher_icon_by_icons8">أيقونة المشغل من Icons8</string>
+
+    <string name="description_open_food_facts">قاعدة بيانات تعاونية ومجانية ومفتوحة لمنتجات الأغذية من جميع أنحاء العالم</string>
+
+    <string name="error_open_food_facts_rate_limit">تم تجاوز حد طلبات API لخدمة Open Food Facts</string>
+
+    <string name="error_open_food_facts_service_unavailable">خدمة Open Food Facts غير متاحة مؤقتًا. لا يخضع المستخدمون المسجّلون لحدود الطلبات ويحصلون على أولوية الوصول خلال أوقات الذروة.</string>
+
+    <string name="action_register">تسجيل</string>
+
+    <string name="description_open_food_facts_credentials_message">بيانات تسجيل الدخول مُشفّرة وتُخزَّن على جهازك فقط. لا يمكن لأي شخص آخر الوصول إلى البيانات الحساسة.</string>
+
+    <string name="error_open_food_facts_failed_to_authenticate">تعذّر المصادقة مع Open Food Facts</string>
+
+    <string name="headline_username">اسم المستخدم</string>
+
+    <string name="headline_password">كلمة المرور</string>
+
+    <string name="action_show_password">إظهار كلمة المرور</string>
+
+    <string name="action_hide_password">إخفاء كلمة المرور</string>
+
+    <string name="changelog_new_features">ميزات جديدة</string>
+
+    <string name="changelog_changes">تغييرات</string>
+
+    <string name="changelog_bug_fixes">إصلاحات للأخطاء</string>
+
+    <string name="changelog_translations">الترجمات</string>
+
+    <string name="changelog_notes">ملاحظات</string>
+
+    <string name="notification_exporting_products">جارٍ تصدير المنتجات</string>
+
+    <string name="notification_importing_products">جارٍ استيراد المنتجات</string>
+
+    <string name="notification_importing_products_success">اكتمل استيراد المنتجات</string>
+
+    <string name="description_food_data_central_usda">FoodData Central هو المصدر الشامل لوزارة الزراعة الأميركية لبيانات تركيب الأغذية، ويضم عدة أنواع مميزة من البيانات</string>
+
+    <string name="error_usda_rate_limit">تم تجاوز حد طلبات API لخدمة FoodData Central (USDA)</string>
+
+    <string name="error_usda_not_verified">لم يتم التحقق من مفتاح API المُدخل بعد. يُرجى التحقق من بريدك الإلكتروني لتأكيد مفتاح API.</string>
+
+    <string name="description_swiss_food_composition_database_short">تتضمن قاعدة بيانات التركيب الغذائي السويسرية معلومات غذائية لأكثر من 1,100 منتج غذائي عام</string>
+
+    <string name="description2_swiss_food_composition_database">تتضمن قاعدة بيانات التركيب الغذائي السويسرية معلومات غذائية لأكثر من 1,100 منتج غذائي عام. وهي متاحة بأربع لغات. لاستيراد هذه المنتجات إلى يوميات طعامك، يُرجى اختيار لغاتك المفضلة.</string>
+
+    <string name="headline_external_databases">قواعد البيانات الخارجية</string>
+
+    <string name="description_external_databases">اطّلع على قواعد البيانات المدعومة</string>
+
+    <string name="feature_manual_database_import">استيراد قاعدة البيانات يدويًا</string>
+
+    <string name="action_unpack" description="Unpack the recipe ingredients">فكّ</string>
+
+    <string name="headline_source_code">الشفرة المصدرية</string>
+
+    <string name="action_treat_as_liquid">اعتبره سائلًا</string>
+
+    <string name="description_treat_as_liquid">فضّل استخدام الملليلترات عند القياس</string>
+
+    <string name="headline_personalization">التخصيص</string>
+
+    <string name="description_personalization">خصّص تجربتك</string>
+
+    <string name="headline_nutrition_facts">القيم الغذائية</string>
+
+    <string name="description_personalize_nutrition_facts_short">أعد ترتيب المعلومات الغذائية</string>
+
+    <string name="action_reset_ordering">إعادة تعيين الترتيب</string>
+
+    <string name="headline_reset_to_default">إعادة التعيين إلى الافتراضي</string>
+
+    <string name="action_reset" description="Confirm resetting">إعادة تعيين</string>
+
+    <string name="description_reset_nutrition_facts">إعادة تخصيص عرض القيم الغذائية إلى الوضع الافتراضي</string>
+
+    <string name="headline_note">ملاحظة</string>
+
+    <string name="description_add_note">ملاحظات اختيارية (مثل المكونات أو الحالة النباتية أو مسببات الحساسية أو الإضافات) أو أي تفاصيل أخرى غير غذائية</string>
+
+    <string name="action_try_again">حاول مرة أخرى</string>
+
+    <string name="description_calories_are_calculated">تُحسب الطاقة تلقائيًا من المغذيات الكبرى. يمكنك تعطيل هذه الميزة وإدخال القيمة يدويًا إذا لزم الأمر. لا يدخل الكحول في هذا الحساب.</string>
+
+    <string name="x_energy_unit_per_g" description="e.g. proteins 4 kcal/g; proteins 17 kj/g">%1$s %2$d %3$s/غ</string>
+
+    <string name="neutral_an_error_occurred">حدث خطأ</string>
+
+    <string name="action_retry">إعادة المحاولة</string>
+
+    <string name="action_import">استيراد</string>
+
+    <string name="headline_today" description="Today, date">اليوم، %1$s</string>
+
+    <string name="headline_yesterday" description="Yesterday, date">أمس، %1$s</string>
+
+    <string name="headline_tomorrow" description="Tomorrow, date">غدًا، %1$s</string>
+
+    <string name="headline_user" description="User, person who uses the app">المستخدم</string>
+
+    <string name="description_food_source">حدّد مصدر بيانات الطعام</string>
+
+    <string name="error_food_is_missing_required_fields">الطعام يفتقد حقولًا مطلوبة</string>
+
+    <string name="headline_preview_release">إصدار تجريبي</string>
+
+    <string name="description_preview_release">أنت تستخدم حاليًا إصدارًا تجريبيًا. قد يكون غير مكتمل أو غير مستقر أو عرضة للتغيير.</string>
+
+    <string name="headline_your_food">طعامك</string>
+
+    <string name="headline_filters">عوامل التصفية</string>
+
+    <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">اختر مكونًا</string>
+
+    <string name="headline_edit_recipe">تعديل الوصفة</string>
+
+    <string name="description_delete_ingredient">ستتم إزالة المكوّن من الوصفة</string>
+
+    <string name="neutral_remote_database_error">تعذّر تنزيل المنتج من قاعدة البيانات البعيدة. لا يزال بإمكانك عرض المنتجات التي نزّلتها سابقًا.</string>
+
+    <string name="headline_before_you_start">قبل أن تبدأ</string>
+
+    <string name="action_agree_and_continue">أوافق وأتابع</string>
+
+    <string name="headline_food_database">قاعدة بيانات الطعام</string>
+
+    <string name="description_food_database">يمكنك اختيار ما إذا كنت تريد استخدام هذه الخدمات الخارجية الاختيارية، والتي قد تكون لها شروط وسياسات خصوصية خاصة بها</string>
+
+    <string name="action_skip">تخطَّ</string>
+
+    <string name="headline_almost_done">أوشكنا على الانتهاء</string>
+
+    <string name="headline_preparing_your_food_diary">جارٍ إعداد يوميات طعامك</string>
+
+    <string name="headline_please_wait">يُرجى الانتظار</string>
+
+    <string name="headline_created">تم الإنشاء</string>
+
+    <string name="headline_imported">تم الاستيراد</string>
+
+    <string name="headline_downloaded">تم التنزيل</string>
+
+    <string name="headline_edited">تم التعديل</string>
+
+    <string name="headline_history">السجل</string>
+
+    <string name="headline_recent">الأخيرة</string>
+
+    <string name="headline_database">قاعدة البيانات</string>
+
+    <string name="description_manage_database">إدارة قاعدة بياناتك</string>
+
+    <string name="action_done">تم</string>
+
+    <string name="neutral_measurement_added">حسنًا! لقد أضفنا القياس الخاص بك</string>
+
+    <string name="headline_imported_from_food_you_2">تم الاستيراد من Food You 2</string>
+
+    <string name="action_set_goals">تعيين الأهداف</string>
+
+    <string name="headline_pick_the_days">اختر الأيام</string>
+
+    <string name="action_set_separate_goals">عيّن أهدافًا منفصلة لكل يوم</string>
+
+    <string name="headline_percentages">النِّسب المئوية</string>
+
+    <string name="action_import_csv_food_products">استيراد منتجات غذائية من CSV</string>
+
+    <string name="description_import_csv_food_products">استيراد منتجات غذائية من ملف CSV</string>
+
+    <string name="description_import_csv_food_products_hint">نحتاج فقط إلى معرفة ماهية كل شيء. أخبرنا أي عمود في ملفك يمثل اسم المنتج والعلامة التجارية وما إلى ذلك.</string>
+
+    <string name="description_import_csv_food_products_hint_2">يجب أن تكون جميع قيم العناصر الغذائية بالجرام أو بالكيلو سعرة حرارية لكل 100 غرام</string>
+
+    <string name="action_export_csv_food_products">تصدير منتجات غذائية إلى CSV</string>
+
+    <string name="description_export_csv_food_products">تصدير منتجات غذائية إلى ملف CSV</string>
+
+    <string name="neutral_no_column">بلا عمود</string>
+
+    <plurals name="neutral_imported_x_food_products">
+        <item quantity="zero">لم يتم استيراد أي منتج غذائي</item>
+        <item quantity="one">تم استيراد منتج غذائي واحد</item>
+        <item quantity="two">تم استيراد منتجين غذائيين</item>
+        <item quantity="few">تم استيراد %1$d منتجات غذائية</item>
+        <item quantity="many">تم استيراد %1$d منتجًا غذائيًا</item>
+        <item quantity="other">تم استيراد %1$d منتج غذائي</item>
+    </plurals>
+
+    <string name="headline_energy_unit">وحدة الطاقة</string>
+
+    <string name="description_energy_unit">اختر وحدة الطاقة المفضلة</string>
+
+    <plurals name="neutral_exported_x_food_products">
+        <item quantity="zero">لم يتم تصدير أي منتج غذائي</item>
+        <item quantity="one">تم تصدير منتج غذائي واحد</item>
+        <item quantity="two">تم تصدير منتجين غذائيين</item>
+        <item quantity="few">تم تصدير %1$d منتجات غذائية</item>
+        <item quantity="many">تم تصدير %1$d منتجًا غذائيًا</item>
+        <item quantity="other">تم تصدير %1$d منتج غذائي</item>
+    </plurals>
+
+    <string name="headline_auto_calculate_energy">حساب الطاقة تلقائيًا</string>
+
+    <string name="headline_manual_energy_input">إدخال الطاقة يدويًا</string>
+
+    <string name="headline_quick_add">إضافة سريعة</string>
+
+    <string name="description_quick_add">تتيح لك الإضافة السريعة تسجيل الطعام دون البحث عن أطعمة محددة. إنها طريقة سريعة لتسجيل الوجبات عندما تعرف بالفعل عدد السعرات الحرارية أو تريد تقديرًا بسيطًا.</string>
+
+    <string name="action_open_poll">فتح الاستطلاع</string>
+
+    <string name="headline_colors">الألوان</string>
+
+    <string name="description_colors">خصّص ألوان التطبيق</string>
+
+    <string name="headline_custom_palette">لوحة ألوان مخصّصة</string>
+
+    <string name="description_custom_palette">أعد إعداد لوحة الألوان الخاصة بك</string>
+
+    <string name="headline_dynamic_colors">ألوان ديناميكية</string>
+
+    <string name="description_dynamic_colors">تطبيق الألوان من النظام</string>
+
+    <string name="headline_palette_style">نمط لوحة الألوان</string>
+
+    <string name="headline_contrast">التباين</string>
+
+    <string name="headline_amoled">AMOLED</string>
+
+    <string name="headline_light">فاتح</string>
+
+    <string name="headline_dark">داكن</string>
+
+    <string name="headline_appearance">المظهر</string>
+
+    <string name="headline_theme">السمة</string>
+
+    <string name="headline_pick_a_color">اختر لونًا</string>
+
+    <string name="headline_nutrients_colors">ألوان العناصر الغذائية</string>
+
+    <string name="description_nutrients_colors_reset">ستُعاد إعدادات ألوان العناصر الغذائية إلى القيم الافتراضية</string>
+
+    <string name="action_next_month">الشهر التالي</string>
+
+    <string name="action_previous_month">الشهر السابق</string>
+
+    <string name="headline_save_database">حفظ قاعدة البيانات</string>
+
+    <string name="description_save_database">احفظ نسخة من قاعدة بياناتك</string>
+
+    <string name="headline_replace_database">استبدال قاعدة البيانات</string>
+
+    <string name="description_replace_database">استبدل قاعدة بياناتك بنسخة محفوظة مسبقًا</string>
+
+    <string name="action_replace">استبدال</string>
+
+    <string name="warning_replace_database" description="Warning message shown when user wants to replace their database with a previously saved copy. All uppercase letters are intentional and will be shown in red color.">سيتم استبدال قاعدة بياناتك، وستُفقد جميع البيانات الحالية. سيُعاد تشغيل التطبيق بعد استبدال قاعدة البيانات. قد تحتاج إلى إعادة فتح التطبيق.</string>
+
+    <string name="action_sign_in">تسجيل الدخول</string>
+
+    <string name="action_sign_out">تسجيل الخروج</string>
+
+    <string name="headline_terms_of_service">شروط الخدمة</string>
+
+    <string name="headline_privacy_policy">سياسة الخصوصية</string>
+
+    <string name="error_there_was_an_error_while_signing_in">حدث خطأ أثناء تسجيل الدخول</string>
+
+    <string name="headline_random_theme">سمة عشوائية</string>
+
+    <string name="description_random_theme">سيتم تطبيق سمة عشوائية في كل مرة يبدأ فيها التطبيق</string>
+
+    <string name="headline_terms_of_use">شروط الاستخدام</string>
+
+    <string name="onboarding_privacy_tip">هذا التطبيق مفتوح المصدر ومصمم من أجلك. نحن نحترم خصوصيتك، وتبقى معلوماتك خاصة.</string>
+
+    <string name="headline_add_profile">إضافة ملف شخصي</string>
+
+    <string name="headline_how_do_you_want_to_be_called">كيف تريد أن نناديك؟</string>
+
+    <string name="headline_profile_name">اسم الملف الشخصي</string>
+
+    <string name="headline_profile_picture">صورة الملف الشخصي</string>
+
+    <string name="action_continue">متابعة</string>
+
+    <string name="headline_welcome_user_message" description="Must be short welcome message">مرحبًا، %1$s!</string>
+
+    <string name="headline_data_backup_and_export">النسخ الاحتياطي للبيانات وتصديرها</string>
+
+    <string name="headline_privacy">الخصوصية</string>
+
+    <string name="action_switch_profile">تبديل الملف الشخصي</string>
+
+    <string name="action_add_profile">إضافة ملف شخصي</string>
+
+    <string name="action_refresh">تحديث</string>
+
+    <string name="description_not_sure_yet">لست متأكدًا بعد؟ يمكنك تغييره في أي وقت</string>
+
+    <string name="question_discard_profile">تجاهل الملف الشخصي؟</string>
+
+    <string name="headline_edit_profile">تعديل الملف الشخصي</string>
+
+    <string name="action_delete_profile">حذف الملف الشخصي</string>
+
+    <string name="headline_delete_profile">حذف الملف الشخصي</string>
+
+    <string name="description_delete_profile">سيتم حذف هذا الملف الشخصي نهائيًا. وستُفقد إلى الأبد جميع البيانات المرتبطة به.</string>
+
+    <string name="action_today" description="Set date to today">اليوم</string>
+
+    <string name="action_fill_in_details">املأ التفاصيل</string>
+
+    <string name="action_skip_for_now">تخطَّ الآن</string>
+
+    <string name="headline_add_more_details">أضف المزيد من التفاصيل</string>
+
+    <string name="description_add_more_details_product_form">يساعد ملء البروتينات والدهون والكربوهيدرات وقيم الطاقة على تقديم رؤى غذائية أكثر دقة</string>
+
+    <string name="headline_favorite">مفضل</string>
+
+    <string name="action_add_a_photo">إضافة صورة</string>
+
+    <string name="action_remove_a_photo">إزالة الصورة</string>
+
+    <string name="description_values_per">حدّد الكمية التي تستند إليها القيم الغذائية</string>
+
+    <string name="description_privacy">تحكّم في معلوماتك الشخصية</string>
+
+    <string name="headline_database_backup">النسخ الاحتياطي لقاعدة البيانات</string>
+
+    <string name="description_replacing_database">جارٍ استبدال قاعدة البيانات، يُرجى الانتظار...</string>
+
+    <string name="headline_experimental">تجريبي</string>
+
+    <string name="description_privacy_policy">اطّلع على كيفية التعامل مع بياناتك</string>
+
+    <string name="error_open_food_facts_timeout">يستغرق Open Food Facts وقتًا طويلًا جدًا في الاستجابة. قد تكون الخدمة بطيئة مؤقتًا أو غير متاحة. جرّب مسح باركود المنتج بدلًا من ذلك.</string>
+
     <!-- Don't translate changelog strings -->
 </resources>
