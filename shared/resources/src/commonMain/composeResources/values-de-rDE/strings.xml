@@ -16,6 +16,7 @@
     <string name="headline_system">System</string>
     <string name="headline_system_language_settings">Systemspracheinstellungen</string>
     <string name="headline_secure_screen">Sicherer Bildschirm</string>
+    <string name="headline_allow_future_dates">Zukünftige Daten zulassen</string>
     <string name="headline_about">Über</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Ganztägig</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Kamerablitz aktivieren</string>
     <string name="action_disable_camera_flash">Kamerablitz deaktivieren</string>
     <string name="action_prevent_screen_capture">Bildschirmaufnahme verhindern</string>
+    <string name="description_allow_future_dates">Daten nach heute im Kalender, beim Kopieren von Mahlzeiten und auf den Zielbildschirmen auswählen</string>
     <string name="action_go_to_today">Gehe zu heute</string>
     <string name="action_previous_day">Vorheriger Tag</string>
     <string name="action_next_day">Nächster Tag</string>

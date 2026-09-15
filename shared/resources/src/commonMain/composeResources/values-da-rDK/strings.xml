@@ -18,6 +18,7 @@
     <string name="headline_system">System</string>
     <string name="headline_system_language_settings">Systemsprogindstillinger</string>
     <string name="headline_secure_screen">Sikker skærm</string>
+    <string name="headline_allow_future_dates">Tillad fremtidige datoer</string>
     <string name="headline_about">Om</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dagen</string>
@@ -168,6 +169,7 @@
     <string name="action_enable_camera_flash">Slå kamerablitz til</string>
     <string name="action_disable_camera_flash">Slå kamerabiltz fra</string>
     <string name="action_prevent_screen_capture">Forhindr skærmoptagelse</string>
+    <string name="description_allow_future_dates">Vælg datoer efter i dag i kalenderen, ved kopiering af måltider og på målskærmene</string>
     <string name="action_go_to_today">Gå til i dag</string>
         <string name="action_previous_day">Forrige dag</string>
 

@@ -16,6 +16,7 @@
     <string name="headline_system">Sistema</string>
     <string name="headline_system_language_settings">Ajustes de los idiomas del sistema</string>
     <string name="headline_secure_screen">Proteger pantalla</string>
+    <string name="headline_allow_future_dates">Permitir fechas futuras</string>
     <string name="headline_about">Información</string>
     <string name="headline_version">Versión</string>
     <string name="headline_all_day" description="All-day (meal)">Todo el día</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Habilita el flash</string>
     <string name="action_disable_camera_flash">Deshabilita el flash</string>
     <string name="action_prevent_screen_capture">Prevenir capturas de pantalla</string>
+    <string name="description_allow_future_dates">Elige fechas posteriores a hoy en el calendario, al copiar comidas y en las pantallas de objetivos</string>
     <string name="action_go_to_today">Ir a hoy</string>
     <string name="action_previous_day">Día anterior</string>
     <string name="action_next_day">Día siguiente</string>

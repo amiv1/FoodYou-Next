@@ -27,15 +27,21 @@ import com.maksimowiczm.foodyou.app.ui.food.diary.component.ChipsMealPicker
 import com.maksimowiczm.foodyou.app.ui.food.diary.component.rememberChipsMealPickerState
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
 import com.maksimowiczm.foodyou.common.domain.date.DateProvider
+import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
 import com.maksimowiczm.foodyou.common.extension.now
+import com.maksimowiczm.foodyou.settings.domain.entity.Settings
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.map
+import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 /**
  * Dialog that lets the user pick a target meal and date (never in the future) to copy the
@@ -53,7 +59,16 @@ internal fun CopyMealDialog(
     val zeroDate = remember { LocalDate.fromEpochDays(0) }
     val dateProvider = koinInject<DateProvider>()
     val today = dateProvider.observeDate().collectAsStateWithLifecycle(LocalDate.now()).value
-    var targetDate by rememberSaveable { mutableStateOf(sourceDate.coerceAtMost(today)) }
+    val settingsRepository =
+        koinInject<UserPreferencesRepository<Settings>>(named(Settings::class.qualifiedName!!))
+    val allowFutureDates =
+        settingsRepository
+            .observe()
+            .map { it.allowFutureDates }
+            .collectAsStateWithLifecycle(false)
+            .value
+    val maxDate = if (allowFutureDates) today.plus(100, DateTimeUnit.YEAR) else today
+    var targetDate by rememberSaveable { mutableStateOf(sourceDate.coerceIn(zeroDate, maxDate)) }
     var showDatePicker by rememberSaveable { mutableStateOf(false) }
 
     val mealNames = remember(meals) { meals.map { it.name } }
@@ -64,7 +79,7 @@ internal fun CopyMealDialog(
         CopyMealDatePickerDialog(
             selectedDate = targetDate,
             zeroDate = zeroDate,
-            referenceDate = today,
+            referenceDate = maxDate,
             onDateSelect = { targetDate = it },
             onDismissRequest = { showDatePicker = false },
         )

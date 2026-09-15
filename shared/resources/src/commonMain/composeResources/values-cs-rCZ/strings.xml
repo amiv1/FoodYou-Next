@@ -16,6 +16,7 @@
     <string name="headline_system">Systémový</string>
     <string name="headline_system_language_settings">Systémová nastavení jazyka</string>
     <string name="headline_secure_screen">Bezpečná obrazovka</string>
+    <string name="headline_allow_future_dates">Povolit budoucí data</string>
     <string name="headline_about">O aplikaci</string>
     <string name="headline_version">Verze</string>
     <string name="headline_all_day" description="All-day (meal)">Celý den</string>
@@ -144,6 +145,7 @@
     <string name="action_enable_camera_flash">Zapnout blesk</string>
     <string name="action_disable_camera_flash">Vypnout blesk</string>
     <string name="action_prevent_screen_capture">Bránit vytvoření snímku obrazovky</string>
+    <string name="description_allow_future_dates">Vybírejte data po dnešku v kalendáři, při kopírování jídel a na obrazovkách cílů</string>
     <string name="action_go_to_today">Přejít na dnešek</string>
     <string name="action_previous_day">Předchozí den</string>
     <string name="action_next_day">Další den</string>

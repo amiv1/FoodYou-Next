@@ -16,6 +16,7 @@
     <string name="headline_system">Sistema</string>
     <string name="headline_system_language_settings">Configurações do idioma do sistema</string>
     <string name="headline_secure_screen">Ecrã de segurança</string>
+    <string name="headline_allow_future_dates">Permitir datas futuras</string>
     <string name="headline_about">Sobre</string>
     <string name="headline_version">Versão</string>
     <string name="headline_all_day" description="All-day (meal)">Dia inteiro</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Ativar o flash da câmara</string>
     <string name="action_disable_camera_flash">Desativar o flash da câmara</string>
     <string name="action_prevent_screen_capture">Impedir captura de ecrã</string>
+    <string name="description_allow_future_dates">Escolha datas posteriores a hoje no calendário, ao copiar refeições e nos ecrãs de metas</string>
     <string name="action_go_to_today">Ir para hoje</string>
     <string name="action_previous_day">Dia anterior</string>
     <string name="action_next_day">Dia seguinte</string>

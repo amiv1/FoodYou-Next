@@ -40,8 +40,10 @@ internal fun CalendarCard(
     referenceDate: LocalDate,
     onDateSelect: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
+    maxDate: LocalDate = referenceDate,
 ) {
-    val calendarState = rememberCalendarState(referenceDate = referenceDate, selectedDate = date)
+    val calendarState =
+        rememberCalendarState(referenceDate = referenceDate, maxDate = maxDate, selectedDate = date)
 
     LaunchedEffect(calendarState.selectedDate) {
         val selected = calendarState.selectedDate

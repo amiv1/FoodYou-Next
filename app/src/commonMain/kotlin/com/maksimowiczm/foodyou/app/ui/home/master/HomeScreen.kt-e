@@ -251,7 +251,6 @@ fun HomeScreen(
                     HomeDayColumn(
                         date = nextDate,
                         referenceDate = homeState.lastKnownToday,
-                        maxSelectableDate = homeState.maxSelectableDate,
                         shimmer = homeState.shimmer,
                         order = order,
                         onDateSelect = onCalendarDateSelect,
@@ -283,7 +282,6 @@ fun HomeScreen(
 private fun HomeDayColumn(
     date: LocalDate,
     referenceDate: LocalDate,
-    maxSelectableDate: LocalDate,
     shimmer: Shimmer,
     order: List<HomeCard>,
     onDateSelect: (LocalDate) -> Unit,
@@ -312,7 +310,6 @@ private fun HomeDayColumn(
                         date = date,
                         referenceDate = referenceDate,
                         onDateSelect = onDateSelect,
-                        maxDate = maxSelectableDate,
                         modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 8.dp),
                     )
 

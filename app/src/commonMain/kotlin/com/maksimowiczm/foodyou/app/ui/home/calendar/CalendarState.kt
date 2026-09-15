@@ -17,12 +17,14 @@ import kotlinx.datetime.toLocalDateTime
 internal fun rememberCalendarState(
     zeroDate: LocalDate = LocalDate.fromEpochDays(0),
     referenceDate: LocalDate = LocalDate.now(),
+    maxDate: LocalDate = referenceDate,
     selectedDate: LocalDate = referenceDate,
 ): CalendarState =
-    remember(zeroDate, referenceDate, selectedDate) {
+    remember(zeroDate, referenceDate, maxDate, selectedDate) {
         CalendarState(
             zeroDate = zeroDate,
             referenceDate = referenceDate,
+            maxDate = maxDate,
             initialSelectedDate = selectedDate,
         )
     }
@@ -30,23 +32,24 @@ internal fun rememberCalendarState(
 /**
  * Holds the state for the compact calendar control shown on the home screen: the currently
  * selected date, the reference ("today") date, and the bounds used by the date picker dialog.
- * Navigating to a date later than [referenceDate] is never allowed.
+ * Navigating to a date later than [maxDate] is never allowed.
  */
 @Stable
 internal class CalendarState(
     val zeroDate: LocalDate,
     val referenceDate: LocalDate,
+    val maxDate: LocalDate = referenceDate,
     initialSelectedDate: LocalDate = referenceDate,
 ) {
     var selectedDate by mutableStateOf(initialSelectedDate)
         private set
 
-    /** Whether [selectedDate] can move forward, i.e. it hasn't already reached [referenceDate]. */
+    /** Whether [selectedDate] can move forward, i.e. it hasn't already reached [maxDate]. */
     val canSelectNextDay: Boolean
-        get() = selectedDate < referenceDate
+        get() = selectedDate < maxDate
 
     fun onDateSelect(date: LocalDate) {
-        selectedDate = date.coerceIn(zeroDate, referenceDate)
+        selectedDate = date.coerceIn(zeroDate, maxDate)
     }
 
     fun selectPreviousDay() {
@@ -61,7 +64,7 @@ internal class CalendarState(
 
     @Composable
     fun rememberDatePickerState(): DatePickerState {
-        val yearRange = zeroDate.year..referenceDate.year
+        val yearRange = zeroDate.year..maxDate.year
 
         val initialSelectedDateMillis =
             selectedDate.atStartOfDayIn(TimeZone.UTC).toEpochMilliseconds().takeIf { it >= 0 } ?: 0
@@ -77,7 +80,7 @@ internal class CalendarState(
                             Instant.fromEpochMilliseconds(utcTimeMillis)
                                 .toLocalDateTime(TimeZone.UTC)
                                 .date
-                        return date in zeroDate..referenceDate
+                        return date in zeroDate..maxDate
                     }
 
                     override fun isSelectableYear(year: Int) = year in yearRange

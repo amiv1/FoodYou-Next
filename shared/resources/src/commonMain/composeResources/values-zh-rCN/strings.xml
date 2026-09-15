@@ -17,6 +17,7 @@
     <string name="headline_system">系统</string>
     <string name="headline_system_language_settings">系统语言设置</string>
     <string name="headline_secure_screen">安全屏幕</string>
+    <string name="headline_allow_future_dates">允许未来日期</string>
     <string name="headline_about">关于</string>
     <string name="headline_version">版本</string>
     <string name="headline_all_day" description="All-day (meal)">一整天</string>
@@ -143,6 +144,7 @@
     <string name="action_enable_camera_flash">打开闪光灯</string>
     <string name="action_disable_camera_flash">关闭闪光灯</string>
     <string name="action_prevent_screen_capture">禁止截图</string>
+    <string name="description_allow_future_dates">在日历、复制餐食和目标屏幕中选择今天之后的日期</string>
     <string name="action_go_to_today">回到今天</string>
     <string name="action_previous_day">前一天</string>
 

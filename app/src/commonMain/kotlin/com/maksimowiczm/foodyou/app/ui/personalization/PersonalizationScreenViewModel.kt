@@ -39,4 +39,16 @@ internal class PersonalizationScreenViewModel(
     fun setEnergyFormat(format: EnergyFormat) {
         viewModelScope.launch { settingsRepository.update { copy(energyFormat = format) } }
     }
+
+    private val _allowFutureDates = settingsRepository.observe().map { it.allowFutureDates }
+    val allowFutureDates =
+        _allowFutureDates.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(2_000),
+            initialValue = runBlocking { _allowFutureDates.first() },
+        )
+
+    fun toggleAllowFutureDates(newState: Boolean) {
+        viewModelScope.launch { settingsRepository.update { copy(allowFutureDates = newState) } }
+    }
 }

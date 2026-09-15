@@ -30,6 +30,7 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
             onboardingFinished = this[SettingsPreferencesKeys.onboardingFinished] ?: false,
             energyFormat = this.getEnergyFormat(SettingsPreferencesKeys.energyFormat),
             appLaunchInfo = this.getAppLaunchInfo(),
+            allowFutureDates = this[SettingsPreferencesKeys.allowFutureDates] ?: false,
         )
 
     override fun MutablePreferences.applyUserPreferences(updated: Settings) {
@@ -43,6 +44,7 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
         this[SettingsPreferencesKeys.onboardingFinished] = updated.onboardingFinished
         setEnergyFormat(SettingsPreferencesKeys.energyFormat, updated.energyFormat)
         setAppLaunchInfo(updated.appLaunchInfo)
+        this[SettingsPreferencesKeys.allowFutureDates] = updated.allowFutureDates
     }
 }
 
@@ -137,4 +139,5 @@ private object SettingsPreferencesKeys {
     val firstLaunchCurrentVersionName = stringPreferencesKey("first_launch_current_version_name")
     val firstLaunchCurrentVersionEpoch = longPreferencesKey("first_launch_current_version_epoch")
     val launchesCount = intPreferencesKey("launches_count")
+    val allowFutureDates = booleanPreferencesKey("settings:allowFutureDates")
 }

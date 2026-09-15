@@ -17,6 +17,7 @@
     <string name="headline_system">Systeem</string>
     <string name="headline_system_language_settings">Systeemtaal instellingen</string>
     <string name="headline_secure_screen">Scherm beveiligen</string>
+    <string name="headline_allow_future_dates">Toekomstige datums toestaan</string>
     <string name="headline_about">Over</string>
     <string name="headline_version">Versie</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dag</string>
@@ -145,6 +146,7 @@
     <string name="action_enable_camera_flash">Camera flits inschakelen</string>
     <string name="action_disable_camera_flash">Camera flits uitschakelen</string>
     <string name="action_prevent_screen_capture">Schermopname blokkeren</string>
+    <string name="description_allow_future_dates">Kies datums na vandaag in de kalender, bij het kopiëren van maaltijden en op de doelenschermen</string>
     <string name="action_go_to_today">Ga naar vandaag</string>
     <string name="action_previous_day">Vorige dag</string>
 

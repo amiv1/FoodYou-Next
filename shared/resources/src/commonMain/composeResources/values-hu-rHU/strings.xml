@@ -16,6 +16,7 @@
     <string name="headline_system">Rendszer</string>
     <string name="headline_system_language_settings">Rendszer nyelvi beállításai</string>
     <string name="headline_secure_screen">Képernyő védelem</string>
+    <string name="headline_allow_future_dates">Jövőbeli dátumok engedélyezése</string>
     <string name="headline_about">Névjegy</string>
     <string name="headline_version">Verzió</string>
     <string name="headline_all_day" description="All-day (meal)">Egész nap</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Vaku engedélyezése</string>
     <string name="action_disable_camera_flash">Vaku letiltása</string>
     <string name="action_prevent_screen_capture">Képernyőfelvétel megakadályozása</string>
+    <string name="description_allow_future_dates">Válasszon a mai napnál későbbi dátumokat a naptárban, az étkezések másolásakor és a célok képernyőin</string>
     <string name="action_go_to_today">Irány a mai nap</string>
     <string name="action_previous_day">Előző nap</string>
     <string name="action_next_day">Következő nap</string>

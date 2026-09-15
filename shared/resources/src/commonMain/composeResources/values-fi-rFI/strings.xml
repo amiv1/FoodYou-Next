@@ -16,6 +16,7 @@
     <string name="headline_system">Järjestelmän kieli</string>
     <string name="headline_system_language_settings">Järjestelmän kieliasetukset</string>
     <string name="headline_secure_screen">Suojattu näyttö</string>
+    <string name="headline_allow_future_dates">Salli tulevat päivämäärät</string>
     <string name="headline_about">Lisätietoja</string>
     <string name="headline_version">Versio</string>
     <string name="headline_all_day" description="All-day (meal)">Koko päivä</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Ota kameran salama käyttöön</string>
     <string name="action_disable_camera_flash">Poista kameran salama käytöstä</string>
     <string name="action_prevent_screen_capture">Estä kuvakaappaus</string>
+    <string name="description_allow_future_dates">Valitse tämän päivän jälkeisiä päivämääriä kalenterissa, aterioita kopioitaessa ja tavoitenäytöillä</string>
     <string name="action_go_to_today">Siirry tähän päivään</string>
     <string name="action_previous_day">Edellinen päivä</string>
     <string name="action_next_day">Seuraava päivä</string>

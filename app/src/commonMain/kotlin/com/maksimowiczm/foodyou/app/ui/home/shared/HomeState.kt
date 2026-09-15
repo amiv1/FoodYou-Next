@@ -5,16 +5,19 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maksimowiczm.foodyou.common.domain.date.DateProvider
+import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
 import com.maksimowiczm.foodyou.common.extension.now
+import com.maksimowiczm.foodyou.settings.domain.entity.Settings
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
+import kotlinx.coroutines.flow.map
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.minus
 import kotlinx.datetime.plus
 import org.koin.compose.koinInject
-
+import org.koin.core.qualifier.named
 @Composable
 internal fun rememberHomeState(initialSelectedDate: LocalDate = LocalDate.now()): HomeState {
     val shimmer = rememberShimmer(shimmerBounds = ShimmerBounds.Window)
@@ -59,6 +62,16 @@ internal fun rememberHomeState(initialSelectedDate: LocalDate = LocalDate.now())
 
     LaunchedEffect(today) { homeState.onTodayChanged(today) }
 
+    val settingsRepository =
+        koinInject<UserPreferencesRepository<Settings>>(named(Settings::class.qualifiedName!!))
+    val allowFutureDates by
+        settingsRepository
+            .observe()
+            .map { it.allowFutureDates }
+            .collectAsStateWithLifecycle(homeState.allowFutureDates)
+
+    LaunchedEffect(allowFutureDates) { homeState.applyAllowFutureDates(allowFutureDates) }
+
     return homeState
 }
 
@@ -73,9 +86,21 @@ internal class HomeState(initialSelectedDate: LocalDate, initialToday: LocalDate
     var lastKnownToday by mutableStateOf(initialToday)
         private set
 
-    /** Whether [selectedDate] can move forward, i.e. it hasn't already reached [lastKnownToday]. */
+    /** Whether picking dates after [lastKnownToday] is currently allowed (a user setting). */
+    var allowFutureDates by mutableStateOf(false)
+        private set
+
+    /**
+     * The furthest date that can currently be selected. Equal to [lastKnownToday] unless
+     * [allowFutureDates] is enabled, in which case it's a far (but finite) date in the future.
+     */
+    val maxSelectableDate: LocalDate
+        get() =
+            if (allowFutureDates) lastKnownToday.plus(100, DateTimeUnit.YEAR) else lastKnownToday
+
+    /** Whether [selectedDate] can move forward, i.e. it hasn't already reached [maxSelectableDate]. */
     val canSelectNextDay: Boolean
-        get() = selectedDate < lastKnownToday
+        get() = selectedDate < maxSelectableDate
 
     /** Whether [selectedDate] can move backward, i.e. it hasn't already reached [zeroDate]. */
     val canSelectPreviousDay: Boolean
@@ -95,6 +120,10 @@ internal class HomeState(initialSelectedDate: LocalDate, initialToday: LocalDate
         if (canSelectNextDay) {
             selectDate(selectedDate.plus(1, DateTimeUnit.DAY))
         }
+    }
+
+    fun applyAllowFutureDates(value: Boolean) {
+        allowFutureDates = value
     }
 
     /**

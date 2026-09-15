@@ -5,11 +5,16 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.SelectableDates
 import androidx.compose.runtime.*
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.maksimowiczm.foodyou.common.domain.date.DateProvider
+import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
 import com.maksimowiczm.foodyou.common.extension.now
 import com.maksimowiczm.foodyou.common.extension.plus
+import com.maksimowiczm.foodyou.settings.domain.entity.Settings
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Instant
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
@@ -17,6 +22,8 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.until
+import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 /**
  * The maximum number of pages allowed in the pager. This limit is set to 50,000 to ensure
@@ -27,10 +34,23 @@ private const val MAX_PAGER_SIZE = 50_000
 
 @Composable
 internal fun rememberGoalsScreenState(selectedDate: LocalDate): GoalsScreenState {
-    val maxSize = MAX_PAGER_SIZE
+    val dateProvider = koinInject<DateProvider>()
+    val today by dateProvider.observeDate().collectAsStateWithLifecycle(LocalDate.now())
+
+    val settingsRepository =
+        koinInject<UserPreferencesRepository<Settings>>(named(Settings::class.qualifiedName!!))
+    val allowFutureDates by
+        settingsRepository.observe().map { it.allowFutureDates }.collectAsStateWithLifecycle(false)
 
     val zeroDate = LocalDate.fromEpochDays(0)
     val initialPage = (zeroDate.until(selectedDate, DateTimeUnit.DAY)).toInt()
+
+    val maxSize =
+        if (allowFutureDates) {
+            MAX_PAGER_SIZE
+        } else {
+            (zeroDate.until(today, DateTimeUnit.DAY).toInt() + 1).coerceAtLeast(1)
+        }
 
     val pagerState = rememberPagerState(initialPage = initialPage, pageCount = { maxSize })
     val coroutineScope = rememberCoroutineScope()

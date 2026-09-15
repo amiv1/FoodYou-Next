@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.outlined.Bolt
+import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Palette
@@ -77,6 +78,13 @@ fun PersonalizationScreen(
                     modifier = Modifier.fillMaxWidth(),
                 )
             }
+            item {
+                AllowFutureDatesSettingsListItem(
+                    checked = viewModel.allowFutureDates.collectAsStateWithLifecycle().value,
+                    onToggle = viewModel::toggleAllowFutureDates,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
         }
     }
 }
@@ -124,6 +132,24 @@ private fun SecureScreenSettingsListItem(
         modifier = modifier,
         supportingContent = { Text(stringResource(Res.string.action_prevent_screen_capture)) },
         icon = { Icon(imageVector = Icons.Outlined.Lock, contentDescription = null) },
+        trailingContent = { Switch(checked = checked, onCheckedChange = null) },
+        color = MaterialTheme.colorScheme.surface,
+        contentColor = MaterialTheme.colorScheme.onSurface,
+    )
+}
+
+@Composable
+private fun AllowFutureDatesSettingsListItem(
+    checked: Boolean,
+    onToggle: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    SettingsListItem(
+        label = { Text(stringResource(Res.string.headline_allow_future_dates)) },
+        onClick = { onToggle(!checked) },
+        modifier = modifier,
+        supportingContent = { Text(stringResource(Res.string.description_allow_future_dates)) },
+        icon = { Icon(imageVector = Icons.Outlined.CalendarMonth, contentDescription = null) },
         trailingContent = { Switch(checked = checked, onCheckedChange = null) },
         color = MaterialTheme.colorScheme.surface,
         contentColor = MaterialTheme.colorScheme.onSurface,

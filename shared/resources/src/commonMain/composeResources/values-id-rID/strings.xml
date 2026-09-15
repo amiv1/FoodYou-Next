@@ -17,6 +17,7 @@
     <string name="headline_system">Sistem</string>
     <string name="headline_system_language_settings">Pengaturan bahasa sistem</string>
     <string name="headline_secure_screen">Amankan layar</string>
+    <string name="headline_allow_future_dates">Izinkan tanggal mendatang</string>
     <string name="headline_about">Tentang</string>
     <string name="headline_version">Versi</string>
     <string name="headline_all_day" description="All-day (meal)">Seharian</string>
@@ -143,6 +144,7 @@
     <string name="action_enable_camera_flash">Aktifkan lampu flash</string>
     <string name="action_disable_camera_flash">Matikan lampu flash</string>
     <string name="action_prevent_screen_capture">Mencegah tangkapan layar</string>
+    <string name="description_allow_future_dates">Pilih tanggal setelah hari ini di kalender, saat menyalin makanan, dan di layar target</string>
     <string name="action_go_to_today">Pergi ke hari ini</string>
     <string name="action_previous_day">Hari sebelumnya</string>
 

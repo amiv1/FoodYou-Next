@@ -15,6 +15,7 @@
     <string name="headline_system">Système</string>
     <string name="headline_system_language_settings">Paramètres de la langue du système</string>
     <string name="headline_secure_screen">Écran sécurisé</string>
+    <string name="headline_allow_future_dates">Autoriser les dates futures</string>
     <string name="headline_about">À propos</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Toute la journée</string>
@@ -139,6 +140,7 @@
     <string name="action_enable_camera_flash">Activer le flash de l'appareil photo</string>
     <string name="action_disable_camera_flash">Désactiver le flash de l'appareil photo</string>
     <string name="action_prevent_screen_capture">Empêcher la capture d'écran</string>
+    <string name="description_allow_future_dates">Choisissez des dates postérieures à aujourd'hui dans le calendrier, lors de la copie des repas et sur les écrans d'objectifs</string>
     <string name="action_go_to_today">Aller à aujourd'hui</string>
     <string name="action_previous_day">Jour précédent</string>
     <string name="action_next_day">Jour suivant</string>

@@ -16,6 +16,7 @@
     <string name="headline_system">Sistem</string>
     <string name="headline_system_language_settings">Sistem dili ayarları</string>
     <string name="headline_secure_screen">Güvenli ekran</string>
+    <string name="headline_allow_future_dates">Gelecek tarihlere izin ver</string>
     <string name="headline_about">Hakkında</string>
     <string name="headline_version">Sürüm</string>
     <string name="headline_all_day" description="All-day (meal)">Tüm gün</string>
@@ -140,6 +141,7 @@
     <string name="action_enable_camera_flash">Kamera flaşını aç</string>
     <string name="action_disable_camera_flash">Kamera flaşını kapat</string>
     <string name="action_prevent_screen_capture">Ekran görüntüsü almayı engelle</string>
+    <string name="description_allow_future_dates">Takvimde, öğün kopyalarken ve hedef ekranlarında bugünden sonraki tarihleri seçin</string>
     <string name="action_go_to_today">Bugüne git</string>
     <string name="action_previous_day">Önceki gün</string>
     <string name="action_next_day">Sonraki gün</string>

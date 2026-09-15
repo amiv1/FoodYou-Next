@@ -15,6 +15,7 @@
     <string name="headline_system">Система</string>
     <string name="headline_system_language_settings">Системные настройки языка</string>
     <string name="headline_secure_screen">Защита экрана</string>
+    <string name="headline_allow_future_dates">Разрешить даты в будущем</string>
     <string name="headline_about">О приложении</string>
     <string name="headline_version">Версия</string>
     <string name="headline_all_day" description="All-day (meal)">Весь день</string>
@@ -143,6 +144,7 @@
     <string name="action_enable_camera_flash">Включить вспышку</string>
     <string name="action_disable_camera_flash">Выключить вспышку</string>
     <string name="action_prevent_screen_capture">Запретить захват экрана</string>
+    <string name="description_allow_future_dates">Выбирайте даты позже сегодняшней в календаре при копировании приёмов пищи и на экранах целей</string>
     <string name="action_go_to_today">Перейти к сегодняшнему дню</string>
     <string name="action_previous_day">Предыдущий день</string>
     <string name="action_next_day">Следующий день</string>
