@@ -233,7 +233,6 @@ private fun UpdateEntryScreen(
             }
 
             item {
-                HorizontalDivider(Modifier.padding(horizontal = 8.dp))
                 NutrientList(
                     food = food,
                     measurement = state.measurementState.measurement,
