@@ -49,6 +49,7 @@ import com.maksimowiczm.foodyou.goals.domain.entity.DailyGoal
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.drop
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -574,6 +575,22 @@ private fun CalendarCardDatePickerDialog(
     onDismissRequest: () -> Unit,
 ) {
     val state = goalsState.rememberDatePickerState()
+
+    LaunchedEffect(state) {
+        snapshotFlow { state.selectedDateMillis }
+            .drop(1)
+            .collect { millis ->
+                millis?.let {
+                    goalsState.goToDate(
+                        date =
+                            Instant.fromEpochMilliseconds(it)
+                                .toLocalDateTime(TimeZone.currentSystemDefault())
+                                .date
+                    )
+                }
+                onDismissRequest()
+            }
+    }
 
     DatePickerDialog(
         onDismissRequest = onDismissRequest,

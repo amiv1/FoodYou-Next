@@ -15,11 +15,13 @@ import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -32,6 +34,7 @@ import com.maksimowiczm.foodyou.common.extension.now
 import com.maksimowiczm.foodyou.settings.domain.entity.Settings
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
@@ -135,6 +138,17 @@ private fun CopyMealDatePickerDialog(
     onDismissRequest: () -> Unit,
 ) {
     val state = rememberCopyMealDatePickerState(selectedDate, zeroDate, referenceDate)
+
+    LaunchedEffect(state) {
+        snapshotFlow { state.selectedDateMillis }
+            .drop(1)
+            .collect { millis ->
+                millis?.let {
+                    onDateSelect(Instant.fromEpochMilliseconds(it).toLocalDateTime(TimeZone.UTC).date)
+                }
+                onDismissRequest()
+            }
+    }
 
     DatePickerDialog(
         onDismissRequest = onDismissRequest,
