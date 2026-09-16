@@ -12,6 +12,7 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
     override val versions: List<Version>
         get() =
             listOf(
+                v_4_2_0,
                 v_4_1_0,
                 v_4_0_0,
                 v_3_4_9,
@@ -55,6 +56,34 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
                 v2_1_0,
                 v2_0_0,
             )
+
+    val v_4_2_0 =
+        Version(
+            version = "4.2.0",
+            date = LocalDate(2026, 9, 16),
+            changes =
+                listOf(
+                    "Added the ability to copy all entries from a meal to any meal on any day.",
+                    "Added the ability to copy a single food diary entry to any meal on any day.",
+                    "Added support for swiping left/right on the home screen to switch dates, " +
+                        "with a live preview of the adjacent day's content.",
+                    "Added a personalization setting to allow picking future dates across the " +
+                        "app (off by default).",
+                    "The calendar date picker now closes automatically after picking a date.",
+                    "Redesigned the home screen nutrition summary card with a large calorie " +
+                        "progress bar and per-macro progress bars.",
+                    "The meal copy dialog now defaults to today and shows \"Today\" instead " +
+                        "of the date when applicable.",
+                    "Updated translations (AI-translated).",
+                ),
+            bugFixes =
+                listOf(
+                    "Fixed the entry action menu being only partially expanded, hiding the " +
+                        "delete button until it was dragged up.",
+                    "Fixed OpenFoodFacts login redirects being incorrectly treated as failures.",
+                ),
+            translations = emptyList(),
+        )
 
     val v_4_1_0 =
         Version(
