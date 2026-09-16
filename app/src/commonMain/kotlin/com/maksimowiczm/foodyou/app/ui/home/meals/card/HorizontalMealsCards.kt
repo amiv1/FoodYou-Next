@@ -32,6 +32,7 @@ internal fun HorizontalMealsCards(
     onDeleteEntry: (MealEntryModel) -> Unit,
     onUpdateMeasurement: (mealId: Long, FoodMealEntryModel, Measurement) -> Unit,
     onCopyMeal: (sourceMealId: Long, targetMealId: Long, targetDate: LocalDate) -> Unit,
+    onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     onLongClick: (mealId: Long) -> Unit,
     shimmer: Shimmer,
     contentPadding: PaddingValues,
@@ -81,6 +82,7 @@ internal fun HorizontalMealsCards(
                     onCopyMeal = { targetMealId, targetDate ->
                         onCopyMeal(meal.id, targetMealId, targetDate)
                     },
+                    onCopyEntry = onCopyEntry,
                     onLongClick = { onLongClick(meal.id) },
                 )
             } else {

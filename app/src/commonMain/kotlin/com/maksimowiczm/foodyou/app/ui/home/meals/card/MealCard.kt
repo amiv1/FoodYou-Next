@@ -73,6 +73,7 @@ internal fun MealCard(
     onDeleteEntry: (MealEntryModel) -> Unit,
     onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
     onCopyMeal: (targetMealId: Long, targetDate: LocalDate) -> Unit,
+    onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -144,6 +145,10 @@ internal fun MealCard(
                 onEditEntry = onEditEntry,
                 onDeleteEntry = onDeleteEntry,
                 onUpdateMeasurement = onUpdateMeasurement,
+                allMeals = allMeals,
+                date = date,
+                mealName = meal.name,
+                onCopyEntry = onCopyEntry,
                 modifier =
                     Modifier.fillMaxWidth()
                         .clip(MaterialTheme.shapes.medium)
@@ -248,6 +253,10 @@ private fun FoodContainer(
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
     onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
+    allMeals: List<MealOption>,
+    date: LocalDate,
+    mealName: String,
+    onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -272,6 +281,10 @@ private fun FoodContainer(
                     onEditEntry = onEditEntry,
                     onDeleteEntry = onDeleteEntry,
                     onUpdateMeasurement = onUpdateMeasurement,
+                    allMeals = allMeals,
+                    date = date,
+                    mealName = mealName,
+                    onCopyEntry = onCopyEntry,
                     shape = shape,
                 )
             }
@@ -311,10 +324,15 @@ private fun FoodContainerItem(
     onEditEntry: (MealEntryModel) -> Unit,
     onDeleteEntry: (MealEntryModel) -> Unit,
     onUpdateMeasurement: (FoodMealEntryModel, Measurement) -> Unit,
+    allMeals: List<MealOption>,
+    date: LocalDate,
+    mealName: String,
+    onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     shape: Shape,
     modifier: Modifier = Modifier,
 ) {
     var showBottomSheet by rememberSaveable { mutableStateOf(false) }
+    var showCopyDialog by rememberSaveable { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
     if (showBottomSheet) {
@@ -328,6 +346,13 @@ private fun FoodContainerItem(
                         onEditEntry(entry)
                         sheetState.hide()
                         showBottomSheet = false
+                    }
+                },
+                onCopy = {
+                    coroutineScope.launch {
+                        sheetState.hide()
+                        showBottomSheet = false
+                        showCopyDialog = true
                     }
                 },
                 onDelete = {
@@ -344,6 +369,19 @@ private fun FoodContainerItem(
                 },
             )
         }
+    }
+
+    if (showCopyDialog) {
+        CopyMealDialog(
+            sourceMealName = mealName,
+            sourceDate = date,
+            meals = allMeals,
+            title = stringResource(Res.string.action_copy),
+            onDismissRequest = { showCopyDialog = false },
+            onConfirm = { targetMealId, targetDate ->
+                onCopyEntry(entry, targetMealId, targetDate)
+            },
+        )
     }
 
     MealFoodListItem(
@@ -390,6 +428,7 @@ private fun ValueColumn(
 private fun BottomSheetContent(
     entry: MealEntryModel,
     onEdit: () -> Unit,
+    onCopy: () -> Unit,
     onDelete: () -> Unit,
     onUpdateMeasurement: (Measurement) -> Unit,
     modifier: Modifier = Modifier,
@@ -435,6 +474,14 @@ private fun BottomSheetContent(
             headlineContent = { Text(stringResource(Res.string.action_edit_entry)) },
             modifier = Modifier.clickable { onEdit() },
             leadingContent = { Icon(imageVector = Icons.Default.Edit, contentDescription = null) },
+            colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(Res.string.action_copy)) },
+            modifier = Modifier.clickable { onCopy() },
+            leadingContent = {
+                Icon(imageVector = Icons.Default.ContentCopy, contentDescription = null)
+            },
             colors = ListItemDefaults.colors(containerColor = Color.Transparent),
         )
         ListItem(

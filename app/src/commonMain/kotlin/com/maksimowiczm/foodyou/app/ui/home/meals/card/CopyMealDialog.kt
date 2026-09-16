@@ -48,7 +48,7 @@ import org.koin.core.qualifier.named
 
 /**
  * Dialog that lets the user pick a target meal and date (never in the future) to copy the
- * currently selected meal's entries into.
+ * currently selected meal's or entry's data into.
  */
 @Composable
 internal fun CopyMealDialog(
@@ -58,6 +58,7 @@ internal fun CopyMealDialog(
     onDismissRequest: () -> Unit,
     onConfirm: (targetMealId: Long, targetDate: LocalDate) -> Unit,
     modifier: Modifier = Modifier,
+    title: String = stringResource(Res.string.headline_copy_meal),
 ) {
     val zeroDate = remember { LocalDate.fromEpochDays(0) }
     val dateProvider = koinInject<DateProvider>()
@@ -98,7 +99,7 @@ internal fun CopyMealDialog(
 
     AlertDialog(
         onDismissRequest = onDismissRequest,
-        title = { Text(stringResource(Res.string.headline_copy_meal)) },
+        title = { Text(title) },
         text = {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),

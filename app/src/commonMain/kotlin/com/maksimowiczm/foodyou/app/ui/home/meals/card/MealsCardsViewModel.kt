@@ -13,6 +13,7 @@ import com.maksimowiczm.foodyou.fooddiary.domain.entity.MealsPreferences
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.FoodDiaryEntryRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.ManualDiaryEntryRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.repository.MealRepository
+import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyDiaryEntryUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyMealUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.UpdateFoodDiaryEntryUseCase
@@ -35,6 +36,7 @@ internal class MealsCardsViewModel(
     private val manualEntryRepository: ManualDiaryEntryRepository,
     private val updateFoodDiaryEntryUseCase: UpdateFoodDiaryEntryUseCase,
     private val copyMealUseCase: CopyMealUseCase,
+    private val copyDiaryEntryUseCase: CopyDiaryEntryUseCase,
     private val mealRepository: MealRepository,
     mealsPreferencesRepository: UserPreferencesRepository<MealsPreferences>,
 ) : ViewModel() {
@@ -105,6 +107,18 @@ internal class MealsCardsViewModel(
                 targetMealId = targetMealId,
                 targetDate = targetDate,
             )
+        }
+    }
+
+    fun copyEntry(model: MealEntryModel, targetMealId: Long, targetDate: LocalDate) {
+        viewModelScope.launch {
+            when (model) {
+                is FoodMealEntryModel ->
+                    copyDiaryEntryUseCase.copyFoodEntry(model.id, targetMealId, targetDate)
+
+                is ManualMealEntryModel ->
+                    copyDiaryEntryUseCase.copyManualEntry(model.id, targetMealId, targetDate)
+            }
         }
     }
 }

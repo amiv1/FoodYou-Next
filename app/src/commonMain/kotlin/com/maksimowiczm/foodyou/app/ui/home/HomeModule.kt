@@ -19,6 +19,7 @@ fun Module.home() {
             manualEntryRepository = get(),
             updateFoodDiaryEntryUseCase = get(),
             copyMealUseCase = get(),
+            copyDiaryEntryUseCase = get(),
             mealRepository = get(),
             mealsPreferencesRepository = userPreferencesRepository(),
         )
