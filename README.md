@@ -42,7 +42,9 @@ This fork is currently distributed via GitHub Releases only.
 <br>
 
 - 🔒 **Privacy First** – No account required, all data stored locally on your device
-- 🧩 **Modular Home Screen** – Customize your home view with functional cards that suit your habits
+- 🧩 **Modular Home Screen** – Customize your home view with functional cards that suit your habits,
+  including independent visibility toggles for calories and macronutrients on both the goals and
+  meal cards
 - 📚 **Comprehensive Food Databases** – Seamlessly integrates Open Food Facts, USDA FoodData Central,
   and Swiss Food Composition Database
 - 🧪 **Full Nutrition Tracking** – Set and track personalized nutrition targets, monitoring not only
@@ -51,14 +53,25 @@ This fork is currently distributed via GitHub Releases only.
   instantly
 - 🎨 **Material You Design** – Adaptive theming and modern UI
 
+### 🆕 Fork Highlights
+
+Since forking, this project has kept building on top of the upstream experience:
+
+- 📅 **Swipeable Date Switcher** – Swipe left/right on the home screen to move between days, with
+  a live preview of the adjacent day and an automatic rollover at midnight
+- 📋 **Copy Meals & Entries** – Duplicate an entire meal or a single food entry to any meal on any
+  day, defaulting to today for quick re-logging
+- 💅 **Ongoing UI/UX Improvements** – Regular polish across the app, from card layouts and spacing
+  to progress bars and settings screens
+
 ## 🤝 Contributing
 
 Want to help make Food You Next even better? Here are some great ways to contribute:
 
 - 🧑‍💻 **Submit Code** – Unlike upstream, this fork welcomes pull requests. Open one
   against [amiv1/FoodYou-Next](https://github.com/amiv1/FoodYou-Next)
-- 🌍 **Translate the App** – Help improve international accessibility
-  via [Crowdin](https://crowdin.com/project/food-you). Let us know if you'd like to be credited
+<!-- - 🌍 **Translate the App** – Help improve international accessibility -->
+<!--   via [Crowdin](https://crowdin.com/project/food-you). Let us know if you'd like to be credited -->
 - 💡 **Request a Feature** – Got an idea? Open
   a [GitHub issue](https://github.com/amiv1/FoodYou-Next/issues) to suggest a new feature or
   improvement
