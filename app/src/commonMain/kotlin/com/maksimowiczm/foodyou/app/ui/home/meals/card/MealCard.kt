@@ -336,7 +336,7 @@ private fun FoodContainerItem(
     val coroutineScope = rememberCoroutineScope()
 
     if (showBottomSheet) {
-        val sheetState = rememberModalBottomSheetState()
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
         ModalBottomSheet(onDismissRequest = { showBottomSheet = false }, sheetState = sheetState) {
             BottomSheetContent(
