@@ -16,10 +16,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DragHandle
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Flag
 import androidx.compose.material.icons.outlined.Restaurant
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeFlexibleTopAppBar
@@ -239,7 +239,7 @@ private fun RowScope.MealsCardContent(onMore: () -> Unit) {
     Spacer(Modifier.weight(1f))
     IconButton(onClick = onMore) {
         Icon(
-            imageVector = Icons.Default.MoreVert,
+            imageVector = Icons.Outlined.Settings,
             contentDescription = stringResource(Res.string.action_show_more),
         )
     }
@@ -257,7 +257,7 @@ private fun RowScope.GoalsCardContent(onMore: () -> Unit) {
     Spacer(Modifier.weight(1f))
     IconButton(onClick = onMore) {
         Icon(
-            imageVector = Icons.Default.MoreVert,
+            imageVector = Icons.Outlined.Settings,
             contentDescription = stringResource(Res.string.action_show_more),
         )
     }
