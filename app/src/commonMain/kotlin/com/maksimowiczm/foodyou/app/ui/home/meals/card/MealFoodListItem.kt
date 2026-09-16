@@ -31,6 +31,8 @@ internal fun MealFoodListItem(
     shape: Shape,
     modifier: Modifier = Modifier,
     showMeasurement: Boolean = true,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
     when (entry) {
         is FoodMealEntryModel ->
@@ -41,6 +43,8 @@ internal fun MealFoodListItem(
                 shape = shape,
                 modifier = modifier,
                 showMeasurement = showMeasurement,
+                showCalories = showCalories,
+                showMacronutrients = showMacronutrients,
             )
 
         is ManualMealEntryModel ->
@@ -50,6 +54,8 @@ internal fun MealFoodListItem(
                 contentColor = contentColor,
                 shape = shape,
                 modifier = modifier,
+                showCalories = showCalories,
+                showMacronutrients = showMacronutrients,
             )
     }
 }
@@ -62,6 +68,8 @@ internal fun MealFoodListItem(
     shape: Shape,
     modifier: Modifier = Modifier,
     showMeasurement: Boolean = true,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
     val g = stringResource(Res.string.unit_gram_short)
 
@@ -100,12 +108,26 @@ internal fun MealFoodListItem(
     } else {
         FoodListItem(
             name = { Text(entry.name) },
-            proteins = { Text(text = proteinsString, style = MaterialTheme.typography.bodySmall) },
-            carbohydrates = {
-                Text(text = carbohydratesString, style = MaterialTheme.typography.bodySmall)
+            proteins = {
+                if (showMacronutrients) {
+                    Text(text = proteinsString, style = MaterialTheme.typography.bodySmall)
+                }
             },
-            fats = { Text(text = fatsString, style = MaterialTheme.typography.bodySmall) },
-            calories = { Text(text = caloriesString, style = MaterialTheme.typography.bodySmall) },
+            carbohydrates = {
+                if (showMacronutrients) {
+                    Text(text = carbohydratesString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            fats = {
+                if (showMacronutrients) {
+                    Text(text = fatsString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            calories = {
+                if (showCalories) {
+                    Text(text = caloriesString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
             measurement = {
                 if (showMeasurement) {
                     Text(text = measurementString, style = MaterialTheme.typography.bodySmall)
@@ -128,6 +150,8 @@ internal fun MealFoodListItem(
     contentColor: Color,
     shape: Shape,
     modifier: Modifier = Modifier,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
     val g = stringResource(Res.string.unit_gram_short)
 
@@ -165,12 +189,26 @@ internal fun MealFoodListItem(
                     )
                 }
             },
-            proteins = { Text(text = proteinsString, style = MaterialTheme.typography.bodySmall) },
-            carbohydrates = {
-                Text(text = carbohydratesString, style = MaterialTheme.typography.bodySmall)
+            proteins = {
+                if (showMacronutrients) {
+                    Text(text = proteinsString, style = MaterialTheme.typography.bodySmall)
+                }
             },
-            fats = { Text(text = fatsString, style = MaterialTheme.typography.bodySmall) },
-            calories = { Text(text = caloriesString, style = MaterialTheme.typography.bodySmall) },
+            carbohydrates = {
+                if (showMacronutrients) {
+                    Text(text = carbohydratesString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            fats = {
+                if (showMacronutrients) {
+                    Text(text = fatsString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            calories = {
+                if (showCalories) {
+                    Text(text = caloriesString, style = MaterialTheme.typography.bodySmall)
+                }
+            },
             measurement = {},
             isRecipe = false,
             modifier = modifier,

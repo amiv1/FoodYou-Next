@@ -24,6 +24,8 @@ internal fun MealsCards(
     val diaryMeals = viewModel.diaryMeals.collectAsStateWithLifecycle().value
     val allMeals by viewModel.allMeals.collectAsStateWithLifecycle()
     val layout by viewModel.layout.collectAsStateWithLifecycle()
+    val showCalories by viewModel.showCalories.collectAsStateWithLifecycle()
+    val showMacronutrients by viewModel.showMacronutrients.collectAsStateWithLifecycle()
 
     LaunchedEffect(date, viewModel) { viewModel.setDate(date) }
 
@@ -47,6 +49,8 @@ internal fun MealsCards(
                 onLongClick = onLongClick,
                 shimmer = shimmer,
                 contentPadding = contentPadding,
+                showCalories = showCalories,
+                showMacronutrients = showMacronutrients,
                 modifier = modifier,
             )
 
@@ -69,6 +73,8 @@ internal fun MealsCards(
                 onLongClick = onLongClick,
                 shimmer = shimmer,
                 contentPadding = contentPadding,
+                showCalories = showCalories,
+                showMacronutrients = showMacronutrients,
                 modifier = modifier,
             )
     }

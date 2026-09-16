@@ -76,6 +76,8 @@ internal fun MealCard(
     onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
     val nutrientsPalette = LocalNutrientsPalette.current
     val nutrientsOrder = LocalNutrientsOrder.current
@@ -149,6 +151,8 @@ internal fun MealCard(
                 date = date,
                 mealName = meal.name,
                 onCopyEntry = onCopyEntry,
+                showCalories = showCalories,
+                showMacronutrients = showMacronutrients,
                 modifier =
                     Modifier.fillMaxWidth()
                         .clip(MaterialTheme.shapes.medium)
@@ -173,47 +177,60 @@ internal fun MealCard(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp),
-                ) {
-                    ValueColumn(
-                        label = energyFormatter.suffix(),
-                        value = energyFormatter.formatEnergy(meal.energy, withSuffix = false),
-                        suffix = null,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
+                if (showCalories || showMacronutrients) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    ) {
+                        if (showCalories) {
+                            ValueColumn(
+                                label = energyFormatter.suffix(),
+                                value =
+                                    energyFormatter.formatEnergy(meal.energy, withSuffix = false),
+                                suffix = null,
+                                color = MaterialTheme.colorScheme.onSurface,
+                            )
+                        }
 
-                    nutrientsOrder.forEach { field ->
-                        when (field) {
-                            NutrientsOrder.Proteins ->
-                                ValueColumn(
-                                    label = stringResource(Res.string.nutriment_proteins_short),
-                                    value = meal.proteins.formatClipZeros("%.1f"),
-                                    suffix = stringResource(Res.string.unit_gram_short),
-                                    color = nutrientsPalette.proteinsOnSurfaceContainer,
-                                )
+                        if (showMacronutrients) {
+                            nutrientsOrder.forEach { field ->
+                                when (field) {
+                                    NutrientsOrder.Proteins ->
+                                        ValueColumn(
+                                            label =
+                                                stringResource(
+                                                    Res.string.nutriment_proteins_short
+                                                ),
+                                            value = meal.proteins.formatClipZeros("%.1f"),
+                                            suffix = stringResource(Res.string.unit_gram_short),
+                                            color = nutrientsPalette.proteinsOnSurfaceContainer,
+                                        )
 
-                            NutrientsOrder.Carbohydrates ->
-                                ValueColumn(
-                                    label =
-                                        stringResource(Res.string.nutriment_carbohydrates_short),
-                                    value = meal.carbohydrates.formatClipZeros("%.1f"),
-                                    suffix = stringResource(Res.string.unit_gram_short),
-                                    color = nutrientsPalette.carbohydratesOnSurfaceContainer,
-                                )
+                                    NutrientsOrder.Carbohydrates ->
+                                        ValueColumn(
+                                            label =
+                                                stringResource(
+                                                    Res.string.nutriment_carbohydrates_short
+                                                ),
+                                            value = meal.carbohydrates.formatClipZeros("%.1f"),
+                                            suffix = stringResource(Res.string.unit_gram_short),
+                                            color =
+                                                nutrientsPalette.carbohydratesOnSurfaceContainer,
+                                        )
 
-                            NutrientsOrder.Fats ->
-                                ValueColumn(
-                                    label = stringResource(Res.string.nutriment_fats_short),
-                                    value = meal.fats.formatClipZeros("%.1f"),
-                                    suffix = stringResource(Res.string.unit_gram_short),
-                                    color = nutrientsPalette.fatsOnSurfaceContainer,
-                                )
+                                    NutrientsOrder.Fats ->
+                                        ValueColumn(
+                                            label = stringResource(Res.string.nutriment_fats_short),
+                                            value = meal.fats.formatClipZeros("%.1f"),
+                                            suffix = stringResource(Res.string.unit_gram_short),
+                                            color = nutrientsPalette.fatsOnSurfaceContainer,
+                                        )
 
-                            NutrientsOrder.Other,
-                            NutrientsOrder.Vitamins,
-                            NutrientsOrder.Minerals -> Unit
+                                    NutrientsOrder.Other,
+                                    NutrientsOrder.Vitamins,
+                                    NutrientsOrder.Minerals -> Unit
+                                }
+                            }
                         }
                     }
                 }
@@ -257,6 +274,8 @@ private fun FoodContainer(
     date: LocalDate,
     mealName: String,
     onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
+    showCalories: Boolean,
+    showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -286,6 +305,8 @@ private fun FoodContainer(
                     mealName = mealName,
                     onCopyEntry = onCopyEntry,
                     shape = shape,
+                    showCalories = showCalories,
+                    showMacronutrients = showMacronutrients,
                 )
             }
         }
@@ -329,6 +350,8 @@ private fun FoodContainerItem(
     mealName: String,
     onCopyEntry: (entry: MealEntryModel, targetMealId: Long, targetDate: LocalDate) -> Unit,
     shape: Shape,
+    showCalories: Boolean,
+    showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
 ) {
     var showBottomSheet by rememberSaveable { mutableStateOf(false) }
@@ -389,6 +412,8 @@ private fun FoodContainerItem(
         color = MaterialTheme.colorScheme.surfaceVariant,
         contentColor = MaterialTheme.colorScheme.onSurface,
         shape = shape,
+        showCalories = showCalories,
+        showMacronutrients = showMacronutrients,
         modifier = modifier.clickable { showBottomSheet = true },
     )
 }

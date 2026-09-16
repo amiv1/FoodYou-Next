@@ -6,4 +6,6 @@ data class MealsPreferences(
     val layout: MealsCardsLayout,
     val useTimeBasedSorting: Boolean,
     val ignoreAllDayMeals: Boolean,
+    val showCalories: Boolean,
+    val showMacronutrients: Boolean,
 ) : UserPreferences

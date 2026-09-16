@@ -42,6 +42,8 @@ fun MealsCardsSettingsScreen(
     val layout = preferences.layout
     val useTimeBasedSorting = preferences.useTimeBasedSorting
     val ignoreAllDayMeals = preferences.ignoreAllDayMeals
+    val showCalories = preferences.showCalories
+    val showMacronutrients = preferences.showMacronutrients
 
     MealCardSettings(
         layout = layout,
@@ -53,6 +55,12 @@ fun MealsCardsSettingsScreen(
         ignoreAllDayMeals = ignoreAllDayMeals,
         toggleIgnoreAllDayMeals = {
             viewModel.updatePreferences(preferences.copy(ignoreAllDayMeals = it))
+        },
+        showCalories = showCalories,
+        toggleShowCalories = { viewModel.updatePreferences(preferences.copy(showCalories = it)) },
+        showMacronutrients = showMacronutrients,
+        toggleShowMacronutrients = {
+            viewModel.updatePreferences(preferences.copy(showMacronutrients = it))
         },
         onMealsSettings = onMealSettings,
         onBack = onBack,
@@ -68,6 +76,10 @@ internal fun MealCardSettings(
     toggleTimeBased: (Boolean) -> Unit,
     ignoreAllDayMeals: Boolean,
     toggleIgnoreAllDayMeals: (Boolean) -> Unit,
+    showCalories: Boolean,
+    toggleShowCalories: (Boolean) -> Unit,
+    showMacronutrients: Boolean,
+    toggleShowMacronutrients: (Boolean) -> Unit,
     onMealsSettings: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
@@ -102,6 +114,40 @@ internal fun MealCardSettings(
                     modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
                 )
             }
+
+            item { HorizontalDivider() }
+
+            item {
+                ListItem(
+                    headlineContent = { Text(stringResource(Res.string.headline_show_calories)) },
+                    modifier =
+                        Modifier.clickable {
+                            hapticFeedback.performToggle(!showCalories)
+                            toggleShowCalories(!showCalories)
+                        },
+                    trailingContent = {
+                        Switch(checked = showCalories, onCheckedChange = null)
+                    },
+                )
+            }
+
+            item {
+                ListItem(
+                    headlineContent = {
+                        Text(stringResource(Res.string.headline_show_macronutrients))
+                    },
+                    modifier =
+                        Modifier.clickable {
+                            hapticFeedback.performToggle(!showMacronutrients)
+                            toggleShowMacronutrients(!showMacronutrients)
+                        },
+                    trailingContent = {
+                        Switch(checked = showMacronutrients, onCheckedChange = null)
+                    },
+                )
+            }
+
+            item { HorizontalDivider() }
 
             advancedLayoutSettings(
                 useTimeBasedSorting = useTimeBasedSorting,

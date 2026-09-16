@@ -16,12 +16,16 @@ internal class DataStoreMealsPreferencesRepository(dataStore: DataStore<Preferen
             layout = getLayout(),
             useTimeBasedSorting = this[MealsPreferencesDataStoreKeys.useTimeBasedSorting] ?: false,
             ignoreAllDayMeals = this[MealsPreferencesDataStoreKeys.ignoreAllDayMeals] ?: false,
+            showCalories = this[MealsPreferencesDataStoreKeys.showCalories] ?: true,
+            showMacronutrients = this[MealsPreferencesDataStoreKeys.showMacronutrients] ?: true,
         )
 
     override fun MutablePreferences.applyUserPreferences(updated: MealsPreferences) {
         this[MealsPreferencesDataStoreKeys.layout] = updated.layout.ordinal
         this[MealsPreferencesDataStoreKeys.useTimeBasedSorting] = updated.useTimeBasedSorting
         this[MealsPreferencesDataStoreKeys.ignoreAllDayMeals] = updated.ignoreAllDayMeals
+        this[MealsPreferencesDataStoreKeys.showCalories] = updated.showCalories
+        this[MealsPreferencesDataStoreKeys.showMacronutrients] = updated.showMacronutrients
     }
 }
 
@@ -35,4 +39,7 @@ private object MealsPreferencesDataStoreKeys {
         booleanPreferencesKey("fooddiary:meals_preferences:use_time_based_sorting")
     val ignoreAllDayMeals =
         booleanPreferencesKey("fooddiary:meals_preferences:ignore_all_day_meals")
+    val showCalories = booleanPreferencesKey("fooddiary:meals_preferences:show_calories")
+    val showMacronutrients =
+        booleanPreferencesKey("fooddiary:meals_preferences:show_macronutrients")
 }

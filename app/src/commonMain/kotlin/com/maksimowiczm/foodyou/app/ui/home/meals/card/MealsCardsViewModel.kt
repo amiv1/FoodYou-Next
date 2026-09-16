@@ -71,6 +71,26 @@ internal class MealsCardsViewModel(
             initialValue = runBlocking { _layout.first() },
         )
 
+    val showCalories =
+        mealsPreferencesRepository
+            .observe()
+            .map { it.showCalories }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(2_000),
+                initialValue = true,
+            )
+
+    val showMacronutrients =
+        mealsPreferencesRepository
+            .observe()
+            .map { it.showMacronutrients }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(2_000),
+                initialValue = true,
+            )
+
     fun setDate(date: LocalDate) {
         viewModelScope.launch { dateState.value = date }
     }

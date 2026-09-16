@@ -26,6 +26,8 @@ internal fun VerticalMealsCards(
     onLongClick: (mealId: Long) -> Unit,
     shimmer: Shimmer,
     contentPadding: PaddingValues,
+    showCalories: Boolean,
+    showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -52,6 +54,8 @@ internal fun VerticalMealsCards(
                     },
                     onCopyEntry = onCopyEntry,
                     onLongClick = { onLongClick(meal.id) },
+                    showCalories = showCalories,
+                    showMacronutrients = showMacronutrients,
                 )
             }
         }

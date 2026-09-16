@@ -36,6 +36,8 @@ internal fun HorizontalMealsCards(
     onLongClick: (mealId: Long) -> Unit,
     shimmer: Shimmer,
     contentPadding: PaddingValues,
+    showCalories: Boolean,
+    showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
 ) {
     // Must be same as meals count or more but since we don't have meals count yet set it to some
@@ -84,6 +86,8 @@ internal fun HorizontalMealsCards(
                     },
                     onCopyEntry = onCopyEntry,
                     onLongClick = { onLongClick(meal.id) },
+                    showCalories = showCalories,
+                    showMacronutrients = showMacronutrients,
                 )
             } else {
                 MealCardSkeleton(shimmer = shimmer)
