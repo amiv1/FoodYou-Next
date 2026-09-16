@@ -12,6 +12,8 @@ import androidx.compose.ui.text.withStyle
 import foodyou.app.generated.resources.*
 import org.jetbrains.compose.resources.stringResource
 
+private const val DESIGNER_NAME = "Julija Berzina"
+
 @Composable
 internal fun icons8stringResource(style: TextStyle = LocalTextStyle.current): AnnotatedString {
     val str = stringResource(Res.string.headline_launcher_icon_by_icons8)
@@ -20,19 +22,16 @@ internal fun icons8stringResource(style: TextStyle = LocalTextStyle.current): An
 
     return remember(str, link, primary, style) {
         buildAnnotatedString {
-            val split = str.split(" ")
-            split.forEachIndexed { index, word ->
-                if (word == "Icons8" || word == "icons8") {
-                    withLink(LinkAnnotation.Url(link)) {
-                        withStyle(style.merge(primary).toSpanStyle()) { append(word) }
-                    }
-                } else {
-                    append(word)
+            val nameIndex = str.indexOf(DESIGNER_NAME)
+            if (nameIndex < 0) {
+                // Designer name not found in the localized string, fall back to plain text.
+                append(str)
+            } else {
+                append(str.substring(0, nameIndex))
+                withLink(LinkAnnotation.Url(link)) {
+                    withStyle(style.merge(primary).toSpanStyle()) { append(DESIGNER_NAME) }
                 }
-
-                if (index < split.lastIndex) {
-                    append(" ")
-                }
+                append(str.substring(nameIndex + DESIGNER_NAME.length))
             }
         }
     }

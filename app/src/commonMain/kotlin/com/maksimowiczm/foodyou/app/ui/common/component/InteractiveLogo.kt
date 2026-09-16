@@ -132,7 +132,7 @@ fun InteractiveLogo(
                 ),
         )
 
-    val iconPainter = painterResource(Res.drawable.ic_sushi)
+    val iconPainter = painterResource(Res.drawable.ic_app_icon)
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         // This is hacky way to clip the canvas to a morphing shape because it can't be done

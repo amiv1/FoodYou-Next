@@ -232,7 +232,7 @@
     <string name="description_show_macronutrients_goals">Mostra els objectius dels macronutrients</string>
     <string name="description_please_wait_while_importing_products">Si us plau, espera mentre s'importen els productes</string>
     <string name="description_please_wait_while_exporting_products">Si us plau, espera mentre s'exporten els productes</string>
-    <string name="headline_launcher_icon_by_icons8">Icona feta amb Icons8</string>
+    <string name="headline_launcher_icon_by_icons8">Icona feta amb Julija Berzina</string>
     <string name="description_open_food_facts">Una base de dades col·laborativa, lliure i oberta de productes alimentaris d'arreu del món</string>
     <string name="error_open_food_facts_rate_limit">S'ha superat el límit de l'API d'Open Food Facts</string>
     <string name="error_open_food_facts_service_unavailable">El servei d'Open Food Facts no està disponible temporalment. Els usuaris registrats no estan subjectes a límits de sol·licituds i obtenen accés prioritari durant les hores punta.</string>

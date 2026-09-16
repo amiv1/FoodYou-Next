@@ -105,7 +105,7 @@ Looking for alternatives or similar tools?
 - [Food You](https://github.com/maksimowiczm/FoodYou) by Mateusz Maksimowicz — the upstream
   project this fork is based on
 - [ReadYou](https://github.com/Ashinch/ReadYou) — inspiration borrowed by the original project 🙃
-- [Icons8](https://icons8.com) — sushi icon 🍣
+- [Julija Berzina](https://www.behance.net/julijaberzina) — app icon
 
 ## 📜 License
 

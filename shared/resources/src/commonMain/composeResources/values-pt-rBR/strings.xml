@@ -232,7 +232,7 @@
     <string name="description_show_macronutrients_goals">Mostrar os objetivos de macronutrientes</string>
     <string name="description_please_wait_while_importing_products">Aguarde enquanto os produtos são importados</string>
     <string name="description_please_wait_while_exporting_products">Aguarde enquanto os produtos são exportados</string>
-    <string name="headline_launcher_icon_by_icons8">Ícone da aplicação por Icons8</string>
+    <string name="headline_launcher_icon_by_icons8">Ícone da aplicação por Julija Berzina</string>
     <string name="description_open_food_facts">Um banco de dados colaborativo, gratuito e aberto de produtos alimentícios do mundo todo</string>
     <string name="error_open_food_facts_rate_limit">Limite da API do Open Food Facts excedido</string>
     <string name="error_open_food_facts_service_unavailable">O serviço do Open Food Facts está temporariamente indisponível. Usuários cadastrados não estão sujeitos a limites de solicitações e têm acesso prioritário nos horários de pico.</string>
