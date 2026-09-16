@@ -3,7 +3,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/amiv1/FoodYou-Next?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIC05NjAgOTYwIDk2MCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Im0zNTQtMjQ3IDEyNi03NiAxMjYgNzctMzMtMTQ0IDExMS05Ni0xNDYtMTMtNTgtMTM2LTU4IDEzNS0xNDYgMTMgMTExIDk3LTMzIDE0M1pNMjMzLTgwbDY1LTI4MUw4MC01NTBsMjg4LTI1IDExMi0yNjUgMTEyIDI2NSAyODggMjUtMjE4IDE4OSA2NSAyODEtMjQ3LTE0OUwyMzMtODBabTI0Ny0zNTBaIiBzdHlsZT0iZmlsbDogcmdiKDI0NSwgMjI3LCA2Nik7Ii8%2BCjwvc3ZnPg%3D%3D&color=%23f8e444)](https://github.com/amiv1/FoodYou-Next/stargazers)
 
 <div align="center">
-    <img src="./metadata/en-US/images/featureGraphic.png" alt="Feature Graphic" />
+    <img src="./metadata/en-US/images/featureGraphic.webp" alt="Feature Graphic" />
 </div>
 
 **Food You Next** is a community-maintained fork
@@ -33,10 +33,10 @@ This fork is currently distributed via GitHub Releases only.
 <br>
 
 <div align="center">
-  <img src="metadata/en-US/images/phoneScreenshots/1.png" width="23%" alt="Modular Home Screen"/>
-  <img src="metadata/en-US/images/phoneScreenshots/2.png" width="23%" alt="Comprehensive Food Databases"/>
-  <img src="metadata/en-US/images/phoneScreenshots/3.png" width="23%" alt="Full Nutrition Tracking"/>
-  <img src="metadata/en-US/images/phoneScreenshots/4.png" width="23%" alt="Recipe Creation"/>
+  <img src="metadata/en-US/images/phoneScreenshots/info-01.webp" width="23%"/>
+  <img src="metadata/en-US/images/phoneScreenshots/info-02.webp" width="23%"/>
+  <img src="metadata/en-US/images/phoneScreenshots/info-03.webp" width="23%"/>
+  <img src="metadata/en-US/images/phoneScreenshots/info-04.webp" width="23%"/>
 </div>
 
 <br>
