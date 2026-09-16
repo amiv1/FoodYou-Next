@@ -71,7 +71,7 @@ internal fun CopyMealDialog(
             .collectAsStateWithLifecycle(false)
             .value
     val maxDate = if (allowFutureDates) today.plus(100, DateTimeUnit.YEAR) else today
-    var targetDate by rememberSaveable { mutableStateOf(sourceDate.coerceIn(zeroDate, maxDate)) }
+    var targetDate by rememberSaveable { mutableStateOf(today.coerceIn(zeroDate, maxDate)) }
     var showDatePicker by rememberSaveable { mutableStateOf(false) }
 
     val mealNames = remember(meals) { meals.map { it.name } }
@@ -89,6 +89,12 @@ internal fun CopyMealDialog(
     }
 
     val dateFormatter = LocalDateFormatter.current
+    val dateLabel =
+        if (targetDate == today) {
+            stringResource(Res.string.action_today)
+        } else {
+            dateFormatter.formatDate(targetDate)
+        }
 
     AlertDialog(
         onDismissRequest = onDismissRequest,
@@ -99,7 +105,7 @@ internal fun CopyMealDialog(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 FilledTonalButton(onClick = { showDatePicker = true }) {
-                    Text(dateFormatter.formatDate(targetDate))
+                    Text(dateLabel)
                 }
 
                 ChipsMealPicker(state = mealPickerState, modifier = Modifier.fillMaxWidth())
