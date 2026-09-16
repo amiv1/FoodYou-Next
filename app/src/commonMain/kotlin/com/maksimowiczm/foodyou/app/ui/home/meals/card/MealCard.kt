@@ -45,6 +45,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
@@ -54,6 +55,7 @@ import com.maksimowiczm.foodyou.app.ui.common.utility.weightCaption
 import com.maksimowiczm.foodyou.app.ui.food.component.MeasurementScrubber
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
+import com.maksimowiczm.foodyou.common.compose.utility.TestTags
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
 import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
@@ -131,7 +133,10 @@ internal fun MealCard(
                 }
 
                 if (meal.foods.isNotEmpty()) {
-                    IconButton(onClick = { showCopyDialog = true }) {
+                    IconButton(
+                        onClick = { showCopyDialog = true },
+                        modifier = Modifier.testTag(TestTags.mealCopyButton(meal.id)),
+                    ) {
                         Icon(
                             imageVector = Icons.Default.ContentCopy,
                             contentDescription = stringResource(Res.string.headline_copy_meal),
@@ -238,6 +243,7 @@ internal fun MealCard(
                 Spacer(Modifier.weight(1f))
                 FilledTonalIconButton(
                     onClick = onQuickAdd,
+                    modifier = Modifier.testTag(TestTags.mealQuickAddButton(meal.id)),
                     shapes =
                         IconButtonDefaults.shapes(
                             MaterialTheme.shapes.medium,
@@ -248,6 +254,7 @@ internal fun MealCard(
                 }
                 FilledIconButton(
                     onClick = onAddFood,
+                    modifier = Modifier.testTag(TestTags.mealAddButton(meal.id)),
                     shapes =
                         IconButtonDefaults.shapes(
                             MaterialTheme.shapes.medium,

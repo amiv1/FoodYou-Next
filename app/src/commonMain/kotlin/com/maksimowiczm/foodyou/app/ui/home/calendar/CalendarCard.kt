@@ -24,9 +24,11 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
+import com.maksimowiczm.foodyou.common.compose.utility.TestTags
 import foodyou.app.generated.resources.*
 import kotlin.time.Instant
 import kotlinx.coroutines.flow.drop
@@ -82,7 +84,10 @@ private fun CalendarCard(calendarState: CalendarState, modifier: Modifier = Modi
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            IconButton(onClick = { calendarState.selectPreviousDay() }) {
+            IconButton(
+                onClick = { calendarState.selectPreviousDay() },
+                modifier = Modifier.testTag(TestTags.CalendarPreviousDayButton),
+            ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowLeft,
                     contentDescription = stringResource(Res.string.action_previous_day),
@@ -91,7 +96,7 @@ private fun CalendarCard(calendarState: CalendarState, modifier: Modifier = Modi
 
             FilledTonalButton(
                 onClick = { showDatePicker = true },
-                modifier = Modifier.weight(1f).fillMaxHeight(),
+                modifier = Modifier.weight(1f).fillMaxHeight().testTag(TestTags.CalendarDateButton),
                 contentPadding = ButtonDefaults.TextButtonContentPadding,
             ) {
                 Text(
@@ -104,6 +109,7 @@ private fun CalendarCard(calendarState: CalendarState, modifier: Modifier = Modi
             IconButton(
                 onClick = { calendarState.selectNextDay() },
                 enabled = calendarState.canSelectNextDay,
+                modifier = Modifier.testTag(TestTags.CalendarNextDayButton),
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,

@@ -114,6 +114,8 @@ kotlin {
             implementation(libs.androidx.testCore.ktx)
             implementation(libs.androidx.testRunner)
             implementation(libs.androidx.testExt.junit)
+            implementation(libs.androidx.espresso.core)
+            implementation(libs.androidx.compose.ui.test.junit4)
         }
 
         iosMain.dependencies { implementation(libs.ktor.client.darwin) }
@@ -171,6 +173,17 @@ android {
 
 dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Force a single, mutually-compatible version of concurrent-futures across every classpath:
+    // the main app classpath pulls 1.1.0 transitively (via appcompat -> profileinstaller), while
+    // the new Compose UI test artifacts pull 1.2.0 transitively (via androidx.test:core) - KGP's
+    // consistent-resolution check requires the main and androidTest classpaths to agree on one
+    // version, so bump it project-wide rather than just for the test configuration.
+    constraints {
+        add("implementation", "androidx.concurrent:concurrent-futures:1.2.0")
+        add("implementation", "androidx.concurrent:concurrent-futures-ktx:1.2.0")
+    }
 
     listOf("kspCommonMainMetadata", "kspAndroid", "kspIosArm64", "kspIosSimulatorArm64").forEach {
         add(it, libs.androidx.room.compiler)

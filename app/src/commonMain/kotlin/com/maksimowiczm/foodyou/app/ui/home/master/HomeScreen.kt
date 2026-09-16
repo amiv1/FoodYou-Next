@@ -29,6 +29,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -38,6 +39,7 @@ import com.maksimowiczm.foodyou.app.ui.home.meals.card.MealsCards
 import com.maksimowiczm.foodyou.app.ui.home.poll.PollsCard
 import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
 import com.maksimowiczm.foodyou.app.ui.home.shared.rememberHomeState
+import com.maksimowiczm.foodyou.common.compose.utility.TestTags
 import com.maksimowiczm.foodyou.settings.domain.entity.HomeCard
 import com.valentinilk.shimmer.Shimmer
 import foodyou.app.generated.resources.*
@@ -151,9 +153,10 @@ fun HomeScreen(
 
         Box(
             modifier =
-                Modifier.fillMaxSize().onSizeChanged { containerWidthPx = it.width }.pointerInput(
-                    homeState
-                ) {
+                Modifier.fillMaxSize()
+                    .testTag(TestTags.HomeDateSwipeArea)
+                    .onSizeChanged { containerWidthPx = it.width }
+                    .pointerInput(homeState) {
                     detectHorizontalDragGestures(
                         onDragEnd = {
                             coroutineScope.launch {

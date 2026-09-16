@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 class CalorieSummaryTest {
 
     @Test
-    fun `normal state`() {
+    fun `normal_state`() {
         val summary = calorieSummaryOf(target = 1200, consumed = 266)
 
         assertEquals(CalorieState.NORMAL, summary.state)
@@ -16,7 +16,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `over limit state`() {
+    fun `over_limit_state`() {
         val summary = calorieSummaryOf(target = 1200, consumed = 2664)
 
         assertEquals(CalorieState.OVER_LIMIT, summary.state)
@@ -25,7 +25,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `exactly at target is normal, not exceeded`() {
+    fun `exactly_at_target_is_normal_not_exceeded`() {
         val summary = calorieSummaryOf(target = 1200, consumed = 1200)
 
         assertEquals(CalorieState.NORMAL, summary.state)
@@ -34,7 +34,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `zero target does not crash and yields zero progress`() {
+    fun `zero_target_does_not_crash_and_yields_zero_progress`() {
         val summary = calorieSummaryOf(target = 0, consumed = 0)
 
         assertEquals(CalorieState.NORMAL, summary.state)
@@ -43,7 +43,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `zero consumed yields zero progress`() {
+    fun `zero_consumed_yields_zero_progress`() {
         val summary = calorieSummaryOf(target = 1200, consumed = 0)
 
         assertEquals(CalorieState.NORMAL, summary.state)
@@ -52,7 +52,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `large values remain correct`() {
+    fun `large_values_remain_correct`() {
         val summary = calorieSummaryOf(target = 12_500, consumed = 25_000)
 
         assertEquals(CalorieState.OVER_LIMIT, summary.state)
@@ -61,7 +61,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `nutrient progress is clamped and guards zero target`() {
+    fun `nutrient_progress_is_clamped_and_guards_zero_target`() {
         assertApproximately(19f / 90f, nutrientProgress(current = 19, target = 90))
         assertEquals(0f, nutrientProgress(current = 0, target = 0))
         assertEquals(1f, nutrientProgress(current = 999, target = 90))
@@ -69,7 +69,7 @@ class CalorieSummaryTest {
     }
 
     @Test
-    fun `nutrient exceeded is only true when strictly over a positive target`() {
+    fun `nutrient_exceeded_is_only_true_when_strictly_over_a_positive_target`() {
         assertEquals(false, isNutrientExceeded(current = 90, target = 90))
         assertEquals(true, isNutrientExceeded(current = 91, target = 90))
         assertEquals(false, isNutrientExceeded(current = 0, target = 0))
