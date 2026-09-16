@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ViewList
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Save
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
@@ -87,9 +87,9 @@ internal fun MeasureIngredientScreen(
             )
         },
         floatingActionButton = {
-            LargeExtendedFloatingActionButton(
+            ExtendedFloatingActionButton(
                 onClick = { onSave(measurementPickerState.measurement) },
-                icon = { Icon(imageVector = Icons.Filled.Edit, contentDescription = null) },
+                icon = { Icon(imageVector = Icons.Filled.Save, contentDescription = null) },
                 text = { Text(stringResource(Res.string.action_save)) },
             )
         },

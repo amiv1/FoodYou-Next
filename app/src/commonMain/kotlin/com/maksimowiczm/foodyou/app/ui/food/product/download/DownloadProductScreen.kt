@@ -28,11 +28,10 @@ import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeExtendedFloatingActionButton
 import androidx.compose.material3.LinearWavyProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -104,18 +103,14 @@ internal fun DownloadProductScreen(
                     )
                 }
 
-                LargeExtendedFloatingActionButton(
+                ExtendedFloatingActionButton(
                     onClick = {
                         if (!isDownloading) {
                             onDownload()
                         }
                     },
                     icon = {
-                        Icon(
-                            imageVector = Icons.Default.Download,
-                            contentDescription = null,
-                            modifier = Modifier.size(FloatingActionButtonDefaults.LargeIconSize),
-                        )
+                        Icon(imageVector = Icons.Default.Download, contentDescription = null)
                     },
                     text = { Text(stringResource(Res.string.action_download)) },
                 )
