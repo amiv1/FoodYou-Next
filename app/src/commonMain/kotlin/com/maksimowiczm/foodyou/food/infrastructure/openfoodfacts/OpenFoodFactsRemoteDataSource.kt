@@ -103,7 +103,8 @@ internal class OpenFoodFactsRemoteDataSource(
                 )
             }
 
-        if (response.status.value !in 200..299) {
+        // login.pl responds 302 on success (redirect, not followed for POST) and 401/403 on failure.
+        if (response.status.value >= 400) {
             error("Login failed")
         }
     }
