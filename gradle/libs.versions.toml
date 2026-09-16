@@ -33,6 +33,7 @@ runner = "1.7.0"
 shimmer = "1.3.3"
 sqliteAndroid = "3.49.0"
 sqliteBundled = "2.6.2"
+versionsPlugin = "0.63.0"
 zxingAndroidEmbedded = "4.3.0"
 
 [libraries]
@@ -89,3 +90,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
+versions = { id = "io.github.ben-manes.versions", version.ref = "versionsPlugin" }
