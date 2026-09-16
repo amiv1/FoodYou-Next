@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,6 +21,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
+import com.maksimowiczm.foodyou.common.compose.component.SimpleProgressIndicator
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
 import com.maksimowiczm.foodyou.common.domain.food.NutrientValue
 import com.maksimowiczm.foodyou.common.domain.food.NutritionFactsField
@@ -83,30 +83,21 @@ internal fun NutrientGoal(
 ) {
     val progress by
         animateFloatAsState(
-            targetValue = state.progress % 1,
+            targetValue = state.progress,
             animationSpec = MaterialTheme.motionScheme.slowSpatialSpec(),
         )
     val progressBarColor by
-        animateColorAsState(
-            if (state.progress > 1) MaterialTheme.colorScheme.error else progressColor
-        )
-    val trackColor by
-        animateColorAsState(
-            if (state.progress > 1) progressColor.copy(alpha = .75f)
-            else progressColor.copy(alpha = 0.25f)
-        )
+        animateColorAsState(if (state.isExceeded) MaterialTheme.colorScheme.error else progressColor)
 
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Box(modifier = Modifier.weight(1f).padding(end = 8.dp)) { label() }
             value()
         }
-        LinearProgressIndicator(
-            progress = { progress },
-            modifier = Modifier.fillMaxWidth().height(8.dp),
+        SimpleProgressIndicator(
+            progress = progress,
             color = progressBarColor,
-            trackColor = trackColor,
-            drawStopIndicator = {},
+            modifier = Modifier.fillMaxWidth().height(8.dp),
         )
     }
 }
@@ -121,7 +112,7 @@ internal class NutrientGoalState(val value: Double, val target: Double) {
         get() = value > target
 
     val progress: Float
-        get() = if (target == 0.0) 0f else (value / target).toFloat().coerceIn(0f, 1.99999f)
+        get() = if (target == 0.0) 0f else (value / target).toFloat().coerceIn(0f, 1f)
 }
 
 internal object NutrientGoalDefaults {

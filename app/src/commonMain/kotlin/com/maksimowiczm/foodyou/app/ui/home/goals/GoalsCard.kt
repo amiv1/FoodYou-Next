@@ -27,6 +27,7 @@ import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
+import com.maksimowiczm.foodyou.common.compose.component.SimpleProgressIndicator
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.shimmer
@@ -107,7 +108,7 @@ internal fun GoalsCard(
 
             Spacer(Modifier.height(8.dp))
 
-            ProgressBar(
+            SimpleProgressIndicator(
                 progress = calorieProgress,
                 color =
                     when (calorieSummary.state) {
@@ -197,22 +198,6 @@ private fun CalorieSummaryColumn(
             color = color,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-        )
-    }
-}
-
-@Composable
-private fun ProgressBar(progress: Float, color: Color, modifier: Modifier = Modifier) {
-    Box(
-        modifier =
-            modifier.clip(CircleShape).background(MaterialTheme.colorScheme.surfaceContainerHighest)
-    ) {
-        Box(
-            modifier =
-                Modifier.fillMaxWidth(progress.coerceIn(0f, 1f))
-                    .fillMaxHeight()
-                    .clip(CircleShape)
-                    .background(color)
         )
     }
 }
@@ -318,7 +303,7 @@ private fun NutrientColumn(
 
         Spacer(Modifier.height(6.dp))
 
-        ProgressBar(
+        SimpleProgressIndicator(
             progress = progress,
             color = if (exceeded) MaterialTheme.colorScheme.error else color,
             modifier = Modifier.fillMaxWidth().height(6.dp),
