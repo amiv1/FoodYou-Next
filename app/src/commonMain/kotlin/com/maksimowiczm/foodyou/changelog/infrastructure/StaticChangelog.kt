@@ -12,6 +12,7 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
     override val versions: List<Version>
         get() =
             listOf(
+                v_4_3_0,
                 v_4_2_0,
                 v_4_1_0,
                 v_4_0_0,
@@ -56,6 +57,35 @@ internal class StaticChangelog(private val appConfig: AppConfig) : Changelog {
                 v2_1_0,
                 v2_0_0,
             )
+
+    val v_4_3_0 =
+        Version(
+            version = "4.3.0",
+            date = LocalDate(2026, 9, 16),
+            changes =
+                listOf(
+                    "Simplified the progress bar in the detailed goals screen to match the " +
+                        "home screen: no gap between the filled and unfilled parts, and " +
+                        "exceeding the goal turns the bar red without drawing an extra bar on " +
+                        "top.",
+                    "Reduced the size of the floating action button on the recipe creation " +
+                        "and product download screens to the standard size.",
+                    "Wrapped the ingredients list in a card when viewing a recipe entry, for " +
+                        "consistency with the macronutrient breakdown.",
+                    "Added options to independently show or hide calories and macronutrients " +
+                        "on the home screen goals card.",
+                    "Added options to independently show or hide calories and macronutrients " +
+                        "on home screen meal cards, including individual food entries.",
+                    "Replaced the 3-dot menu icon with a cog icon on the home screen " +
+                        "customization screen.",
+                ),
+            bugFixes =
+                listOf(
+                    "Fixed the unit_energy label with the calorie amount overflowing the " +
+                        "screen width in the detailed goals screen."
+                ),
+            translations = emptyList(),
+        )
 
     val v_4_2_0 =
         Version(

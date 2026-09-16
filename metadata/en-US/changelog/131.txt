@@ -1,0 +1,10 @@
+Changes
+- Simplified the progress bar in the detailed goals screen to match the home screen: no gap between the filled and unfilled parts, and exceeding the goal turns the bar red without drawing an extra bar on top.
+- Reduced the size of the floating action button on the recipe creation and product download screens to the standard size.
+- Wrapped the ingredients list in a card when viewing a recipe entry, for consistency with the macronutrient breakdown.
+- Added options to independently show or hide calories and macronutrients on the home screen goals card.
+- Added options to independently show or hide calories and macronutrients on home screen meal cards, including individual food entries.
+- Replaced the 3-dot menu icon with a cog icon on the home screen customization screen.
+
+Bug Fixes
+- Fixed the unit_energy label with the calorie amount overflowing the screen width in the detailed goals screen.
