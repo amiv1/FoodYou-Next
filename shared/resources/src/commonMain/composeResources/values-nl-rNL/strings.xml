@@ -48,6 +48,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Ondersteunde URL's</string>
     <string name="headline_something_went_wrong">Oeps! Er ging iets verkeerd</string>
     <string name="headline_daily_goals_settings">Dagelijkse doelen instellingen</string>
+    <string name="headline_show_calories">Calorieën tonen</string>
+    <string name="headline_show_macronutrients">Macronutriënten tonen</string>
     <string name="headline_api_key">API-sleutel</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Bron</string>
     <string name="headline_features">Kenmerken</string>

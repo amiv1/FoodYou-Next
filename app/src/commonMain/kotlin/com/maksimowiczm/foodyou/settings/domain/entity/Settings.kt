@@ -13,4 +13,6 @@ data class Settings(
     val energyFormat: EnergyFormat,
     val appLaunchInfo: AppLaunchInfo,
     val allowFutureDates: Boolean,
+    val showGoalsCalories: Boolean,
+    val showGoalsMacronutrients: Boolean,
 ) : UserPreferences

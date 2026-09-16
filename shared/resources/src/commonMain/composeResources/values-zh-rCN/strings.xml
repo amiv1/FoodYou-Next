@@ -48,6 +48,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">支持的链接</string>
     <string name="headline_something_went_wrong">哎呀！出错了</string>
     <string name="headline_daily_goals_settings">每日目标设置</string>
+    <string name="headline_show_calories">显示卡路里</string>
+    <string name="headline_show_macronutrients">显示宏量营养素</string>
     <string name="headline_api_key">API 密钥</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">资源</string>
     <string name="headline_features">特征</string>

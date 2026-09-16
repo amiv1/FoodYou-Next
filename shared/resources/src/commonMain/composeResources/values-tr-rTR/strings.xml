@@ -47,6 +47,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Desteklenen URL'ler</string>
     <string name="headline_something_went_wrong">Eyvah! Bir şeyler ters gitti</string>
     <string name="headline_daily_goals_settings">Günlük hedef ayarları</string>
+    <string name="headline_show_calories">Kalorileri göster</string>
+    <string name="headline_show_macronutrients">Makro besinleri göster</string>
     <string name="headline_api_key">API anahtarı</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Kaynak</string>
     <string name="headline_features">Özellikler</string>

@@ -47,6 +47,11 @@ internal fun GoalsCard(
 ) {
     LaunchedEffect(date) { viewModel.setDate(date) }
 
+    val showCalories by viewModel.showCalories.collectAsStateWithLifecycle()
+    val showMacronutrients by viewModel.showMacronutrients.collectAsStateWithLifecycle()
+
+    if (!showCalories && !showMacronutrients) return
+
     val model = viewModel.model.collectAsStateWithLifecycle().value
 
     if (model == null) {
@@ -55,6 +60,8 @@ internal fun GoalsCard(
             onClick = { onClick(date.toEpochDays()) },
             onLongClick = onLongClick,
             modifier = modifier,
+            showCalories = showCalories,
+            showMacronutrients = showMacronutrients,
         )
     } else {
         GoalsCard(
@@ -69,6 +76,8 @@ internal fun GoalsCard(
             onClick = { onClick(date.toEpochDays()) },
             onLongClick = onLongClick,
             modifier = modifier,
+            showCalories = showCalories,
+            showMacronutrients = showMacronutrients,
         )
     }
 }
@@ -86,7 +95,11 @@ internal fun GoalsCard(
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
+    if (!showCalories && !showMacronutrients) return
+
     val calorieSummary = remember(energy, energyGoal) { calorieSummaryOf(energyGoal, energy) }
 
     val calorieProgress =
@@ -104,31 +117,40 @@ internal fun GoalsCard(
         shape = MaterialTheme.shapes.extraLarge,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            CalorieSummaryRow(calorieSummary = calorieSummary, modifier = Modifier.fillMaxWidth())
+            if (showCalories) {
+                CalorieSummaryRow(
+                    calorieSummary = calorieSummary,
+                    modifier = Modifier.fillMaxWidth(),
+                )
 
-            Spacer(Modifier.height(8.dp))
+                Spacer(Modifier.height(8.dp))
 
-            SimpleProgressIndicator(
-                progress = calorieProgress,
-                color =
-                    when (calorieSummary.state) {
-                        CalorieState.NORMAL -> MaterialTheme.colorScheme.primary
-                        CalorieState.OVER_LIMIT -> MaterialTheme.colorScheme.error
-                    },
-                modifier = Modifier.fillMaxWidth().height(10.dp),
-            )
+                SimpleProgressIndicator(
+                    progress = calorieProgress,
+                    color =
+                        when (calorieSummary.state) {
+                            CalorieState.NORMAL -> MaterialTheme.colorScheme.primary
+                            CalorieState.OVER_LIMIT -> MaterialTheme.colorScheme.error
+                        },
+                    modifier = Modifier.fillMaxWidth().height(10.dp),
+                )
+            }
 
-            Spacer(Modifier.height(16.dp))
+            if (showCalories && showMacronutrients) {
+                Spacer(Modifier.height(16.dp))
+            }
 
-            NutrientRow(
-                proteins = proteins,
-                proteinsGoal = proteinsGoal,
-                carbohydrates = carbohydrates,
-                carbohydratesGoal = carbohydratesGoal,
-                fats = fats,
-                fatsGoal = fatsGoal,
-                modifier = Modifier.fillMaxWidth(),
-            )
+            if (showMacronutrients) {
+                NutrientRow(
+                    proteins = proteins,
+                    proteinsGoal = proteinsGoal,
+                    carbohydrates = carbohydrates,
+                    carbohydratesGoal = carbohydratesGoal,
+                    fats = fats,
+                    fatsGoal = fatsGoal,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
         }
     }
 }
@@ -317,7 +339,11 @@ private fun GoalsCardSkeleton(
     onClick: () -> Unit,
     onLongClick: () -> Unit,
     modifier: Modifier = Modifier,
+    showCalories: Boolean = true,
+    showMacronutrients: Boolean = true,
 ) {
+    if (!showCalories && !showMacronutrients) return
+
     val blockColor = MaterialTheme.colorScheme.surfaceContainerHighest
 
     FoodYouHomeCard(
@@ -328,65 +354,74 @@ private fun GoalsCardSkeleton(
         shape = MaterialTheme.shapes.extraLarge,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                repeat(3) {
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(40.dp, 14.dp)
-                                .clip(MaterialTheme.shapes.small)
-                                .background(blockColor)
-                        )
-                        Spacer(Modifier.height(6.dp))
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(56.dp, 28.dp)
-                                .clip(MaterialTheme.shapes.small)
-                                .background(blockColor)
-                        )
+            if (showCalories) {
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    repeat(3) {
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            Spacer(
+                                Modifier.shimmer(shimmer)
+                                    .size(40.dp, 14.dp)
+                                    .clip(MaterialTheme.shapes.small)
+                                    .background(blockColor)
+                            )
+                            Spacer(Modifier.height(6.dp))
+                            Spacer(
+                                Modifier.shimmer(shimmer)
+                                    .size(56.dp, 28.dp)
+                                    .clip(MaterialTheme.shapes.small)
+                                    .background(blockColor)
+                            )
+                        }
                     }
                 }
+
+                Spacer(Modifier.height(8.dp))
+
+                Spacer(
+                    Modifier.shimmer(shimmer)
+                        .fillMaxWidth()
+                        .height(10.dp)
+                        .clip(CircleShape)
+                        .background(blockColor)
+                )
             }
 
-            Spacer(Modifier.height(8.dp))
+            if (showCalories && showMacronutrients) {
+                Spacer(Modifier.height(16.dp))
+            }
 
-            Spacer(
-                Modifier.shimmer(shimmer)
-                    .fillMaxWidth()
-                    .height(10.dp)
-                    .clip(CircleShape)
-                    .background(blockColor)
-            )
-
-            Spacer(Modifier.height(16.dp))
-
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                repeat(3) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(48.dp, 14.dp)
-                                .clip(MaterialTheme.shapes.small)
-                                .background(blockColor)
-                        )
-                        Spacer(Modifier.height(6.dp))
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .size(32.dp, 22.dp)
-                                .clip(MaterialTheme.shapes.small)
-                                .background(blockColor)
-                        )
-                        Spacer(Modifier.height(4.dp))
-                        Spacer(
-                            Modifier.shimmer(shimmer)
-                                .fillMaxWidth()
-                                .height(6.dp)
-                                .clip(CircleShape)
-                                .background(blockColor)
-                        )
+            if (showMacronutrients) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    repeat(3) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Spacer(
+                                Modifier.shimmer(shimmer)
+                                    .size(48.dp, 14.dp)
+                                    .clip(MaterialTheme.shapes.small)
+                                    .background(blockColor)
+                            )
+                            Spacer(Modifier.height(6.dp))
+                            Spacer(
+                                Modifier.shimmer(shimmer)
+                                    .size(32.dp, 22.dp)
+                                    .clip(MaterialTheme.shapes.small)
+                                    .background(blockColor)
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            Spacer(
+                                Modifier.shimmer(shimmer)
+                                    .fillMaxWidth()
+                                    .height(6.dp)
+                                    .clip(CircleShape)
+                                    .background(blockColor)
+                            )
+                        }
                     }
                 }
             }

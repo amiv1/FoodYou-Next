@@ -47,6 +47,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Podporované adresy</string>
     <string name="headline_something_went_wrong">Jejda! Něco se pokazilo</string>
     <string name="headline_daily_goals_settings">Nastavení denních cílů</string>
+    <string name="headline_show_calories">Zobrazit kalorie</string>
+    <string name="headline_show_macronutrients">Zobrazit makroživiny</string>
     <string name="headline_api_key">Klíč API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Zdroj</string>
     <string name="headline_features">Funkce</string>

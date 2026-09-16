@@ -47,6 +47,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Támogatott linkek</string>
     <string name="headline_something_went_wrong">Hoppá, valami hiba történt</string>
     <string name="headline_daily_goals_settings">Napi célok beállítása</string>
+    <string name="headline_show_calories">Kalóriák megjelenítése</string>
+    <string name="headline_show_macronutrients">Makrotápanyagok megjelenítése</string>
     <string name="headline_api_key">API kulcs</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Forrás</string>
     <string name="headline_features">Funkciók</string>

@@ -47,6 +47,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Podprti naslovi URL</string>
     <string name="headline_something_went_wrong">Ups! Nekaj je šlo narobe</string>
     <string name="headline_daily_goals_settings">Nastavitve dnevnih ciljev</string>
+    <string name="headline_show_calories">Prikaži kalorije</string>
+    <string name="headline_show_macronutrients">Prikaži makrohranila</string>
     <string name="headline_api_key">API ključ</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Vir</string>
     <string name="headline_features">Značilnosti</string>

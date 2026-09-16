@@ -46,6 +46,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Enllaços suportats</string>
     <string name="headline_something_went_wrong">Oops! Algo ha anat malament</string>
     <string name="headline_daily_goals_settings">Configuració dels objectius diaris</string>
+    <string name="headline_show_calories">Mostra les calories</string>
+    <string name="headline_show_macronutrients">Mostra els macronutrients</string>
     <string name="headline_api_key">Clau API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Font</string>
     <string name="headline_features">Característiques</string>

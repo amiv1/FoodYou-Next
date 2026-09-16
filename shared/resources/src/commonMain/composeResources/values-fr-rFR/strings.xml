@@ -46,6 +46,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">URLs prises en charge</string>
     <string name="headline_something_went_wrong">Oups ! Une erreur s'est produite.</string>
     <string name="headline_daily_goals_settings">Objectifs journaliers</string>
+    <string name="headline_show_calories">Afficher les calories</string>
+    <string name="headline_show_macronutrients">Afficher les macronutriments</string>
     <string name="headline_api_key">Clé API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Source</string>
     <string name="headline_features">Fonctionnalités</string>

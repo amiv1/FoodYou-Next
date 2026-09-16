@@ -30,6 +30,8 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
             energyFormat = this.getEnergyFormat(SettingsPreferencesKeys.energyFormat),
             appLaunchInfo = this.getAppLaunchInfo(),
             allowFutureDates = this[SettingsPreferencesKeys.allowFutureDates] ?: false,
+            showGoalsCalories = this[SettingsPreferencesKeys.showGoalsCalories] ?: true,
+            showGoalsMacronutrients = this[SettingsPreferencesKeys.showGoalsMacronutrients] ?: true,
         )
 
     override fun MutablePreferences.applyUserPreferences(updated: Settings) {
@@ -43,6 +45,8 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
         setEnergyFormat(SettingsPreferencesKeys.energyFormat, updated.energyFormat)
         setAppLaunchInfo(updated.appLaunchInfo)
         this[SettingsPreferencesKeys.allowFutureDates] = updated.allowFutureDates
+        this[SettingsPreferencesKeys.showGoalsCalories] = updated.showGoalsCalories
+        this[SettingsPreferencesKeys.showGoalsMacronutrients] = updated.showGoalsMacronutrients
     }
 }
 
@@ -137,4 +141,6 @@ private object SettingsPreferencesKeys {
     val firstLaunchCurrentVersionEpoch = longPreferencesKey("first_launch_current_version_epoch")
     val launchesCount = intPreferencesKey("launches_count")
     val allowFutureDates = booleanPreferencesKey("settings:allowFutureDates")
+    val showGoalsCalories = booleanPreferencesKey("settings:showGoalsCalories")
+    val showGoalsMacronutrients = booleanPreferencesKey("settings:showGoalsMacronutrients")
 }

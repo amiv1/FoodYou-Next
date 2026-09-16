@@ -48,6 +48,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">URL yang didukung</string>
     <string name="headline_something_went_wrong">Ups! Ada yang salah</string>
     <string name="headline_daily_goals_settings">Penetapan tujuan harian</string>
+    <string name="headline_show_calories">Tampilkan kalori</string>
+    <string name="headline_show_macronutrients">Tampilkan makronutrien</string>
     <string name="headline_api_key">Kunci API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Sumber</string>
     <string name="headline_features">Fitur-Fitur</string>

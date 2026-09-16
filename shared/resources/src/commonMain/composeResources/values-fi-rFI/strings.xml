@@ -47,6 +47,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Tuetut URL-osoitteet</string>
     <string name="headline_something_went_wrong">Hupsista! Jokin meni pieleen</string>
     <string name="headline_daily_goals_settings">Päivittäisten tavoitteiden asetukset</string>
+    <string name="headline_show_calories">Näytä kalorit</string>
+    <string name="headline_show_macronutrients">Näytä makroravintoaineet</string>
     <string name="headline_api_key">API-avain</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Lähdekoodi</string>
     <string name="headline_features">Ominaisuudet</string>

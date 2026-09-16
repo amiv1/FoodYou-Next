@@ -48,6 +48,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">عناوين URL المدعومة</string>
     <string name="headline_something_went_wrong">عفوًا! حدث خطأ ما</string>
     <string name="headline_daily_goals_settings">إعدادات الأهداف اليومية</string>
+    <string name="headline_show_calories">إظهار السعرات الحرارية</string>
+    <string name="headline_show_macronutrients">إظهار المغذيات الكبرى</string>
     <string name="headline_api_key">مفتاح API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">المصدر</string>
     <string name="headline_features">الميّزات</string>

@@ -49,6 +49,8 @@
     <string name="headline_supported_URLs" description="URLs that can be used to add products">Підтримувані URL</string>
     <string name="headline_something_went_wrong">Ой! Щось пішло не так</string>
     <string name="headline_daily_goals_settings">Налаштування денних цілей</string>
+    <string name="headline_show_calories">Показувати калорії</string>
+    <string name="headline_show_macronutrients">Показувати макронутрієнти</string>
     <string name="headline_api_key">Ключ API</string>
     <string name="headline_source" description="Source of the food product, e.g. Open Food Facts, USDA, Swiss Food Composition Database">Джерело</string>
     <string name="headline_features">Функції</string>
