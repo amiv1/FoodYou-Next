@@ -302,6 +302,28 @@
     <string name="headline_preview_release">Različica pred uradno izdajo</string>
     <string name="description_preview_release">Trenutno uporabljate različico pred uradno izdajo. Lahko je nepopolna, nestabilna ali se lahko spremeni.</string>
     <string name="headline_your_food">Vaša hrana</string>
+    <string name="action_select_all">Izberi vse</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">Izbran %1$d izdelek</item>
+        <item quantity="two">Izbrana %1$d izdelka</item>
+        <item quantity="few">Izbrani %1$d izdelki</item>
+        <item quantity="other">Izbranih %1$d izdelkov</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Izbriši živilo</item>
+        <item quantity="two">Izbriši %1$d živili</item>
+        <item quantity="few">Izbriši %1$d živila</item>
+        <item quantity="other">Izbriši %1$d živil</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">To živilo bo trajno izbrisano</item>
+        <item quantity="two">Ti %1$d živili bosta trajno izbrisani</item>
+        <item quantity="few">Ta %1$d živila bodo trajno izbrisana</item>
+        <item quantity="other">Teh %1$d živil bo trajno izbrisanih</item>
+    </plurals>
     <string name="headline_filters">Filtri</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Izberite sestavino</string>
     <string name="headline_edit_recipe">Uredi recept</string>

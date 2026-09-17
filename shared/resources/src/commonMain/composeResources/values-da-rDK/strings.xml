@@ -386,6 +386,22 @@
     <string name="description_preview_release">Du bruger i øjeblikket en forhåndsversion. Den kan være ufuldstændig, ustabil eller blive ændret.</string>
 
     <string name="headline_your_food">Din mad</string>
+    <string name="action_select_all">Vælg alle</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d valgt</item>
+        <item quantity="other">%1$d valgt</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Slet fødevare</item>
+        <item quantity="other">Slet %1$d fødevarer</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Denne fødevare bliver slettet permanent</item>
+        <item quantity="other">Disse %1$d fødevarer bliver slettet permanent</item>
+    </plurals>
 
     <string name="headline_filters">Filtre</string>
 

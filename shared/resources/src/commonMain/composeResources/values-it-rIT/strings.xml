@@ -288,6 +288,22 @@
     <string name="headline_preview_release">Versione in anteprima</string>
     <string name="description_preview_release">Stai usando una versione in anteprima. Potrebbe essere incompleta, instabile o cambiare in futuro.</string>
     <string name="headline_your_food">I tuoi cibi</string>
+    <string name="action_select_all">Seleziona tutto</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d selezionato</item>
+        <item quantity="other">%1$d selezionati</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Elimina alimento</item>
+        <item quantity="other">Elimina %1$d alimenti</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Questo alimento verrà eliminato definitivamente</item>
+        <item quantity="other">Questi %1$d alimenti verranno eliminati definitivamente</item>
+    </plurals>
     <string name="headline_filters">Filtri</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Scegli ingrediente</string>
     <string name="headline_edit_recipe">Modifica ricetta</string>

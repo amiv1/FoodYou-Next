@@ -300,6 +300,28 @@
     <string name="headline_preview_release">Wersja zapoznawcza</string>
     <string name="description_preview_release">Aktualnie korzystasz z wersji zapoznawczej. Może być ona niekompletna, niestabilna lub może ulec zmianie.</string>
     <string name="headline_your_food">Twoje produkty</string>
+    <string name="action_select_all">Zaznacz wszystko</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">Wybrano %1$d produkt</item>
+        <item quantity="few">Wybrano %1$d produkty</item>
+        <item quantity="many">Wybrano %1$d produktów</item>
+        <item quantity="other">Wybrano %1$d produktu</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Usuń produkt</item>
+        <item quantity="few">Usuń %1$d produkty</item>
+        <item quantity="many">Usuń %1$d produktów</item>
+        <item quantity="other">Usuń %1$d produktu</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Ten produkt zostanie trwale usunięty</item>
+        <item quantity="few">Te %1$d produkty zostaną trwale usunięte</item>
+        <item quantity="many">Te %1$d produktów zostanie trwale usuniętych</item>
+        <item quantity="other">Te %1$d produktu zostanie trwale usunięte</item>
+    </plurals>
     <string name="headline_filters">Filtry</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Wybierz składnik</string>
     <string name="headline_edit_recipe">Edytuj przepis</string>

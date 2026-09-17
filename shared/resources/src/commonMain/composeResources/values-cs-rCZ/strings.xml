@@ -302,6 +302,28 @@
     <string name="headline_preview_release">Zkušební vydání</string>
     <string name="description_preview_release">Používáte zkušební verzi. Může být neúplná, nestabilní nebo může být předmětem změn.</string>
     <string name="headline_your_food">Vaše jídlo</string>
+    <string name="action_select_all">Vybrat vše</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">Vybrána %1$d položka</item>
+        <item quantity="few">Vybrány %1$d položky</item>
+        <item quantity="many">Vybráno %1$d položky</item>
+        <item quantity="other">Vybráno %1$d položek</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Smazat jídlo</item>
+        <item quantity="few">Smazat %1$d jídla</item>
+        <item quantity="many">Smazat %1$d jídla</item>
+        <item quantity="other">Smazat %1$d jídel</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Toto jídlo bude trvale smazáno</item>
+        <item quantity="few">Tato %1$d jídla budou trvale smazána</item>
+        <item quantity="many">Tato %1$d jídla budou trvale smazána</item>
+        <item quantity="other">Těchto %1$d jídel bude trvale smazáno</item>
+    </plurals>
     <string name="headline_filters">Filtry</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Vybrat surovinu</string>
     <string name="headline_edit_recipe">Upravit recept</string>

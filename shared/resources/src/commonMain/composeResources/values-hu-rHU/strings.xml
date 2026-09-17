@@ -289,6 +289,22 @@
     <string name="headline_preview_release">Előzetes kiadás</string>
     <string name="description_preview_release">Jelenleg egy előzetes kiadást használ. Lehet befejezetlen, instabil, vagy változhat a jövőben.</string>
     <string name="headline_your_food">Az Ön étele</string>
+    <string name="action_select_all">Összes kiválasztása</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d kiválasztva</item>
+        <item quantity="other">%1$d kiválasztva</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Étel törlése</item>
+        <item quantity="other">%1$d étel törlése</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Ez az étel véglegesen törlődik</item>
+        <item quantity="other">Ez a(z) %1$d étel véglegesen törlődik</item>
+    </plurals>
     <string name="headline_filters">Szűrők</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Hozzávaló kiválasztása</string>
     <string name="headline_edit_recipe">Recept módosítása</string>

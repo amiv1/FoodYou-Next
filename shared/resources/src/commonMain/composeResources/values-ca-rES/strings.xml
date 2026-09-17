@@ -288,6 +288,22 @@
     <string name="headline_preview_release">Versió prèvia</string>
     <string name="description_preview_release">Actualment fas servir una versió prèvia. Pot estar incompleta, ser inestable o estar subjecta a canvis.</string>
     <string name="headline_your_food">Els teus aliments</string>
+    <string name="action_select_all">Selecciona-ho tot</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d seleccionat</item>
+        <item quantity="other">%1$d seleccionats</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Suprimeix l'aliment</item>
+        <item quantity="other">Suprimeix %1$d aliments</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Aquest aliment se suprimirà permanentment</item>
+        <item quantity="other">Aquests %1$d aliments se suprimiran permanentment</item>
+    </plurals>
     <string name="headline_filters">Filtres</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Escollir ingredient</string>
     <string name="headline_edit_recipe">Editar recepta</string>

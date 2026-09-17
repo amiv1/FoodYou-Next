@@ -312,6 +312,19 @@
     <string name="headline_preview_release">预览版发布</string>
     <string name="description_preview_release">您当前使用的是预览版本。可能遇到功能不完备、不稳定，或者后续变更的情况。</string>
     <string name="headline_your_food">您的食品</string>
+    <string name="action_select_all">全选</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="other">已选择 %1$d 项</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="other">删除 %1$d 项食品</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="other">这 %1$d 项食品将被永久删除</item>
+    </plurals>
     <string name="headline_filters">筛选器</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">选择配料</string>
     <string name="headline_edit_recipe">编辑食谱</string>

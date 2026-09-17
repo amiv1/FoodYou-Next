@@ -348,6 +348,28 @@
     <string name="description_preview_release">Ви зараз користуєтеся попередньою версією. Вона може бути неповною, нестабільною або може змінюватися.</string>
 
     <string name="headline_your_food">Ваша їжа</string>
+    <string name="action_select_all">Вибрати все</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">Вибрано %1$d продукт</item>
+        <item quantity="few">Вибрано %1$d продукти</item>
+        <item quantity="many">Вибрано %1$d продуктів</item>
+        <item quantity="other">Вибрано %1$d продукту</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Видалити продукт</item>
+        <item quantity="few">Видалити %1$d продукти</item>
+        <item quantity="many">Видалити %1$d продуктів</item>
+        <item quantity="other">Видалити %1$d продукту</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Цей продукт буде видалено назавжди</item>
+        <item quantity="few">Ці %1$d продукти буде видалено назавжди</item>
+        <item quantity="many">Ці %1$d продуктів буде видалено назавжди</item>
+        <item quantity="other">Ці %1$d продукту буде видалено назавжди</item>
+    </plurals>
     <string name="headline_filters">Фільтри</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Вибрати інгредієнт</string>
     <string name="headline_edit_recipe">Редагувати рецепт</string>

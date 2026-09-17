@@ -421,6 +421,34 @@
     <string name="description_preview_release">أنت تستخدم حاليًا إصدارًا تجريبيًا. قد يكون غير مكتمل أو غير مستقر أو عرضة للتغيير.</string>
 
     <string name="headline_your_food">طعامك</string>
+    <string name="action_select_all">تحديد الكل</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="zero">لم يتم تحديد أي عنصر</item>
+        <item quantity="one">تم تحديد عنصر واحد</item>
+        <item quantity="two">تم تحديد عنصرين</item>
+        <item quantity="few">تم تحديد %1$d عناصر</item>
+        <item quantity="many">تم تحديد %1$d عنصرًا</item>
+        <item quantity="other">تم تحديد %1$d عنصر</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="zero">حذف الأطعمة</item>
+        <item quantity="one">حذف الطعام</item>
+        <item quantity="two">حذف طعامين</item>
+        <item quantity="few">حذف %1$d أطعمة</item>
+        <item quantity="many">حذف %1$d طعامًا</item>
+        <item quantity="other">حذف %1$d طعام</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="zero">لن يتم حذف أي طعام نهائيًا</item>
+        <item quantity="one">سيتم حذف هذا الطعام نهائيًا</item>
+        <item quantity="two">سيتم حذف هذين الطعامين نهائيًا</item>
+        <item quantity="few">سيتم حذف %1$d أطعمة نهائيًا</item>
+        <item quantity="many">سيتم حذف %1$d طعامًا نهائيًا</item>
+        <item quantity="other">سيتم حذف %1$d طعام نهائيًا</item>
+    </plurals>
 
     <string name="headline_filters">عوامل التصفية</string>
 

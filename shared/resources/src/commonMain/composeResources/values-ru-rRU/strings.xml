@@ -300,6 +300,28 @@
     <string name="headline_preview_release">Предварительный релиз</string>
     <string name="description_preview_release">Вы используете предварительную версию. Она может быть незавершенной, нестабильной или подверженной изменениям.</string>
     <string name="headline_your_food">Ваши продукты питания</string>
+    <string name="action_select_all">Выбрать все</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">Выбран %1$d продукт</item>
+        <item quantity="few">Выбрано %1$d продукта</item>
+        <item quantity="many">Выбрано %1$d продуктов</item>
+        <item quantity="other">Выбрано %1$d продукта</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Удалить продукт</item>
+        <item quantity="few">Удалить %1$d продукта</item>
+        <item quantity="many">Удалить %1$d продуктов</item>
+        <item quantity="other">Удалить %1$d продукта</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Этот продукт будет удалён навсегда</item>
+        <item quantity="few">Эти %1$d продукта будут удалены навсегда</item>
+        <item quantity="many">Эти %1$d продуктов будут удалены навсегда</item>
+        <item quantity="other">Эти %1$d продукта будут удалены навсегда</item>
+    </plurals>
     <string name="headline_filters">Фильтры</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Выбрать ингредиент</string>
     <string name="headline_edit_recipe">Изменить рецепт</string>

@@ -290,6 +290,22 @@
     <string name="headline_preview_release">Julkaisun esiversio</string>
     <string name="description_preview_release">Käytössäsi on tällä hetkellä esiversio. Se voi olla epätäydellinen, epävakaa ja altis muutoksille.</string>
     <string name="headline_your_food">Sinun ruokasi</string>
+    <string name="action_select_all">Valitse kaikki</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d valittu</item>
+        <item quantity="other">%1$d valittu</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Poista ruoka</item>
+        <item quantity="other">Poista %1$d ruokaa</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Tämä ruoka poistetaan pysyvästi</item>
+        <item quantity="other">Nämä %1$d ruokaa poistetaan pysyvästi</item>
+    </plurals>
     <string name="headline_filters">Suodattimet</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Valitse ainesosa</string>
     <string name="headline_edit_recipe">Muokkaa reseptiä</string>

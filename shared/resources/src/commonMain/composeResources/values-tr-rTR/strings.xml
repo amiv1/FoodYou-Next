@@ -289,6 +289,22 @@
     <string name="headline_preview_release">Ön izleme sürümü</string>
     <string name="description_preview_release">Şu anda bir ön izleme sürümü kullanıyorsunuz. Eksik, kararsız olabilir veya değişikliğe tabi olabilir.</string>
     <string name="headline_your_food">Besinleriniz</string>
+    <string name="action_select_all">Tümünü seç</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d seçildi</item>
+        <item quantity="other">%1$d seçildi</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Besini sil</item>
+        <item quantity="other">%1$d besini sil</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Bu besin kalıcı olarak silinecek</item>
+        <item quantity="other">Bu %1$d besin kalıcı olarak silinecek</item>
+    </plurals>
     <string name="headline_filters">Filtreler</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Malzeme seçin</string>
     <string name="headline_edit_recipe">Tarifi düzenle</string>

@@ -317,6 +317,22 @@
     <string name="headline_preview_release">Preview versie</string>
     <string name="description_preview_release">Je maakt op het moment gebruik van een preview versie. Het kan incompleet zijn, onstabiel zijn, of veranderd worden.</string>
     <string name="headline_your_food">Jouw voedsel</string>
+    <string name="action_select_all">Alles selecteren</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d geselecteerd</item>
+        <item quantity="other">%1$d geselecteerd</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Voedsel verwijderen</item>
+        <item quantity="other">%1$d voedingsmiddelen verwijderen</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">Dit voedsel wordt permanent verwijderd</item>
+        <item quantity="other">Deze %1$d voedingsmiddelen worden permanent verwijderd</item>
+    </plurals>
     <string name="headline_filters">Filters</string>
     <string name="headline_choose_ingredient" description="Choose ingredient for the recipe">Kies ingrediënt</string>
     <string name="headline_edit_recipe">Bewerk recept</string>
