@@ -49,6 +49,9 @@ internal object TestTags {
     /** "My food and recipes" screen's "Close selection" button, shown while selecting. */
     const val YourFoodCloseSelectionButton = "your_food_close_selection_button"
 
+    /** "My food and recipes" screen's search input field. */
+    const val YourFoodSearchField = "your_food_search_field"
+
     /** Tag for a "My food and recipes" row's checkbox, suffixed by the food's id. */
     fun yourFoodCheckbox(foodId: String): String = "your_food_checkbox_$foodId"
 }

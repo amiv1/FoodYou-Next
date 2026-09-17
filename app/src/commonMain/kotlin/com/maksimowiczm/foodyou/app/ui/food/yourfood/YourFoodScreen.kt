@@ -1,15 +1,21 @@
 package com.maksimowiczm.foodyou.app.ui.food.yourfood
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.input.clearText
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.LunchDining
+import androidx.compose.material.icons.outlined.Clear
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ContainedLoadingIndicator
@@ -22,12 +28,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -44,10 +54,13 @@ import com.maksimowiczm.foodyou.food.search.domain.FoodSearch
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import foodyou.app.generated.resources.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+
 
 @Composable
 fun YourFoodScreen(
@@ -61,6 +74,13 @@ fun YourFoodScreen(
     val selectedIds by viewModel.selectedIds.collectAsStateWithLifecycle()
     val pages = viewModel.items.collectAsLazyPagingItems()
     val shimmer = rememberShimmer(ShimmerBounds.View)
+
+    val searchFieldState = rememberTextFieldState()
+    LaunchedEffect(viewModel) {
+        snapshotFlow { searchFieldState.text.toString() }
+            .distinctUntilChanged()
+            .collectLatest { query -> viewModel.search(query.ifBlank { null }) }
+    }
 
     var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
     if (showDeleteDialog) {
@@ -138,11 +158,51 @@ fun YourFoodScreen(
         },
     ) { paddingValues ->
         Box(Modifier.fillMaxSize().padding(paddingValues)) {
-            FoodYouHomeCard(
-                modifier =
-                    Modifier.fillMaxSize().padding(horizontal = 8.dp).padding(vertical = 8.dp)
-            ) {
-                LazyColumn(modifier = Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
+                TextField(
+                    state = searchFieldState,
+                    modifier =
+                        Modifier.fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                            .padding(top = 8.dp, bottom = 8.dp)
+                            .shadow(2.dp, MaterialTheme.shapes.extraLarge)
+                            .testTag(TestTags.YourFoodSearchField),
+                    placeholder = { Text(stringResource(Res.string.action_search)) },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Outlined.Search, contentDescription = null)
+                    },
+                    trailingIcon = {
+                        if (searchFieldState.text.isNotEmpty()) {
+                            IconButton(onClick = searchFieldState::clearText) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Clear,
+                                    contentDescription = stringResource(Res.string.action_clear),
+                                )
+                            }
+                        }
+                    },
+                    shape = MaterialTheme.shapes.extraLarge,
+                    colors =
+                        TextFieldDefaults.colors(
+                            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                            unfocusedContainerColor =
+                                MaterialTheme.colorScheme.surfaceContainerHighest,
+                            disabledContainerColor =
+                                MaterialTheme.colorScheme.surfaceContainerHighest,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
+                        ),
+                )
+
+                FoodYouHomeCard(
+                    modifier =
+                        Modifier.weight(1f)
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .padding(bottom = 8.dp)
+                ) {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(count = pages.itemCount, key = pages.itemKey { it.id.toString() }) { i
                         ->
                         val food = pages[i]
@@ -202,6 +262,7 @@ fun YourFoodScreen(
                         items(10) { FoodListItemSkeleton(shimmer) }
                     }
                 }
+            }
             }
 
             if (pages.itemCount == 0 && pages.loadState.append !is LoadState.Loading) {

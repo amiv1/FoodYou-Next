@@ -62,6 +62,10 @@ abstract class FoodYouComposeTest {
     protected val recipeRepository: RecipeRepository
         get() = get()
 
+    protected val foodSearchHistoryRepository:
+        com.maksimowiczm.foodyou.food.domain.repository.FoodSearchHistoryRepository
+        get() = get()
+
     protected val copyMealUseCase: com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyMealUseCase
         get() = get()
 
