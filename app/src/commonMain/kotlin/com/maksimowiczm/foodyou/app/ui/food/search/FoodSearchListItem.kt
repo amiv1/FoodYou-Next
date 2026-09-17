@@ -27,6 +27,8 @@ internal fun FoodSearchListItem(
     measurement: Measurement,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    leadingContent: (@Composable () -> Unit)? = null,
+    trailingContent: (@Composable () -> Unit)? = null,
 ) {
     val weight = food.weight(measurement)
     val factor = weight?.div(100)
@@ -37,6 +39,8 @@ internal fun FoodSearchListItem(
             errorMessage = stringResource(Res.string.error_measurement_error),
             modifier = modifier,
             onClick = onClick,
+            leadingContent = leadingContent,
+            trailingContent = trailingContent,
         )
     }
 
@@ -64,6 +68,8 @@ internal fun FoodSearchListItem(
             modifier = modifier,
             onClick = onClick,
             errorMessage = stringResource(Res.string.error_food_is_missing_required_fields),
+            leadingContent = leadingContent,
+            trailingContent = trailingContent,
         )
     }
 
@@ -77,6 +83,8 @@ internal fun FoodSearchListItem(
         isRecipe = false,
         onClick = onClick,
         modifier = modifier,
+        leadingContent = leadingContent,
+        trailingContent = trailingContent,
     )
 }
 
@@ -88,6 +96,8 @@ internal fun FoodSearchListItem(
     onClick: () -> Unit,
     shimmer: Shimmer,
     modifier: Modifier = Modifier,
+    leadingContent: (@Composable () -> Unit)? = null,
+    trailingContent: (@Composable () -> Unit)? = null,
 ) {
     val observeRecipeUseCase: ObserveFoodUseCase = koinInject()
 
@@ -99,7 +109,7 @@ internal fun FoodSearchListItem(
             .value
 
     if (recipe == null) {
-        return FoodListItemSkeleton(shimmer)
+        return FoodListItemSkeleton(shimmer, leadingContent = leadingContent)
     }
 
     val factor = recipe.weight(measurement) / 100
@@ -128,6 +138,8 @@ internal fun FoodSearchListItem(
             modifier = modifier,
             onClick = onClick,
             errorMessage = stringResource(Res.string.error_food_is_missing_required_fields),
+            leadingContent = leadingContent,
+            trailingContent = trailingContent,
         )
     }
 
@@ -141,6 +153,8 @@ internal fun FoodSearchListItem(
         isRecipe = true,
         onClick = onClick,
         modifier = modifier,
+        leadingContent = leadingContent,
+        trailingContent = trailingContent,
     )
 }
 
@@ -155,6 +169,8 @@ private fun FoodSearchListItem(
     isRecipe: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    leadingContent: (@Composable () -> Unit)? = null,
+    trailingContent: (@Composable () -> Unit)? = null,
 ) {
     val g = stringResource(Res.string.unit_gram_short)
 
@@ -177,5 +193,7 @@ private fun FoodSearchListItem(
         isRecipe = isRecipe,
         modifier = modifier,
         onClick = onClick,
+        leadingContent = leadingContent,
+        trailingContent = trailingContent,
     )
 }

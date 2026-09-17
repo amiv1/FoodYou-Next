@@ -2,22 +2,31 @@ package com.maksimowiczm.foodyou.app.ui.common.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.theme.LocalNutrientsPalette
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
@@ -37,6 +46,7 @@ fun FoodListItem(
     isRecipe: Boolean,
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
+    leadingContent: (@Composable () -> Unit)? = null,
     trailingContent: (@Composable () -> Unit)? = null,
     containerColor: Color = Color.Transparent,
     contentColor: Color = LocalContentColor.current,
@@ -125,10 +135,32 @@ fun FoodListItem(
 
     val content =
         @Composable {
+            val layoutDirection = LocalLayoutDirection.current
+            val startPadding =
+                if (leadingContent != null) {
+                    2.dp
+                } else {
+                    contentPadding.calculateStartPadding(layoutDirection)
+                }
+
             Row(
-                modifier = Modifier.padding(contentPadding),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                modifier =
+                    Modifier.padding(
+                            start = startPadding,
+                            end = contentPadding.calculateEndPadding(layoutDirection),
+                            top = contentPadding.calculateTopPadding(),
+                            bottom = contentPadding.calculateBottomPadding(),
+                        )
+                        .height(IntrinsicSize.Min),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
+                if (leadingContent != null) {
+                    leadingContent()
+                    Spacer(modifier = Modifier.width(2.dp))
+                    VerticalDivider(modifier = Modifier.fillMaxHeight(0.6f))
+                    Spacer(modifier = Modifier.width(16.dp))
+                }
+
                 Column(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -137,7 +169,10 @@ fun FoodListItem(
                     supportingContent()
                 }
 
-                trailingContent?.invoke()
+                if (trailingContent != null) {
+                    Spacer(modifier = Modifier.width(16.dp))
+                    trailingContent()
+                }
             }
         }
 

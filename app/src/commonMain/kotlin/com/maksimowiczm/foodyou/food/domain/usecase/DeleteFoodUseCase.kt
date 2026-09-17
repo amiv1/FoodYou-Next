@@ -5,6 +5,7 @@ import com.maksimowiczm.foodyou.common.log.Logger
 import com.maksimowiczm.foodyou.common.log.logAndReturnFailure
 import com.maksimowiczm.foodyou.common.result.Ok
 import com.maksimowiczm.foodyou.common.result.Result
+import com.maksimowiczm.foodyou.common.result.isError
 import com.maksimowiczm.foodyou.food.domain.entity.FoodId
 import com.maksimowiczm.foodyou.food.domain.entity.Product
 import com.maksimowiczm.foodyou.food.domain.entity.Recipe
@@ -23,28 +24,42 @@ class DeleteFoodUseCase(
     private val logger: Logger,
 ) {
     suspend fun delete(foodId: FoodId): Result<Unit, DeleteFoodError> =
+        transactionProvider.withTransaction { deleteInternal(foodId) }
+
+    suspend fun deleteAll(foodIds: Collection<FoodId>): Result<Unit, DeleteFoodError> =
         transactionProvider.withTransaction {
-            val food =
-                when (foodId) {
-                    is FoodId.Product -> productRepository.observeProduct(foodId)
-                    is FoodId.Recipe -> recipeRepository.observeRecipe(foodId)
-                }.first()
-
-            if (food == null) {
-                return@withTransaction logger.logAndReturnFailure(
-                    tag = TAG,
-                    error = DeleteFoodError.FoodNotFound,
-                    message = { "Food with ID $foodId not found." },
-                )
-            }
-
-            when (food) {
-                is Product -> productRepository.deleteProduct(food)
-                is Recipe -> recipeRepository.deleteRecipe(food)
+            for (foodId in foodIds) {
+                val result = deleteInternal(foodId)
+                if (result.isError()) {
+                    return@withTransaction result
+                }
             }
 
             Ok(Unit)
         }
+
+    private suspend fun deleteInternal(foodId: FoodId): Result<Unit, DeleteFoodError> {
+        val food =
+            when (foodId) {
+                is FoodId.Product -> productRepository.observeProduct(foodId)
+                is FoodId.Recipe -> recipeRepository.observeRecipe(foodId)
+            }.first()
+
+        if (food == null) {
+            return logger.logAndReturnFailure(
+                tag = TAG,
+                error = DeleteFoodError.FoodNotFound,
+                message = { "Food with ID $foodId not found." },
+            )
+        }
+
+        when (food) {
+            is Product -> productRepository.deleteProduct(food)
+            is Recipe -> recipeRepository.deleteRecipe(food)
+        }
+
+        return Ok(Unit)
+    }
 
     private companion object {
         const val TAG = "DeleteFoodUseCase"

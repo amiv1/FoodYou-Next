@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -80,6 +82,7 @@ private suspend fun commitSwipe(
 @Composable
 fun HomeScreen(
     onSettings: () -> Unit,
+    onYourFood: () -> Unit,
     onTitle: () -> Unit,
     onMealCardLongClick: (mealId: Long) -> Unit,
     onMealCardAddClick: (epochDay: Long, mealId: Long) -> Unit,
@@ -110,10 +113,32 @@ fun HomeScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = onSettings) {
+                    var showMenu by remember { mutableStateOf(false) }
+                    IconButton(
+                        onClick = { showMenu = true },
+                        modifier = Modifier.testTag(TestTags.HomeOverflowMenuButton),
+                    ) {
                         Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = stringResource(Res.string.action_go_to_settings),
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = stringResource(Res.string.action_show_more),
+                        )
+                    }
+                    DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(Res.string.headline_your_food)) },
+                            modifier =
+                                Modifier.testTag(TestTags.HomeMyFoodAndRecipesMenuItem),
+                            onClick = {
+                                showMenu = false
+                                onYourFood()
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(Res.string.headline_settings)) },
+                            onClick = {
+                                showMenu = false
+                                onSettings()
+                            },
                         )
                     }
                 },

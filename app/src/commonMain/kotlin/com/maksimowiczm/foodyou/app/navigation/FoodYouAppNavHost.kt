@@ -23,6 +23,7 @@ import com.maksimowiczm.foodyou.app.ui.food.product.CreateProductScreen
 import com.maksimowiczm.foodyou.app.ui.food.product.UpdateProductScreen
 import com.maksimowiczm.foodyou.app.ui.food.recipe.CreateRecipeScreen
 import com.maksimowiczm.foodyou.app.ui.food.recipe.UpdateRecipeScreen
+import com.maksimowiczm.foodyou.app.ui.food.yourfood.YourFoodScreen
 import com.maksimowiczm.foodyou.app.ui.goals.master.GoalsScreen
 import com.maksimowiczm.foodyou.app.ui.goals.setup.DailyGoalsScreen
 import com.maksimowiczm.foodyou.app.ui.home.goals.GoalsCardSettings
@@ -52,6 +53,7 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
         forwardBackwardComposable<Home> {
             HomeScreen(
                 onSettings = { navController.navigateSingleTop(Settings) },
+                onYourFood = { navController.navigateSingleTop(YourFood) },
                 onTitle = { navController.navigateSingleTop(About) },
                 onMealCardLongClick = { navController.navigateSingleTop(MealsPersonalization) },
                 onMealCardAddClick = { epochDay, mealId ->
@@ -239,6 +241,47 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
                 productId = FoodId.Product(productId),
             )
         }
+        forwardBackwardComposable<YourFood> {
+            YourFoodScreen(
+                onBack = { navController.popBackStackInclusive<YourFood>() },
+                onCreateProduct = {
+                    navController.navigateSingleTop(YourFoodCreateProduct)
+                },
+                onCreateRecipe = { navController.navigateSingleTop(YourFoodCreateRecipe) },
+                onEditFood = { id ->
+                    when (id) {
+                        is FoodId.Product -> navController.navigateSingleTop(UpdateProduct(id.id))
+                        is FoodId.Recipe -> navController.navigateSingleTop(UpdateRecipe(id.id))
+                    }
+                },
+            )
+        }
+        forwardBackwardComposable<YourFoodCreateProduct> {
+            CreateProductScreen(
+                onBack = { navController.popBackStackInclusive<YourFoodCreateProduct>() },
+                onCreate = { navController.popBackStackInclusive<YourFoodCreateProduct>() },
+                onUpdateUsdaApiKey = { navController.navigateSingleTop(UsdaApiKey) },
+                onUpdateOpenFoodFactsCredentials = {
+                    navController.navigateSingleTop(OpenFoodFactsLogin)
+                },
+            )
+        }
+        forwardBackwardComposable<YourFoodCreateRecipe> {
+            CreateRecipeScreen(
+                onBack = { navController.popBackStackInclusive<YourFoodCreateRecipe>() },
+                onCreate = { navController.popBackStackInclusive<YourFoodCreateRecipe>() },
+                onEditFood = { id ->
+                    when (id) {
+                        is FoodId.Product -> navController.navigateSingleTop(UpdateProduct(id.id))
+                        is FoodId.Recipe -> error("Cannot edit recipe from recipe")
+                    }
+                },
+                onUpdateUsdaApiKey = { navController.navigateSingleTop(UsdaApiKey) },
+                onUpdateOpenFoodFactsCredentials = {
+                    navController.navigateSingleTop(OpenFoodFactsLogin)
+                },
+            )
+        }
         forwardBackwardComposable<FoodDiaryCreateRecipe> {
             val (date, mealId) = it.toRoute<FoodDiaryCreateRecipe>()
 
@@ -380,6 +423,12 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
 @Serializable private object Home
 
 @Serializable private object Settings
+
+@Serializable private object YourFood
+
+@Serializable private object YourFoodCreateProduct
+
+@Serializable private object YourFoodCreateRecipe
 
 @Serializable private object About
 

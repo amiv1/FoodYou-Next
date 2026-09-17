@@ -342,6 +342,22 @@
     <string name="description_preview_release">You are currently using a preview version. It may be incomplete, unstable, or subject to change.</string>
 
     <string name="headline_your_food">Your food</string>
+    <string name="action_select_all">Select all</string>
+
+    <plurals name="neutral_foods_selected">
+        <item quantity="one">%1$d selected</item>
+        <item quantity="other">%1$d selected</item>
+    </plurals>
+
+    <plurals name="headline_delete_foods">
+        <item quantity="one">Delete food</item>
+        <item quantity="other">Delete %1$d foods</item>
+    </plurals>
+
+    <plurals name="description_delete_foods">
+        <item quantity="one">This food will be deleted permanently</item>
+        <item quantity="other">These %1$d foods will be deleted permanently</item>
+    </plurals>
 
     <string name="headline_filters">Filters</string>
 

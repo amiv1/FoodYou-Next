@@ -3,6 +3,7 @@ package com.maksimowiczm.foodyou.app.ui.food
 import com.maksimowiczm.foodyou.app.ui.food.product.foodProduct
 import com.maksimowiczm.foodyou.app.ui.food.recipe.foodRecipe
 import com.maksimowiczm.foodyou.app.ui.food.search.FoodSearchViewModel
+import com.maksimowiczm.foodyou.app.ui.food.yourfood.yourFood
 import com.maksimowiczm.foodyou.common.infrastructure.koin.userPreferencesRepository
 import com.maksimowiczm.foodyou.food.domain.entity.FoodId
 import org.koin.core.module.Module
@@ -22,4 +23,5 @@ fun Module.food() {
 
     foodProduct()
     foodRecipe()
+    yourFood()
 }

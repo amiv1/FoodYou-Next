@@ -23,9 +23,11 @@ import com.valentinilk.shimmer.shimmer
 fun FoodListItemSkeleton(
     shimmer: Shimmer,
     modifier: Modifier = Modifier.Companion,
+    leadingContent: (@Composable () -> Unit)? = null,
     trailingContent: (@Composable () -> Unit)? = null,
 ) {
     ListItem(
+        leadingContent = leadingContent,
         headlineContent = {
             Column {
                 Spacer(Modifier.height(2.dp))

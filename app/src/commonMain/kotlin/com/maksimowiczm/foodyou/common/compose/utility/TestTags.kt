@@ -30,4 +30,25 @@ internal object TestTags {
 
     /** Tag for a meal card's "Copy meal" button, suffixed by the meal's id. */
     fun mealCopyButton(mealId: Long): String = "meal_copy_button_$mealId"
+
+    /** Home screen's top app bar overflow ("3 dot") menu button. */
+    const val HomeOverflowMenuButton = "home_overflow_menu_button"
+
+    /** Home screen's overflow menu item navigating to the "My food and recipes" screen. */
+    const val HomeMyFoodAndRecipesMenuItem = "home_my_food_and_recipes_menu_item"
+
+    /** "My food and recipes" screen's "+" floating action button. */
+    const val YourFoodFab = "your_food_fab"
+
+    /** "My food and recipes" screen's contextual "Delete" button, shown while selecting. */
+    const val YourFoodDeleteButton = "your_food_delete_button"
+
+    /** "My food and recipes" screen's "Select all" button, shown while selecting. */
+    const val YourFoodSelectAllButton = "your_food_select_all_button"
+
+    /** "My food and recipes" screen's "Close selection" button, shown while selecting. */
+    const val YourFoodCloseSelectionButton = "your_food_close_selection_button"
+
+    /** Tag for a "My food and recipes" row's checkbox, suffixed by the food's id. */
+    fun yourFoodCheckbox(foodId: String): String = "your_food_checkbox_$foodId"
 }
