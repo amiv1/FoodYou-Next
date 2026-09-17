@@ -84,14 +84,24 @@ interface FoodSearchDao {
 
     @Query(
         """
-        WITH ProductsSearch AS (
-            SELECT $PRODUCT_FOOD_SEARCH_SQL_SELECT
+        WITH ProductIds AS (
+            SELECT p.id AS id
             FROM Product p JOIN ProductFts fts ON p.id = fts.rowid
             WHERE
                 (ProductFts MATCH :query || '*') AND (:source IS NULL OR p.sourceType = :source)
+            UNION
+            SELECT p.id AS id
+            FROM Product p
+            WHERE
+                (p.name LIKE '%' || :query || '%' OR p.brand LIKE '%' || :query || '%') AND
+                (:source IS NULL OR p.sourceType = :source)
         ),
-        RecipesSearch AS (
-            SELECT $RECIPE_FOOD_SEARCH_SQL_SELECT
+        ProductsSearch AS (
+            SELECT $PRODUCT_FOOD_SEARCH_SQL_SELECT
+            FROM Product p JOIN ProductIds pi ON p.id = pi.id
+        ),
+        RecipeIds AS (
+            SELECT r.id AS id
             FROM Recipe r JOIN RecipeFts fts ON r.id = fts.rowid
             WHERE
                 -- All recipes are from the user
@@ -104,6 +114,24 @@ interface FoodSearchDao {
                     WHERE rai.targetRecipeId = r.id 
                     AND rai.ingredientId = :excludedRecipeId
                 ))
+            UNION
+            SELECT r.id AS id
+            FROM Recipe r
+            WHERE
+                -- All recipes are from the user
+                :source = ${FoodSourceTypeSQLConstants.USER} AND
+                (r.name LIKE '%' || :query || '%' OR r.note LIKE '%' || :query || '%') AND
+                (:excludedRecipeId IS NULL OR r.id != :excludedRecipeId) AND
+                (:excludedRecipeId IS NULL OR NOT EXISTS (
+                    SELECT 1
+                    FROM RecipeAllIngredientsView rai
+                    WHERE rai.targetRecipeId = r.id 
+                    AND rai.ingredientId = :excludedRecipeId
+                ))
+        ),
+        RecipesSearch AS (
+            SELECT $RECIPE_FOOD_SEARCH_SQL_SELECT
+            FROM Recipe r JOIN RecipeIds ri ON r.id = ri.id
         )
         SELECT *, NULL AS measurementType, NULL AS measurementValue
         FROM ProductsSearch
@@ -121,14 +149,20 @@ interface FoodSearchDao {
 
     @Query(
         """
-        WITH ProductsSearch AS (
-            SELECT 1
+        WITH ProductIds AS (
+            SELECT p.id AS id
             FROM Product p JOIN ProductFts fts ON p.id = fts.rowid
             WHERE
                 (ProductFts MATCH :query || '*') AND (:source IS NULL OR p.sourceType = :source)
+            UNION
+            SELECT p.id AS id
+            FROM Product p
+            WHERE
+                (p.name LIKE '%' || :query || '%' OR p.brand LIKE '%' || :query || '%') AND
+                (:source IS NULL OR p.sourceType = :source)
         ),
-        RecipesSearch AS (
-            SELECT 1
+        RecipeIds AS (
+            SELECT r.id AS id
             FROM Recipe r JOIN RecipeFts fts ON r.id = fts.rowid
             WHERE
                 -- All recipes are from the user
@@ -141,8 +175,22 @@ interface FoodSearchDao {
                     WHERE rai.targetRecipeId = r.id 
                     AND rai.ingredientId = :excludedRecipeId
                 ))
+            UNION
+            SELECT r.id AS id
+            FROM Recipe r
+            WHERE
+                -- All recipes are from the user
+                :source = ${FoodSourceTypeSQLConstants.USER} AND
+                (r.name LIKE '%' || :query || '%' OR r.note LIKE '%' || :query || '%') AND
+                (:excludedRecipeId IS NULL OR r.id != :excludedRecipeId) AND
+                (:excludedRecipeId IS NULL OR NOT EXISTS (
+                    SELECT 1
+                    FROM RecipeAllIngredientsView rai
+                    WHERE rai.targetRecipeId = r.id 
+                    AND rai.ingredientId = :excludedRecipeId
+                ))
         )
-        SELECT (SELECT COUNT(*) FROM ProductsSearch) + (SELECT COUNT(*) FROM RecipesSearch) 
+        SELECT (SELECT COUNT(*) FROM ProductIds) + (SELECT COUNT(*) FROM RecipeIds) 
         """
     )
     fun observeFoodCountByQuery(
