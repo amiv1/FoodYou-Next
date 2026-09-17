@@ -92,6 +92,7 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
                 onGoals = { navController.navigateSingleTop(GoalsSetup) },
                 onPersonalization = { navController.navigateSingleTop(Personalization) },
                 onDatabase = { navController.navigateSingleTop(DatabaseSettings) },
+                onExternalDatabases = { navController.navigateSingleTop(ExternalDatabases) },
             )
         }
         forwardBackwardComposable<Language> {
@@ -120,7 +121,6 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
         forwardBackwardComposable<DatabaseSettings> {
             DatabaseSettingsScreen(
                 onBack = { navController.popBackStackInclusive<DatabaseSettings>() },
-                onExternalDatabases = { navController.navigateSingleTop(ExternalDatabases) },
                 onImportCsvProducts = { navController.navigateSingleTop(ImportCsvProducts) },
                 onExportCsvProducts = { navController.navigateSingleTop(ExportCsvProducts) },
                 onDatabaseBackup = onDatabaseBackup,

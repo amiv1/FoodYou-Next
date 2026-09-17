@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Archive
-import androidx.compose.material.icons.outlined.CloudDownload
 import androidx.compose.material.icons.outlined.FileOpen
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFlexibleTopAppBar
@@ -23,7 +22,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DatabaseSettingsScreen(
     onBack: () -> Unit,
-    onExternalDatabases: () -> Unit,
     onImportCsvProducts: () -> Unit,
     onExportCsvProducts: () -> Unit,
     onDatabaseBackup: () -> Unit,
@@ -45,23 +43,11 @@ fun DatabaseSettingsScreen(
             modifier = Modifier.fillMaxSize().nestedScroll(scrollBehavior.nestedScrollConnection),
             contentPadding = paddingValues,
         ) {
-            item { ExternalDatabasesSettingsListItem(onExternalDatabases) }
             item { ImportCsvProductsSettingsListItem(onImportCsvProducts) }
             item { ExportCsvProductsSettingsListItem(onExportCsvProducts) }
             item { DatabaseBackup(onDatabaseBackup) }
         }
     }
-}
-
-@Composable
-private fun ExternalDatabasesSettingsListItem(onClick: () -> Unit, modifier: Modifier = Modifier) {
-    SettingsListItem(
-        icon = { Icon(imageVector = Icons.Outlined.CloudDownload, contentDescription = null) },
-        label = { Text(stringResource(Res.string.headline_external_databases)) },
-        supportingContent = { Text(stringResource(Res.string.description_external_databases)) },
-        onClick = onClick,
-        modifier = modifier,
-    )
 }
 
 @Composable
