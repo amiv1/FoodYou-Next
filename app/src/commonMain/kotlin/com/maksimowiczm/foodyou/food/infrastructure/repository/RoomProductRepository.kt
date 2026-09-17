@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class RoomProductRepository(private val productDao: ProductDao) : ProductRepository {
-    override fun observeProducts(limit: Int, offset: Int): Flow<List<Product>> =
-        productDao.observeProducts(limit, offset).map { list -> list.map { it.toModel() } }
+    override fun observeUserProducts(limit: Int, offset: Int): Flow<List<Product>> =
+        productDao.observeUserProducts(limit, offset).map { list -> list.map { it.toModel() } }
 
     override fun observeProduct(id: FoodId.Product): Flow<Product?> =
         productDao.observeProduct(id.id).map { it?.toModel() }

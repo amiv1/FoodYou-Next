@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.maksimowiczm.foodyou.common.infrastructure.room.FoodSourceType
+import com.maksimowiczm.foodyou.common.infrastructure.room.FoodSourceTypeSQLConstants
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -24,10 +25,11 @@ abstract class ProductDao {
         """
         SELECT *
         FROM Product
+        WHERE sourceType = ${FoodSourceTypeSQLConstants.USER}
         LIMIT :limit OFFSET :offset
         """
     )
-    abstract fun observeProducts(limit: Int, offset: Int): Flow<List<ProductEntity>>
+    abstract fun observeUserProducts(limit: Int, offset: Int): Flow<List<ProductEntity>>
 
     @Insert abstract suspend fun insertProduct(product: ProductEntity): Long
 

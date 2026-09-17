@@ -35,7 +35,7 @@ internal class ExportCsvProductsUseCaseImpl(
         transactionProvider.withTransaction {
             var offset = 0
             while (true) {
-                val products = productRepository.observeProducts(PAGE_SIZE, offset).first()
+                val products = productRepository.observeUserProducts(PAGE_SIZE, offset).first()
                 if (products.isEmpty()) break
 
                 for (product in products) {

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface ProductRepository {
     fun observeProduct(id: FoodId.Product): Flow<Product?>
 
-    fun observeProducts(limit: Int, offset: Int): Flow<List<Product>>
+    fun observeUserProducts(limit: Int, offset: Int): Flow<List<Product>>
 
     /**
      * @param name Name of the product.
