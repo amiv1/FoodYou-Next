@@ -103,6 +103,10 @@ abstract class FoodYouComposeTest {
         runBlocking {
             settingsRepository.update { copy(lastRememberedVersion = appConfig.versionName) }
         }
+
+        // Suppress the "preview release" warning dialog (shown for pre-release/unreleased
+        // version builds) so it doesn't pop up over Home and intercept test clicks.
+        runBlocking { settingsRepository.update { copy(hidePreviewDialog = true) } }
     }
 }
 
