@@ -20,6 +20,8 @@
     <string name="headline_calories_consumed">Spożyte</string>
     <string name="headline_calories_remaining">Pozostało</string>
     <string name="headline_calories_excess">Nadwyżka</string>
+    <string name="headline_calorie_allowed_difference">Dopuszczalna różnica kalorii</string>
+    <string name="description_calorie_allowed_difference">Kalorie przekraczające cel w tym zakresie nadal liczą się jako zgodne z planem</string>
     <string name="headline_about">O aplikacji</string>
     <string name="headline_version">Wersja</string>
     <string name="headline_all_day" description="All-day (meal)">Cały dzień</string>
@@ -345,6 +347,10 @@
     <string name="description_manage_database">Zarządzaj swoją bazą danych</string>
     <string name="action_done">Zrobione</string>
     <string name="neutral_measurement_added">Twój pomiar został dodany</string>
+
+    <string name="neutral_meal_copied">Skopiowano posiłek</string>
+    <string name="neutral_entry_copied">Skopiowano wpis</string>
+    <string name="action_view">Pokaż</string>
     <string name="headline_imported_from_food_you_2">Importowane z Food You 2</string>
     <string name="action_set_goals">Wyznacz cele</string>
     <string name="headline_pick_the_days">Wybierz dni</string>

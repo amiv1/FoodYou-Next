@@ -23,6 +23,8 @@
     <string name="headline_calories_consumed">Спожито</string>
     <string name="headline_calories_remaining">Залишилось</string>
     <string name="headline_calories_excess">Перевищення</string>
+    <string name="headline_calorie_allowed_difference">Допустима різниця калорій</string>
+    <string name="description_calorie_allowed_difference">Калорії понад ціль у цьому діапазоні все ще вважаються в межах норми</string>
     <string name="headline_about">Про додаток</string>
     <string name="headline_version">Версія</string>
     <string name="headline_all_day" description="All-day (meal)">Увесь день</string>
@@ -400,6 +402,10 @@
     <string name="action_done">Готово</string>
 
     <string name="neutral_measurement_added">Гаразд! Ми додали ваше вимірювання</string>
+
+    <string name="neutral_meal_copied">Прийом їжі скопійовано</string>
+    <string name="neutral_entry_copied">Запис скопійовано</string>
+    <string name="action_view">Переглянути</string>
 
     <string name="headline_imported_from_food_you_2">Імпортовано з Food You 2</string>
     <string name="action_set_goals">Визначити цілі</string>

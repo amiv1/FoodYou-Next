@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Tüketilen</string>
     <string name="headline_calories_remaining">Kalan</string>
     <string name="headline_calories_excess">Fazla</string>
+    <string name="headline_calorie_allowed_difference">İzin verilen kalori farkı</string>
+    <string name="description_calorie_allowed_difference">Bu aralıktaki hedefi aşan kaloriler yine de yolunda sayılır</string>
     <string name="headline_about">Hakkında</string>
     <string name="headline_version">Sürüm</string>
     <string name="headline_all_day" description="All-day (meal)">Tüm gün</string>
@@ -328,6 +330,10 @@
     <string name="description_manage_database">Veritabanınızı yönetin</string>
     <string name="action_done">Bitti</string>
     <string name="neutral_measurement_added">Anlaşıldı! Ölçümünüz eklendi</string>
+
+    <string name="neutral_meal_copied">Öğün kopyalandı</string>
+    <string name="neutral_entry_copied">Kayıt kopyalandı</string>
+    <string name="action_view">Görüntüle</string>
     <string name="headline_imported_from_food_you_2">Food You 2'den içe aktarıldı</string>
     <string name="action_set_goals">Hedefleri belirle</string>
     <string name="headline_pick_the_days">Günleri seçin</string>

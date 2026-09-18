@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Kulutettu</string>
     <string name="headline_calories_remaining">Jäljellä</string>
     <string name="headline_calories_excess">Ylitys</string>
+    <string name="headline_calorie_allowed_difference">Sallittu kaloriero</string>
+    <string name="description_calorie_allowed_difference">Tavoitteen ylittävät kalorit tällä välillä lasketaan silti tavoitteen mukaisiksi</string>
     <string name="headline_about">Lisätietoja</string>
     <string name="headline_version">Versio</string>
     <string name="headline_all_day" description="All-day (meal)">Koko päivä</string>
@@ -329,6 +331,10 @@
     <string name="description_manage_database">Hallinnoi tietokantaasi</string>
     <string name="action_done">Valmis</string>
     <string name="neutral_measurement_added">Selvä! Mittauksesi on lisätty</string>
+
+    <string name="neutral_meal_copied">Ateria kopioitu</string>
+    <string name="neutral_entry_copied">Merkintä kopioitu</string>
+    <string name="action_view">Näytä</string>
     <string name="headline_imported_from_food_you_2">Tuotu Food Youn versiosta 2</string>
     <string name="action_set_goals">Aseta tavoitteita</string>
     <string name="headline_pick_the_days">Valitse päivät</string>

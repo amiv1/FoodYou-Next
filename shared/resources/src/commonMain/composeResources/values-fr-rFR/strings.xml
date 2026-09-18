@@ -20,6 +20,8 @@
     <string name="headline_calories_consumed">Consommé</string>
     <string name="headline_calories_remaining">Restant</string>
     <string name="headline_calories_excess">Excès</string>
+    <string name="headline_calorie_allowed_difference">Différence calorique autorisée</string>
+    <string name="description_calorie_allowed_difference">Les calories dépassant l'objectif dans cette plage sont toujours considérées comme conformes</string>
     <string name="headline_about">À propos</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Toute la journée</string>
@@ -327,6 +329,10 @@
     <string name="description_manage_database">Gérez votre base de données</string>
     <string name="action_done">Terminé</string>
     <string name="neutral_measurement_added">C'est bon ! Nous avons ajouté vos données</string>
+
+    <string name="neutral_meal_copied">Repas copié</string>
+    <string name="neutral_entry_copied">Entrée copiée</string>
+    <string name="action_view">Afficher</string>
     <string name="headline_imported_from_food_you_2">Importé depuis Food You 2</string>
     <string name="action_set_goals">Définir les objectifs</string>
     <string name="headline_pick_the_days">Récurrence </string>

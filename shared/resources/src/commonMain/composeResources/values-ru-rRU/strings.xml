@@ -20,6 +20,8 @@
     <string name="headline_calories_consumed">Потреблено</string>
     <string name="headline_calories_remaining">Осталось</string>
     <string name="headline_calories_excess">Превышение</string>
+    <string name="headline_calorie_allowed_difference">Допустимая разница калорий</string>
+    <string name="description_calorie_allowed_difference">Калории сверх цели в этом диапазоне всё ещё считаются в пределах нормы</string>
     <string name="headline_about">О приложении</string>
     <string name="headline_version">Версия</string>
     <string name="headline_all_day" description="All-day (meal)">Весь день</string>
@@ -345,6 +347,10 @@
     <string name="description_manage_database">Управляйте вашей базой данных</string>
     <string name="action_done">Готово</string>
     <string name="neutral_measurement_added">Принято! Мы добавили ваши измерения</string>
+
+    <string name="neutral_meal_copied">Приём пищи скопирован</string>
+    <string name="neutral_entry_copied">Запись скопирована</string>
+    <string name="action_view">Просмотр</string>
     <string name="headline_imported_from_food_you_2">Импортировано из Food You 2</string>
     <string name="action_set_goals">Задать цели</string>
     <string name="headline_pick_the_days">Выбрать дни</string>

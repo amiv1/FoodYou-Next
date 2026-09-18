@@ -22,6 +22,8 @@
     <string name="headline_calories_consumed">Geconsumeerd</string>
     <string name="headline_calories_remaining">Resterend</string>
     <string name="headline_calories_excess">Teveel</string>
+    <string name="headline_calorie_allowed_difference">Toegestaan calorieverschil</string>
+    <string name="description_calorie_allowed_difference">Calorieën boven het doel binnen dit bereik tellen nog steeds als op schema</string>
     <string name="headline_about">Over</string>
     <string name="headline_version">Versie</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dag</string>
@@ -356,6 +358,10 @@
     <string name="description_manage_database">Beheer jouw databases</string>
     <string name="action_done">Klaar</string>
     <string name="neutral_measurement_added">Begrepen! We hebben je afmetingen aangepast</string>
+
+    <string name="neutral_meal_copied">Maaltijd gekopieerd</string>
+    <string name="neutral_entry_copied">Item gekopieerd</string>
+    <string name="action_view">Bekijken</string>
     <string name="headline_imported_from_food_you_2">Geïmporteerd uit Food You 2</string>
     <string name="action_set_goals">Doelen instellen</string>
     <string name="headline_pick_the_days">Kies de dagen</string>

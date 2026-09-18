@@ -22,6 +22,8 @@
     <string name="headline_calories_consumed">已摄入</string>
     <string name="headline_calories_remaining">剩余</string>
     <string name="headline_calories_excess">超出</string>
+    <string name="headline_calorie_allowed_difference">允许的卡路里差值</string>
+    <string name="description_calorie_allowed_difference">在此范围内超出目标的卡路里仍视为符合目标</string>
     <string name="headline_about">关于</string>
     <string name="headline_version">版本</string>
     <string name="headline_all_day" description="All-day (meal)">一整天</string>
@@ -348,6 +350,10 @@
     <string name="description_manage_database">管理您的数据库</string>
     <string name="action_done">完成</string>
     <string name="neutral_measurement_added">收到！您的测量数据已添加</string>
+
+    <string name="neutral_meal_copied">已复制餐食</string>
+    <string name="neutral_entry_copied">已复制条目</string>
+    <string name="action_view">查看</string>
     <string name="headline_imported_from_food_you_2">从 Food You 2 导入</string>
     <string name="action_set_goals">设定目标</string>
     <string name="headline_pick_the_days">选择日期</string>

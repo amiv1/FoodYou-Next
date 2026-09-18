@@ -23,6 +23,8 @@
     <string name="headline_calories_consumed">Indtaget</string>
     <string name="headline_calories_remaining">Resterende</string>
     <string name="headline_calories_excess">Overskud</string>
+    <string name="headline_calorie_allowed_difference">Tilladt kalorieforskel</string>
+    <string name="description_calorie_allowed_difference">Kalorier over målet inden for dette interval tæller stadig som på rette spor</string>
     <string name="headline_about">Om</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Hele dagen</string>
@@ -448,6 +450,10 @@
     <string name="action_done">Færdig</string>
 
     <string name="neutral_measurement_added">Forstået! Vi har tilføjet din måling</string>
+
+    <string name="neutral_meal_copied">Måltid kopieret</string>
+    <string name="neutral_entry_copied">Post kopieret</string>
+    <string name="action_view">Vis</string>
 
     <string name="headline_imported_from_food_you_2">Importeret fra Food You 2</string>
 

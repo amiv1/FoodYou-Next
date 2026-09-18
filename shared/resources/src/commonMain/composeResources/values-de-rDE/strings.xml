@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Verzehrt</string>
     <string name="headline_calories_remaining">Verbleibend</string>
     <string name="headline_calories_excess">Überschuss</string>
+    <string name="headline_calorie_allowed_difference">Erlaubte Kalorienabweichung</string>
+    <string name="description_calorie_allowed_difference">Kalorien über dem Ziel innerhalb dieses Bereichs gelten weiterhin als im Rahmen</string>
     <string name="headline_about">Über</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">Ganztägig</string>
@@ -328,6 +330,10 @@
     <string name="description_manage_database">Verwaltung der Datenbank</string>
     <string name="action_done">Fertig</string>
     <string name="neutral_measurement_added">Alles klar! Deine Messung wurde hinzugefügt</string>
+
+    <string name="neutral_meal_copied">Mahlzeit kopiert</string>
+    <string name="neutral_entry_copied">Eintrag kopiert</string>
+    <string name="action_view">Anzeigen</string>
     <string name="headline_imported_from_food_you_2">Importiert aus Food You 2</string>
     <string name="action_set_goals">Ziele setzen</string>
     <string name="headline_pick_the_days">Tage auswählen</string>

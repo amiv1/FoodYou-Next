@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Elfogyasztott</string>
     <string name="headline_calories_remaining">Hátralévő</string>
     <string name="headline_calories_excess">Túllépés</string>
+    <string name="headline_calorie_allowed_difference">Megengedett kalóriaeltérés</string>
+    <string name="description_calorie_allowed_difference">A célon belüli ezen tartományon belüli túllépés még mindig a terv szerintinek számít</string>
     <string name="headline_about">Névjegy</string>
     <string name="headline_version">Verzió</string>
     <string name="headline_all_day" description="All-day (meal)">Egész nap</string>
@@ -328,6 +330,10 @@
     <string name="description_manage_database">Adatbázis kezelése</string>
     <string name="action_done">Kész</string>
     <string name="neutral_measurement_added">Megvan! Hozzáadtuk a méréseit</string>
+
+    <string name="neutral_meal_copied">Étkezés másolva</string>
+    <string name="neutral_entry_copied">Bejegyzés másolva</string>
+    <string name="action_view">Megtekintés</string>
     <string name="headline_imported_from_food_you_2">A Food You 2-ből importálva</string>
     <string name="action_set_goals">Célok beállítása</string>
     <string name="headline_pick_the_days">Napok kiválasztása</string>

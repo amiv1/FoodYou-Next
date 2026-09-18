@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Zkonzumováno</string>
     <string name="headline_calories_remaining">Zbývá</string>
     <string name="headline_calories_excess">Přebytek</string>
+    <string name="headline_calorie_allowed_difference">Povolený rozdíl kalorií</string>
+    <string name="description_calorie_allowed_difference">Kalorie nad cílem v tomto rozsahu se stále počítají jako v pořádku</string>
     <string name="headline_about">O aplikaci</string>
     <string name="headline_version">Verze</string>
     <string name="headline_all_day" description="All-day (meal)">Celý den</string>
@@ -347,6 +349,10 @@
     <string name="description_manage_database">Spravovat databázi</string>
     <string name="action_done">Hotovo</string>
     <string name="neutral_measurement_added">Skvělé! Přidali jsme vaše měření</string>
+
+    <string name="neutral_meal_copied">Jídlo zkopírováno</string>
+    <string name="neutral_entry_copied">Záznam zkopírován</string>
+    <string name="action_view">Zobrazit</string>
     <string name="headline_imported_from_food_you_2">Importováno z Food You 2</string>
     <string name="action_set_goals">Nastavit cíle</string>
     <string name="headline_pick_the_days">Vybrat dny</string>

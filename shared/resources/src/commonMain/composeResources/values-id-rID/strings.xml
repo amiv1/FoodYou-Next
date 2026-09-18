@@ -22,6 +22,8 @@
     <string name="headline_calories_consumed">Dikonsumsi</string>
     <string name="headline_calories_remaining">Tersisa</string>
     <string name="headline_calories_excess">Kelebihan</string>
+    <string name="headline_calorie_allowed_difference">Selisih kalori yang diizinkan</string>
+    <string name="description_calorie_allowed_difference">Kalori di atas target dalam rentang ini masih dianggap sesuai target</string>
     <string name="headline_about">Tentang</string>
     <string name="headline_version">Versi</string>
     <string name="headline_all_day" description="All-day (meal)">Seharian</string>
@@ -350,6 +352,10 @@
     <string name="description_manage_database">Kelola basis data Anda</string>
     <string name="action_done">Selesai</string>
     <string name="neutral_measurement_added">Baik! Kami sudah menambahkan pengukuran Anda</string>
+
+    <string name="neutral_meal_copied">Makanan disalin</string>
+    <string name="neutral_entry_copied">Entri disalin</string>
+    <string name="action_view">Lihat</string>
     <string name="headline_imported_from_food_you_2">Diimpor dari Food You 2</string>
     <string name="action_set_goals">Atur Target</string>
     <string name="headline_pick_the_days">Pilih hari</string>

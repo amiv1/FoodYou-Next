@@ -20,6 +20,8 @@
     <string name="headline_calories_consumed">Consumit</string>
     <string name="headline_calories_remaining">Restant</string>
     <string name="headline_calories_excess">Excés</string>
+    <string name="headline_calorie_allowed_difference">Diferència calòrica permesa</string>
+    <string name="description_calorie_allowed_difference">Les calories per sobre de l'objectiu dins d'aquest interval encara compten com a correctes</string>
     <string name="headline_about">Informació</string>
     <string name="headline_version">Versió</string>
     <string name="headline_all_day" description="All-day (meal)">Tot el dia</string>
@@ -327,6 +329,10 @@
     <string name="description_manage_database">Gestiona la teva base de dades</string>
     <string name="action_done">Fet</string>
     <string name="neutral_measurement_added">Perfecte! Hem afegit la teva mesura</string>
+
+    <string name="neutral_meal_copied">Àpat copiat</string>
+    <string name="neutral_entry_copied">Entrada copiada</string>
+    <string name="action_view">Veure</string>
     <string name="headline_imported_from_food_you_2">Importat de Food You 2</string>
     <string name="action_set_goals">Estableix objectius</string>
     <string name="headline_pick_the_days">Tria els dies</string>

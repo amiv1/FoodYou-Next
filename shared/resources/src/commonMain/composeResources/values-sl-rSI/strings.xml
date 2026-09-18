@@ -21,6 +21,8 @@
     <string name="headline_calories_consumed">Zaužito</string>
     <string name="headline_calories_remaining">Preostalo</string>
     <string name="headline_calories_excess">Presežek</string>
+    <string name="headline_calorie_allowed_difference">Dovoljena razlika kalorij</string>
+    <string name="description_calorie_allowed_difference">Kalorije nad ciljem znotraj tega razpona še vedno štejejo kot v skladu z načrtom</string>
     <string name="headline_about">O aplikaciji Food You</string>
     <string name="headline_version">Različica</string>
     <string name="headline_all_day" description="All-day (meal)">Celodnevno</string>
@@ -347,6 +349,10 @@
     <string name="description_manage_database">Upravljanje zbirke podatkov</string>
     <string name="action_done">Končano</string>
     <string name="neutral_measurement_added">Razumem! Dodali smo vašo meritev</string>
+
+    <string name="neutral_meal_copied">Obrok kopiran</string>
+    <string name="neutral_entry_copied">Vnos kopiran</string>
+    <string name="action_view">Prikaži</string>
     <string name="headline_imported_from_food_you_2">Uvoženo iz Food You 2</string>
     <string name="action_set_goals">Nastavite cilje</string>
     <string name="headline_pick_the_days">Izberite dneve</string>

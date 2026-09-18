@@ -22,6 +22,8 @@
     <string name="headline_calories_consumed">المستهلك</string>
     <string name="headline_calories_remaining">المتبقي</string>
     <string name="headline_calories_excess">الزائد</string>
+    <string name="headline_calorie_allowed_difference">فرق السعرات الحرارية المسموح به</string>
+    <string name="description_calorie_allowed_difference">السعرات الزائدة عن الهدف ضمن هذا النطاق لا تزال تُعتبر ضمن المسار الصحيح</string>
     <string name="headline_about">حول</string>
     <string name="headline_version">الإصدار</string>
     <string name="headline_all_day" description="All-day (meal)">طوال اليوم</string>
@@ -495,6 +497,10 @@
     <string name="action_done">تم</string>
 
     <string name="neutral_measurement_added">حسنًا! لقد أضفنا القياس الخاص بك</string>
+
+    <string name="neutral_meal_copied">تم نسخ الوجبة</string>
+    <string name="neutral_entry_copied">تم نسخ العنصر</string>
+    <string name="action_view">عرض</string>
 
     <string name="headline_imported_from_food_you_2">تم الاستيراد من Food You 2</string>
 
