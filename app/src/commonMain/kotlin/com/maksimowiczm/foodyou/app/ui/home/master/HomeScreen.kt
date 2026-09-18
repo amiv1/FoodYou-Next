@@ -14,10 +14,13 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Today
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -30,6 +33,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
@@ -51,6 +55,8 @@ import com.valentinilk.shimmer.Shimmer
 import foodyou.app.generated.resources.*
 import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
@@ -77,7 +83,16 @@ private suspend fun commitSwipe(
     homeState: HomeState,
     width: Float,
     direction: Int,
+    onDateWillChange: (LocalDate) -> Unit = {},
 ) {
+    val targetDate =
+        if (direction > 0) {
+            homeState.selectedDate.plus(1, DateTimeUnit.DAY)
+        } else {
+            homeState.selectedDate.minus(1, DateTimeUnit.DAY)
+        }
+    onDateWillChange(targetDate)
+
     val target = -direction * width
     offsetX.animateTo(target, tween(220))
     if (direction > 0) homeState.selectNextDay() else homeState.selectPreviousDay()
@@ -103,10 +118,75 @@ fun HomeScreen(
     val homeState = rememberHomeState()
     val snackbarHostState = remember { SnackbarHostState() }
 
+    val density = LocalDensity.current
+    val coroutineScope = rememberCoroutineScope()
+    val offsetX = remember { Animatable(0f) }
+    var containerWidthPx by remember { mutableStateOf(0) }
+    val thresholdPx = remember(density) { with(density) { SwipeThreshold.toPx() } }
+
+    val selectedDate = homeState.selectedDate
+    val prevDate = selectedDate.minus(1, DateTimeUnit.DAY)
+    val nextDate = selectedDate.plus(1, DateTimeUnit.DAY)
+    val width = containerWidthPx.toFloat().coerceAtLeast(1f)
+
+    // The date the FAB (and its scroll-collapse state) should react to. Kept in sync with
+    // [selectedDate] but updated immediately when a swipe/slide transition *starts* (rather than
+    // waiting the ~220ms for the animation to finish and homeState to actually commit the date),
+    // so the FAB doesn't lag behind the user's action.
+    var fabDisplayDate by remember { mutableStateOf(selectedDate) }
+    LaunchedEffect(selectedDate) { fabDisplayDate = selectedDate }
+
+    var hasScrolledSinceDateChange by remember { mutableStateOf(false) }
+    LaunchedEffect(fabDisplayDate) { hasScrolledSinceDateChange = false }
+
+    val onCalendarDateSelect: (LocalDate) -> Unit = { date ->
+        coroutineScope.launch {
+            val diffDays = date.toEpochDays() - selectedDate.toEpochDays()
+
+            when {
+                diffDays == 1L && homeState.canSelectNextDay ->
+                    commitSwipe(
+                        offsetX,
+                        homeState,
+                        width,
+                        direction = 1,
+                        onDateWillChange = { fabDisplayDate = it },
+                    )
+
+                diffDays == -1L && homeState.canSelectPreviousDay ->
+                    commitSwipe(
+                        offsetX,
+                        homeState,
+                        width,
+                        direction = -1,
+                        onDateWillChange = { fabDisplayDate = it },
+                    )
+
+                else -> {
+                    offsetX.snapTo(0f)
+                    homeState.selectDate(date)
+                    fabDisplayDate = date
+                }
+            }
+        }
+    }
+
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(snackbarHostState) },
+        floatingActionButton = {
+            if (fabDisplayDate != homeState.lastKnownToday) {
+                ExtendedFloatingActionButton(
+                    onClick = { onCalendarDateSelect(homeState.lastKnownToday) },
+                    expanded = !hasScrolledSinceDateChange,
+                    icon = {
+                        Icon(imageVector = Icons.Default.Today, contentDescription = null)
+                    },
+                    text = { Text(stringResource(Res.string.action_today)) },
+                )
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -161,17 +241,6 @@ fun HomeScreen(
             )
         },
     ) { paddingValues ->
-        val density = LocalDensity.current
-        val coroutineScope = rememberCoroutineScope()
-        val offsetX = remember { Animatable(0f) }
-        var containerWidthPx by remember { mutableStateOf(0) }
-        val thresholdPx = remember(density) { with(density) { SwipeThreshold.toPx() } }
-
-        val selectedDate = homeState.selectedDate
-        val prevDate = selectedDate.minus(1, DateTimeUnit.DAY)
-        val nextDate = selectedDate.plus(1, DateTimeUnit.DAY)
-        val width = containerWidthPx.toFloat().coerceAtLeast(1f)
-
         var highlightMealId by remember { mutableStateOf<Long?>(null) }
         var highlightDate by remember { mutableStateOf<LocalDate?>(null) }
         val viewActionLabel = stringResource(Res.string.action_view)
@@ -204,14 +273,27 @@ fun HomeScreen(
 
                         when {
                             diffDays == 1L && homeState.canSelectNextDay ->
-                                commitSwipe(offsetX, homeState, width, direction = 1)
+                                commitSwipe(
+                                    offsetX,
+                                    homeState,
+                                    width,
+                                    direction = 1,
+                                    onDateWillChange = { fabDisplayDate = it },
+                                )
 
                             diffDays == -1L && homeState.canSelectPreviousDay ->
-                                commitSwipe(offsetX, homeState, width, direction = -1)
+                                commitSwipe(
+                                    offsetX,
+                                    homeState,
+                                    width,
+                                    direction = -1,
+                                    onDateWillChange = { fabDisplayDate = it },
+                                )
 
                             else -> {
                                 offsetX.snapTo(0f)
                                 homeState.selectDate(targetDate)
+                                fabDisplayDate = targetDate
                             }
                         }
 
@@ -220,25 +302,6 @@ fun HomeScreen(
                     }
                 }
             }
-
-        val onCalendarDateSelect: (LocalDate) -> Unit = { date ->
-            coroutineScope.launch {
-                val diffDays = date.toEpochDays() - selectedDate.toEpochDays()
-
-                when {
-                    diffDays == 1L && homeState.canSelectNextDay ->
-                        commitSwipe(offsetX, homeState, width, direction = 1)
-
-                    diffDays == -1L && homeState.canSelectPreviousDay ->
-                        commitSwipe(offsetX, homeState, width, direction = -1)
-
-                    else -> {
-                        offsetX.snapTo(0f)
-                        homeState.selectDate(date)
-                    }
-                }
-            }
-        }
 
         Box(
             modifier =
@@ -253,10 +316,22 @@ fun HomeScreen(
 
                                 when {
                                     current <= -thresholdPx && homeState.canSelectNextDay ->
-                                        commitSwipe(offsetX, homeState, width, direction = 1)
+                                        commitSwipe(
+                                            offsetX,
+                                            homeState,
+                                            width,
+                                            direction = 1,
+                                            onDateWillChange = { fabDisplayDate = it },
+                                        )
 
                                     current >= thresholdPx && homeState.canSelectPreviousDay ->
-                                        commitSwipe(offsetX, homeState, width, direction = -1)
+                                        commitSwipe(
+                                            offsetX,
+                                            homeState,
+                                            width,
+                                            direction = -1,
+                                            onDateWillChange = { fabDisplayDate = it },
+                                        )
 
                                     else ->
                                         offsetX.animateTo(
@@ -334,6 +409,7 @@ fun HomeScreen(
                     scrollBehavior = scrollBehavior,
                     contentPadding = paddingValues,
                     highlightMealId = if (highlightDate == selectedDate) highlightMealId else null,
+                    onScrolled = { hasScrolledSinceDateChange = true },
                     modifier =
                         Modifier.fillMaxSize().offset {
                             IntOffset(offsetX.value.roundToInt(), 0)
@@ -394,8 +470,18 @@ private fun HomeDayColumn(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     highlightMealId: Long? = null,
+    onScrolled: () -> Unit = {},
 ) {
+    val listState = rememberLazyListState()
+    LaunchedEffect(listState) {
+        snapshotFlow { listState.firstVisibleItemIndex to listState.firstVisibleItemScrollOffset }
+            .drop(1)
+            .first()
+        onScrolled()
+    }
+
     LazyColumn(
+        state = listState,
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentPadding = contentPadding,
     ) {
