@@ -40,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.component.FullScreenCameraBarcodeScanner
@@ -547,7 +548,11 @@ private inline fun <reified T> FormField<T, ProductFormFieldError>.TextField(
             if (T::class == Float::class) {
                 KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = imeAction)
             } else {
-                KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = imeAction)
+                KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = imeAction,
+                )
             },
     )
 }
@@ -568,7 +573,11 @@ private inline fun <reified T> FormField<T, Nothing>.TextField(
             if (T::class == Float::class) {
                 KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = imeAction)
             } else {
-                KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = imeAction)
+                KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = imeAction,
+                )
             },
     )
 }

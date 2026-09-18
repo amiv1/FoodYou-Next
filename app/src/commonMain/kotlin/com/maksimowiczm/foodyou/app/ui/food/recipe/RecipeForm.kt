@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -324,7 +325,11 @@ private inline fun <reified T> FormField<T, RecipeFormFieldError>.TextField(
             if (T::class == Int::class) {
                 KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = imeAction)
             } else {
-                KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = imeAction)
+                KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = imeAction,
+                )
             },
     )
 }

@@ -19,6 +19,7 @@ import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import com.maksimowiczm.foodyou.app.ui.common.form.FormField
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
@@ -39,7 +40,11 @@ internal fun QuickAddForm(state: QuickAddFormState, modifier: Modifier = Modifie
             label = { Text(stringResource(Res.string.product_name)) },
             supportingText = { Text(stringResource(Res.string.neutral_required)) },
             isError = state.name.error != null,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions =
+                KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Sentences,
+                    imeAction = ImeAction.Next,
+                ),
         )
 
         LocalNutrientsOrder.current.forEach {
