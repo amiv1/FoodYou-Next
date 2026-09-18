@@ -304,7 +304,6 @@
 
     <string name="headline_source_code">Source code</string>
 
-
     <string name="action_treat_as_liquid">Treat as liquid</string>
     <string name="description_treat_as_liquid">Prefer milliliters when measuring</string>
 
@@ -346,11 +345,6 @@
     <string name="headline_your_food">Your food</string>
     <string name="action_select_all">Select all</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d selected</item>
-        <item quantity="other">%1$d selected</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Delete food</item>
         <item quantity="other">Delete %1$d foods</item>
@@ -386,7 +380,6 @@
     <string name="headline_downloaded">Downloaded</string>
     <string name="headline_edited">Edited</string>
     <string name="headline_history">History</string>
-
 
     <string name="headline_recent">Recent</string>
 
@@ -464,14 +457,8 @@
     <string name="headline_nutrients_colors">Nutrients colors</string>
     <string name="description_nutrients_colors_reset">Nutrients colors settings will be reset to default values</string>
 
-
-
-
-
-
     <string name="action_next_month">Next month</string>
     <string name="action_previous_month">Previous month</string>
-
 
     <string name="headline_save_database">Save database</string>
     <string name="description_save_database">Save a copy of your database</string>

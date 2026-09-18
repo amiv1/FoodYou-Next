@@ -425,15 +425,6 @@
     <string name="headline_your_food">طعامك</string>
     <string name="action_select_all">تحديد الكل</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="zero">لم يتم تحديد أي عنصر</item>
-        <item quantity="one">تم تحديد عنصر واحد</item>
-        <item quantity="two">تم تحديد عنصرين</item>
-        <item quantity="few">تم تحديد %1$d عناصر</item>
-        <item quantity="many">تم تحديد %1$d عنصرًا</item>
-        <item quantity="other">تم تحديد %1$d عنصر</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="zero">حذف الأطعمة</item>
         <item quantity="one">حذف الطعام</item>

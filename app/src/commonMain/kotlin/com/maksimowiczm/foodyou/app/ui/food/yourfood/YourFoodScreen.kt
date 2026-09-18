@@ -107,15 +107,7 @@ fun YourFoodScreen(
                 )
             } else {
                 TopAppBar(
-                    title = {
-                        Text(
-                            pluralStringResource(
-                                Res.plurals.neutral_foods_selected,
-                                selectedIds.size,
-                                selectedIds.size,
-                            )
-                        )
-                    },
+                    title = { Text(selectedIds.size.toString()) },
                     navigationIcon = {
                         IconButton(
                             onClick = viewModel::clearSelection,

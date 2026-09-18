@@ -293,11 +293,6 @@
     <string name="headline_your_food">Az Ön étele</string>
     <string name="action_select_all">Összes kiválasztása</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d kiválasztva</item>
-        <item quantity="other">%1$d kiválasztva</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Étel törlése</item>
         <item quantity="other">%1$d étel törlése</item>
