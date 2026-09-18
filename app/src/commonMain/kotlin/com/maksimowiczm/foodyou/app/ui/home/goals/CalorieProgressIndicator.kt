@@ -1,6 +1,7 @@
 package com.maksimowiczm.foodyou.app.ui.home.goals
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,6 +27,9 @@ private val ToleranceStripePitch = 5.dp
 /** Stroke width of each diagonal tolerance-band stripe. */
 private val ToleranceStripeWidth = 1.5.dp
 
+/** Width of the border delineating the bar's track from its surrounding background. */
+private val TrackBorderWidth = 1.dp
+
 /**
  * A calorie-specific progress bar with three overlapping fill tiers (normal / tolerance / danger)
  * plus a gray marker for the unfilled tolerance zone, rendered widest-layer-first so each
@@ -45,6 +49,7 @@ internal fun CalorieProgressIndicator(
     modifier: Modifier = Modifier,
 ) {
     val trackColor = MaterialTheme.colorScheme.surfaceContainerHighest
+    val trackBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
     val bandColor = MaterialTheme.colorScheme.outlineVariant
     val normalColor = MaterialTheme.colorScheme.primary
     val toleranceColor = remember(normalColor) { lerp(normalColor, Color.Black, 0.25f) }
@@ -58,7 +63,13 @@ internal fun CalorieProgressIndicator(
 
     val targetMarkerWidth = 2.dp
 
-    BoxWithConstraints(modifier = modifier.clip(CircleShape).background(trackColor)) {
+    BoxWithConstraints(
+        modifier =
+            modifier
+                .clip(CircleShape)
+                .background(trackColor)
+                .border(TrackBorderWidth, trackBorderColor, CircleShape)
+    ) {
         if (warningEndFraction > normalEndFraction) {
             Box(
                 modifier =

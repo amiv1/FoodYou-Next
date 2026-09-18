@@ -1,6 +1,7 @@
 package com.maksimowiczm.foodyou.common.compose.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
+/** Width of the border delineating the track from its surrounding background. */
+private val TrackBorderWidth = 1.dp
 
 /**
  * A simple, continuous capsule-shaped progress bar: a track with a single fill on top, clipped to
@@ -36,8 +41,15 @@ fun SimpleProgressIndicator(
     dangerStartFraction: Float? = null,
 ) {
     val clampedProgress = progress.coerceIn(0f, 1f)
+    val trackBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
 
-    Box(modifier = modifier.clip(CircleShape).background(trackColor)) {
+    Box(
+        modifier =
+            modifier
+                .clip(CircleShape)
+                .background(trackColor)
+                .border(TrackBorderWidth, trackBorderColor, CircleShape)
+    ) {
         if (dangerColor != null && dangerStartFraction != null) {
             // Danger fill (widest, drawn first/underneath).
             Box(
