@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -49,6 +48,7 @@ internal fun GoalsCard(
 
     val showCalories by viewModel.showCalories.collectAsStateWithLifecycle()
     val showMacronutrients by viewModel.showMacronutrients.collectAsStateWithLifecycle()
+    val calorieAllowedDifference by viewModel.calorieAllowedDifference.collectAsStateWithLifecycle()
 
     if (!showCalories && !showMacronutrients) return
 
@@ -78,6 +78,7 @@ internal fun GoalsCard(
             modifier = modifier,
             showCalories = showCalories,
             showMacronutrients = showMacronutrients,
+            calorieAllowedDifference = calorieAllowedDifference,
         )
     }
 }
@@ -97,10 +98,18 @@ internal fun GoalsCard(
     modifier: Modifier = Modifier,
     showCalories: Boolean = true,
     showMacronutrients: Boolean = true,
+    calorieAllowedDifference: Int = 100,
 ) {
     if (!showCalories && !showMacronutrients) return
 
-    val calorieSummary = remember(energy, energyGoal) { calorieSummaryOf(energyGoal, energy) }
+    val calorieSummary =
+        remember(energy, energyGoal, calorieAllowedDifference) {
+            calorieSummaryOf(
+                target = energyGoal,
+                consumed = energy,
+                allowedDifference = calorieAllowedDifference,
+            )
+        }
 
     val calorieProgress =
         animateFloatAsState(
@@ -125,13 +134,11 @@ internal fun GoalsCard(
 
                 Spacer(Modifier.height(8.dp))
 
-                SimpleProgressIndicator(
+                CalorieProgressIndicator(
                     progress = calorieProgress,
-                    color =
-                        when (calorieSummary.state) {
-                            CalorieState.NORMAL -> MaterialTheme.colorScheme.primary
-                            CalorieState.OVER_LIMIT -> MaterialTheme.colorScheme.error
-                        },
+                    normalEndFraction = calorieSummary.normalEndFraction,
+                    warningEndFraction = calorieSummary.warningEndFraction,
+                    targetFraction = calorieSummary.targetFraction,
                     modifier = Modifier.fillMaxWidth().height(10.dp),
                 )
             }
@@ -160,9 +167,10 @@ private fun CalorieSummaryRow(calorieSummary: CalorieSummary, modifier: Modifier
     val energyFormatter = LocalEnergyFormatter.current
 
     val remainingOrExcessLabel =
-        when (calorieSummary.state) {
-            CalorieState.NORMAL -> stringResource(Res.string.headline_calories_remaining)
-            CalorieState.OVER_LIMIT -> stringResource(Res.string.headline_calories_excess)
+        if (calorieSummary.isExcess) {
+            stringResource(Res.string.headline_calories_excess)
+        } else {
+            stringResource(Res.string.headline_calories_remaining)
         }
 
     val remainingOrExcessColor =

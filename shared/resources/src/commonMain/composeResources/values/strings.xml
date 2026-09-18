@@ -24,6 +24,8 @@
     <string name="headline_calories_consumed">Consumed</string>
     <string name="headline_calories_remaining">Remaining</string>
     <string name="headline_calories_excess">Excess</string>
+    <string name="headline_calorie_allowed_difference">Allowed calorie difference</string>
+    <string name="description_calorie_allowed_difference">Calories over the target within this range still count as on track</string>
     <string name="headline_about">About</string>
     <string name="headline_version">Version</string>
     <string name="headline_all_day" description="All-day (meal)">All-day</string>

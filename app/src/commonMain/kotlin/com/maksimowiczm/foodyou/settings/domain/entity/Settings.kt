@@ -15,4 +15,5 @@ data class Settings(
     val allowFutureDates: Boolean,
     val showGoalsCalories: Boolean,
     val showGoalsMacronutrients: Boolean,
+    val calorieAllowedDifference: Int,
 ) : UserPreferences

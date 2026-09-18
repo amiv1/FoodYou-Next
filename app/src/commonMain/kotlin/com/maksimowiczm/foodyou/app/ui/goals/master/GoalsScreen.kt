@@ -23,7 +23,6 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -61,6 +60,8 @@ fun GoalsScreen(onBack: () -> Unit, epochDay: Long, modifier: Modifier = Modifie
     val date = LocalDate.fromEpochDays(epochDay)
     val viewModel: GoalsViewModel = koinViewModel()
     val dateFormatter = LocalDateFormatter.current
+
+    val calorieAllowedDifference by viewModel.calorieAllowedDifference.collectAsStateWithLifecycle()
 
     val screenState = rememberGoalsScreenState(selectedDate = date)
 
@@ -111,7 +112,10 @@ fun GoalsScreen(onBack: () -> Unit, epochDay: Long, modifier: Modifier = Modifie
                             ContainedLoadingIndicator()
                         }
                     } else {
-                        GoalsPage(uiState = uiState)
+                        GoalsPage(
+                            uiState = uiState,
+                            calorieAllowedDifference = calorieAllowedDifference,
+                        )
                     }
                 }
             }
@@ -120,7 +124,11 @@ fun GoalsScreen(onBack: () -> Unit, epochDay: Long, modifier: Modifier = Modifie
 }
 
 @Composable
-private fun GoalsPage(uiState: GoalsScreenUiState, modifier: Modifier = Modifier) {
+private fun GoalsPage(
+    uiState: GoalsScreenUiState,
+    calorieAllowedDifference: Int,
+    modifier: Modifier = Modifier,
+) {
     val meals = uiState.meals
     val goals = uiState.goal
 
@@ -140,6 +148,7 @@ private fun GoalsPage(uiState: GoalsScreenUiState, modifier: Modifier = Modifier
         NutrientList(
             nutritionFacts = nutritionFacts,
             goals = goals,
+            calorieAllowedDifference = calorieAllowedDifference,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
         )
         if (meals.incompleteFoods.isNotEmpty()) {
@@ -195,24 +204,16 @@ private fun MealsFilter(
 private fun NutrientList(
     nutritionFacts: NutritionFacts,
     goals: DailyGoal,
+    calorieAllowedDifference: Int,
     modifier: Modifier = Modifier,
 ) {
     val order = LocalNutrientsOrder.current
 
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(24.dp)) {
-        NutrientGoal(
-            label = stringResource(Res.string.unit_energy),
-            target =
-                NutrientGoalDefaults.energyTargetString(
-                    value = nutritionFacts[NutritionFactsField.Energy],
-                    target = goals[NutritionFactsField.Energy],
-                ),
-            color = MaterialTheme.colorScheme.primary,
-            state =
-                rememberNutrientGoalState(
-                    nutritionFacts[NutritionFactsField.Energy],
-                    goals[NutritionFactsField.Energy],
-                ),
+        EnergyGoal(
+            value = nutritionFacts[NutritionFactsField.Energy],
+            target = goals[NutritionFactsField.Energy],
+            calorieAllowedDifference = calorieAllowedDifference,
             modifier = Modifier.fillMaxWidth(),
         )
 

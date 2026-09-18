@@ -21,11 +21,15 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
+import com.maksimowiczm.foodyou.app.ui.home.goals.CalorieProgressIndicator
+import com.maksimowiczm.foodyou.app.ui.home.goals.calorieSummaryOf
+import com.maksimowiczm.foodyou.common.compose.component.GrowingProgress
 import com.maksimowiczm.foodyou.common.compose.component.SimpleProgressIndicator
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
 import com.maksimowiczm.foodyou.common.domain.food.NutrientValue
 import com.maksimowiczm.foodyou.common.domain.food.NutritionFactsField
 import foodyou.app.generated.resources.*
+import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -97,6 +101,60 @@ internal fun NutrientGoal(
         SimpleProgressIndicator(
             progress = progress,
             color = progressBarColor,
+            modifier = Modifier.fillMaxWidth().height(8.dp),
+        )
+    }
+}
+
+/**
+ * The Energy row's goal display, using the same [CalorieProgressIndicator] bar (tolerance-band
+ * tint + target-line marker) as the Home screen's Goals card, instead of the plain two-tone bar
+ * used by every other [NutrientGoal] row.
+ */
+@Composable
+internal fun EnergyGoal(
+    value: NutrientValue,
+    target: Double,
+    calorieAllowedDifference: Int,
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.primary,
+) {
+    val state = rememberNutrientGoalState(value, target)
+
+    val calorieSummary =
+        remember(value, target, calorieAllowedDifference) {
+            calorieSummaryOf(
+                target = target.roundToInt(),
+                consumed = (value.value ?: 0.0).roundToInt(),
+                allowedDifference = calorieAllowedDifference,
+            )
+        }
+
+    val progress by
+        animateFloatAsState(
+            targetValue = calorieSummary.progress,
+            animationSpec = MaterialTheme.motionScheme.slowSpatialSpec(),
+        )
+
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Box(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+                val labelColor = if (state.isExceeded) MaterialTheme.colorScheme.error else color
+
+                Text(
+                    text = stringResource(Res.string.unit_energy),
+                    style = LocalTextStyle.current.copy(color = labelColor),
+                )
+            }
+            Text(
+                NutrientGoalDefaults.energyTargetString(value = value, target = target, color = color)
+            )
+        }
+        CalorieProgressIndicator(
+            progress = progress,
+            normalEndFraction = calorieSummary.normalEndFraction,
+            warningEndFraction = calorieSummary.warningEndFraction,
+            targetFraction = calorieSummary.targetFraction,
             modifier = Modifier.fillMaxWidth().height(8.dp),
         )
     }

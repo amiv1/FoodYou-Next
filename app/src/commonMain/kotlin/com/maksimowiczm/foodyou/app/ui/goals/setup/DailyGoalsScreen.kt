@@ -74,6 +74,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun DailyGoalsScreen(onBack: () -> Unit, onSave: () -> Unit, modifier: Modifier = Modifier) {
     val viewModel: DailyGoalsViewModel = koinViewModel()
     val weeklyGoals = viewModel.weeklyGoals.collectAsStateWithLifecycle().value
+    val calorieAllowedDifference = viewModel.calorieAllowedDifference.collectAsStateWithLifecycle().value
 
     LaunchedCollectWithLifecycle(viewModel.events) {
         when (it) {
@@ -90,6 +91,8 @@ fun DailyGoalsScreen(onBack: () -> Unit, onSave: () -> Unit, modifier: Modifier 
 
     DailyGoalsContent(
         weeklyState = state,
+        calorieAllowedDifference = calorieAllowedDifference,
+        onCalorieAllowedDifferenceChange = viewModel::updateCalorieAllowedDifference,
         onBack = onBack,
         onSave = {
             val weeklyGoals = state.intoWeeklyGoals()
@@ -102,6 +105,8 @@ fun DailyGoalsScreen(onBack: () -> Unit, onSave: () -> Unit, modifier: Modifier 
 @Composable
 internal fun DailyGoalsContent(
     weeklyState: WeeklyGoalsState,
+    calorieAllowedDifference: Int,
+    onCalorieAllowedDifferenceChange: (Int) -> Unit,
     onBack: () -> Unit,
     onSave: () -> Unit,
     modifier: Modifier,
@@ -192,6 +197,11 @@ internal fun DailyGoalsContent(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                         )
                     }
+                    CalorieAllowedDifferenceField(
+                        value = calorieAllowedDifference,
+                        onValueChange = onCalorieAllowedDifferenceChange,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                    )
                     HorizontalDivider(Modifier.padding(vertical = 8.dp))
                     AdditionalGoalsForm(
                         state = state.additionalState,
@@ -201,6 +211,32 @@ internal fun DailyGoalsContent(
             }
         }
     }
+}
+
+@Composable
+private fun CalorieAllowedDifferenceField(
+    value: Int,
+    onValueChange: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    var text by rememberSaveable(value) { mutableStateOf(value.toString()) }
+
+    OutlinedTextField(
+        value = text,
+        onValueChange = { newText ->
+            text = newText
+            newText.toIntOrNull()?.let(onValueChange)
+        },
+        modifier = modifier,
+        label = { Text(stringResource(Res.string.headline_calorie_allowed_difference)) },
+        supportingText = {
+            Text(stringResource(Res.string.description_calorie_allowed_difference))
+        },
+        suffix = { Text(stringResource(Res.string.unit_kcal)) },
+        keyboardOptions =
+            KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+        singleLine = true,
+    )
 }
 
 @Composable

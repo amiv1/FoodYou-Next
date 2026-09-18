@@ -78,4 +78,14 @@ internal class GoalsViewModel(
                 started = SharingStarted.WhileSubscribed(2_000),
                 initialValue = true,
             )
+
+    val calorieAllowedDifference: StateFlow<Int> =
+        settingsRepository
+            .observe()
+            .map { it.calorieAllowedDifference }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(2_000),
+                initialValue = 100,
+            )
 }

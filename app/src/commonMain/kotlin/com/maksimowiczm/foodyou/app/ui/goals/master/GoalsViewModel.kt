@@ -3,8 +3,10 @@ package com.maksimowiczm.foodyou.app.ui.goals.master
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.maksimowiczm.foodyou.common.domain.food.isComplete
+import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
 import com.maksimowiczm.foodyou.goals.domain.repository.GoalsRepository
+import com.maksimowiczm.foodyou.settings.domain.entity.Settings
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -15,8 +17,19 @@ import kotlinx.datetime.LocalDate
 internal class GoalsViewModel(
     private val goalsRepository: GoalsRepository,
     private val observeDiaryMealsUseCase: ObserveDiaryMealsUseCase,
+    private val settingsRepository: UserPreferencesRepository<Settings>,
 ) : ViewModel() {
     private val mealsFlows = mutableMapOf<LocalDate, StateFlow<GoalsScreenUiState?>>()
+
+    val calorieAllowedDifference: StateFlow<Int> =
+        settingsRepository
+            .observe()
+            .map { it.calorieAllowedDifference }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(2_000),
+                initialValue = 100,
+            )
 
     fun observeUiStateByDate(date: LocalDate): StateFlow<GoalsScreenUiState?> {
         mealsFlows[date]?.let {

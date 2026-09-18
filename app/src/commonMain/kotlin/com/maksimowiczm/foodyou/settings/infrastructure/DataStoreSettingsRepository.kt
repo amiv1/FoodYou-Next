@@ -32,6 +32,8 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
             allowFutureDates = this[SettingsPreferencesKeys.allowFutureDates] ?: false,
             showGoalsCalories = this[SettingsPreferencesKeys.showGoalsCalories] ?: true,
             showGoalsMacronutrients = this[SettingsPreferencesKeys.showGoalsMacronutrients] ?: true,
+            calorieAllowedDifference =
+                this[SettingsPreferencesKeys.calorieAllowedDifference] ?: 100,
         )
 
     override fun MutablePreferences.applyUserPreferences(updated: Settings) {
@@ -47,6 +49,7 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
         this[SettingsPreferencesKeys.allowFutureDates] = updated.allowFutureDates
         this[SettingsPreferencesKeys.showGoalsCalories] = updated.showGoalsCalories
         this[SettingsPreferencesKeys.showGoalsMacronutrients] = updated.showGoalsMacronutrients
+        this[SettingsPreferencesKeys.calorieAllowedDifference] = updated.calorieAllowedDifference
     }
 }
 
@@ -143,4 +146,5 @@ private object SettingsPreferencesKeys {
     val allowFutureDates = booleanPreferencesKey("settings:allowFutureDates")
     val showGoalsCalories = booleanPreferencesKey("settings:showGoalsCalories")
     val showGoalsMacronutrients = booleanPreferencesKey("settings:showGoalsMacronutrients")
+    val calorieAllowedDifference = intPreferencesKey("settings:calorieAllowedDifference")
 }

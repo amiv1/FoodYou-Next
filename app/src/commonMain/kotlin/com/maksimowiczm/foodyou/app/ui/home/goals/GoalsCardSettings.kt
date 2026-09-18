@@ -62,6 +62,7 @@ fun GoalsCardSettings(
                     onLongClick = {},
                     showCalories = showCalories,
                     showMacronutrients = showMacronutrients,
+                    calorieAllowedDifference = 100,
                     modifier = Modifier.padding(16.dp),
                 )
             }
