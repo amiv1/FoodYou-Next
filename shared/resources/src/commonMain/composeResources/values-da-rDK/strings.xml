@@ -390,11 +390,6 @@
     <string name="headline_your_food">Din mad</string>
     <string name="action_select_all">Vælg alle</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d valgt</item>
-        <item quantity="other">%1$d valgt</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Slet fødevare</item>
         <item quantity="other">Slet %1$d fødevarer</item>

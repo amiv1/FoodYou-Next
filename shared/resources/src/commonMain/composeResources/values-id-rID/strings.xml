@@ -318,10 +318,6 @@
     <string name="headline_your_food">Makanan Anda</string>
     <string name="action_select_all">Pilih semua</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="other">%1$d dipilih</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="other">Hapus %1$d makanan</item>
     </plurals>

@@ -292,11 +292,6 @@
     <string name="headline_your_food">I tuoi cibi</string>
     <string name="action_select_all">Seleziona tutto</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d selezionato</item>
-        <item quantity="other">%1$d selezionati</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Elimina alimento</item>
         <item quantity="other">Elimina %1$d alimenti</item>

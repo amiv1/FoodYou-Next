@@ -147,7 +147,7 @@ class YourFoodSearchTest : FoodYouComposeTest() {
 
         // Search field stays visible/editable while a selection is active.
         composeRule.onNodeWithTag(TestTags.YourFoodSearchField).assertExists()
-        assert(composeRule.onAllNodesWithText("1 selected", substring = true).anyDisplayed())
+        assert(composeRule.onAllNodesWithText("1").anyDisplayed())
 
         composeRule.onNodeWithTag(TestTags.YourFoodDeleteButton).performClick()
         composeRule.waitForIdle()

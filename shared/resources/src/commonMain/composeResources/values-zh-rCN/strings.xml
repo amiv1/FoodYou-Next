@@ -316,10 +316,6 @@
     <string name="headline_your_food">您的食品</string>
     <string name="action_select_all">全选</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="other">已选择 %1$d 项</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="other">删除 %1$d 项食品</item>
     </plurals>

@@ -306,13 +306,6 @@
     <string name="headline_your_food">Vaša hrana</string>
     <string name="action_select_all">Izberi vse</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">Izbran %1$d izdelek</item>
-        <item quantity="two">Izbrana %1$d izdelka</item>
-        <item quantity="few">Izbrani %1$d izdelki</item>
-        <item quantity="other">Izbranih %1$d izdelkov</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Izbriši živilo</item>
         <item quantity="two">Izbriši %1$d živili</item>

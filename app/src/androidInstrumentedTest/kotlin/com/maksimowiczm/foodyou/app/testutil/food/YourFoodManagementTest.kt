@@ -106,8 +106,8 @@ class YourFoodManagementTest : FoodYouComposeTest() {
         // Checking one checkbox reveals the contextual selection bar and hides the "+" FAB.
         composeRule.onNodeWithTag(deleteCheckboxTag).performClick()
         composeRule.waitForIdle()
-        assert(composeRule.onAllNodesWithText("1 selected", substring = true).anyDisplayed()) {
-            "Expected the contextual selection bar to show '1 selected'."
+        assert(composeRule.onAllNodesWithText("1").anyDisplayed()) {
+            "Expected the contextual selection bar to show the selected count '1'."
         }
         assert(
             composeRule

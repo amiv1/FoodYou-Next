@@ -293,11 +293,6 @@
     <string name="headline_your_food">Deine Lebensmittel</string>
     <string name="action_select_all">Alle auswählen</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d ausgewählt</item>
-        <item quantity="other">%1$d ausgewählt</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Lebensmittel löschen</item>
         <item quantity="other">%1$d Lebensmittel löschen</item>

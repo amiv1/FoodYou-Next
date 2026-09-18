@@ -321,11 +321,6 @@
     <string name="headline_your_food">Jouw voedsel</string>
     <string name="action_select_all">Alles selecteren</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">%1$d geselecteerd</item>
-        <item quantity="other">%1$d geselecteerd</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Voedsel verwijderen</item>
         <item quantity="other">%1$d voedingsmiddelen verwijderen</item>

@@ -352,13 +352,6 @@
     <string name="headline_your_food">Ваша їжа</string>
     <string name="action_select_all">Вибрати все</string>
 
-    <plurals name="neutral_foods_selected">
-        <item quantity="one">Вибрано %1$d продукт</item>
-        <item quantity="few">Вибрано %1$d продукти</item>
-        <item quantity="many">Вибрано %1$d продуктів</item>
-        <item quantity="other">Вибрано %1$d продукту</item>
-    </plurals>
-
     <plurals name="headline_delete_foods">
         <item quantity="one">Видалити продукт</item>
         <item quantity="few">Видалити %1$d продукти</item>
