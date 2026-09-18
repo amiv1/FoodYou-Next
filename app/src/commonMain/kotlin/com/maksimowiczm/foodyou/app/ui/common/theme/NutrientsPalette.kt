@@ -12,16 +12,16 @@ data class NutrientsPalette(
 
 val DarkNutrientsPalette =
     NutrientsPalette(
-        proteinsOnSurfaceContainer = Color(0XFF8FE0F7),
-        carbohydratesOnSurfaceContainer = Color(0XFFA69AE2),
-        fatsOnSurfaceContainer = Color(0XFFE8D291),
+        proteinsOnSurfaceContainer = Color(0xFF0B88AB),
+        carbohydratesOnSurfaceContainer = Color(0xFF4046D1),
+        fatsOnSurfaceContainer = Color(0xFFDC9528),
     )
 
 val LightNutrientsPalette =
     NutrientsPalette(
-        proteinsOnSurfaceContainer = Color(0xFF0A7694),
-        carbohydratesOnSurfaceContainer = Color(0xFF6D5CD1),
-        fatsOnSurfaceContainer = Color(0xFF876C1D),
+        proteinsOnSurfaceContainer = Color(0xFF0B88AB),
+        carbohydratesOnSurfaceContainer = Color(0xFF4046D1),
+        fatsOnSurfaceContainer = Color(0xFFDC9528),
     )
 
 val LocalNutrientsPalette = staticCompositionLocalOf { NutrientsPalette() }
