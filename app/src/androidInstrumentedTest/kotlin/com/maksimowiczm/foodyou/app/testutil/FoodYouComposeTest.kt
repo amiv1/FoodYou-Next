@@ -1,11 +1,14 @@
 package com.maksimowiczm.foodyou.app.testutil
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.SemanticsNodeInteractionCollection
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.core.os.LocaleListCompat
+import androidx.test.platform.app.InstrumentationRegistry
 import com.maksimowiczm.foodyou.app.infrastructure.android.MainActivity
 import com.maksimowiczm.foodyou.common.domain.date.DateProvider
 import com.maksimowiczm.foodyou.common.domain.userpreferences.UserPreferencesRepository
@@ -20,6 +23,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
+import org.junit.rules.TestRule
+import org.junit.runner.Description
+import org.junit.runners.model.Statement
 import org.koin.android.ext.android.get
 import org.koin.core.qualifier.named
 
@@ -35,7 +41,39 @@ import org.koin.core.qualifier.named
  */
 abstract class FoodYouComposeTest {
 
-    @get:Rule val composeRule = createAndroidComposeRule<MainActivity>()
+    /**
+     * Forces the app's per-app language (an AndroidX `AppCompatDelegate` setting, stored by the
+     * platform independently of this app's own DataStore-backed settings - it survives across
+     * test runs and even across app reinstalls) to English before the activity under test
+     * launches, and restores whatever it was before this test afterward. Without this, tests that
+     * assert on English UI text (e.g. the "Today" calendar label) are flaky/fail whenever the
+     * device - or a previous test/manual run - left the app's language set to something else.
+     *
+     * Declared with an explicit lower [Rule.order] than [composeRule] so it wraps around it,
+     * applying the locale change before [composeRule] launches the activity (avoiding a
+     * locale-change activity recreation racing with the test).
+     */
+    private val forceEnglishLocaleRule = TestRule { base, _ ->
+        object : Statement() {
+            override fun evaluate() {
+                val original = AppCompatDelegate.getApplicationLocales()
+                InstrumentationRegistry.getInstrumentation().runOnMainSync {
+                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"))
+                }
+                try {
+                    base.evaluate()
+                } finally {
+                    InstrumentationRegistry.getInstrumentation().runOnMainSync {
+                        AppCompatDelegate.setApplicationLocales(original)
+                    }
+                }
+            }
+        }
+    }
+
+    @get:Rule(order = 0) val localeRule: TestRule = forceEnglishLocaleRule
+
+    @get:Rule(order = 1) val composeRule = createAndroidComposeRule<MainActivity>()
 
     /** Resolves a Koin dependency from the real application graph. */
     protected inline fun <reified T : Any> get(qualifier: org.koin.core.qualifier.Qualifier? = null): T =
@@ -107,6 +145,11 @@ abstract class FoodYouComposeTest {
         // Suppress the "preview release" warning dialog (shown for pre-release/unreleased
         // version builds) so it doesn't pop up over Home and intercept test clicks.
         runBlocking { settingsRepository.update { copy(hidePreviewDialog = true) } }
+
+        // Force a known "allow future dates" state so date-navigation tests (e.g. asserting that
+        // swiping into the future from today is a no-op) are deterministic, regardless of
+        // whatever a previous test run left this persisted DataStore-backed setting as.
+        runBlocking { settingsRepository.update { copy(allowFutureDates = false) } }
     }
 }
 
