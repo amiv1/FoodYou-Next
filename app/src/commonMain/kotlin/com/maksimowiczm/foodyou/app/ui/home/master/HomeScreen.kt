@@ -49,6 +49,7 @@ import com.maksimowiczm.foodyou.app.ui.home.meals.card.MealsCards
 import com.maksimowiczm.foodyou.app.ui.home.poll.PollsCard
 import com.maksimowiczm.foodyou.app.ui.home.shared.HomeState
 import com.maksimowiczm.foodyou.app.ui.home.shared.rememberHomeState
+import com.maksimowiczm.foodyou.common.compose.extension.add
 import com.maksimowiczm.foodyou.common.compose.utility.TestTags
 import com.maksimowiczm.foodyou.settings.domain.entity.HomeCard
 import com.valentinilk.shimmer.Shimmer
@@ -70,6 +71,14 @@ private val SwipeThreshold = 72.dp
 
 /** How much a drag is damped when it's dragged past an allowed bound (rubber-banding). */
 private const val RubberBandDamping = 0.35f
+
+/**
+ * Extra bottom content clearance reserved while the "Today" FAB is visible, so the last card
+ * isn't hidden behind it. Matches Material3's standard FAB height (56.dp) plus its standard edge
+ * margin (16.dp, the same `FabSpacing` Scaffold uses internally) - Scaffold's own content padding
+ * never accounts for the FAB's height, only the bottom bar/insets.
+ */
+private val FabBottomClearance = 72.dp
 
 /**
  * Slides the current day's content off-screen in the direction implied by whether [targetDate]
@@ -247,6 +256,8 @@ fun HomeScreen(
             )
         },
     ) { paddingValues ->
+        val dayContentPadding = paddingValues.add(bottom = FabBottomClearance)
+
         var highlightMealId by remember { mutableStateOf<Long?>(null) }
         var highlightDate by remember { mutableStateOf<LocalDate?>(null) }
         val viewActionLabel = stringResource(Res.string.action_view)
@@ -374,7 +385,7 @@ fun HomeScreen(
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
                         onCopyCompleted = onCopyCompleted,
                         scrollBehavior = scrollBehavior,
-                        contentPadding = paddingValues,
+                        contentPadding = dayContentPadding,
                         modifier =
                             Modifier.fillMaxSize().offset {
                                 IntOffset((-width + offsetX.value).roundToInt(), 0)
@@ -399,7 +410,7 @@ fun HomeScreen(
                     onEditDiaryEntryClick = onEditDiaryEntryClick,
                     onCopyCompleted = onCopyCompleted,
                     scrollBehavior = scrollBehavior,
-                    contentPadding = paddingValues,
+                    contentPadding = dayContentPadding,
                     highlightMealId = if (highlightDate == selectedDate) highlightMealId else null,
                     onScrolled = { hasScrolledSinceDateChange = true },
                     modifier =
@@ -426,7 +437,7 @@ fun HomeScreen(
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
                         onCopyCompleted = onCopyCompleted,
                         scrollBehavior = scrollBehavior,
-                        contentPadding = paddingValues,
+                        contentPadding = dayContentPadding,
                         modifier =
                             Modifier.fillMaxSize().offset {
                                 IntOffset((width + offsetX.value).roundToInt(), 0)
