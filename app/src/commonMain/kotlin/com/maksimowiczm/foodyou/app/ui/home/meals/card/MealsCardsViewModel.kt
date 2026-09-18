@@ -18,6 +18,7 @@ import com.maksimowiczm.foodyou.fooddiary.domain.usecase.CopyMealUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.ObserveDiaryMealsUseCase
 import com.maksimowiczm.foodyou.fooddiary.domain.usecase.UpdateFoodDiaryEntryUseCase
 import kotlin.math.roundToInt
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -25,10 +26,18 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
+
+/** Emitted after a copy action completes, so the UI can show a confirmation message. */
+internal sealed interface CopyEvent {
+    data object Meal : CopyEvent
+
+    data object Entry : CopyEvent
+}
 
 internal class MealsCardsViewModel(
     private val observeDiaryMealsUseCase: ObserveDiaryMealsUseCase,
@@ -41,6 +50,11 @@ internal class MealsCardsViewModel(
     mealsPreferencesRepository: UserPreferencesRepository<MealsPreferences>,
 ) : ViewModel() {
     private val dateState = MutableStateFlow<LocalDate?>(null)
+
+    // Use a channel to emit events because it will wait for a consumer, unlike a SharedFlow which
+    // would drop the event if nothing is currently collecting.
+    private val copyEventChannel = Channel<CopyEvent>()
+    val copyEvents = copyEventChannel.receiveAsFlow()
 
     val diaryMeals: StateFlow<List<MealModel>?> =
         dateState
@@ -121,12 +135,17 @@ internal class MealsCardsViewModel(
         val sourceDate = dateState.value ?: return
 
         viewModelScope.launch {
-            copyMealUseCase.copy(
-                sourceMealId = sourceMealId,
-                sourceDate = sourceDate,
-                targetMealId = targetMealId,
-                targetDate = targetDate,
-            )
+            val copiedCount =
+                copyMealUseCase.copy(
+                    sourceMealId = sourceMealId,
+                    sourceDate = sourceDate,
+                    targetMealId = targetMealId,
+                    targetDate = targetDate,
+                )
+
+            if (copiedCount > 0) {
+                copyEventChannel.send(CopyEvent.Meal)
+            }
         }
     }
 
@@ -139,6 +158,8 @@ internal class MealsCardsViewModel(
                 is ManualMealEntryModel ->
                     copyDiaryEntryUseCase.copyManualEntry(model.id, targetMealId, targetDate)
             }
+
+            copyEventChannel.send(CopyEvent.Entry)
         }
     }
 }

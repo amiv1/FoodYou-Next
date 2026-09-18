@@ -21,6 +21,8 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -95,10 +97,12 @@ fun HomeScreen(
     val viewModel: HomeViewModel = koinViewModel()
     val order by viewModel.homeOrder.collectAsStateWithLifecycle()
     val homeState = rememberHomeState()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(
         modifier = modifier,
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppBar(
                 title = {
@@ -156,6 +160,10 @@ fun HomeScreen(
         val prevDate = selectedDate.minus(1, DateTimeUnit.DAY)
         val nextDate = selectedDate.plus(1, DateTimeUnit.DAY)
         val width = containerWidthPx.toFloat().coerceAtLeast(1f)
+
+        val onShowMessage: (String) -> Unit = { message ->
+            coroutineScope.launch { snackbarHostState.showSnackbar(message) }
+        }
 
         val onCalendarDateSelect: (LocalDate) -> Unit = { date ->
             coroutineScope.launch {
@@ -241,6 +249,7 @@ fun HomeScreen(
                         onGoalsCardLongClick = onGoalsCardLongClick,
                         onGoalsCardClick = onGoalsCardClick,
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
+                        onShowMessage = onShowMessage,
                         scrollBehavior = scrollBehavior,
                         contentPadding = paddingValues,
                         modifier =
@@ -265,6 +274,7 @@ fun HomeScreen(
                     onGoalsCardLongClick = onGoalsCardLongClick,
                     onGoalsCardClick = onGoalsCardClick,
                     onEditDiaryEntryClick = onEditDiaryEntryClick,
+                    onShowMessage = onShowMessage,
                     scrollBehavior = scrollBehavior,
                     contentPadding = paddingValues,
                     modifier =
@@ -289,6 +299,7 @@ fun HomeScreen(
                         onGoalsCardLongClick = onGoalsCardLongClick,
                         onGoalsCardClick = onGoalsCardClick,
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
+                        onShowMessage = onShowMessage,
                         scrollBehavior = scrollBehavior,
                         contentPadding = paddingValues,
                         modifier =
@@ -321,6 +332,7 @@ private fun HomeDayColumn(
     onGoalsCardLongClick: () -> Unit,
     onGoalsCardClick: (epochDay: Long) -> Unit,
     onEditDiaryEntryClick: (foodEntryId: Long?, manualEntryId: Long?) -> Unit,
+    onShowMessage: (String) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
@@ -361,6 +373,7 @@ private fun HomeDayColumn(
                         onQuickAdd = onMealCardQuickAddClick,
                         onEditEntry = onEditDiaryEntryClick,
                         onLongClick = onMealCardLongClick,
+                        onShowMessage = onShowMessage,
                         contentPadding = PaddingValues(horizontal = 8.dp),
                         modifier = Modifier.padding(bottom = 8.dp),
                     )

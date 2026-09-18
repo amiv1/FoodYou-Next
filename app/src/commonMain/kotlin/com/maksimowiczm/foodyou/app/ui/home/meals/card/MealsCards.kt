@@ -4,9 +4,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.maksimowiczm.foodyou.common.compose.extension.LaunchedCollectWithLifecycle
 import com.maksimowiczm.foodyou.fooddiary.domain.entity.MealsCardsLayout
 import com.valentinilk.shimmer.Shimmer
+import foodyou.app.generated.resources.*
 import kotlinx.datetime.LocalDate
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -17,6 +20,7 @@ internal fun MealsCards(
     onQuickAdd: (epochDay: Long, mealId: Long) -> Unit,
     onEditEntry: (foodEntryId: Long?, manualEntryId: Long?) -> Unit,
     onLongClick: (mealId: Long) -> Unit,
+    onShowMessage: (String) -> Unit,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     viewModel: MealsCardsViewModel = koinViewModel(key = "meals-${date.toEpochDays()}"),
@@ -28,6 +32,18 @@ internal fun MealsCards(
     val showMacronutrients by viewModel.showMacronutrients.collectAsStateWithLifecycle()
 
     LaunchedEffect(date, viewModel) { viewModel.setDate(date) }
+
+    val mealCopiedMessage = stringResource(Res.string.neutral_meal_copied)
+    val entryCopiedMessage = stringResource(Res.string.neutral_entry_copied)
+
+    LaunchedCollectWithLifecycle(viewModel.copyEvents) { event ->
+        val message =
+            when (event) {
+                CopyEvent.Meal -> mealCopiedMessage
+                CopyEvent.Entry -> entryCopiedMessage
+            }
+        onShowMessage(message)
+    }
 
     when (layout) {
         MealsCardsLayout.Horizontal ->
