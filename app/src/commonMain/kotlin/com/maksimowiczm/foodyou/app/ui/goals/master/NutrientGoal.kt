@@ -1,6 +1,5 @@
 package com.maksimowiczm.foodyou.app.ui.goals.master
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,6 +24,7 @@ import com.maksimowiczm.foodyou.app.ui.home.goals.CalorieProgressIndicator
 import com.maksimowiczm.foodyou.app.ui.home.goals.calorieSummaryOf
 import com.maksimowiczm.foodyou.common.compose.component.GrowingProgress
 import com.maksimowiczm.foodyou.common.compose.component.SimpleProgressIndicator
+import com.maksimowiczm.foodyou.common.compose.component.growingProgressOf
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
 import com.maksimowiczm.foodyou.common.domain.food.NutrientValue
 import com.maksimowiczm.foodyou.common.domain.food.NutritionFactsField
@@ -90,8 +90,6 @@ internal fun NutrientGoal(
             targetValue = state.progress,
             animationSpec = MaterialTheme.motionScheme.slowSpatialSpec(),
         )
-    val progressBarColor by
-        animateColorAsState(if (state.isExceeded) MaterialTheme.colorScheme.error else progressColor)
 
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -100,7 +98,9 @@ internal fun NutrientGoal(
         }
         SimpleProgressIndicator(
             progress = progress,
-            color = progressBarColor,
+            color = progressColor,
+            dangerColor = MaterialTheme.colorScheme.error,
+            dangerStartFraction = state.normalEndFraction,
             modifier = Modifier.fillMaxWidth().height(8.dp),
         )
     }
@@ -166,11 +166,17 @@ internal fun rememberNutrientGoalState(value: NutrientValue, target: Double): Nu
 
 @Immutable
 internal class NutrientGoalState(val value: Double, val target: Double) {
+    private val growing: GrowingProgress
+        get() = growingProgressOf(value, target)
+
     val isExceeded: Boolean
         get() = value > target
 
     val progress: Float
-        get() = if (target == 0.0) 0f else (value / target).toFloat().coerceIn(0f, 1f)
+        get() = growing.progress
+
+    val normalEndFraction: Float
+        get() = growing.normalEndFraction
 }
 
 internal object NutrientGoalDefaults {

@@ -96,22 +96,6 @@ class CalorieSummaryTest {
         assertEquals(0f, summary.progress)
     }
 
-    @Test
-    fun `nutrient_progress_is_clamped_and_guards_zero_target`() {
-        assertApproximately(19f / 90f, nutrientProgress(current = 19, target = 90))
-        assertEquals(0f, nutrientProgress(current = 0, target = 0))
-        assertEquals(1f, nutrientProgress(current = 999, target = 90))
-        assertEquals(0f, nutrientProgress(current = 0, target = 90))
-    }
-
-    @Test
-    fun `nutrient_exceeded_is_only_true_when_strictly_over_a_positive_target`() {
-        assertEquals(false, isNutrientExceeded(current = 90, target = 90))
-        assertEquals(true, isNutrientExceeded(current = 91, target = 90))
-        assertEquals(false, isNutrientExceeded(current = 0, target = 0))
-        assertEquals(false, isNutrientExceeded(current = 5, target = 0))
-    }
-
     private fun assertApproximately(expected: Float, actual: Float, tolerance: Float = 0.001f) {
         assertTrue(
             kotlin.math.abs(expected - actual) <= tolerance,

@@ -103,10 +103,3 @@ internal fun calorieSummaryOf(target: Int, consumed: Int, allowedDifference: Int
         targetFraction = targetFraction,
     )
 }
-
-/** The fill fraction, in `0f..1f`, of a single nutrient's progress bar. */
-internal fun nutrientProgress(current: Int, target: Int): Float =
-    if (target <= 0) 0f else (current.toFloat() / target).coerceIn(0f, 1f)
-
-/** Whether a nutrient's consumption has gone over its daily target. */
-internal fun isNutrientExceeded(current: Int, target: Int): Boolean = target > 0 && current > target

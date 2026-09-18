@@ -17,6 +17,14 @@ import androidx.compose.ui.graphics.Color
  * between the fill and the track, and no stop indicator — [progress] is expected to already be
  * coerced to the `0f..1f` range by the caller (e.g. clamped to `1f` when a value exceeds its
  * target, instead of wrapping past 100%).
+ *
+ * When both [dangerColor] and [dangerStartFraction] are non-null, the fill is rendered as two
+ * overlapping layers instead of one: a full-width-of-[progress] [dangerColor] layer underneath,
+ * overwritten by a narrower [color] layer clipped to `min(progress, dangerStartFraction)` on top —
+ * so only the portion of [progress] past [dangerStartFraction] remains visibly [dangerColor]. This
+ * is used to show only the *excess* part of an over-target value in a danger color, rather than
+ * flipping the bar's entire fill to that color (see `growingProgressOf`, which computes a
+ * [dangerStartFraction] that shrinks as an over-target bar's max grows to accommodate the excess).
  */
 @Composable
 fun SimpleProgressIndicator(
@@ -24,14 +32,38 @@ fun SimpleProgressIndicator(
     color: Color,
     modifier: Modifier = Modifier,
     trackColor: Color = MaterialTheme.colorScheme.surfaceContainerHighest,
+    dangerColor: Color? = null,
+    dangerStartFraction: Float? = null,
 ) {
+    val clampedProgress = progress.coerceIn(0f, 1f)
+
     Box(modifier = modifier.clip(CircleShape).background(trackColor)) {
-        Box(
-            modifier =
-                Modifier.fillMaxWidth(progress.coerceIn(0f, 1f))
-                    .fillMaxHeight()
-                    .clip(CircleShape)
-                    .background(color)
-        )
+        if (dangerColor != null && dangerStartFraction != null) {
+            // Danger fill (widest, drawn first/underneath).
+            Box(
+                modifier =
+                    Modifier.fillMaxWidth(clampedProgress)
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .background(dangerColor)
+            )
+
+            // Normal fill (narrower, drawn on top) — overwrites the danger fill up to the target.
+            Box(
+                modifier =
+                    Modifier.fillMaxWidth(clampedProgress.coerceAtMost(dangerStartFraction))
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .background(color)
+            )
+        } else {
+            Box(
+                modifier =
+                    Modifier.fillMaxWidth(clampedProgress)
+                        .fillMaxHeight()
+                        .clip(CircleShape)
+                        .background(color)
+            )
+        }
     }
 }

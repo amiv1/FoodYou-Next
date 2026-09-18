@@ -27,6 +27,7 @@ import com.maksimowiczm.foodyou.app.ui.common.utility.LocalEnergyFormatter
 import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
 import com.maksimowiczm.foodyou.common.compose.component.SimpleProgressIndicator
+import com.maksimowiczm.foodyou.common.compose.component.growingProgressOf
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import com.valentinilk.shimmer.Shimmer
 import com.valentinilk.shimmer.shimmer
@@ -296,10 +297,10 @@ private fun NutrientColumn(
     color: Color,
     modifier: Modifier = Modifier,
 ) {
-    val exceeded = isNutrientExceeded(current, target)
+    val growing = remember(current, target) { growingProgressOf(current.toDouble(), target.toDouble()) }
     val progress =
         animateFloatAsState(
-                targetValue = nutrientProgress(current, target),
+                targetValue = growing.progress,
                 animationSpec = MaterialTheme.motionScheme.slowEffectsSpec(),
             )
             .value
@@ -335,7 +336,9 @@ private fun NutrientColumn(
 
         SimpleProgressIndicator(
             progress = progress,
-            color = if (exceeded) MaterialTheme.colorScheme.error else color,
+            color = color,
+            dangerColor = MaterialTheme.colorScheme.error,
+            dangerStartFraction = growing.normalEndFraction,
             modifier = Modifier.fillMaxWidth().height(6.dp),
         )
     }
