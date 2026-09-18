@@ -29,7 +29,7 @@ internal class DataStoreSettingsRepository(dataStore: DataStore<Preferences>) :
             onboardingFinished = this[SettingsPreferencesKeys.onboardingFinished] ?: false,
             energyFormat = this.getEnergyFormat(SettingsPreferencesKeys.energyFormat),
             appLaunchInfo = this.getAppLaunchInfo(),
-            allowFutureDates = this[SettingsPreferencesKeys.allowFutureDates] ?: false,
+            allowFutureDates = this[SettingsPreferencesKeys.allowFutureDates] ?: true,
             showGoalsCalories = this[SettingsPreferencesKeys.showGoalsCalories] ?: true,
             showGoalsMacronutrients = this[SettingsPreferencesKeys.showGoalsMacronutrients] ?: true,
             calorieAllowedDifference =
