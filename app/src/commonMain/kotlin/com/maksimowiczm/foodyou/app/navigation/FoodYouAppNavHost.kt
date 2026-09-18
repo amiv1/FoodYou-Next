@@ -54,6 +54,7 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
             HomeScreen(
                 onSettings = { navController.navigateSingleTop(Settings) },
                 onYourFood = { navController.navigateSingleTop(YourFood) },
+                onDailyGoals = { navController.navigateSingleTop(GoalsSetup) },
                 onTitle = { navController.navigateSingleTop(About) },
                 onMealCardLongClick = { navController.navigateSingleTop(MealsPersonalization) },
                 onMealCardAddClick = { epochDay, mealId ->

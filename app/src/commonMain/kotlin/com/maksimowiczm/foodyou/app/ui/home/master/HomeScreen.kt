@@ -88,6 +88,7 @@ private suspend fun commitSwipe(
 fun HomeScreen(
     onSettings: () -> Unit,
     onYourFood: () -> Unit,
+    onDailyGoals: () -> Unit,
     onTitle: () -> Unit,
     onMealCardLongClick: (mealId: Long) -> Unit,
     onMealCardAddClick: (epochDay: Long, mealId: Long) -> Unit,
@@ -138,6 +139,13 @@ fun HomeScreen(
                             onClick = {
                                 showMenu = false
                                 onYourFood()
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(Res.string.headline_daily_goals)) },
+                            onClick = {
+                                showMenu = false
+                                onDailyGoals()
                             },
                         )
                         DropdownMenuItem(
