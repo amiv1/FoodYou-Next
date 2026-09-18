@@ -72,30 +72,32 @@ private val SwipeThreshold = 72.dp
 private const val RubberBandDamping = 0.35f
 
 /**
- * Animates [offsetX] the rest of the way off-screen in the direction implied by [direction]
- * (`1` = next day, content slides left; `-1` = previous day, content slides right), commits the
- * date change on [homeState], then resets the offset. Since the neighbor day's real content is
- * already rendered at the destination position, resetting the offset right after the date change
- * lines up exactly with where the content already visually is - no visible jump.
+ * Slides the current day's content off-screen in the direction implied by whether [targetDate]
+ * is after or before the currently selected date (content slides left when moving forward, right
+ * when moving backward), commits the date change on [homeState], then resets the offset.
+ *
+ * [targetDate] doesn't have to be the literal adjacent day - the revealed neighbor slot is made to
+ * display [targetDate]'s content instead of the real adjacent day's (see [HomeScreen]'s
+ * `onJumpWillStart` usage), so jumping to a distant date animates the same one-day-swipe way
+ * instead of cutting instantly. Once the animation finishes, the neighbor slot's content already
+ * matches [targetDate], so resetting the offset right after the date change lines up exactly with
+ * where the content already visually is - no visible jump.
  */
-private suspend fun commitSwipe(
+private suspend fun commitJump(
     offsetX: Animatable<Float, AnimationVector1D>,
     homeState: HomeState,
     width: Float,
-    direction: Int,
-    onDateWillChange: (LocalDate) -> Unit = {},
+    targetDate: LocalDate,
+    onJumpWillStart: (targetDate: LocalDate, direction: Int) -> Unit = { _, _ -> },
 ) {
-    val targetDate =
-        if (direction > 0) {
-            homeState.selectedDate.plus(1, DateTimeUnit.DAY)
-        } else {
-            homeState.selectedDate.minus(1, DateTimeUnit.DAY)
-        }
-    onDateWillChange(targetDate)
+    if (targetDate == homeState.selectedDate) return
+
+    val direction = if (targetDate > homeState.selectedDate) 1 else -1
+    onJumpWillStart(targetDate, direction)
 
     val target = -direction * width
     offsetX.animateTo(target, tween(220))
-    if (direction > 0) homeState.selectNextDay() else homeState.selectPreviousDay()
+    homeState.selectDate(targetDate)
     offsetX.snapTo(0f)
 }
 
@@ -139,35 +141,39 @@ fun HomeScreen(
     var hasScrolledSinceDateChange by remember { mutableStateOf(false) }
     LaunchedEffect(fabDisplayDate) { hasScrolledSinceDateChange = false }
 
+    // While a jump to a distant (non-adjacent) date is animating, the revealed neighbor slot
+    // (prev or next, depending on [pendingJumpDirection]) displays [pendingJumpDate]'s content
+    // instead of the real adjacent day's, so distant jumps slide the same way a one-day swipe
+    // does instead of cutting instantly. Cleared once the jump commits.
+    var pendingJumpDate by remember { mutableStateOf<LocalDate?>(null) }
+    var pendingJumpDirection by remember { mutableStateOf(0) }
+
+    val displayPrevDate =
+        if (pendingJumpDirection == -1 && pendingJumpDate != null) pendingJumpDate!! else prevDate
+    val displayNextDate =
+        if (pendingJumpDirection == 1 && pendingJumpDate != null) pendingJumpDate!! else nextDate
+    val showPrevColumn =
+        homeState.canSelectPreviousDay || (pendingJumpDirection == -1 && pendingJumpDate != null)
+    val showNextColumn =
+        homeState.canSelectNextDay || (pendingJumpDirection == 1 && pendingJumpDate != null)
+
+    val onJumpWillStart: (LocalDate, Int) -> Unit = { target, direction ->
+        fabDisplayDate = target
+        pendingJumpDate = target
+        pendingJumpDirection = direction
+    }
+
     val onCalendarDateSelect: (LocalDate) -> Unit = { date ->
         coroutineScope.launch {
-            val diffDays = date.toEpochDays() - selectedDate.toEpochDays()
-
-            when {
-                diffDays == 1L && homeState.canSelectNextDay ->
-                    commitSwipe(
-                        offsetX,
-                        homeState,
-                        width,
-                        direction = 1,
-                        onDateWillChange = { fabDisplayDate = it },
-                    )
-
-                diffDays == -1L && homeState.canSelectPreviousDay ->
-                    commitSwipe(
-                        offsetX,
-                        homeState,
-                        width,
-                        direction = -1,
-                        onDateWillChange = { fabDisplayDate = it },
-                    )
-
-                else -> {
-                    offsetX.snapTo(0f)
-                    homeState.selectDate(date)
-                    fabDisplayDate = date
-                }
-            }
+            commitJump(
+                offsetX,
+                homeState,
+                width,
+                targetDate = date,
+                onJumpWillStart = onJumpWillStart,
+            )
+            pendingJumpDate = null
+            pendingJumpDirection = 0
         }
     }
 
@@ -269,33 +275,15 @@ fun HomeScreen(
                         )
 
                     if (result == SnackbarResult.ActionPerformed) {
-                        val diffDays = targetDate.toEpochDays() - selectedDate.toEpochDays()
-
-                        when {
-                            diffDays == 1L && homeState.canSelectNextDay ->
-                                commitSwipe(
-                                    offsetX,
-                                    homeState,
-                                    width,
-                                    direction = 1,
-                                    onDateWillChange = { fabDisplayDate = it },
-                                )
-
-                            diffDays == -1L && homeState.canSelectPreviousDay ->
-                                commitSwipe(
-                                    offsetX,
-                                    homeState,
-                                    width,
-                                    direction = -1,
-                                    onDateWillChange = { fabDisplayDate = it },
-                                )
-
-                            else -> {
-                                offsetX.snapTo(0f)
-                                homeState.selectDate(targetDate)
-                                fabDisplayDate = targetDate
-                            }
-                        }
+                        commitJump(
+                            offsetX,
+                            homeState,
+                            width,
+                            targetDate = targetDate,
+                            onJumpWillStart = onJumpWillStart,
+                        )
+                        pendingJumpDate = null
+                        pendingJumpDirection = 0
 
                         highlightDate = targetDate
                         highlightMealId = targetMealId
@@ -316,21 +304,23 @@ fun HomeScreen(
 
                                 when {
                                     current <= -thresholdPx && homeState.canSelectNextDay ->
-                                        commitSwipe(
+                                        commitJump(
                                             offsetX,
                                             homeState,
                                             width,
-                                            direction = 1,
-                                            onDateWillChange = { fabDisplayDate = it },
+                                            targetDate =
+                                                homeState.selectedDate.plus(1, DateTimeUnit.DAY),
+                                            onJumpWillStart = onJumpWillStart,
                                         )
 
                                     current >= thresholdPx && homeState.canSelectPreviousDay ->
-                                        commitSwipe(
+                                        commitJump(
                                             offsetX,
                                             homeState,
                                             width,
-                                            direction = -1,
-                                            onDateWillChange = { fabDisplayDate = it },
+                                            targetDate =
+                                                homeState.selectedDate.minus(1, DateTimeUnit.DAY),
+                                            onJumpWillStart = onJumpWillStart,
                                         )
 
                                     else ->
@@ -339,6 +329,8 @@ fun HomeScreen(
                                             spring(dampingRatio = Spring.DampingRatioMediumBouncy),
                                         )
                                 }
+                                pendingJumpDate = null
+                                pendingJumpDirection = 0
                             }
                         },
                         onDragCancel = {
@@ -365,10 +357,10 @@ fun HomeScreen(
                     }
                 }
         ) {
-            if (homeState.canSelectPreviousDay) {
-                key(prevDate) {
+            if (showPrevColumn) {
+                key(displayPrevDate) {
                     HomeDayColumn(
-                        date = prevDate,
+                        date = displayPrevDate,
                         referenceDate = homeState.lastKnownToday,
                         maxSelectableDate = homeState.maxSelectableDate,
                         shimmer = homeState.shimmer,
@@ -417,10 +409,10 @@ fun HomeScreen(
                 )
             }
 
-            if (homeState.canSelectNextDay) {
-                key(nextDate) {
+            if (showNextColumn) {
+                key(displayNextDate) {
                     HomeDayColumn(
-                        date = nextDate,
+                        date = displayNextDate,
                         referenceDate = homeState.lastKnownToday,
                         maxSelectableDate = homeState.maxSelectableDate,
                         shimmer = homeState.shimmer,
