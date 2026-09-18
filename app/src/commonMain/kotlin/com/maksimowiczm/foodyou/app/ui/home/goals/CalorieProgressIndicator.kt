@@ -49,7 +49,7 @@ internal fun CalorieProgressIndicator(
     val normalColor = MaterialTheme.colorScheme.primary
     val toleranceColor = remember(normalColor) { lerp(normalColor, Color.Black, 0.25f) }
     val dangerColor = MaterialTheme.colorScheme.error
-    val targetMarkerColor = MaterialTheme.colorScheme.surfaceContainerLow
+    val targetMarkerColor = MaterialTheme.colorScheme.onSurface
 
     val clampedProgress = progress.coerceIn(0f, 1f)
     val dangerWidth = clampedProgress
@@ -96,7 +96,8 @@ internal fun CalorieProgressIndicator(
         Box(modifier = Modifier.fillMaxWidth(normalWidth).fillMaxHeight().background(normalColor))
 
         // Target reference line, drawn last/on top so it's visible regardless of fill color —
-        // uses the card's own background color so it reads as a thin notch cut into the bar.
+        // uses a distinct high-contrast color so it reads as a marker line, not a gap/cut in
+        // the bar.
         val targetOffset =
             (maxWidth * targetFraction - targetMarkerWidth / 2).coerceIn(
                 0.dp,
