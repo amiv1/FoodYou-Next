@@ -13,9 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.dp
+
+/** Spacing between successive diagonal tolerance-band stripes. */
+private val ToleranceStripePitch = 5.dp
+
+/** Stroke width of each diagonal tolerance-band stripe. */
+private val ToleranceStripeWidth = 1.5.dp
 
 /**
  * A calorie-specific progress bar with three overlapping fill tiers (normal / tolerance / danger)
@@ -56,7 +65,21 @@ internal fun CalorieProgressIndicator(
                     Modifier.offset(x = maxWidth * normalEndFraction)
                         .width(maxWidth * (warningEndFraction - normalEndFraction))
                         .fillMaxHeight()
-                        .background(bandColor)
+                        .clipToBounds()
+                        .drawBehind {
+                            val pitchPx = ToleranceStripePitch.toPx()
+                            val strokePx = ToleranceStripeWidth.toPx()
+                            var x = -size.height
+                            while (x < size.width) {
+                                drawLine(
+                                    color = bandColor,
+                                    start = Offset(x, size.height),
+                                    end = Offset(x + size.height, 0f),
+                                    strokeWidth = strokePx,
+                                )
+                                x += pitchPx
+                            }
+                        }
             )
         }
 
