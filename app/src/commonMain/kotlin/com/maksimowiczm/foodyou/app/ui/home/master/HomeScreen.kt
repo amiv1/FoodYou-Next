@@ -21,8 +21,10 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -48,6 +50,7 @@ import com.maksimowiczm.foodyou.settings.domain.entity.HomeCard
 import com.valentinilk.shimmer.Shimmer
 import foodyou.app.generated.resources.*
 import kotlin.math.roundToInt
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
@@ -161,9 +164,54 @@ fun HomeScreen(
         val nextDate = selectedDate.plus(1, DateTimeUnit.DAY)
         val width = containerWidthPx.toFloat().coerceAtLeast(1f)
 
-        val onShowMessage: (String) -> Unit = { message ->
-            coroutineScope.launch { snackbarHostState.showSnackbar(message) }
+        var highlightMealId by remember { mutableStateOf<Long?>(null) }
+        var highlightDate by remember { mutableStateOf<LocalDate?>(null) }
+        val viewActionLabel = stringResource(Res.string.action_view)
+
+        // The highlighted MealCard itself requests to be brought into view (via
+        // BringIntoViewRequester, which bubbles through every ancestor scrollable) as soon as it
+        // composes with highlighted = true, so no manual outer-list scroll is needed here - it
+        // would only bring the "Meals" section's own top edge into view, not the specific card
+        // nested inside it. This effect just clears the highlight after a short delay.
+        LaunchedEffect(highlightMealId, highlightDate, selectedDate) {
+            if (highlightMealId != null && highlightDate == selectedDate) {
+                delay(2_500)
+                highlightMealId = null
+                highlightDate = null
+            }
         }
+
+        val onCopyCompleted: (message: String, targetDate: LocalDate, targetMealId: Long) -> Unit =
+            { message, targetDate, targetMealId ->
+                coroutineScope.launch {
+                    val result =
+                        snackbarHostState.showSnackbar(
+                            message = message,
+                            actionLabel = viewActionLabel,
+                            duration = SnackbarDuration.Long,
+                        )
+
+                    if (result == SnackbarResult.ActionPerformed) {
+                        val diffDays = targetDate.toEpochDays() - selectedDate.toEpochDays()
+
+                        when {
+                            diffDays == 1L && homeState.canSelectNextDay ->
+                                commitSwipe(offsetX, homeState, width, direction = 1)
+
+                            diffDays == -1L && homeState.canSelectPreviousDay ->
+                                commitSwipe(offsetX, homeState, width, direction = -1)
+
+                            else -> {
+                                offsetX.snapTo(0f)
+                                homeState.selectDate(targetDate)
+                            }
+                        }
+
+                        highlightDate = targetDate
+                        highlightMealId = targetMealId
+                    }
+                }
+            }
 
         val onCalendarDateSelect: (LocalDate) -> Unit = { date ->
             coroutineScope.launch {
@@ -249,7 +297,7 @@ fun HomeScreen(
                         onGoalsCardLongClick = onGoalsCardLongClick,
                         onGoalsCardClick = onGoalsCardClick,
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
-                        onShowMessage = onShowMessage,
+                        onCopyCompleted = onCopyCompleted,
                         scrollBehavior = scrollBehavior,
                         contentPadding = paddingValues,
                         modifier =
@@ -274,9 +322,10 @@ fun HomeScreen(
                     onGoalsCardLongClick = onGoalsCardLongClick,
                     onGoalsCardClick = onGoalsCardClick,
                     onEditDiaryEntryClick = onEditDiaryEntryClick,
-                    onShowMessage = onShowMessage,
+                    onCopyCompleted = onCopyCompleted,
                     scrollBehavior = scrollBehavior,
                     contentPadding = paddingValues,
+                    highlightMealId = if (highlightDate == selectedDate) highlightMealId else null,
                     modifier =
                         Modifier.fillMaxSize().offset {
                             IntOffset(offsetX.value.roundToInt(), 0)
@@ -299,7 +348,7 @@ fun HomeScreen(
                         onGoalsCardLongClick = onGoalsCardLongClick,
                         onGoalsCardClick = onGoalsCardClick,
                         onEditDiaryEntryClick = onEditDiaryEntryClick,
-                        onShowMessage = onShowMessage,
+                        onCopyCompleted = onCopyCompleted,
                         scrollBehavior = scrollBehavior,
                         contentPadding = paddingValues,
                         modifier =
@@ -332,10 +381,11 @@ private fun HomeDayColumn(
     onGoalsCardLongClick: () -> Unit,
     onGoalsCardClick: (epochDay: Long) -> Unit,
     onEditDiaryEntryClick: (foodEntryId: Long?, manualEntryId: Long?) -> Unit,
-    onShowMessage: (String) -> Unit,
+    onCopyCompleted: (message: String, targetDate: LocalDate, targetMealId: Long) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
+    highlightMealId: Long? = null,
 ) {
     LazyColumn(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -373,8 +423,9 @@ private fun HomeDayColumn(
                         onQuickAdd = onMealCardQuickAddClick,
                         onEditEntry = onEditDiaryEntryClick,
                         onLongClick = onMealCardLongClick,
-                        onShowMessage = onShowMessage,
+                        onCopyCompleted = onCopyCompleted,
                         contentPadding = PaddingValues(horizontal = 8.dp),
+                        highlightMealId = highlightMealId,
                         modifier = Modifier.padding(bottom = 8.dp),
                     )
             }

@@ -39,12 +39,21 @@ internal fun HorizontalMealsCards(
     showCalories: Boolean,
     showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
+    highlightMealId: Long? = null,
 ) {
     // Must be same as meals count or more but since we don't have meals count yet set it to some
     // extreme value. If it is less than actual meals count pager will scroll back to the
     // last item which is annoying for the user.
     // Let's assume that user won't use more than 20 meals
     val pagerState = rememberPagerState(pageCount = { meals?.size ?: 20 })
+
+    LaunchedEffect(highlightMealId, meals) {
+        if (highlightMealId == null || meals == null) return@LaunchedEffect
+        val page = meals.indexOfFirst { it.id == highlightMealId }
+        if (page >= 0) {
+            pagerState.animateScrollToPage(page)
+        }
+    }
 
     val transition = updateTransition(meals)
 
@@ -88,6 +97,7 @@ internal fun HorizontalMealsCards(
                     onLongClick = { onLongClick(meal.id) },
                     showCalories = showCalories,
                     showMacronutrients = showMacronutrients,
+                    highlighted = meal.id == highlightMealId,
                 )
             } else {
                 MealCardSkeleton(shimmer = shimmer)

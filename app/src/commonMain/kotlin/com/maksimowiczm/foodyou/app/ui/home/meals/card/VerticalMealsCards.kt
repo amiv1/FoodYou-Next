@@ -29,6 +29,7 @@ internal fun VerticalMealsCards(
     showCalories: Boolean,
     showMacronutrients: Boolean,
     modifier: Modifier = Modifier,
+    highlightMealId: Long? = null,
 ) {
     Column(
         modifier = modifier.padding(contentPadding),
@@ -56,6 +57,7 @@ internal fun VerticalMealsCards(
                     onLongClick = { onLongClick(meal.id) },
                     showCalories = showCalories,
                     showMacronutrients = showMacronutrients,
+                    highlighted = meal.id == highlightMealId,
                 )
             }
         }

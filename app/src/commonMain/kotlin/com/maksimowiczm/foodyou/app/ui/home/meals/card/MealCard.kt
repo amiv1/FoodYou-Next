@@ -1,8 +1,10 @@
 package com.maksimowiczm.foodyou.app.ui.home.meals.card
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
@@ -13,6 +15,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -45,6 +49,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -54,12 +59,14 @@ import com.maksimowiczm.foodyou.app.ui.common.utility.LocalNutrientsOrder
 import com.maksimowiczm.foodyou.app.ui.common.utility.weightCaption
 import com.maksimowiczm.foodyou.app.ui.food.component.MeasurementScrubber
 import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCard
+import com.maksimowiczm.foodyou.app.ui.home.shared.FoodYouHomeCardDefaults
 import com.maksimowiczm.foodyou.common.compose.utility.LocalDateFormatter
 import com.maksimowiczm.foodyou.common.compose.utility.TestTags
 import com.maksimowiczm.foodyou.common.compose.utility.formatClipZeros
 import com.maksimowiczm.foodyou.common.domain.measurement.Measurement
 import com.maksimowiczm.foodyou.settings.domain.entity.NutrientsOrder
 import foodyou.app.generated.resources.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.stringResource
@@ -80,7 +87,43 @@ internal fun MealCard(
     modifier: Modifier = Modifier,
     showCalories: Boolean = true,
     showMacronutrients: Boolean = true,
+    highlighted: Boolean = false,
 ) {
+    var flashOn by remember { mutableStateOf(false) }
+    val highlightColor by
+        animateColorAsState(
+            targetValue =
+                if (flashOn) {
+                    // Muted compared to a solid primaryContainer fill - blended halfway toward
+                    // the card's normal color so the flash reads as a gentle pulse, not a bright
+                    // flash.
+                    lerp(
+                        FoodYouHomeCardDefaults.color,
+                        MaterialTheme.colorScheme.primaryContainer,
+                        0.4f,
+                    )
+                } else {
+                    FoodYouHomeCardDefaults.color
+                },
+            animationSpec = tween(durationMillis = 150),
+        )
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
+    // Bubbles through every ancestor scrollable (the internal meals column/pager AND the outer
+    // home-screen LazyColumn), so it reliably reveals this exact card regardless of its position
+    // - unlike scrolling the outer list to the "Meals" section's own item index, which only
+    // brings that item's top edge into view, not a specific meal card nested inside it.
+    LaunchedEffect(highlighted) {
+        if (highlighted) {
+            bringIntoViewRequester.bringIntoView()
+            // Flash twice within ~1 second to draw the eye, then settle back to normal.
+            repeat(2) {
+                flashOn = true
+                delay(250)
+                flashOn = false
+                delay(250)
+            }
+        }
+    }
     val nutrientsPalette = LocalNutrientsPalette.current
     val nutrientsOrder = LocalNutrientsOrder.current
     val dateFormatter = LocalDateFormatter.current
@@ -112,7 +155,12 @@ internal fun MealCard(
             }
         }
 
-    FoodYouHomeCard(modifier = modifier, onClick = onAddFood, onLongClick = onLongClick) {
+    FoodYouHomeCard(
+        modifier = modifier.bringIntoViewRequester(bringIntoViewRequester),
+        color = highlightColor,
+        onClick = onAddFood,
+        onLongClick = onLongClick,
+    ) {
         Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),

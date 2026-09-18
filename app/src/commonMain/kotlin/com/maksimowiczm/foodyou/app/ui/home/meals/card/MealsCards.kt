@@ -20,9 +20,10 @@ internal fun MealsCards(
     onQuickAdd: (epochDay: Long, mealId: Long) -> Unit,
     onEditEntry: (foodEntryId: Long?, manualEntryId: Long?) -> Unit,
     onLongClick: (mealId: Long) -> Unit,
-    onShowMessage: (String) -> Unit,
+    onCopyCompleted: (message: String, targetDate: LocalDate, targetMealId: Long) -> Unit,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
+    highlightMealId: Long? = null,
     viewModel: MealsCardsViewModel = koinViewModel(key = "meals-${date.toEpochDays()}"),
 ) {
     val diaryMeals = viewModel.diaryMeals.collectAsStateWithLifecycle().value
@@ -39,10 +40,10 @@ internal fun MealsCards(
     LaunchedCollectWithLifecycle(viewModel.copyEvents) { event ->
         val message =
             when (event) {
-                CopyEvent.Meal -> mealCopiedMessage
-                CopyEvent.Entry -> entryCopiedMessage
+                is CopyEvent.Meal -> mealCopiedMessage
+                is CopyEvent.Entry -> entryCopiedMessage
             }
-        onShowMessage(message)
+        onCopyCompleted(message, event.targetDate, event.targetMealId)
     }
 
     when (layout) {
@@ -67,6 +68,7 @@ internal fun MealsCards(
                 contentPadding = contentPadding,
                 showCalories = showCalories,
                 showMacronutrients = showMacronutrients,
+                highlightMealId = highlightMealId,
                 modifier = modifier,
             )
 
@@ -91,6 +93,7 @@ internal fun MealsCards(
                 contentPadding = contentPadding,
                 showCalories = showCalories,
                 showMacronutrients = showMacronutrients,
+                highlightMealId = highlightMealId,
                 modifier = modifier,
             )
     }

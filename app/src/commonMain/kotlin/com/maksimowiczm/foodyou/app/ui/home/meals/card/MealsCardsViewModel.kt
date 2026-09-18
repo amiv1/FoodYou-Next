@@ -32,11 +32,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 
-/** Emitted after a copy action completes, so the UI can show a confirmation message. */
+/**
+ * Emitted after a copy action completes, so the UI can show a confirmation message and offer to
+ * jump to the target date/meal.
+ */
 internal sealed interface CopyEvent {
-    data object Meal : CopyEvent
+    val targetDate: LocalDate
+    val targetMealId: Long
 
-    data object Entry : CopyEvent
+    data class Meal(override val targetDate: LocalDate, override val targetMealId: Long) :
+        CopyEvent
+
+    data class Entry(override val targetDate: LocalDate, override val targetMealId: Long) :
+        CopyEvent
 }
 
 internal class MealsCardsViewModel(
@@ -144,7 +152,9 @@ internal class MealsCardsViewModel(
                 )
 
             if (copiedCount > 0) {
-                copyEventChannel.send(CopyEvent.Meal)
+                copyEventChannel.send(
+                    CopyEvent.Meal(targetDate = targetDate, targetMealId = targetMealId)
+                )
             }
         }
     }
@@ -159,7 +169,9 @@ internal class MealsCardsViewModel(
                     copyDiaryEntryUseCase.copyManualEntry(model.id, targetMealId, targetDate)
             }
 
-            copyEventChannel.send(CopyEvent.Entry)
+            copyEventChannel.send(
+                CopyEvent.Entry(targetDate = targetDate, targetMealId = targetMealId)
+            )
         }
     }
 }
