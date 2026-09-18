@@ -46,6 +46,9 @@ internal object TestTags {
     /** "My food and recipes" screen's "Select all" button, shown while selecting. */
     const val YourFoodSelectAllButton = "your_food_select_all_button"
 
+    /** Home screen's "Today" floating action button, shown when a non-today date is selected. */
+    const val TodayFab = "today_fab"
+
     /** "My food and recipes" screen's "Close selection" button, shown while selecting. */
     const val YourFoodCloseSelectionButton = "your_food_close_selection_button"
 

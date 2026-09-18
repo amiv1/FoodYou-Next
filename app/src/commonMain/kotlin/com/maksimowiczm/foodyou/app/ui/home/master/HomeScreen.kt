@@ -195,6 +195,7 @@ fun HomeScreen(
             if (fabDisplayDate != homeState.lastKnownToday) {
                 ExtendedFloatingActionButton(
                     onClick = { onCalendarDateSelect(homeState.lastKnownToday) },
+                    modifier = Modifier.testTag(TestTags.TodayFab),
                     expanded = !hasScrolledSinceDateChange,
                     icon = {
                         Icon(imageVector = Icons.Default.Today, contentDescription = null)
