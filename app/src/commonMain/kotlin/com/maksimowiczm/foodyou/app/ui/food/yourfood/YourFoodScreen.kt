@@ -2,6 +2,7 @@ package com.maksimowiczm.foodyou.app.ui.food.yourfood
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -61,6 +62,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
+/** Bottom clearance so the "Create food" FAB doesn't cover the last list item. */
+private val FabBottomClearance = 72.dp
 
 @Composable
 fun YourFoodScreen(
@@ -194,7 +197,10 @@ fun YourFoodScreen(
                             .padding(horizontal = 8.dp)
                             .padding(bottom = 8.dp)
                 ) {
-                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(bottom = FabBottomClearance),
+                    ) {
                     items(count = pages.itemCount, key = pages.itemKey { it.id.toString() }) { i
                         ->
                         val food = pages[i]
