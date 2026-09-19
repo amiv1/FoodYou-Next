@@ -54,10 +54,7 @@ fun SimpleProgressIndicator(
             // Danger fill (widest, drawn first/underneath).
             Box(
                 modifier =
-                    Modifier.fillMaxWidth(clampedProgress)
-                        .fillMaxHeight()
-                        .clip(CircleShape)
-                        .background(dangerColor)
+                    Modifier.fillMaxWidth(clampedProgress).fillMaxHeight().background(dangerColor)
             )
 
             // Normal fill (narrower, drawn on top) — overwrites the danger fill up to the target.
@@ -65,16 +62,11 @@ fun SimpleProgressIndicator(
                 modifier =
                     Modifier.fillMaxWidth(clampedProgress.coerceAtMost(dangerStartFraction))
                         .fillMaxHeight()
-                        .clip(CircleShape)
                         .background(color)
             )
         } else {
             Box(
-                modifier =
-                    Modifier.fillMaxWidth(clampedProgress)
-                        .fillMaxHeight()
-                        .clip(CircleShape)
-                        .background(color)
+                modifier = Modifier.fillMaxWidth(clampedProgress).fillMaxHeight().background(color)
             )
         }
     }
