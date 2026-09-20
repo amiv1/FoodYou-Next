@@ -37,8 +37,8 @@ internal object TestTags {
     /** Home screen's overflow menu item navigating to the "My food and recipes" screen. */
     const val HomeMyFoodAndRecipesMenuItem = "home_my_food_and_recipes_menu_item"
 
-    /** "My food and recipes" screen's "+" floating action button. */
-    const val YourFoodFab = "your_food_fab"
+    /** "My food and recipes" screen's "+" toolbar button (create product/recipe). */
+    const val YourFoodCreateButton = "your_food_create_button"
 
     /** "My food and recipes" screen's contextual "Delete" button, shown while selecting. */
     const val YourFoodDeleteButton = "your_food_delete_button"

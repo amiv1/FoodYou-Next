@@ -103,7 +103,8 @@ class YourFoodManagementTest : FoodYouComposeTest() {
 
         val deleteCheckboxTag = TestTags.yourFoodCheckbox(deleteProductId.toString())
 
-        // Checking one checkbox reveals the contextual selection bar and hides the "+" FAB.
+        // Checking one checkbox reveals the contextual selection bar and hides the "+" toolbar
+        // button.
         composeRule.onNodeWithTag(deleteCheckboxTag).performClick()
         composeRule.waitForIdle()
         assert(composeRule.onAllNodesWithText("1").anyDisplayed()) {
@@ -111,11 +112,11 @@ class YourFoodManagementTest : FoodYouComposeTest() {
         }
         assert(
             composeRule
-                .onAllNodesWithTag(TestTags.YourFoodFab)
+                .onAllNodesWithTag(TestTags.YourFoodCreateButton)
                 .fetchSemanticsNodes(atLeastOneRootRequired = false)
                 .isEmpty()
         ) {
-            "Expected the '+' FAB to be hidden while a selection is active."
+            "Expected the '+' toolbar button to be hidden while a selection is active."
         }
 
         // Canceling the delete dialog leaves all items intact.
