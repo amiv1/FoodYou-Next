@@ -18,6 +18,7 @@ import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.LunchDining
@@ -275,7 +276,7 @@ fun YourFoodScreen(
                             top = SearchFieldVerticalPadding,
                             bottom = SearchFieldVerticalPadding,
                         )
-                        .shadow(2.dp, MaterialTheme.shapes.extraLarge)
+                        .shadow(2.dp, MaterialTheme.shapes.medium)
                         .testTag(TestTags.YourFoodSearchField),
                 placeholder = { Text(stringResource(Res.string.action_search)) },
                 leadingIcon = {
@@ -291,7 +292,7 @@ fun YourFoodScreen(
                         }
                     }
                 },
-                shape = MaterialTheme.shapes.extraLarge,
+                shape = MaterialTheme.shapes.medium,
                 colors =
                     TextFieldDefaults.colors(
                         focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,

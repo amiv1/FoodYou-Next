@@ -182,6 +182,7 @@ private fun FoodSearchApp(
                     state = appState.searchBarState,
                     inputField = searchInputField,
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    shape = MaterialTheme.shapes.medium,
                     colors =
                         SearchBarDefaults.colors(
                             containerColor = MaterialTheme.colorScheme.surfaceContainerHighest

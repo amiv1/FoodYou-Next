@@ -97,6 +97,7 @@ private fun CalendarCard(calendarState: CalendarState, modifier: Modifier = Modi
             FilledTonalButton(
                 onClick = { showDatePicker = true },
                 modifier = Modifier.weight(1f).fillMaxHeight().testTag(TestTags.CalendarDateButton),
+                shape = MaterialTheme.shapes.medium,
                 contentPadding = ButtonDefaults.TextButtonContentPadding,
             ) {
                 Text(
