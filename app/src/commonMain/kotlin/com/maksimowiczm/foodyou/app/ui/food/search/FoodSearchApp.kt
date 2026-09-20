@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -127,69 +128,71 @@ private fun FoodSearchApp(
         // Fix for searchbar issues on Android SDK 27 and below
         Box(Modifier.focusable().size(1.dp))
 
-        var topContentHeight by remember { mutableIntStateOf(0) }
+        var bottomContentHeight by remember { mutableIntStateOf(0) }
+        val density = LocalDensity.current
 
-        Column(
-            modifier =
-                Modifier.fillMaxWidth()
-                    .zIndex(10f)
-                    .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal))
-                    .windowInsetsPadding(
-                        WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal)
+        Box(Modifier.fillMaxSize().zIndex(10f)) {
+            Column(
+                modifier =
+                    Modifier.fillMaxWidth()
+                        .align(Alignment.BottomCenter)
+                        .windowInsetsPadding(
+                            WindowInsets.systemBars
+                                .only(WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal)
+                                .add(WindowInsets.displayCutout.only(WindowInsetsSides.Horizontal))
+                        )
+                        .onSizeChanged { bottomContentHeight = it.height }
+                        .padding(vertical = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                val error = pages?.loadState?.error as? RemoteFoodException
+
+                when (val ex = error) {
+                    null -> Unit
+                    else ->
+                        FoodSearchErrorCard(
+                            error = ex,
+                            onRetry = pages::retry,
+                            onUsdaApiKey = onUpdateUsdaApiKey,
+                            onUpdateOpenFoodFactsCredentials = onUpdateOpenFoodFactsCredentials,
+                            modifier =
+                                Modifier.fillMaxWidth()
+                                    .padding(bottom = 8.dp)
+                                    .padding(horizontal = 16.dp),
+                        )
+                }
+
+                if (uiState.sources.isNotEmpty()) {
+                    FoodSearchFilters(
+                        uiState = uiState,
+                        onSource = {
+                            onSourceChange(it)
+
+                            if (it == uiState.filter.source) {
+                                val listState = appState.listStates.state(it)
+                                coroutineScope.launch { listState.animateScrollToItem(0) }
+                            }
+                        },
+                        modifier = Modifier.height(32.dp + 8.dp + 32.dp).fillMaxWidth(),
                     )
-                    .padding(top = paddingValues.calculateTopPadding())
-                    .onSizeChanged { topContentHeight = it.height }
-                    .padding(vertical = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            SearchBar(
-                state = appState.searchBarState,
-                inputField = searchInputField,
-                modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-                colors =
-                    SearchBarDefaults.colors(
-                        containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
-                    ),
-                shadowElevation = 2.dp,
-            )
+                    Spacer(Modifier.height(8.dp))
+                }
 
-            if (uiState.sources.isNotEmpty()) {
-                Spacer(Modifier.height(8.dp))
-                FoodSearchFilters(
-                    uiState = uiState,
-                    onSource = {
-                        onSourceChange(it)
-
-                        if (it == uiState.filter.source) {
-                            val listState = appState.listStates.state(it)
-                            coroutineScope.launch { listState.animateScrollToItem(0) }
-                        }
-                    },
-                    modifier = Modifier.height(32.dp + 8.dp + 32.dp).fillMaxWidth(),
+                SearchBar(
+                    state = appState.searchBarState,
+                    inputField = searchInputField,
+                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    colors =
+                        SearchBarDefaults.colors(
+                            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest
+                        ),
+                    shadowElevation = 2.dp,
                 )
-            }
-
-            val error = pages?.loadState?.error as? RemoteFoodException
-
-            when (val ex = error) {
-                null -> Unit
-                else ->
-                    FoodSearchErrorCard(
-                        error = ex,
-                        onRetry = pages::retry,
-                        onUsdaApiKey = onUpdateUsdaApiKey,
-                        onUpdateOpenFoodFactsCredentials = onUpdateOpenFoodFactsCredentials,
-                        modifier =
-                            Modifier.fillMaxWidth().padding(top = 8.dp).padding(horizontal = 16.dp),
-                    )
             }
         }
 
         val paddingValues =
-            paddingValues.add(
-                top = LocalDensity.current.run { topContentHeight.toDp() },
-                bottom = 56.dp + 32.dp,
-            )
+            paddingValues.add(bottom = density.run { bottomContentHeight.toDp() } + 56.dp + 32.dp)
 
         if (pages?.itemCount == 0 && pages.loadState.append !is LoadState.Loading) {
             Box(Modifier.fillMaxSize()) {

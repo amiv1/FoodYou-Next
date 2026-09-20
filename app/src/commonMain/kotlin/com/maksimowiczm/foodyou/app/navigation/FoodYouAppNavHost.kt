@@ -211,7 +211,6 @@ fun FoodYouAppNavHost(onDatabaseBackup: () -> Unit, modifier: Modifier = Modifie
                 },
                 date = LocalDate.fromEpochDays(date),
                 mealId = mealId,
-                animatedVisibilityScope = this,
             )
         }
         forwardBackwardComposable<UpdateRecipe> {
