@@ -1,4 +1,4 @@
-<b>Food You</b> je napreden odprtokodni prehranski dnevnik, zgrajen na moderni Material You esetiki. Omogoča ne le štetje kalorij ampak celoten prehanski vnos — iz zanesljivih virov podatkov o hrani ter s prilagodljivim in modernim vmesnikom.
+<b>Fork Log</b> je napreden odprtokodni prehranski dnevnik, zgrajen na moderni Material You esetiki. Omogoča ne le štetje kalorij ampak celoten prehanski vnos — iz zanesljivih virov podatkov o hrani ter s prilagodljivim in modernim vmesnikom.
 
 <b>Značilnosti:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Prilagodljiv začetni zaslon:</b> prilagodite začetni zaslon z informacijskimi karticami, prilagojenimi vašim zahtevam.</li>
 </ul>
 
-Začnite s sledenjem vaše prehrane že danes z Food You — čist, popoln in popolnoma pod vašim nadzorom.
+Začnite s sledenjem vaše prehrane že danes z Fork Log — čist, popoln in popolnoma pod vašim nadzorom.
 
 Ikona aplikacije narejena z <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

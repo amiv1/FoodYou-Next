@@ -1,4 +1,4 @@
-<b>Food You</b> is een krachtige, open-source voeding tracker, gebouwd met een modern Material You uiterlijk. Het helpt je om niet alleen calorieën bij te houden, maar jouw hele voedingsinname - met betrouwbare voedingsdata en een flexibel en modulair interface.
+<b>Fork Log</b> is een krachtige, open-source voeding tracker, gebouwd met een modern Material You uiterlijk. Het helpt je om niet alleen calorieën bij te houden, maar jouw hele voedingsinname - met betrouwbare voedingsdata en een flexibel en modulair interface.
 
 <b>Functies:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Aanpasbaar Home scherm:</b> Pas jouw Home scherm aan met kaarten, volledig naar jouw behoeften.</li>
 </ul>
 
-Begin vandaag nog met het bijhouden van jouw voeding met Food You - netjes, compleet en helemaal van jou.
+Begin vandaag nog met het bijhouden van jouw voeding met Fork Log - netjes, compleet en helemaal van jou.
 
 Launcher icoon gemaakt door <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

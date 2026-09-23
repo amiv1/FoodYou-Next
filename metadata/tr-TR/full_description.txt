@@ -1,4 +1,4 @@
-<b>Food You</b>, modern bir Material You estetiğiyle oluşturulmuş güçlü, açık kaynaklı bir beslenme takipçisidir. Yalnızca kalorileri değil, tüm besin alımınızı da güvenilir yiyecek verileriyle ve esnek, modüler bir arayüz üzerinden takip etmenize yardımcı olur.
+<b>Fork Log</b>, modern bir Material You estetiğiyle oluşturulmuş güçlü, açık kaynaklı bir beslenme takipçisidir. Yalnızca kalorileri değil, tüm besin alımınızı da güvenilir yiyecek verileriyle ve esnek, modüler bir arayüz üzerinden takip etmenize yardımcı olur.
 
 <b>Özellikler:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Modüler Ana Ekran:</b> İhtiyaçlarınıza göre özelleştirilmiş kartlarla ana ekranınızı kişiselleştirin.</li>
 </ul>
 
-Bugün Food You ile beslenmenizi takip etmeye başlayın — sade, kapsamlı ve tamamen size özel.
+Bugün Fork Log ile beslenmenizi takip etmeye başlayın — sade, kapsamlı ve tamamen size özel.
 
 Launcher simgesi <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a> tarafından yapılmıştır

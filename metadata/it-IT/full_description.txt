@@ -1,4 +1,4 @@
-<b>Food You</b> è un potente tracker nutrizionale open-source, realizzato con un moderno design Material You. Ti aiuta a monitorare non solo le calorie, ma l'intero apporto nutritivo, grazie a dati alimentari affidabili e un'interfaccia flessibile e modulare.
+<b>Fork Log</b> è un potente tracker nutrizionale open-source, realizzato con un moderno design Material You. Ti aiuta a monitorare non solo le calorie, ma l'intero apporto nutritivo, grazie a dati alimentari affidabili e un'interfaccia flessibile e modulare.
 
 <b>Funzionalità:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Schermata iniziale modulare:</b> Personalizza la tua home con schede su misura per le tue necessità.</li>
 </ul>
 
-Inizia oggi a monitorare la tua alimentazione con Food You — semplice, completo e totalmente tuo.
+Inizia oggi a monitorare la tua alimentazione con Fork Log — semplice, completo e totalmente tuo.
 
 Icona del launcher realizzata da <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

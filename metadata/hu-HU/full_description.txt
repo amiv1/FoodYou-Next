@@ -1,4 +1,4 @@
-A <b>Food You</b> egy sokszínű, nyílt-forráskódú tápértékkövető, modern Material You külsővel. Nemcsak a bevitt kalóriát méri, de az egész tápérték-bevitelt - megbízható adatokkal lát el egy rugalmas, testreszabható felületen.
+A <b>Fork Log</b> egy sokszínű, nyílt-forráskódú tápértékkövető, modern Material You külsővel. Nemcsak a bevitt kalóriát méri, de az egész tápérték-bevitelt - megbízható adatokkal lát el egy rugalmas, testreszabható felületen.
 
 <b>Funkciók:</b>
 <ul>
@@ -10,6 +10,6 @@ A <b>Food You</b> egy sokszínű, nyílt-forráskódú tápértékkövető, mode
     <li><b>Alakítható Kezdőképernyő:</b> Szabja személyre a kezdőképernyőt az Ön számára fontos kártyákkal.</li>
 </ul>
 
-Kezdje el mérni tápanyagait a Food You segítségével - letisztult, teljeskörű, és mind az Öné.
+Kezdje el mérni tápanyagait a Fork Log segítségével - letisztult, teljeskörű, és mind az Öné.
 
 Az indító ikont <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a> készítette

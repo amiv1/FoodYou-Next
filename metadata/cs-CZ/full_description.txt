@@ -1,4 +1,4 @@
-<b>Food You</b> je výkonný open-source nástroj pro sledování výživy vytvořený v moderním vizuálu Material You. Pomůže vám sledovat nejen kalorie, ale celý váš příjem živin – se spolehlivými daty o potravinách a flexibilním, modulárním rozhraním.
+<b>Fork Log</b> je výkonný open-source nástroj pro sledování výživy vytvořený v moderním vizuálu Material You. Pomůže vám sledovat nejen kalorie, ale celý váš příjem živin – se spolehlivými daty o potravinách a flexibilním, modulárním rozhraním.
 
 <b>Funkce:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Modulární domovská obrazovka:</b> Přizpůsobte si domovskou obrazovku pomocí karet ušitých na míru vašim potřebám.</li>
 </ul>
 
-Začněte sledovat svou výživu ještě dnes s Food You — přehledně, kompletně a plně ve vašich rukou.
+Začněte sledovat svou výživu ještě dnes s Fork Log — přehledně, kompletně a plně ve vašich rukou.
 
 Ikona aplikace pochází z <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

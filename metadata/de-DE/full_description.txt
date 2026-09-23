@@ -1,4 +1,4 @@
-<b>Food You<b> ist ein leistungsfähiger, quelloffener Ernährungs-Tracker, der eine moderne Material You Ästhetik nutzt. Er hilft Dir nicht nur Deine Kalorien, sondern Deine gesamte Nährstoffaufnahme zu tracken - mit verlässlichen Ernährungsdaten und flexibler, modularer Oberfläche.
+<b>Fork Log<b> ist ein leistungsfähiger, quelloffener Ernährungs-Tracker, der eine moderne Material You Ästhetik nutzt. Er hilft Dir nicht nur Deine Kalorien, sondern Deine gesamte Nährstoffaufnahme zu tracken - mit verlässlichen Ernährungsdaten und flexibler, modularer Oberfläche.
 
 <b>Merkmale:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Modularer Homescreen:</b> Personalisiere deinen Homescreen mit auf deine Bedürfnisse zugeschnittene Karten.</li>
 </ul>
 
-Beginne heute deine Ernährung mit Food You zu tracken - clean, vollständig und ganz deines.
+Beginne heute deine Ernährung mit Fork Log zu tracken - clean, vollständig und ganz deines.
 
 Launcher Symbol erstellt von <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

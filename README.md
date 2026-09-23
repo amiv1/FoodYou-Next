@@ -1,12 +1,12 @@
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/amiv1/FoodYou-Next?color=black&label=Stable&logo=github)](https://github.com/amiv1/FoodYou-Next/releases/latest/)
-[![GitHub all releases](https://img.shields.io/github/downloads/amiv1/FoodYou-Next/total?label=Downloads&logo=github)](https://github.com/amiv1/FoodYou-Next/releases/)
-[![GitHub Repo stars](https://img.shields.io/github/stars/amiv1/FoodYou-Next?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIC05NjAgOTYwIDk2MCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Im0zNTQtMjQ3IDEyNi03NiAxMjYgNzctMzMtMTQ0IDExMS05Ni0xNDYtMTMtNTgtMTM2LTU4IDEzNS0xNDYgMTMgMTExIDk3LTMzIDE0M1pNMjMzLTgwbDY1LTI4MUw4MC01NTBsMjg4LTI1IDExMi0yNjUgMTEyIDI2NSAyODggMjUtMjE4IDE4OSA2NSAyODEtMjQ3LTE0OUwyMzMtODBabTI0Ny0zNTBaIiBzdHlsZT0iZmlsbDogcmdiKDI0NSwgMjI3LCA2Nik7Ii8%2BCjwvc3ZnPg%3D%3D&color=%23f8e444)](https://github.com/amiv1/FoodYou-Next/stargazers)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/amiv1/ForkLog?color=black&label=Stable&logo=github)](https://github.com/amiv1/ForkLog/releases/latest/)
+[![GitHub all releases](https://img.shields.io/github/downloads/amiv1/ForkLog/total?label=Downloads&logo=github)](https://github.com/amiv1/ForkLog/releases/)
+[![GitHub Repo stars](https://img.shields.io/github/stars/amiv1/ForkLog?style=flat&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIC05NjAgOTYwIDk2MCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Im0zNTQtMjQ3IDEyNi03NiAxMjYgNzctMzMtMTQ0IDExMS05Ni0xNDYtMTMtNTgtMTM2LTU4IDEzNS0xNDYgMTMgMTExIDk3LTMzIDE0M1pNMjMzLTgwbDY1LTI4MUw4MC01NTBsMjg4LTI1IDExMi0yNjUgMTEyIDI2NSAyODggMjUtMjE4IDE4OSA2NSAyODEtMjQ3LTE0OUwyMzMtODBabTI0Ny0zNTBaIiBzdHlsZT0iZmlsbDogcmdiKDI0NSwgMjI3LCA2Nik7Ii8%2BCjwvc3ZnPg%3D%3D&color=%23f8e444)](https://github.com/amiv1/ForkLog/stargazers)
 
 <div align="center">
     <img src="./metadata/en-US/images/featureGraphic.webp" alt="Feature Graphic" />
 </div>
 
-**Food You Next** is a community-maintained fork
+**Fork Log** is a community-maintained fork
 of [Food You](https://github.com/maksimowiczm/FoodYou) — a free, open-source, and
 privacy-focused food diary and nutrition tracker built using [Material Design](https://m3.material.io/)
 principles.
@@ -21,7 +21,7 @@ principles.
 
 <div align="center">
 
-[<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Download from GitHub" height="75">](https://github.com/amiv1/FoodYou-Next/releases)
+[<img src="https://s1.ax1x.com/2023/01/12/pSu1a36.png" alt="Download from GitHub" height="75">](https://github.com/amiv1/ForkLog/releases)
 
 </div>
 
@@ -66,22 +66,22 @@ Since forking, this project has kept building on top of the upstream experience:
 
 ## 🤝 Contributing
 
-Want to help make Food You Next even better? Here are some great ways to contribute:
+Want to help make Fork Log even better? Here are some great ways to contribute:
 
 - 🧑‍💻 **Submit Code** – Unlike upstream, this fork welcomes pull requests. Open one
-  against [amiv1/FoodYou-Next](https://github.com/amiv1/FoodYou-Next)
+  against [amiv1/ForkLog](https://github.com/amiv1/ForkLog)
 <!-- - 🌍 **Translate the App** – Help improve international accessibility -->
 <!--   via [Crowdin](https://crowdin.com/project/food-you). Let us know if you'd like to be credited -->
 - 💡 **Request a Feature** – Got an idea? Open
-  a [GitHub issue](https://github.com/amiv1/FoodYou-Next/issues) to suggest a new feature or
+  a [GitHub issue](https://github.com/amiv1/ForkLog/issues) to suggest a new feature or
   improvement
 - 🐞 **Report Bugs** – Found a bug? Submit it
-  via [GitHub issue](https://github.com/amiv1/FoodYou-Next/issues) so it can be fixed
+  via [GitHub issue](https://github.com/amiv1/ForkLog/issues) so it can be fixed
 - ⭐ **Star the Repository** – If you like the project, give it a star
 
 ## ❤️ Sponsor
 
-Food You Next itself doesn't collect donations. This fork builds on the work of the original
+Fork Log itself doesn't collect donations. This fork builds on the work of the original
 author, Mateusz Maksimowicz — if you'd like to support the original project, see
 [their sponsor page](https://github.com/maksimowiczm/FoodYou#%EF%B8%8F-sponsor).
 
@@ -89,7 +89,7 @@ author, Mateusz Maksimowicz — if you'd like to support the original project, s
 
 Have questions, feedback, or want to collaborate on this fork? Reach out!
 
-- **Issues / Discussions**: https://github.com/amiv1/FoodYou-Next/issues
+- **Issues / Discussions**: https://github.com/amiv1/ForkLog/issues
 
 ## 🔄 Similar Open-Source Apps
 
@@ -113,7 +113,7 @@ This project is licensed under the GNU General Public License v3.0 (or later), t
 as the upstream project. See the [LICENSE](./LICENSE) file for the full text.
 
 ```
-Food You Next
+Fork Log
 Copyright (C) 2024-2026 Mateusz Maksimowicz
 Copyright (C) 2026 Andrejs Mivreniks (fork maintainer)
 

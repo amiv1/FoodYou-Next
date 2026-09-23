@@ -1,4 +1,4 @@
-<b>Food You</b> adalah aplikasi pelacak nutrisi yang kuat dan open-source, dirancang dengan estetika Material You yang modern. Ini membantu Anda melacak tidak hanya kalori, tetapi juga asupan nutrisi Anda secara keseluruhan — dengan data makanan yang andal dan antarmuka yang fleksibel dan modular.
+<b>Fork Log</b> adalah aplikasi pelacak nutrisi yang kuat dan open-source, dirancang dengan estetika Material You yang modern. Ini membantu Anda melacak tidak hanya kalori, tetapi juga asupan nutrisi Anda secara keseluruhan — dengan data makanan yang andal dan antarmuka yang fleksibel dan modular.
 
 <b>Fitur:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Layar Beranda Modular:</b> Sesuaikan layar beranda Anda dengan kartu yang disesuaikan dengan kebutuhan Anda.</li>
 </ul>
 
-Mulai lacak nutrisi Anda hari ini dengan Food You — bersih, lengkap, dan sepenuhnya milik Anda.
+Mulai lacak nutrisi Anda hari ini dengan Fork Log — bersih, lengkap, dan sepenuhnya milik Anda.
 
 Ikon peluncur dibuat oleh <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>

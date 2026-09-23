@@ -1,1 +1,1 @@
-Food You - Kalóriakövető & Étkezési Napló
+Fork Log - Kalóriakövető & Étkezési Napló

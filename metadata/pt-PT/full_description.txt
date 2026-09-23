@@ -1,4 +1,4 @@
-<b>Food You</b> é uma aplicação poderosa e de código aberto para rastreamento nutricional, desenvolvida com a utilização da estética moderna Material You. Ajuda não só a rastrear calorias, como também toda a sua ingestão nutricional — com bases de dados fiáveis e uma interface modular e flexível.
+<b>Fork Log</b> é uma aplicação poderosa e de código aberto para rastreamento nutricional, desenvolvida com a utilização da estética moderna Material You. Ajuda não só a rastrear calorias, como também toda a sua ingestão nutricional — com bases de dados fiáveis e uma interface modular e flexível.
 
 <b>Funcionalidades:</b>
 <ul>
@@ -10,6 +10,6 @@
     <li><b>Página inicial modular:</b> personalize a sua página inicial com cartões adaptados às suas necessidades.</li>
 </ul>
 
-Comece hoje a rastrear o seu consumo nutricional com Food You — limpo, completo, e totalmente seu.
+Comece hoje a rastrear o seu consumo nutricional com Fork Log — limpo, completo, e totalmente seu.
 
 Ícone do "launcher" por <a href="https://www.behance.net/julijaberzina" target="_blank" rel="nofollow noopener noreferrer">Julija Berzina</a>
