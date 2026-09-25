@@ -1,0 +1,18 @@
+Changes
+- Renamed the app from Food You Next to Fork Log.
+- Added a "My food and recipes" management screen to search, select, and batch-delete the products and recipes you've created.
+- Moved the food search field to a floating bar at the bottom of the screen (in both the diary search and My food screens), and moved the "+" add button to the toolbar for consistency.
+- Moved the External databases setting out of a submenu to the root of the Settings screen.
+- Softened the calorie progress bar by adding a slight buffer before it turns red, and made nutrient progress bars colour only the excess amount in red instead of the whole bar.
+- Added subtle stripes and an outline around the calorie target line for better contrast, and brightened the default nutrient colour palette.
+- Allowed logging entries for future dates by default.
+- Added a feedback snackbar with a "View" action after copying a meal or food entry.
+- Text fields now capitalize the first letter by default.
+- Added a shortcut to Daily goals settings in the home screen toolbar menu.
+- Added a "Today" floating action button to quickly jump back to today's date, with animated calendar jumps for distant dates.
+- Unified rounded-corner styling across search bars, the calendar date picker button, and other components for visual consistency with the rest of the app.
+
+Bug Fixes
+- Fixed data export to include only user-added products, excluding items imported from external databases.
+- Fixed the "Today" floating action button using the wrong colour from the palette.
+- Fixed the floating action button overlapping the last items in the list on the home and My food screens by adding proper bottom clearance.
