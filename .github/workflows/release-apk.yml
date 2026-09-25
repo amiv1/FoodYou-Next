@@ -44,7 +44,7 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          APK_NAME: food-you-next-${{ steps.app_version.outputs.version }}.apk
+          APK_NAME: fork-log-${{ steps.app_version.outputs.version }}.apk
         run: |
           echo ${KEYSTORE_BASE64} | base64 -d > keystore
 
@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: signed-apk
-          path: food-you-next-${{ steps.app_version.outputs.version }}.apk
+          path: fork-log-${{ steps.app_version.outputs.version }}.apk
           if-no-files-found: error
           retention-days: 7
 
@@ -80,6 +80,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
-          files: food-you-next-${{ steps.app_version.outputs.version }}.apk
+          files: fork-log-${{ steps.app_version.outputs.version }}.apk
           generate_release_notes: true
           prerelease: ${{ contains(github.ref_name, '-') }}
