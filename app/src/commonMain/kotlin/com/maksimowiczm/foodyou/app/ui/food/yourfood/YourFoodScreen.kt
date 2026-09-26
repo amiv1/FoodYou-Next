@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.add
 import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -201,7 +202,11 @@ fun YourFoodScreen(
             }
         },
     ) { paddingValues ->
-        Box(Modifier.fillMaxSize().padding(paddingValues)) {
+        Box(
+            Modifier.fillMaxSize()
+                .padding(top = paddingValues.calculateTopPadding())
+                .imePadding()
+        ) {
             var searchFieldHeight by remember { mutableIntStateOf(0) }
             val density = LocalDensity.current
 
