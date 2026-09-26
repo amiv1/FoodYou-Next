@@ -212,7 +212,7 @@ private fun FoodSearchApp(
                     Image(
                         painter = painterResource(Res.drawable.mascot_fork_not_found),
                         contentDescription = null,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondary),
                         modifier = Modifier.size(width = 240.dp, height = 352.dp),
                     )
                     Text(text = stringResource(Res.string.neutral_no_food_found))
