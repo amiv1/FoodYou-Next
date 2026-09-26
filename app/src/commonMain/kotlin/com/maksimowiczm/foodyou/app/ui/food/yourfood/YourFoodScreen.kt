@@ -1,6 +1,9 @@
 package com.maksimowiczm.foodyou.app.ui.food.yourfood
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -45,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
@@ -307,10 +311,19 @@ fun YourFoodScreen(
             )
 
             if (pages.itemCount == 0 && pages.loadState.append !is LoadState.Loading) {
-                Text(
-                    text = stringResource(Res.string.neutral_no_food_found),
-                    modifier = Modifier.align(Alignment.Center),
-                )
+                Column(
+                    modifier = Modifier.padding(top = 32.dp).align(Alignment.TopCenter),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    Image(
+                        painter = painterResource(Res.drawable.mascot_fork_no_recipe),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                        modifier = Modifier.size(width = 240.dp, height = 352.dp),
+                    )
+                    Text(text = stringResource(Res.string.neutral_no_food_found))
+                }
             }
 
             if (pages.loadState.refresh is LoadState.Loading && pages.itemCount == 0) {

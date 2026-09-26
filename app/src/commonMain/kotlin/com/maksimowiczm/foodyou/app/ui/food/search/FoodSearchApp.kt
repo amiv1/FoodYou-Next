@@ -1,6 +1,8 @@
 package com.maksimowiczm.foodyou.app.ui.food.search
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -47,6 +50,7 @@ import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import foodyou.app.generated.resources.*
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.koin.core.parameter.parametersOf
@@ -197,10 +201,22 @@ private fun FoodSearchApp(
 
         if (pages?.itemCount == 0 && pages.loadState.append !is LoadState.Loading) {
             Box(Modifier.fillMaxSize()) {
-                Text(
-                    text = stringResource(Res.string.neutral_no_food_found),
-                    modifier = Modifier.safeContentPadding().align(Alignment.Center),
-                )
+                Column(
+                    modifier =
+                        Modifier.safeContentPadding()
+                            .padding(top = 32.dp)
+                            .align(Alignment.TopCenter),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    Image(
+                        painter = painterResource(Res.drawable.mascot_fork_not_found),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                        modifier = Modifier.size(width = 240.dp, height = 352.dp),
+                    )
+                    Text(text = stringResource(Res.string.neutral_no_food_found))
+                }
             }
         }
 
