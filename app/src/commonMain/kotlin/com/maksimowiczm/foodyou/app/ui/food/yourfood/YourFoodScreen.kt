@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
@@ -56,6 +57,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
@@ -277,6 +279,7 @@ fun YourFoodScreen(
                         )
                         .shadow(2.dp, MaterialTheme.shapes.medium)
                         .testTag(TestTags.YourFoodSearchField),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                 placeholder = { Text(stringResource(Res.string.action_search)) },
                 leadingIcon = {
                     Icon(imageVector = Icons.Outlined.Search, contentDescription = null)
