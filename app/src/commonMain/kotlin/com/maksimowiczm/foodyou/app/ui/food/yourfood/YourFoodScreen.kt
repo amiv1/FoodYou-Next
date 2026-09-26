@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.add
@@ -29,6 +30,8 @@ import androidx.compose.material.icons.filled.LunchDining
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ContainedLoadingIndicator
 import androidx.compose.material3.DropdownMenu
@@ -135,25 +138,12 @@ fun YourFoodScreen(
                                 expanded = createMenuExpanded,
                                 onDismissRequest = { createMenuExpanded = false },
                             ) {
-                                DropdownMenuItem(
-                                    text = { Text(stringResource(Res.string.headline_product)) },
-                                    leadingIcon = { Icon(Icons.Default.LunchDining, null) },
-                                    onClick = {
+                                CreateFoodMenuItems(
+                                    onCreateProduct = {
                                         createMenuExpanded = false
                                         onCreateProduct()
                                     },
-                                )
-                                DropdownMenuItem(
-                                    text = { Text(stringResource(Res.string.headline_recipe)) },
-                                    leadingIcon = {
-                                        Icon(
-                                            painter =
-                                                painterResource(Res.drawable.ic_skillet_filled),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(24.dp),
-                                        )
-                                    },
-                                    onClick = {
+                                    onCreateRecipe = {
                                         createMenuExpanded = false
                                         onCreateRecipe()
                                     },
@@ -328,6 +318,32 @@ fun YourFoodScreen(
                         modifier = Modifier.size(width = 240.dp, height = 352.dp),
                     )
                     Text(text = stringResource(Res.string.neutral_no_food_found))
+
+                    var emptyStateCreateMenuExpanded by rememberSaveable {
+                        mutableStateOf(false)
+                    }
+                    Box {
+                        Button(onClick = { emptyStateCreateMenuExpanded = true }) {
+                            Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                            Text(stringResource(Res.string.action_create))
+                        }
+                        DropdownMenu(
+                            expanded = emptyStateCreateMenuExpanded,
+                            onDismissRequest = { emptyStateCreateMenuExpanded = false },
+                        ) {
+                            CreateFoodMenuItems(
+                                onCreateProduct = {
+                                    emptyStateCreateMenuExpanded = false
+                                    onCreateProduct()
+                                },
+                                onCreateRecipe = {
+                                    emptyStateCreateMenuExpanded = false
+                                    onCreateRecipe()
+                                },
+                            )
+                        }
+                    }
                 }
             }
 
@@ -336,6 +352,26 @@ fun YourFoodScreen(
             }
         }
     }
+}
+
+@Composable
+private fun CreateFoodMenuItems(onCreateProduct: () -> Unit, onCreateRecipe: () -> Unit) {
+    DropdownMenuItem(
+        text = { Text(stringResource(Res.string.headline_product)) },
+        leadingIcon = { Icon(Icons.Default.LunchDining, null) },
+        onClick = onCreateProduct,
+    )
+    DropdownMenuItem(
+        text = { Text(stringResource(Res.string.headline_recipe)) },
+        leadingIcon = {
+            Icon(
+                painter = painterResource(Res.drawable.ic_skillet_filled),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp),
+            )
+        },
+        onClick = onCreateRecipe,
+    )
 }
 
 @Composable
