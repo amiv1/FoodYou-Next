@@ -60,6 +60,9 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigationevent.NavigationEventInfo
+import androidx.navigationevent.compose.NavigationBackHandler
+import androidx.navigationevent.compose.rememberNavigationEventState
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
@@ -101,6 +104,17 @@ fun YourFoodScreen(
             .distinctUntilChanged()
             .collectLatest { query -> viewModel.search(query.ifBlank { null }) }
     }
+
+    NavigationBackHandler(
+        state = rememberNavigationEventState(NavigationEventInfo.None),
+        onBackCompleted = {
+            if (searchFieldState.text.isNotEmpty()) {
+                searchFieldState.clearText()
+            } else {
+                onBack()
+            }
+        },
+    )
 
     var showDeleteDialog by rememberSaveable { mutableStateOf(false) }
     if (showDeleteDialog) {
